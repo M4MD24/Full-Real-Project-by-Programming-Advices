@@ -58,6 +58,12 @@ erDiagram
         INT TestID FK
         INT EyeDoctorID FK
     }
+    TheoreticalTests {
+        INT TheoreticalTestID PK
+        INT TestID FK
+        INT SupervisorID FK
+        TINYINT TestMark
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -70,3 +76,5 @@ erDiagram
     Currencies ||--|| Countries: ""
     Tests ||--|| EyeTests: ""
     EyeTests }o--|| EyeDoctors: ""
+    Tests ||--|| TheoreticalTests: ""
+    TheoreticalTests }o--|| Supervisors: ""
