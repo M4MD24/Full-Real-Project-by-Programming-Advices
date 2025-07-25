@@ -94,6 +94,25 @@ erDiagram
         DATETIME PaymentDateTime
         NVARCHAR(50) PaymentMethod
     }
+    Licences {
+        INT LicenceID PK
+        INT LicenceTypeID FK
+        INT ClientID FK
+    }
+    LicenceTypes {
+        INT LicenceTypeID PK
+        NVARCHAR(75) LicenceTypeName
+        NVARCHAR(200) LicenceDescription
+        TINYINT MinimumAge
+        MONEY LicenceFees
+        TINYINT LicenceDuration
+        NVARCHAR(300) LicenseConditionsNotes
+        TINYINT LicenseIssuanceID FK
+    }
+    LicenseIssuances {
+        TINYINT LicenseIssuanceID PK
+        NVARCHAR(50) LicenseIssuanceName
+    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
@@ -118,10 +137,14 @@ erDiagram
     Requests }o--|| Clients: ""
     Requests }|--|| RequestTypes: ""
     Requests }|--|| RequestCases: "PassingCaseID"
+    Payments ||--|| Currencies: ""
     Requests ||--o| Payments: ""
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
+    Licences }|--|| LicenceTypes: ""
+    Licences ||--o{ Clients: ""
+    LicenceTypes }|--|| LicenseIssuances: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
