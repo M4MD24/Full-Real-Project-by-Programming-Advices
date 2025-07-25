@@ -26,7 +26,12 @@ erDiagram
         INT ClientID PK
         INT PersonID FK
     }
+    Employees {
+        INT EmployeeID PK
+        INT PersonID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--|| Clients: ""
+    Persons ||--|| Employees: ""
