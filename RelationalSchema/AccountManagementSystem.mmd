@@ -34,8 +34,19 @@ erDiagram
         BIT IsActive
         TINYINT AccountTypeID FK
     }
+    AccountPermissions {
+        INT AccountID FK
+        TINYINT PermissionID FK
+    }
+    Permissions {
+        TINYINT PermissionID PK
+        TINYINT PermissionNumber
+        NVARCHAR(50) PermissionName
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--o{ Accounts: ""
     Accounts ||--|| AccountTypes: ""
+    Accounts }|--o{ AccountPermissions: ""
+    AccountPermissions }o--|| Permissions: ""
