@@ -126,6 +126,10 @@ erDiagram
         INT LicenseRenewalID PK
         INT RequestID FK
     }
+    LockedLicences {
+        INT LockedLicenceID PK
+        INT LicenceID FK
+    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
@@ -164,6 +168,7 @@ erDiagram
     Retests |o--|| Requests: "NewRequestID"
     OfficialDrivers ||--|{ Licences: ""
     LicenseRenewals ||--o{ Requests: ""
+    LockedLicences }o--|| Licences: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
