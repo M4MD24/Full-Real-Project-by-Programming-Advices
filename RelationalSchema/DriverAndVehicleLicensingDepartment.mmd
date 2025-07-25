@@ -30,8 +30,13 @@ erDiagram
         INT EmployeeID PK
         INT PersonID FK
     }
+    DrivingExaminers {
+        INT DrivingExaminerID PK
+        INT EmployeeID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--|| Clients: ""
     Persons ||--|| Employees: ""
+    Employees ||--|| DrivingExaminers: ""
