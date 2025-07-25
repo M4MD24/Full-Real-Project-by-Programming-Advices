@@ -34,9 +34,14 @@ erDiagram
         INT DrivingExaminerID PK
         INT EmployeeID FK
     }
+    EyeDoctors {
+        INT EyeDoctorID PK
+        INT EmployeeID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--|| Clients: ""
     Persons ||--|| Employees: ""
     Employees ||--|| DrivingExaminers: ""
+    Employees ||--|| EyeDoctors: ""
