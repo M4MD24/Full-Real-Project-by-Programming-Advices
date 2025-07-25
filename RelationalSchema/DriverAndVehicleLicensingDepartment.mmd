@@ -64,6 +64,11 @@ erDiagram
         INT SupervisorID FK
         TINYINT TestMark
     }
+    DrivingTests {
+        INT DrivingTestID PK
+        INT TestID FK
+        INT DrivingExaminerID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -78,3 +83,5 @@ erDiagram
     EyeTests }o--|| EyeDoctors: ""
     Tests ||--|| TheoreticalTests: ""
     TheoreticalTests }o--|| Supervisors: ""
+    Tests ||--|| DrivingTests: ""
+    DrivingTests }o--|| DrivingExaminers: ""
