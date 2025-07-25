@@ -2,3 +2,26 @@
 title: Driver & Vehicle Licence Department (DVLD)
 ---
 erDiagram
+    Persons {
+        INT PersonID PK
+        NVARCHAR(30) NationalNumber
+        NVARCHAR(100) FullName
+        DATETIME DateOfBirth
+        INT ContactInformationID FK
+        NVARCHAR(200) Address
+        INT CountryID FK
+        NVARCHAR(2083) ImageURL
+    }
+    Countries {
+        INT CountryID PK
+        NVARCHAR(75) CountryName
+        VARCHAR(3) CountryCode
+    }
+    ContactInformation {
+        INT ContactInformationID PK
+        VARCHAR(20) PhoneNumber
+        VARCHAR(100) Email
+    }
+
+    Persons ||--|| Countries: ""
+    Persons ||--|| ContactInformation: ""
