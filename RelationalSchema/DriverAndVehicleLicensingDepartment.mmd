@@ -113,10 +113,16 @@ erDiagram
         TINYINT LicenseIssuanceID PK
         NVARCHAR(50) LicenseIssuanceName
     }
+    Retests {
+        INT Retest PK
+        INT LastRequestID FK
+        INT NewRequestID FK
+    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
         INT TheoreticalTestFeesID FK
+        INT RetestFeesID FK
     }
 
     Persons ||--|| Countries: ""
@@ -145,6 +151,9 @@ erDiagram
     Licences }|--|| LicenceTypes: ""
     Licences ||--o{ Clients: ""
     LicenceTypes }|--|| LicenseIssuances: ""
+    Retests |o--|| Requests: "LastRequestID"
+    Retests |o--|| Requests: "NewRequestID"
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
+    Fees ||--|| Currencies: "RetestFeesID"
