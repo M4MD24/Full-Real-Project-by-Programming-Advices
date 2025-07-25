@@ -1,0 +1,52 @@
+---
+title: Account Management System
+---
+erDiagram
+    Persons {
+        INT PersonID PK
+        NVARCHAR(30) NationalNumber
+        NVARCHAR(100) FullName
+        DATETIME DateOfBirth
+        NVARCHAR(200) Address
+        INT ContactInformationID FK
+        INT CountryID FK
+        NVARCHAR(2083) ImageURL
+    }
+    Countries {
+        INT CountryID PK
+        NVARCHAR(75) CountryName
+        VARCHAR(3) CountryCode
+    }
+    ContactInformation {
+        INT ContactInformationID PK
+        VARCHAR(20) PhoneNumber
+        VARCHAR(100) Email
+    }
+    AccountTypes {
+        TINYINT AccountTypeID PK
+        NVARCHAR(25) AccountTypeName
+    }
+    Accounts {
+        INT AccountID PK
+        INT PersonID FK
+        VARCHAR(50) Username
+        VARCHAR(50) Password
+        BIT IsActive
+        TINYINT AccountTypeID FK
+    }
+    AccountPermissions {
+        INT AccountID FK
+        TINYINT PermissionID FK
+    }
+    Permissions {
+        TINYINT PermissionID PK
+        TINYINT PermissionNumber
+        NVARCHAR(50) PermissionName
+    }
+
+    Persons ||--|| Countries: ""
+    Persons ||--|| ContactInformation: ""
+    Persons ||--o{ Accounts: ""
+    Accounts ||--|| AccountTypes: ""
+    Accounts }|--o{ AccountPermissions: ""
+    AccountPermissions }o--|| Permissions: ""
