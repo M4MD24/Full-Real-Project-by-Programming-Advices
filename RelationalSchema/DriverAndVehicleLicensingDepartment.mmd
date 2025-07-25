@@ -69,6 +69,31 @@ erDiagram
         INT TestID FK
         INT DrivingExaminerID FK
     }
+    Requests {
+        INT RequestID PK
+        DATETIME RequestDateTime
+        INT ClientID FK
+        INT RequestTypeID FK
+        TINYINT PassingCaseID FK
+        INT PaymentID FK
+        INT EyeTestID FK
+        INT TheoreticalTestID FK
+        INT DrivingTestID FK
+    }
+    RequestTypes {
+        INT RequestTypeID PK
+        NVARCHAR(50) RequestTypeName
+    }
+    RequestCases {
+        TINYINT PassingCaseID PK
+        NVARCHAR(20) PassingStatusName
+    }
+    Payments {
+        INT PaymentID PK
+        INT CurrencyID FK
+        DATETIME PaymentDateTime
+        NVARCHAR(50) PaymentMethod
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -85,3 +110,10 @@ erDiagram
     TheoreticalTests }o--|| Supervisors: ""
     Tests ||--|| DrivingTests: ""
     DrivingTests }o--|| DrivingExaminers: ""
+    Requests }o--|| Clients: ""
+    Requests }|--|| RequestTypes: ""
+    Requests }|--|| RequestCases: "PassingCaseID"
+    Requests ||--o| Payments: ""
+    Requests ||--|| EyeTests: ""
+    Requests ||--|| TheoreticalTests: ""
+    Requests ||--|| DrivingTests: ""
