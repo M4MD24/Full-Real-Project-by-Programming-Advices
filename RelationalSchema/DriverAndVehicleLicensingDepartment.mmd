@@ -94,6 +94,11 @@ erDiagram
         DATETIME PaymentDateTime
         NVARCHAR(50) PaymentMethod
     }
+    Fees {
+        INT RequestFeesID FK
+        INT EyeTestFeesID FK
+        INT TheoreticalTestFeesID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -117,3 +122,6 @@ erDiagram
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
+    Fees ||--|| Currencies: "RequestFeesID"
+    Fees ||--|| Currencies: "EyeTestFeesID"
+    Fees ||--|| Currencies: "TheoreticalTestFeesID"
