@@ -38,6 +38,10 @@ erDiagram
         INT EyeDoctorID PK
         INT EmployeeID FK
     }
+    Supervisors {
+        INT SupervisorID PK
+        INT EmployeeID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -45,3 +49,4 @@ erDiagram
     Persons ||--|| Employees: ""
     Employees ||--|| DrivingExaminers: ""
     Employees ||--|| EyeDoctors: ""
+    Employees ||--|| Supervisors: ""
