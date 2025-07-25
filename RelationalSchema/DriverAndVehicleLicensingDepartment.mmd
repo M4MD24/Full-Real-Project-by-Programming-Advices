@@ -53,6 +53,11 @@ erDiagram
         INT CurrencyID FK
         BIT isSucceed
     }
+    EyeTests {
+        INT EyeTestID PK
+        INT TestID FK
+        INT EyeDoctorID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -63,3 +68,5 @@ erDiagram
     Employees ||--|| Supervisors: ""
     Tests ||--|| Currencies: ""
     Currencies ||--|| Countries: ""
+    Tests ||--|| EyeTests: ""
+    EyeTests }o--|| EyeDoctors: ""
