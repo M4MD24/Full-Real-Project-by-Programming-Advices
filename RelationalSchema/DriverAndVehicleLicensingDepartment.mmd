@@ -122,11 +122,16 @@ erDiagram
         INT OfficialDriverID PK
         INT LicenceID FK
     }
+    LicenseRenewals {
+        INT LicenseRenewalID PK
+        INT RequestID FK
+    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
         INT TheoreticalTestFeesID FK
         INT RetestFeesID FK
+        INT LicenseRenewalFeesID FK
     }
 
     Persons ||--|| Countries: ""
@@ -158,7 +163,9 @@ erDiagram
     Retests |o--|| Requests: "LastRequestID"
     Retests |o--|| Requests: "NewRequestID"
     OfficialDrivers ||--|{ Licences: ""
+    LicenseRenewals ||--o{ Requests: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
     Fees ||--|| Currencies: "RetestFeesID"
+    Fees ||--|| Currencies: "LicenseRenewalFeesID"
