@@ -42,6 +42,17 @@ erDiagram
         INT SupervisorID PK
         INT EmployeeID FK
     }
+    Currencies {
+        INT CurrencyID PK
+        MONEY Amount
+        INT CountryID FK
+    }
+    Tests {
+        INT TestID PK
+        DATETIME TestDateTime
+        INT CurrencyID FK
+        BIT isSucceed
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
@@ -50,3 +61,5 @@ erDiagram
     Employees ||--|| DrivingExaminers: ""
     Employees ||--|| EyeDoctors: ""
     Employees ||--|| Supervisors: ""
+    Tests ||--|| Currencies: ""
+    Currencies ||--|| Countries: ""
