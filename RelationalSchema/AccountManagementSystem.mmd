@@ -22,6 +22,20 @@ erDiagram
         VARCHAR(20) PhoneNumber
         VARCHAR(100) Email
     }
+    AccountTypes {
+        TINYINT AccountTypeID PK
+        NVARCHAR(25) AccountTypeName
+    }
+    Accounts {
+        INT AccountID PK
+        INT PersonID FK
+        VARCHAR(50) Username
+        VARCHAR(50) Password
+        BIT IsActive
+        TINYINT AccountTypeID FK
+    }
 
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
+    Persons ||--o{ Accounts: ""
+    Accounts ||--|| AccountTypes: ""
