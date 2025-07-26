@@ -46,3 +46,10 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Clients
     PersonID INT NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
 )
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.Employees
+(
+    EmployeeID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PersonID   INT NOT NULL,
+    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
+)
