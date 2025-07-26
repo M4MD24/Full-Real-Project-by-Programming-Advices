@@ -199,3 +199,10 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.Retests
     FOREIGN KEY (LastRequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID),
     FOREIGN KEY (NewRequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID)
 )
+
+CREATE TABLE DriverAndVehicleLicenseDepartment.OfficialDrivers
+(
+    OfficialDriverID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    RequestID        INT NOT NULL,
+    FOREIGN KEY (RequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID)
+)
