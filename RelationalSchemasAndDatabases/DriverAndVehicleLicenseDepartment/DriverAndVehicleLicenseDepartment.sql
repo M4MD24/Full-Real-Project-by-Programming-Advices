@@ -237,3 +237,23 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.DamagedLicenseReplacements
     LicenseID                   INT NOT NULL,
     FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
 )
+
+CREATE TABLE DriverAndVehicleLicenseDepartment.Fees
+(
+    RequestFeesID                   INT NOT NULL,
+    EyeTestFeesID                   INT NOT NULL,
+    TheoreticalTestFeesID           INT NOT NULL,
+    RetestFeesID                    INT NOT NULL,
+    LicenseRenewalFeesID            INT NOT NULL,
+    LostLicenseReplacementFeesID    INT NOT NULL,
+    DamagedLicenseReplacementFeesID INT NOT NULL,
+    InternationalLicenseFeesID      INT NOT NULL,
+    FOREIGN KEY (RequestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (EyeTestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (TheoreticalTestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (RetestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (LicenseRenewalFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (LostLicenseReplacementFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (DamagedLicenseReplacementFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (InternationalLicenseFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+)
