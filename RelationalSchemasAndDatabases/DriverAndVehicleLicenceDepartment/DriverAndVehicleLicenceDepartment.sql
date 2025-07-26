@@ -100,3 +100,12 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.EyeTests
     FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenceDepartment.Tests (TestID),
     FOREIGN KEY (EyeDoctorID) REFERENCES DriverAndVehicleLicenceDepartment.EyeDoctors (EyeDoctorID)
 )
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.TheoreticalTests
+(
+    TheoreticalTestID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestID            INT NOT NULL,
+    SupervisorID      INT NOT NULL,
+    FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenceDepartment.Tests (TestID),
+    FOREIGN KEY (SupervisorID) REFERENCES DriverAndVehicleLicenceDepartment.Supervisors (SupervisorID)
+)
