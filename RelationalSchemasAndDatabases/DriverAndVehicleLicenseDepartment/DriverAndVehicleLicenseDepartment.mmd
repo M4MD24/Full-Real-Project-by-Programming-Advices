@@ -1,5 +1,5 @@
 ---
-title: Driver & Vehicle Licence Department (DVLD)
+title: Driver & Vehicle License Department (DVLD)
 ---
 erDiagram
     Persons {
@@ -9,7 +9,7 @@ erDiagram
         DATETIME DateOfBirth
         INT ContactInformationID FK
         NVARCHAR(200) Address
-        INT CountryID FK
+        TINYINT CountryID FK
         NVARCHAR(2083) ImageURL
     }
     FullNames {
@@ -20,7 +20,7 @@ erDiagram
         NVARCHAR(20) FourthName
     }
     Countries {
-        INT CountryID PK
+        TINYINT CountryID PK
         NVARCHAR(75) CountryName
         VARCHAR(3) CountryCode
     }
@@ -37,10 +37,6 @@ erDiagram
         INT EmployeeID PK
         INT PersonID FK
     }
-    DrivingExaminers {
-        INT DrivingExaminerID PK
-        INT EmployeeID FK
-    }
     EyeDoctors {
         INT EyeDoctorID PK
         INT EmployeeID FK
@@ -49,16 +45,20 @@ erDiagram
         INT SupervisorID PK
         INT EmployeeID FK
     }
+    DrivingExaminers {
+        INT DrivingExaminerID PK
+        INT EmployeeID FK
+    }
     Currencies {
         INT CurrencyID PK
         MONEY Amount
-        INT CountryID FK
+        TINYINT CountryID FK
     }
     Tests {
         INT TestID PK
         DATETIME TestDateTime
         INT CurrencyID FK
-        BIT isSucceed
+        BIT IsSucceed
     }
     EyeTests {
         INT EyeTestID PK
@@ -76,24 +76,13 @@ erDiagram
         INT TestID FK
         INT DrivingExaminerID FK
     }
-    Requests {
-        INT RequestID PK
-        DATETIME RequestDateTime
-        INT ClientID FK
-        INT RequestTypeID FK
-        TINYINT PassingCaseID FK
-        INT PaymentID FK
-        INT EyeTestID FK
-        INT TheoreticalTestID FK
-        INT DrivingTestID FK
-    }
     RequestTypes {
         INT RequestTypeID PK
         NVARCHAR(50) RequestTypeName
     }
     RequestCases {
-        TINYINT PassingCaseID PK
-        NVARCHAR(20) PassingStatusName
+        TINYINT RequestCaseID PK
+        NVARCHAR(20) RequestCaseName
     }
     Payments {
         INT PaymentID PK
@@ -101,58 +90,69 @@ erDiagram
         DATETIME PaymentDateTime
         NVARCHAR(50) PaymentMethod
     }
-    Licences {
-        INT LicenceID PK
-        INT LicenceTypeID FK
+    Requests {
+        INT RequestID PK
+        DATETIME RequestDateTime
         INT ClientID FK
+        INT RequestTypeID FK
+        TINYINT RequestCaseID FK
+        INT PaymentID FK
+        INT EyeTestID FK
+        INT TheoreticalTestID FK
+        INT DrivingTestID FK
     }
-    LicenceTypes {
-        INT LicenceTypeID PK
-        NVARCHAR(75) LicenceTypeName
-        NVARCHAR(200) LicenceDescription
+    LicenseIssuances {
+        TINYINT LicenseIssuanceID PK
+        NVARCHAR(50) LicenseIssuanceName
+    }
+    LicenseTypes {
+        INT LicenseTypeID PK
+        NVARCHAR(75) LicenseTypeName
+        NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
-        MONEY LicenceFees
-        TINYINT LicenceDuration
+        MONEY LicenseFees
+        TINYINT LicenseDuration
         NVARCHAR(300) LicenseConditionsNotes
         TINYINT LicenseIssuanceID FK
         DATETIME IssueDateTime
         DATETIME ExpiryDateTime
         BIT IsActive
     }
-    LicenseIssuances {
-        TINYINT LicenseIssuanceID PK
-        NVARCHAR(50) LicenseIssuanceName
+    Licenses {
+        INT LicenseID PK
+        INT LicenseTypeID FK
+        INT ClientID FK
     }
     Retests {
-        INT Retest PK
+        INT RetestID PK
         INT LastRequestID FK
         INT NewRequestID FK
     }
     OfficialDrivers {
         INT OfficialDriverID PK
-        INT LicenceID FK
+        INT LicenseID FK
     }
     LicenseRenewals {
         INT LicenseRenewalID PK
         INT RequestID FK
     }
-    LockedLicences {
-        INT LockedLicenceID PK
-        INT LicenceID FK
+    LockedLicenses {
+        INT LockedLicenseID PK
+        INT LicenseID FK
     }
     UnlockLicenses {
         INT UnlockLicenseID PK
-        INT LicenceID FK
+        INT LicenseID FK
         DATETIME DateTimeUnlock
         INT PaymentID FK
     }
     LostLicenseReplacements {
         INT LostLicenseReplacementID PK
-        INT LicenceID FK
+        INT LicenseID FK
     }
     DamagedLicenseReplacements {
         INT DamagedLicenseReplacementID PK
-        INT LicenceID FK
+        INT LicenseID FK
         DATETIME ReplacementDateTime
     }
     Fees {
@@ -184,24 +184,24 @@ erDiagram
     DrivingTests }o--|| DrivingExaminers: ""
     Requests }o--|| Clients: ""
     Requests }|--|| RequestTypes: ""
-    Requests }|--|| RequestCases: "PassingCaseID"
+    Requests }|--|| RequestCases: "RequestCaseID"
     Payments ||--|| Currencies: ""
     Requests ||--o| Payments: ""
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
-    Licences }|--|| LicenceTypes: ""
-    Licences ||--o{ Clients: ""
-    LicenceTypes }|--|| LicenseIssuances: ""
+    Licenses }|--|| LicenseTypes: ""
+    Licenses ||--o{ Clients: ""
+    LicenseTypes }|--|| LicenseIssuances: ""
     Retests |o--|| Requests: "LastRequestID"
     Retests |o--|| Requests: "NewRequestID"
-    OfficialDrivers ||--|{ Licences: ""
+    OfficialDrivers ||--|{ Licenses: ""
     LicenseRenewals ||--o{ Requests: ""
-    LockedLicences }o--|| Licences: ""
+    LockedLicenses }o--|| Licenses: ""
     UnlockLicenses ||--|| Payments: ""
-    UnlockLicenses }o--|| Licences: ""
-    LostLicenseReplacements }o--|| Licences: ""
-    DamagedLicenseReplacements }o--|| Licences: ""
+    UnlockLicenses }o--|| Licenses: ""
+    LostLicenseReplacements }o--|| Licenses: ""
+    DamagedLicenseReplacements }o--|| Licenses: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"

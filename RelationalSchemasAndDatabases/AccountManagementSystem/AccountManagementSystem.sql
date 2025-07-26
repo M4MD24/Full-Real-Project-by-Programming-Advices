@@ -1,10 +1,10 @@
-USE DriverAndVehicleLicenceDepartment;
+USE DriverAndVehicleLicenseDepartment;
 
 CREATE SCHEMA AccountManagementSystem;
 
 CREATE TABLE AccountManagementSystem.Countries
 (
-    CountryID   INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    CountryID   TINYINT      NOT NULL PRIMARY KEY,
     CountryName NVARCHAR(75) NOT NULL,
     CountryCode NVARCHAR(3)  NOT NULL
 )
@@ -32,8 +32,8 @@ CREATE TABLE AccountManagementSystem.Persons
     FullNameID           INT           NOT NULL,
     DateOfBirth          DATETIME      NOT NULL,
     Address              NVARCHAR(200) NOT NULL,
-    ContactInformationID INT           NOT null,
-    CountryID            INT           NOT null,
+    ContactInformationID INT           NOT NULL,
+    CountryID            TINYINT       NOT NULL,
     ImageURL             NVARCHAR(2083),
     FOREIGN KEY (FullNameID) REFERENCES AccountManagementSystem.FullNames (FullNameID),
     FOREIGN KEY (ContactInformationID) REFERENCES AccountManagementSystem.ContactInformation (ContactInformationID),
@@ -53,7 +53,7 @@ CREATE TABLE AccountManagementSystem.Accounts
     Username      VARCHAR(50) NOT NULL,
     Password      VARCHAR(50) NOT NULL,
     IsActive      BIT         NOT NULL,
-    AccountTypeID TINYINT     NOT null,
+    AccountTypeID TINYINT     NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES AccountManagementSystem.Persons (PersonID),
     FOREIGN KEY (AccountTypeID) REFERENCES AccountManagementSystem.AccountTypes (AccountTypeID)
 )

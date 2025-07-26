@@ -1,1 +1,1 @@
-CREATE DATABASE DriverAndVehicleLicenceDepartment
+CREATE DATABASE DriverAndVehicleLicenseDepartment
