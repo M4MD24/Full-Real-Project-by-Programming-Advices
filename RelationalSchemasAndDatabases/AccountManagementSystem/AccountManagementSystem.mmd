@@ -12,7 +12,7 @@ erDiagram
         INT CountryID FK
         NVARCHAR(2083) ImageURL
     }
-    FullName {
+    FullNames {
         INT FullNameID PK
         NVARCHAR(20) FirstName
         NVARCHAR(20) SecondName
@@ -51,6 +51,7 @@ erDiagram
         NVARCHAR(50) PermissionName
     }
 
+    Persons ||--|| FullNames: ""
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--o{ Accounts: ""
