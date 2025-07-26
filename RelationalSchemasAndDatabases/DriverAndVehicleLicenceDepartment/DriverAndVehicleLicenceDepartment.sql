@@ -82,3 +82,12 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Currencies
     CountryID  TINYINT NOT NULL,
     FOREIGN KEY (CountryID) REFERENCES DriverAndVehicleLicenceDepartment.Countries (CountryID)
 )
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.Tests
+(
+    TestID       INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestDateTime DATETIME NOT NULL,
+    CurrencyID   INT      NOT NULL,
+    IsSucceed    BIT      NOT NULL,
+    FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenceDepartment.Currencies (CurrencyID)
+)
