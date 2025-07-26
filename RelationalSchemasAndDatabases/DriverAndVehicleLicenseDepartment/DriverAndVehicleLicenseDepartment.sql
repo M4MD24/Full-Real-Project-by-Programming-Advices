@@ -190,3 +190,12 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.Licenses
     FOREIGN KEY (LicenseTypeID) REFERENCES DriverAndVehicleLicenseDepartment.LicenseTypes (LicenseTypeID),
     FOREIGN KEY (ClientID) REFERENCES DriverAndVehicleLicenseDepartment.Clients (ClientID)
 )
+
+CREATE TABLE DriverAndVehicleLicenseDepartment.Retests
+(
+    RetestID      INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LastRequestID INT NOT NULL,
+    NewRequestID  INT NOT NULL,
+    FOREIGN KEY (LastRequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID),
+    FOREIGN KEY (NewRequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID)
+)
