@@ -57,3 +57,18 @@ CREATE TABLE AccountManagementSystem.Accounts
     FOREIGN KEY (PersonID) REFERENCES AccountManagementSystem.Persons (PersonID),
     FOREIGN KEY (AccountTypeID) REFERENCES AccountManagementSystem.AccountTypes (AccountTypeID)
 )
+
+CREATE TABLE AccountManagementSystem.Permissions
+(
+    PermissionID     TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PermissionNumber TINYINT     NOT NULL,
+    PermissionName   VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE AccountManagementSystem.AccountPermissions
+(
+    AccountID    INT     NOT NULL,
+    PermissionID TINYINT NOT NULL,
+    FOREIGN KEY (AccountID) REFERENCES AccountManagementSystem.Accounts (AccountID),
+    FOREIGN KEY (PermissionID) REFERENCES AccountManagementSystem.Permissions (PermissionID)
+)
