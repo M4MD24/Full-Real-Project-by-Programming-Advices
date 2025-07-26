@@ -1,0 +1,209 @@
+---
+title: Driver & Vehicle Licence Department (DVLD)
+---
+erDiagram
+    Persons {
+        INT PersonID PK
+        NVARCHAR(30) NationalNumber
+        NVARCHAR(100) FullName
+        DATETIME DateOfBirth
+        INT ContactInformationID FK
+        NVARCHAR(200) Address
+        INT CountryID FK
+        NVARCHAR(2083) ImageURL
+    }
+    Countries {
+        INT CountryID PK
+        NVARCHAR(75) CountryName
+        VARCHAR(3) CountryCode
+    }
+    ContactInformation {
+        INT ContactInformationID PK
+        VARCHAR(20) PhoneNumber
+        VARCHAR(100) Email
+    }
+    Clients {
+        INT ClientID PK
+        INT PersonID FK
+    }
+    Employees {
+        INT EmployeeID PK
+        INT PersonID FK
+    }
+    DrivingExaminers {
+        INT DrivingExaminerID PK
+        INT EmployeeID FK
+    }
+    EyeDoctors {
+        INT EyeDoctorID PK
+        INT EmployeeID FK
+    }
+    Supervisors {
+        INT SupervisorID PK
+        INT EmployeeID FK
+    }
+    Currencies {
+        INT CurrencyID PK
+        MONEY Amount
+        INT CountryID FK
+    }
+    Tests {
+        INT TestID PK
+        DATETIME TestDateTime
+        INT CurrencyID FK
+        BIT isSucceed
+    }
+    EyeTests {
+        INT EyeTestID PK
+        INT TestID FK
+        INT EyeDoctorID FK
+    }
+    TheoreticalTests {
+        INT TheoreticalTestID PK
+        INT TestID FK
+        INT SupervisorID FK
+        TINYINT TestMark
+    }
+    DrivingTests {
+        INT DrivingTestID PK
+        INT TestID FK
+        INT DrivingExaminerID FK
+    }
+    Requests {
+        INT RequestID PK
+        DATETIME RequestDateTime
+        INT ClientID FK
+        INT RequestTypeID FK
+        TINYINT PassingCaseID FK
+        INT PaymentID FK
+        INT EyeTestID FK
+        INT TheoreticalTestID FK
+        INT DrivingTestID FK
+    }
+    RequestTypes {
+        INT RequestTypeID PK
+        NVARCHAR(50) RequestTypeName
+    }
+    RequestCases {
+        TINYINT PassingCaseID PK
+        NVARCHAR(20) PassingStatusName
+    }
+    Payments {
+        INT PaymentID PK
+        INT CurrencyID FK
+        DATETIME PaymentDateTime
+        NVARCHAR(50) PaymentMethod
+    }
+    Licences {
+        INT LicenceID PK
+        INT LicenceTypeID FK
+        INT ClientID FK
+    }
+    LicenceTypes {
+        INT LicenceTypeID PK
+        NVARCHAR(75) LicenceTypeName
+        NVARCHAR(200) LicenceDescription
+        TINYINT MinimumAge
+        MONEY LicenceFees
+        TINYINT LicenceDuration
+        NVARCHAR(300) LicenseConditionsNotes
+        TINYINT LicenseIssuanceID FK
+    }
+    LicenseIssuances {
+        TINYINT LicenseIssuanceID PK
+        NVARCHAR(50) LicenseIssuanceName
+    }
+    Retests {
+        INT Retest PK
+        INT LastRequestID FK
+        INT NewRequestID FK
+    }
+    OfficialDrivers {
+        INT OfficialDriverID PK
+        INT LicenceID FK
+    }
+    LicenseRenewals {
+        INT LicenseRenewalID PK
+        INT RequestID FK
+    }
+    LockedLicences {
+        INT LockedLicenceID PK
+        INT LicenceID FK
+    }
+    UnlockLicenses {
+        INT UnlockLicenseID PK
+        INT LicenceID FK
+        DATETIME DateTimeUnlock
+        INT PaymentID FK
+    }
+    LostLicenseReplacements {
+        INT LostLicenseReplacementID PK
+        INT LicenceID FK
+    }
+    DamagedLicenseReplacements {
+        INT DamagedLicenseReplacementID PK
+        INT LicenceID FK
+        DATETIME ReplacementDateTime
+    }
+    InternationalLicenses {
+        INT InternationalLicenseID PK
+        INT LicenceID FK
+        DATETIME IssueDateTime
+        DATETIME ExpiryDateTime
+        BIT IsActive
+    }
+    Fees {
+        INT RequestFeesID FK
+        INT EyeTestFeesID FK
+        INT TheoreticalTestFeesID FK
+        INT RetestFeesID FK
+        INT LicenseRenewalFeesID FK
+        INT LostLicenseReplacementFeesID FK
+        INT DamagedLicenseReplacementFeesID FK
+        INT InternationalLicenseFeesID FK
+    }
+
+    Persons ||--|| Countries: ""
+    Persons ||--|| ContactInformation: ""
+    Persons ||--|| Clients: ""
+    Persons ||--|| Employees: ""
+    Employees ||--|| DrivingExaminers: ""
+    Employees ||--|| EyeDoctors: ""
+    Employees ||--|| Supervisors: ""
+    Tests ||--|| Currencies: ""
+    Currencies ||--|| Countries: ""
+    Tests ||--|| EyeTests: ""
+    EyeTests }o--|| EyeDoctors: ""
+    Tests ||--|| TheoreticalTests: ""
+    TheoreticalTests }o--|| Supervisors: ""
+    Tests ||--|| DrivingTests: ""
+    DrivingTests }o--|| DrivingExaminers: ""
+    Requests }o--|| Clients: ""
+    Requests }|--|| RequestTypes: ""
+    Requests }|--|| RequestCases: "PassingCaseID"
+    Payments ||--|| Currencies: ""
+    Requests ||--o| Payments: ""
+    Requests ||--|| EyeTests: ""
+    Requests ||--|| TheoreticalTests: ""
+    Requests ||--|| DrivingTests: ""
+    Licences }|--|| LicenceTypes: ""
+    Licences ||--o{ Clients: ""
+    LicenceTypes }|--|| LicenseIssuances: ""
+    Retests |o--|| Requests: "LastRequestID"
+    Retests |o--|| Requests: "NewRequestID"
+    OfficialDrivers ||--|{ Licences: ""
+    LicenseRenewals ||--o{ Requests: ""
+    LockedLicences }o--|| Licences: ""
+    UnlockLicenses ||--|| Payments: ""
+    UnlockLicenses }o--|| Licences: ""
+    LostLicenseReplacements }o--|| Licences: ""
+    DamagedLicenseReplacements }o--|| Licences: ""
+    Licences ||--o{ InternationalLicenses: ""
+    Fees ||--|| Currencies: "RequestFeesID"
+    Fees ||--|| Currencies: "EyeTestFeesID"
+    Fees ||--|| Currencies: "TheoreticalTestFeesID"
+    Fees ||--|| Currencies: "RetestFeesID"
+    Fees ||--|| Currencies: "LicenseRenewalFeesID"
+    Fees ||--|| Currencies: "LostLicenseReplacementFeesID"
+    Fees ||--|| Currencies: "DamagedLicenseReplacementFeesID"
+    Fees ||--|| Currencies: "InternationalLicenseFeesID"
