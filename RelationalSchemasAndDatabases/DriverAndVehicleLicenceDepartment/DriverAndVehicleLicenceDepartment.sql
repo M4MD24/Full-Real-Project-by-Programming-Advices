@@ -54,13 +54,6 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Employees
     FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
 )
 
-CREATE TABLE DriverAndVehicleLicenceDepartment.DrivingExaminers
-(
-    DrivingExaminerID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PersonID          INT NOT NULL,
-    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
-)
-
 CREATE TABLE DriverAndVehicleLicenceDepartment.EyeDoctors
 (
     EyeDoctorID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
@@ -72,6 +65,13 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Supervisors
 (
     SupervisorID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID     INT NOT NULL,
+    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
+)
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.DrivingExaminers
+(
+    DrivingExaminerID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PersonID          INT NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
 )
 
@@ -108,4 +108,13 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.TheoreticalTests
     SupervisorID      INT NOT NULL,
     FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenceDepartment.Tests (TestID),
     FOREIGN KEY (SupervisorID) REFERENCES DriverAndVehicleLicenceDepartment.Supervisors (SupervisorID)
+)
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.DrivingTests
+(
+    DrivingTestID     INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestID            INT NOT NULL,
+    DrivingExaminerID INT NOT NULL,
+    FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenceDepartment.Tests (TestID),
+    FOREIGN KEY (DrivingExaminerID) REFERENCES DriverAndVehicleLicenceDepartment.DrivingExaminers (DrivingExaminerID)
 )

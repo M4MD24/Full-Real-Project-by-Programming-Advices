@@ -37,16 +37,16 @@ erDiagram
         INT EmployeeID PK
         INT PersonID FK
     }
-    DrivingExaminers {
-        INT DrivingExaminerID PK
-        INT EmployeeID FK
-    }
     EyeDoctors {
         INT EyeDoctorID PK
         INT EmployeeID FK
     }
     Supervisors {
         INT SupervisorID PK
+        INT EmployeeID FK
+    }
+    DrivingExaminers {
+        INT DrivingExaminerID PK
         INT EmployeeID FK
     }
     Currencies {
