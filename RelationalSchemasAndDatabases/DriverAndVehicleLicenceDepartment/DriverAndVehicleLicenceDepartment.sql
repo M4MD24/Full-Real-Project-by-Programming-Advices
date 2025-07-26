@@ -39,3 +39,10 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Persons
     FOREIGN KEY (ContactInformationID) REFERENCES DriverAndVehicleLicenceDepartment.ContactInformation (ContactInformationID),
     FOREIGN KEY (CountryID) REFERENCES DriverAndVehicleLicenceDepartment.Countries (CountryID)
 )
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.Clients
+(
+    ClientID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PersonID INT NOT NULL,
+    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
+)
