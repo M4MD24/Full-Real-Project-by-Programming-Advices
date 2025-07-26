@@ -5,12 +5,19 @@ erDiagram
     Persons {
         INT PersonID PK
         NVARCHAR(30) NationalNumber
-        NVARCHAR(100) FullName
+        INT FullNameID FK
         DATETIME DateOfBirth
         INT ContactInformationID FK
         NVARCHAR(200) Address
         INT CountryID FK
         NVARCHAR(2083) ImageURL
+    }
+    FullName {
+        INT FullNameID PK
+        NVARCHAR(20) FirstName
+        NVARCHAR(20) SecondName
+        NVARCHAR(20) ThirdName
+        NVARCHAR(20) FourthName
     }
     Countries {
         INT CountryID PK
@@ -159,6 +166,7 @@ erDiagram
         INT InternationalLicenseFeesID FK
     }
 
+    Persons ||--|| FullName: ""
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--|| Clients: ""
