@@ -1,5 +1,5 @@
 # Full Real Project
 
-- [Relational Schema](RelationalSchema)
-    - [Account Management System](RelationalSchema/AccountManagementSystem.mmd)
-    - [Driver & Vehicle Licensing Department (DVLD)](RelationalSchema/DriverAndVehicleLicensingDepartment.mmd)
+- [Relational Schema](RelationalSchemas)
+    - [Account Management System](RelationalSchemas/AccountManagementSystem.mmd)
+    - [Driver & Vehicle Licensing Department (DVLD)](RelationalSchemas/DriverAndVehicleLicensingDepartment.mmd)

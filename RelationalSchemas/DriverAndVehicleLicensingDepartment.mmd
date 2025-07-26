@@ -5,12 +5,19 @@ erDiagram
     Persons {
         INT PersonID PK
         NVARCHAR(30) NationalNumber
-        NVARCHAR(100) FullName
+        INT FullNameID FK
         DATETIME DateOfBirth
         INT ContactInformationID FK
         NVARCHAR(200) Address
         INT CountryID FK
         NVARCHAR(2083) ImageURL
+    }
+    FullName {
+        INT FullNameID PK
+        NVARCHAR(20) FirstName
+        NVARCHAR(20) SecondName
+        NVARCHAR(20) ThirdName
+        NVARCHAR(20) FourthName
     }
     Countries {
         INT CountryID PK
@@ -108,6 +115,9 @@ erDiagram
         TINYINT LicenceDuration
         NVARCHAR(300) LicenseConditionsNotes
         TINYINT LicenseIssuanceID FK
+        DATETIME IssueDateTime
+        DATETIME ExpiryDateTime
+        BIT IsActive
     }
     LicenseIssuances {
         TINYINT LicenseIssuanceID PK
@@ -145,13 +155,6 @@ erDiagram
         INT LicenceID FK
         DATETIME ReplacementDateTime
     }
-    InternationalLicenses {
-        INT InternationalLicenseID PK
-        INT LicenceID FK
-        DATETIME IssueDateTime
-        DATETIME ExpiryDateTime
-        BIT IsActive
-    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
@@ -163,6 +166,7 @@ erDiagram
         INT InternationalLicenseFeesID FK
     }
 
+    Persons ||--|| FullName: ""
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
     Persons ||--|| Clients: ""
@@ -198,7 +202,6 @@ erDiagram
     UnlockLicenses }o--|| Licences: ""
     LostLicenseReplacements }o--|| Licences: ""
     DamagedLicenseReplacements }o--|| Licences: ""
-    Licences ||--o{ InternationalLicenses: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
