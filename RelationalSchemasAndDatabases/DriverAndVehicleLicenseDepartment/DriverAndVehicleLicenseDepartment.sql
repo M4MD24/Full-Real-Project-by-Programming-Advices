@@ -223,3 +223,10 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.UnlockLicenses
     FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID),
     FOREIGN KEY (PaymentID) REFERENCES DriverAndVehicleLicenseDepartment.Payments (PaymentID)
 )
+
+CREATE TABLE DriverAndVehicleLicenseDepartment.LostLicenseReplacements
+(
+    LostLicenseReplacementID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseID                INT NOT NULL,
+    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
+)
