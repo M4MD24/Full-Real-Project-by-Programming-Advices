@@ -230,3 +230,10 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.LostLicenseReplacements
     LicenseID                INT NOT NULL,
     FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
 )
+
+CREATE TABLE DriverAndVehicleLicenseDepartment.DamagedLicenseReplacements
+(
+    DamagedLicenseReplacementID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseID                   INT NOT NULL,
+    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
+)
