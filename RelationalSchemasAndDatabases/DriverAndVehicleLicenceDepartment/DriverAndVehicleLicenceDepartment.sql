@@ -118,3 +118,44 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.DrivingTests
     FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenceDepartment.Tests (TestID),
     FOREIGN KEY (DrivingExaminerID) REFERENCES DriverAndVehicleLicenceDepartment.DrivingExaminers (DrivingExaminerID)
 )
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.RequestTypes
+(
+    RequestTypeID   INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    RequestTypeName NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.RequestCases
+(
+    RequestCaseID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    RequestCaseName NVARCHAR(20) NOT NULL
+)
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.Payments
+(
+    PaymentID       INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    CurrencyID      INT          NOT NULL,
+    PaymentDateTime DATETIME     NOT NULL,
+    PaymentMethod   NVARCHAR(50) NOT NULL,
+    FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenceDepartment.Currencies (CurrencyID)
+)
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.Requests
+(
+    RequestID         INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    RequestDateTime   DATETIME,
+    ClientID          INT,
+    RequestTypeID     INT,
+    RequestCaseID     TINYINT,
+    PaymentID         INT,
+    EyeTestID         INT,
+    TheoreticalTestID INT,
+    DrivingTestID     INT,
+    FOREIGN KEY (ClientID) REFERENCES DriverAndVehicleLicenceDepartment.Clients (ClientID),
+    FOREIGN KEY (RequestTypeID) REFERENCES DriverAndVehicleLicenceDepartment.RequestTypes (RequestTypeID),
+    FOREIGN KEY (RequestCaseID) REFERENCES DriverAndVehicleLicenceDepartment.RequestCases (RequestCaseID),
+    FOREIGN KEY (PaymentID) REFERENCES DriverAndVehicleLicenceDepartment.Payments (PaymentID),
+    FOREIGN KEY (EyeTestID) REFERENCES DriverAndVehicleLicenceDepartment.EyeTests (EyeTestID),
+    FOREIGN KEY (TheoreticalTestID) REFERENCES DriverAndVehicleLicenceDepartment.TheoreticalTests (TheoreticalTestID),
+    FOREIGN KEY (DrivingTestID) REFERENCES DriverAndVehicleLicenceDepartment.DrivingTests (DrivingTestID)
+)

@@ -76,30 +76,30 @@ erDiagram
         INT TestID FK
         INT DrivingExaminerID FK
     }
-    Requests {
-        INT RequestID PK
-        DATETIME RequestDateTime
-        INT ClientID FK
-        INT RequestTypeID FK
-        TINYINT PassingCaseID FK
-        INT PaymentID FK
-        INT EyeTestID FK
-        INT TheoreticalTestID FK
-        INT DrivingTestID FK
-    }
     RequestTypes {
         INT RequestTypeID PK
         NVARCHAR(50) RequestTypeName
     }
     RequestCases {
-        TINYINT PassingCaseID PK
-        NVARCHAR(20) PassingStatusName
+        TINYINT RequestCaseID PK
+        NVARCHAR(20) RequestCaseName
     }
     Payments {
         INT PaymentID PK
         INT CurrencyID FK
         DATETIME PaymentDateTime
         NVARCHAR(50) PaymentMethod
+    }
+    Requests {
+        INT RequestID PK
+        DATETIME RequestDateTime
+        INT ClientID FK
+        INT RequestTypeID FK
+        TINYINT RequestCaseID FK
+        INT PaymentID FK
+        INT EyeTestID FK
+        INT TheoreticalTestID FK
+        INT DrivingTestID FK
     }
     Licences {
         INT LicenceID PK
@@ -184,7 +184,7 @@ erDiagram
     DrivingTests }o--|| DrivingExaminers: ""
     Requests }o--|| Clients: ""
     Requests }|--|| RequestTypes: ""
-    Requests }|--|| RequestCases: "PassingCaseID"
+    Requests }|--|| RequestCases: "RequestCaseID"
     Payments ||--|| Currencies: ""
     Requests ||--o| Payments: ""
     Requests ||--|| EyeTests: ""
