@@ -39,3 +39,21 @@ CREATE TABLE AccountManagementSystem.Persons
     FOREIGN KEY (ContactInformationID) REFERENCES AccountManagementSystem.ContactInformation (ContactInformationID),
     FOREIGN KEY (CountryID) REFERENCES AccountManagementSystem.Countries (CountryID)
 )
+
+CREATE TABLE AccountManagementSystem.AccountTypes
+(
+    AccountTypeID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    AccountTypeName NVARCHAR(25) NOT NULL
+)
+
+CREATE TABLE AccountManagementSystem.Accounts
+(
+    AccountID     INT         NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PersonID      INT         NOT NULL,
+    Username      VARCHAR(50) NOT NULL,
+    Password      VARCHAR(50) NOT NULL,
+    IsActive      BIT         NOT NULL,
+    AccountTypeID TINYINT     NOT null,
+    FOREIGN KEY (PersonID) REFERENCES AccountManagementSystem.Persons (PersonID),
+    FOREIGN KEY (AccountTypeID) REFERENCES AccountManagementSystem.AccountTypes (AccountTypeID)
+)
