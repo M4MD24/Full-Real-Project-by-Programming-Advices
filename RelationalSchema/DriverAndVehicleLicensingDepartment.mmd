@@ -108,6 +108,9 @@ erDiagram
         TINYINT LicenceDuration
         NVARCHAR(300) LicenseConditionsNotes
         TINYINT LicenseIssuanceID FK
+        DATETIME IssueDateTime
+        DATETIME ExpiryDateTime
+        BIT IsActive
     }
     LicenseIssuances {
         TINYINT LicenseIssuanceID PK
@@ -144,13 +147,6 @@ erDiagram
         INT DamagedLicenseReplacementID PK
         INT LicenceID FK
         DATETIME ReplacementDateTime
-    }
-    InternationalLicenses {
-        INT InternationalLicenseID PK
-        INT LicenceID FK
-        DATETIME IssueDateTime
-        DATETIME ExpiryDateTime
-        BIT IsActive
     }
     Fees {
         INT RequestFeesID FK
@@ -198,7 +194,6 @@ erDiagram
     UnlockLicenses }o--|| Licences: ""
     LostLicenseReplacements }o--|| Licences: ""
     DamagedLicenseReplacements }o--|| Licences: ""
-    Licences ||--o{ InternationalLicenses: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
