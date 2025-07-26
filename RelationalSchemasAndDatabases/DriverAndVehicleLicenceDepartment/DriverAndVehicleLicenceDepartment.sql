@@ -91,3 +91,12 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Tests
     IsSucceed    BIT      NOT NULL,
     FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenceDepartment.Currencies (CurrencyID)
 )
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.EyeTests
+(
+    EyeTestID   INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestID      INT NOT NULL,
+    EyeDoctorID INT NOT NULL,
+    FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenceDepartment.Tests (TestID),
+    FOREIGN KEY (EyeDoctorID) REFERENCES DriverAndVehicleLicenceDepartment.EyeDoctors (EyeDoctorID)
+)
