@@ -145,6 +145,13 @@ erDiagram
         INT LicenceID FK
         DATETIME ReplacementDateTime
     }
+    InternationalLicenses {
+        INT InternationalLicenseID PK
+        INT LicenceID FK
+        DATETIME IssueDateTime
+        DATETIME ExpiryDateTime
+        BIT IsActive
+    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
@@ -153,6 +160,7 @@ erDiagram
         INT LicenseRenewalFeesID FK
         INT LostLicenseReplacementFeesID FK
         INT DamagedLicenseReplacementFeesID FK
+        INT InternationalLicenseFeesID FK
     }
 
     Persons ||--|| Countries: ""
@@ -190,6 +198,7 @@ erDiagram
     UnlockLicenses }o--|| Licences: ""
     LostLicenseReplacements }o--|| Licences: ""
     DamagedLicenseReplacements }o--|| Licences: ""
+    Licences ||--o{ InternationalLicenses: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
@@ -197,3 +206,4 @@ erDiagram
     Fees ||--|| Currencies: "LicenseRenewalFeesID"
     Fees ||--|| Currencies: "LostLicenseReplacementFeesID"
     Fees ||--|| Currencies: "DamagedLicenseReplacementFeesID"
+    Fees ||--|| Currencies: "InternationalLicenseFeesID"
