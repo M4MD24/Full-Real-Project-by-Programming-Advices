@@ -206,3 +206,10 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.OfficialDrivers
     RequestID        INT NOT NULL,
     FOREIGN KEY (RequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID)
 )
+
+CREATE TABLE DriverAndVehicleLicenseDepartment.LockedLicenses
+(
+    LockedLicenseID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseID       INT NOT NULL,
+    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
+)
