@@ -1,4 +1,4 @@
-USE DriverAndVehicleLicenceDepartment;
+USE DriverAndVehicleLicenseDepartment;
 
 CREATE SCHEMA AccountManagementSystem;
 

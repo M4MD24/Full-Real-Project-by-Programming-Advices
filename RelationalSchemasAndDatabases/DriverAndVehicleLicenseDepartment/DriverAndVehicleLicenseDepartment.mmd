@@ -1,5 +1,5 @@
 ---
-title: Driver & Vehicle Licence Department (DVLD)
+title: Driver & Vehicle License Department (DVLD)
 ---
 erDiagram
     Persons {
@@ -101,27 +101,27 @@ erDiagram
         INT TheoreticalTestID FK
         INT DrivingTestID FK
     }
-    Licences {
-        INT LicenceID PK
-        INT LicenceTypeID FK
-        INT ClientID FK
+    LicenseIssuances {
+        TINYINT LicenseIssuanceID PK
+        NVARCHAR(50) LicenseIssuanceName
     }
-    LicenceTypes {
-        INT LicenceTypeID PK
-        NVARCHAR(75) LicenceTypeName
-        NVARCHAR(200) LicenceDescription
+    LicenseTypes {
+        INT LicenseTypeID PK
+        NVARCHAR(75) LicenseTypeName
+        NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
-        MONEY LicenceFees
-        TINYINT LicenceDuration
+        MONEY LicenseFees
+        TINYINT LicenseDuration
         NVARCHAR(300) LicenseConditionsNotes
         TINYINT LicenseIssuanceID FK
         DATETIME IssueDateTime
         DATETIME ExpiryDateTime
         BIT IsActive
     }
-    LicenseIssuances {
-        TINYINT LicenseIssuanceID PK
-        NVARCHAR(50) LicenseIssuanceName
+    Licenses {
+        INT LicenseID PK
+        INT LicenseTypeID FK
+        INT ClientID FK
     }
     Retests {
         INT Retest PK
@@ -130,29 +130,29 @@ erDiagram
     }
     OfficialDrivers {
         INT OfficialDriverID PK
-        INT LicenceID FK
+        INT LicenseID FK
     }
     LicenseRenewals {
         INT LicenseRenewalID PK
         INT RequestID FK
     }
-    LockedLicences {
-        INT LockedLicenceID PK
-        INT LicenceID FK
+    LockedLicenses {
+        INT LockedLicenseID PK
+        INT LicenseID FK
     }
     UnlockLicenses {
         INT UnlockLicenseID PK
-        INT LicenceID FK
+        INT LicenseID FK
         DATETIME DateTimeUnlock
         INT PaymentID FK
     }
     LostLicenseReplacements {
         INT LostLicenseReplacementID PK
-        INT LicenceID FK
+        INT LicenseID FK
     }
     DamagedLicenseReplacements {
         INT DamagedLicenseReplacementID PK
-        INT LicenceID FK
+        INT LicenseID FK
         DATETIME ReplacementDateTime
     }
     Fees {
@@ -190,18 +190,18 @@ erDiagram
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
-    Licences }|--|| LicenceTypes: ""
-    Licences ||--o{ Clients: ""
-    LicenceTypes }|--|| LicenseIssuances: ""
+    Licenses }|--|| LicenseTypes: ""
+    Licenses ||--o{ Clients: ""
+    LicenseTypes }|--|| LicenseIssuances: ""
     Retests |o--|| Requests: "LastRequestID"
     Retests |o--|| Requests: "NewRequestID"
-    OfficialDrivers ||--|{ Licences: ""
+    OfficialDrivers ||--|{ Licenses: ""
     LicenseRenewals ||--o{ Requests: ""
-    LockedLicences }o--|| Licences: ""
+    LockedLicenses }o--|| Licenses: ""
     UnlockLicenses ||--|| Payments: ""
-    UnlockLicenses }o--|| Licences: ""
-    LostLicenseReplacements }o--|| Licences: ""
-    DamagedLicenseReplacements }o--|| Licences: ""
+    UnlockLicenses }o--|| Licenses: ""
+    LostLicenseReplacements }o--|| Licenses: ""
+    DamagedLicenseReplacements }o--|| Licenses: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
