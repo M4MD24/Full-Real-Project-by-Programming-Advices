@@ -4,7 +4,7 @@ CREATE SCHEMA DriverAndVehicleLicenceDepartment;
 
 CREATE TABLE DriverAndVehicleLicenceDepartment.Countries
 (
-    CountryID   INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    CountryID   TINYINT      NOT NULL PRIMARY KEY,
     CountryName NVARCHAR(75) NOT NULL,
     CountryCode NVARCHAR(3)  NOT NULL
 )
@@ -32,8 +32,8 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Persons
     FullNameID           INT           NOT NULL,
     DateOfBirth          DATETIME      NOT NULL,
     Address              NVARCHAR(200) NOT NULL,
-    ContactInformationID INT           NOT null,
-    CountryID            INT           NOT null,
+    ContactInformationID INT           NOT NULL,
+    CountryID            TINYINT       NOT NULL,
     ImageURL             NVARCHAR(2083),
     FOREIGN KEY (FullNameID) REFERENCES DriverAndVehicleLicenceDepartment.FullNames (FullNameID),
     FOREIGN KEY (ContactInformationID) REFERENCES DriverAndVehicleLicenceDepartment.ContactInformation (ContactInformationID),
@@ -73,4 +73,12 @@ CREATE TABLE DriverAndVehicleLicenceDepartment.Supervisors
     SupervisorID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID     INT NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenceDepartment.Persons (PersonID)
+)
+
+CREATE TABLE DriverAndVehicleLicenceDepartment.Currencies
+(
+    CurrencyID INT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Amount     MONEY   NOT NULL,
+    CountryID  TINYINT NOT NULL,
+    FOREIGN KEY (CountryID) REFERENCES DriverAndVehicleLicenceDepartment.Countries (CountryID)
 )

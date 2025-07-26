@@ -9,7 +9,7 @@ erDiagram
         DATETIME DateOfBirth
         INT ContactInformationID FK
         NVARCHAR(200) Address
-        INT CountryID FK
+        TINYINT CountryID FK
         NVARCHAR(2083) ImageURL
     }
     FullNames {
@@ -20,7 +20,7 @@ erDiagram
         NVARCHAR(20) FourthName
     }
     Countries {
-        INT CountryID PK
+        TINYINT CountryID PK
         NVARCHAR(75) CountryName
         VARCHAR(3) CountryCode
     }
@@ -52,7 +52,7 @@ erDiagram
     Currencies {
         INT CurrencyID PK
         MONEY Amount
-        INT CountryID FK
+        TINYINT CountryID FK
     }
     Tests {
         INT TestID PK
