@@ -130,6 +130,12 @@ erDiagram
         INT LockedLicenceID PK
         INT LicenceID FK
     }
+    UnlockLicenses {
+        INT UnlockLicenseID PK
+        INT LicenceID FK
+        DATETIME DateTimeUnlock
+        INT PaymentID FK
+    }
     Fees {
         INT RequestFeesID FK
         INT EyeTestFeesID FK
@@ -169,6 +175,8 @@ erDiagram
     OfficialDrivers ||--|{ Licences: ""
     LicenseRenewals ||--o{ Requests: ""
     LockedLicences }o--|| Licences: ""
+    UnlockLicenses ||--|| Payments: ""
+    UnlockLicenses }o--|| Licences: ""
     Fees ||--|| Currencies: "RequestFeesID"
     Fees ||--|| Currencies: "EyeTestFeesID"
     Fees ||--|| Currencies: "TheoreticalTestFeesID"
