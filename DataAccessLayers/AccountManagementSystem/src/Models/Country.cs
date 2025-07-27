@@ -1,25 +1,20 @@
 namespace AccountManagementSystem.Models;
 
-public class Country {
-    public byte?   countryID   { get; set; }
-    public string? countryName { get; set; }
-    public string? countryCode { get; set; }
-
-    public Country(
-        byte?   countryId,
-        string? countryName,
-        string? countryCode
-    ) {
-        countryID        = countryId;
-        this.countryName = countryName;
-        this.countryCode = countryCode;
-    }
+public class Country(
+    byte?   countryID,
+    string? countryName,
+    string? countryCode
+) {
+    public byte?   countryID   { get; set; } = countryID;
+    public string? countryName { get; set; } = countryName;
+    public string? countryCode { get; set; } = countryCode;
 
     public Country(
         string? countryName,
         string? countryCode
-    ) {
-        this.countryName = countryName;
-        this.countryCode = countryCode;
-    }
+    ) : this(
+        null,
+        countryName,
+        countryCode
+    ) {}
 }
