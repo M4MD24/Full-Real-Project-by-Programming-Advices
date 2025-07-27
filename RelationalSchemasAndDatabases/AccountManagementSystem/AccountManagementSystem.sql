@@ -27,14 +27,14 @@ CREATE TABLE AccountManagementSystem.FullNames
 
 CREATE TABLE AccountManagementSystem.Persons
 (
-    PersonID             INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
-    NationalNumber       NVARCHAR(30)  NOT NULL,
-    FullNameID           INT           NOT NULL,
-    DateOfBirth          DATETIME      NOT NULL,
-    Address              NVARCHAR(200) NOT NULL,
-    ContactInformationID INT           NOT NULL,
-    CountryID            TINYINT       NOT NULL,
-    ImageURL             NVARCHAR(2083),
+    PersonID             INT            NOT NULL PRIMARY KEY IDENTITY (1,1),
+    NationalNumber       NVARCHAR(30)   NOT NULL,
+    FullNameID           INT            NOT NULL,
+    DateOfBirth          DATETIME       NOT NULL,
+    Address              NVARCHAR(200)  NOT NULL,
+    ContactInformationID INT            NOT NULL,
+    CountryID            TINYINT        NOT NULL,
+    ImageURL             NVARCHAR(2083) NOT NULL,
     FOREIGN KEY (FullNameID) REFERENCES AccountManagementSystem.FullNames (FullNameID),
     FOREIGN KEY (ContactInformationID) REFERENCES AccountManagementSystem.ContactInformation (ContactInformationID),
     FOREIGN KEY (CountryID) REFERENCES AccountManagementSystem.Countries (CountryID)
