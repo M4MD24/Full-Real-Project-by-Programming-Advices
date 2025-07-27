@@ -61,7 +61,6 @@ CREATE TABLE AccountManagementSystem.Accounts
 CREATE TABLE AccountManagementSystem.Permissions
 (
     PermissionID     TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PermissionNumber TINYINT     NOT NULL,
     PermissionName   VARCHAR(50) NOT NULL
 )
 
