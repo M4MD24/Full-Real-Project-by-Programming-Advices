@@ -7,7 +7,7 @@ namespace AccountManagementSystem;
 
 public class AccountTypes {
     public static AccountType? getAccountTypeByAccountTypeID(
-        ref int accountTypeID
+        ref byte accountTypeID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -33,7 +33,7 @@ public class AccountTypes {
             while (sqlDataReader.Read()) {
                 string accountTypeName = (string) sqlDataReader["AccountTypeName"];
                 return new AccountType(
-                    null,
+                    accountTypeID,
                     accountTypeName
                 );
             }

@@ -33,6 +33,7 @@ public class ContactInformation {
                 string phoneNumber = (string) sqlDataReader["PhoneNumber"],
                        email       = (string) sqlDataReader["Email"];
                 return new Models.ContactInformation(
+                    contactInformationID,
                     phoneNumber,
                     email
                 );

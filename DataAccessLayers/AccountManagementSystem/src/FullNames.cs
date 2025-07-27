@@ -36,6 +36,7 @@ public class FullNames {
                        thirdName  = (string) sqlDataReader["ThirdName"],
                        fourthName = (string) sqlDataReader["FourthName"];
                 return new FullName(
+                    fullNameID,
                     firstName,
                     secondName,
                     thirdName,

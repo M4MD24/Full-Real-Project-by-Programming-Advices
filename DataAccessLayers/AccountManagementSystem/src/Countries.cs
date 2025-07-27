@@ -7,7 +7,7 @@ namespace AccountManagementSystem;
 
 public class Countries {
     public static Country? getCountryByCountryID(
-        ref int countryID
+        ref byte countryID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -34,6 +34,7 @@ public class Countries {
                 string countryName = (string) sqlDataReader["CountryName"],
                        countryCode = (string) sqlDataReader["CountryCode"];
                 return new Country(
+                    countryID,
                     countryName,
                     countryCode
                 );

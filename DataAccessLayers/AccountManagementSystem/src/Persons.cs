@@ -39,7 +39,7 @@ public class Persons {
                 byte     countryID            = (byte) sqlDataReader["CountryID"];
                 string   imageURL             = (string) sqlDataReader["ImageURL"];
                 return new Person(
-                    null,
+                    personID,
                     nationalNumber,
                     fullNameID,
                     dateOfBirth,
