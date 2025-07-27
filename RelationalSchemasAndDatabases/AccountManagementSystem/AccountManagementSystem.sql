@@ -60,14 +60,14 @@ CREATE TABLE AccountManagementSystem.Accounts
 
 CREATE TABLE AccountManagementSystem.Permissions
 (
-    PermissionID     TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PermissionName   VARCHAR(50) NOT NULL
+    PermissionID   TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PermissionName VARCHAR(50) NOT NULL UNIQUE
 )
 
 CREATE TABLE AccountManagementSystem.AccountPermissions
 (
-    AccountID    INT     NOT NULL,
-    PermissionID TINYINT NOT NULL,
+    AccountID    INT     NOT NULL UNIQUE,
+    PermissionID TINYINT NOT NULL UNIQUE,
     FOREIGN KEY (AccountID) REFERENCES AccountManagementSystem.Accounts (AccountID),
     FOREIGN KEY (PermissionID) REFERENCES AccountManagementSystem.Permissions (PermissionID)
 )

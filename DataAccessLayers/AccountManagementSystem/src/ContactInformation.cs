@@ -30,8 +30,8 @@ public class ContactInformation {
             sqlConnection.Open();
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
-                string phoneNumber = (string) sqlDataReader["PhoneNumber"],
-                       email       = (string) sqlDataReader["Email"];
+                string phoneNumber = (string) sqlDataReader["AccountID"],
+                       email       = (string) sqlDataReader["PermissionID"];
                 return new Models.ContactInformation(
                     contactInformationID,
                     phoneNumber,

@@ -1,16 +1,16 @@
 namespace AccountManagementSystem.Models;
 
 public class Permission(
-    byte?   PermissionID,
-    string? PermissionName
+    byte?   permissionID,
+    string? permissionName
 ) {
-    public byte?   countryID      { get; set; } = PermissionID;
-    public string? PermissionName { get; set; } = PermissionName;
+    public byte?   permissionID   { get; set; } = permissionID;
+    public string? permissionName { get; set; } = permissionName;
 
     public Permission(
-        string? PermissionName
+        string? permissionName
     ) : this(
         null,
-        PermissionName
+        permissionName
     ) {}
 }
