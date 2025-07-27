@@ -1,4 +1,4 @@
-namespace Contacts_DataAccessLayer.Utilities;
+namespace AccountManagementSystem.Utilities;
 
 public static class Constants {
     private const string SERVER_NAME   = "M4MD24";
