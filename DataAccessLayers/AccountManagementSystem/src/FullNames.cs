@@ -15,7 +15,7 @@ public class FullNames {
         const string SELECT_FULL_NAME_BY_FULL_NAME_ID = """
                                                         USE DriverAndVehicleLicenseDepartment
                                                         SELECT *
-                                                        FROM AccountManagementSystem.FullName
+                                                        FROM AccountManagementSystem.FullNames
                                                         WHERE FullNameID = @fullNameID
                                                         """;
         SqlCommand sqlCommand = new SqlCommand(
@@ -35,7 +35,7 @@ public class FullNames {
                        secondName = (string) sqlDataReader["SecondName"],
                        thirdName  = (string) sqlDataReader["ThirdName"],
                        fourthName = (string) sqlDataReader["FourthName"];
-                return new(
+                return new FullName(
                     firstName,
                     secondName,
                     thirdName,

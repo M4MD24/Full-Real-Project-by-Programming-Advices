@@ -33,7 +33,7 @@ public class Countries {
             while (sqlDataReader.Read()) {
                 string countryName = (string) sqlDataReader["CountryName"],
                        countryCode = (string) sqlDataReader["CountryCode"];
-                return new(
+                return new Country(
                     countryName,
                     countryCode
                 );

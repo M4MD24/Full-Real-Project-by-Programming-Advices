@@ -32,7 +32,7 @@ public class ContactInformation {
             while (sqlDataReader.Read()) {
                 string phoneNumber = (string) sqlDataReader["PhoneNumber"],
                        email       = (string) sqlDataReader["Email"];
-                return new(
+                return new Models.ContactInformation(
                     phoneNumber,
                     email
                 );
