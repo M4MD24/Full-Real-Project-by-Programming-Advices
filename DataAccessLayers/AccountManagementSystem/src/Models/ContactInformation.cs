@@ -1,12 +1,12 @@
 namespace AccountManagementSystem.Models;
 
 public class ContactInformation {
-    public byte?   contactInformationID { get; set; }
+    public int?    contactInformationID { get; set; }
     public string? phoneNumber          { get; set; }
     public string? email                { get; set; }
 
     public ContactInformation(
-        byte   contactInformationID,
+        int    contactInformationID,
         string phoneNumber,
         string email
     ) {

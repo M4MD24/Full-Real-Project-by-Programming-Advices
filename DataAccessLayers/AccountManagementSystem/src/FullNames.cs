@@ -6,20 +6,20 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class FullNames {
-    public static FullName? getFullNameByID(
+    public static FullName? getFullNameByFullNameID(
         ref int fullNameID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
-        const string SELECT_FULL_NAME_BY_ID = """
-                                              USE DriverAndVehicleLicenseDepartment
-                                              SELECT *
-                                              FROM AccountManagementSystem.FullName
-                                              WHERE FullNameID = @fullNameID
-                                              """;
+        const string SELECT_FULL_NAME_BY_FULL_NAME_ID = """
+                                                        USE DriverAndVehicleLicenseDepartment
+                                                        SELECT *
+                                                        FROM AccountManagementSystem.FullName
+                                                        WHERE FullNameID = @fullNameID
+                                                        """;
         SqlCommand sqlCommand = new SqlCommand(
-            SELECT_FULL_NAME_BY_ID,
+            SELECT_FULL_NAME_BY_FULL_NAME_ID,
             sqlConnection
         );
         sqlCommand.Parameters.AddWithValue(
@@ -35,7 +35,7 @@ public class FullNames {
                        secondName = (string) sqlDataReader["SecondName"],
                        thirdName  = (string) sqlDataReader["ThirdName"],
                        fourthName = (string) sqlDataReader["FourthName"];
-                return new FullName(
+                return new(
                     firstName,
                     secondName,
                     thirdName,

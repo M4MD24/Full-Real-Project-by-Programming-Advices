@@ -5,20 +5,20 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class ContactInformation {
-    public static Models.ContactInformation? getContactInformationByID(
+    public static Models.ContactInformation? getContactInformationByContactInformationID(
         ref int contactInformationID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
-        const string SELECT_FULL_NAME_BY_ID = """
-                                              USE DriverAndVehicleLicenseDepartment
-                                              SELECT *
-                                              FROM AccountManagementSystem.ContactInformation
-                                              WHERE ContactInformationID = @contactInformationID
-                                              """;
+        const string SELECT_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
+                                                                            USE DriverAndVehicleLicenseDepartment
+                                                                            SELECT *
+                                                                            FROM AccountManagementSystem.ContactInformation
+                                                                            WHERE ContactInformationID = @contactInformationID
+                                                                            """;
         SqlCommand sqlCommand = new SqlCommand(
-            SELECT_FULL_NAME_BY_ID,
+            SELECT_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
             sqlConnection
         );
         sqlCommand.Parameters.AddWithValue(
@@ -32,7 +32,7 @@ public class ContactInformation {
             while (sqlDataReader.Read()) {
                 string phoneNumber = (string) sqlDataReader["PhoneNumber"],
                        email       = (string) sqlDataReader["Email"];
-                return new Models.ContactInformation(
+                return new(
                     phoneNumber,
                     email
                 );
