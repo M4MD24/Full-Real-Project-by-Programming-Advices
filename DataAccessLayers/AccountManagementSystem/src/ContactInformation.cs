@@ -5,6 +5,41 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class ContactInformation {
+    public static int deleteContactInformationByContactInformationID(
+        ref int contactInformationID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
+                                                                            USE DriverAndVehicleLicenseDepartment
+                                                                            DELETE AccountManagementSystem.ContactInformation
+                                                                            WHERE ContactInformationID = @contactInformationID
+                                                                            """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@contactInformationID",
+            contactInformationID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int addNewContactInformation(
         ref Models.ContactInformation contactInformation
     ) {
