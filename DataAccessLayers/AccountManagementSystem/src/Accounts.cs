@@ -113,7 +113,7 @@ public class Accounts {
         return rowAffected;
     }
 
-    public static int setActiveStatus(
+    public static int setActiveStatusbyAccountID(
         ref int  accountID,
         ref bool isActive
     ) {
@@ -121,15 +121,15 @@ public class Accounts {
             Constants.DATABASE_CONNECTIVITY
         );
 
-        const string SET_ACTIVE_STATUS = """
-                                         USE DriverAndVehicleLicenseDepartment
-                                         UPDATE AccountManagementSystem.Accounts
-                                         SET IsActive = @isActive
-                                         WHERE AccountID = @accountID
-                                         """;
+        const string SET_ACTIVE_STATUS_BY_ACCOUNT_ID = """
+                                                       USE DriverAndVehicleLicenseDepartment
+                                                       UPDATE AccountManagementSystem.Accounts
+                                                       SET IsActive = @isActive
+                                                       WHERE AccountID = @accountID
+                                                       """;
 
         SqlCommand sqlCommand = new SqlCommand(
-            SET_ACTIVE_STATUS,
+            SET_ACTIVE_STATUS_BY_ACCOUNT_ID,
             sqlConnection
         );
 

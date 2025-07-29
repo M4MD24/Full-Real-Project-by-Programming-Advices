@@ -7,6 +7,30 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Persons {
+    public static int updatePersonByPersonID(
+        ref Person person
+    ) {
+        const string UPDATE_PERSON_BY_PERSON_ID = """
+                                                  USE DriverAndVehicleLicenseDepartment
+                                                  UPDATE AccountManagementSystem.Accounts
+                                                  SET PersonID             = @personID,
+                                                      NationalNumber       = @nationalNumber,
+                                                      FullNameID           = @fullNameID,
+                                                      DateOfBirth          = @dateOfBirth,
+                                                      Address              = @address,
+                                                      ContactInformationID = @contactInformationID,
+                                                      CountryID            = @countryID,
+                                                      ImageURL             = @imageURL
+                                                  WHERE AccountID = @accountID
+                                                  """;
+
+        return saveData(
+            ref person,
+            UPDATE_PERSON_BY_PERSON_ID,
+            Constants.Mode.Add
+        );
+    }
+
     public static int deletePersonByPersonID(
         ref int personID
     ) {
@@ -14,10 +38,10 @@ public class Persons {
             Constants.DATABASE_CONNECTIVITY
         );
         const string DELETE_PERSON_BY_PERSON_ID = """
-                                           USE DriverAndVehicleLicenseDepartment
-                                           DELETE AccountManagementSystem.Persons
-                                           WHERE PersonID = @personID
-                                           """;
+                                                  USE DriverAndVehicleLicenseDepartment
+                                                  DELETE AccountManagementSystem.Persons
+                                                  WHERE PersonID = @personID
+                                                  """;
         SqlCommand sqlCommand = new SqlCommand(
             DELETE_PERSON_BY_PERSON_ID,
             sqlConnection
