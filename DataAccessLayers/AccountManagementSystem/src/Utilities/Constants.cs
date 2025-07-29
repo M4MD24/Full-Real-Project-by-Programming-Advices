@@ -1,6 +1,11 @@
 namespace AccountManagementSystem.Utilities;
 
 public static class Constants {
+    public enum Mode {
+        Add    = 0,
+        Update = 1
+    }
+
     private const string SERVER_NAME   = "M4MD24";
     private const string DATABASE_NAME = "DriverAndVehicleLicenseDepartment";
     private const string USERNAME = "sa",
