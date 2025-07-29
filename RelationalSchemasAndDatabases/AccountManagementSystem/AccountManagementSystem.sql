@@ -5,8 +5,8 @@ CREATE SCHEMA AccountManagementSystem;
 CREATE TABLE AccountManagementSystem.Countries
 (
     CountryID   TINYINT      NOT NULL PRIMARY KEY,
-    CountryName NVARCHAR(75) NOT NULL,
-    CountryCode NVARCHAR(3)  NOT NULL
+    CountryName NVARCHAR(75) NOT NULL UNIQUE,
+    CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
 CREATE TABLE AccountManagementSystem.ContactInformation
@@ -27,14 +27,14 @@ CREATE TABLE AccountManagementSystem.FullNames
 
 CREATE TABLE AccountManagementSystem.Persons
 (
-    PersonID             INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
-    NationalNumber       NVARCHAR(30)  NOT NULL,
-    FullNameID           INT           NOT NULL,
-    DateOfBirth          DATETIME      NOT NULL,
-    Address              NVARCHAR(200) NOT NULL,
-    ContactInformationID INT           NOT NULL,
-    CountryID            TINYINT       NOT NULL,
-    ImageURL             NVARCHAR(2083),
+    PersonID             INT            NOT NULL PRIMARY KEY IDENTITY (1,1),
+    NationalNumber       NVARCHAR(30)   NOT NULL UNIQUE,
+    FullNameID           INT            NOT NULL UNIQUE,
+    DateOfBirth          DATETIME       NOT NULL,
+    Address              NVARCHAR(200)  NOT NULL,
+    ContactInformationID INT            NOT NULL UNIQUE,
+    CountryID            TINYINT        NOT NULL UNIQUE,
+    ImageURL             NVARCHAR(2083) NOT NULL UNIQUE,
     FOREIGN KEY (FullNameID) REFERENCES AccountManagementSystem.FullNames (FullNameID),
     FOREIGN KEY (ContactInformationID) REFERENCES AccountManagementSystem.ContactInformation (ContactInformationID),
     FOREIGN KEY (CountryID) REFERENCES AccountManagementSystem.Countries (CountryID)
@@ -43,32 +43,31 @@ CREATE TABLE AccountManagementSystem.Persons
 CREATE TABLE AccountManagementSystem.AccountTypes
 (
     AccountTypeID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
-    AccountTypeName NVARCHAR(25) NOT NULL
+    AccountTypeName NVARCHAR(25) NOT NULL UNIQUE
 )
 
 CREATE TABLE AccountManagementSystem.Accounts
 (
     AccountID     INT         NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID      INT         NOT NULL,
-    Username      VARCHAR(50) NOT NULL,
+    Username      VARCHAR(50) NOT NULL UNIQUE,
     Password      VARCHAR(50) NOT NULL,
     IsActive      BIT         NOT NULL,
-    AccountTypeID TINYINT     NOT NULL,
+    AccountTypeID TINYINT     NOT NULL UNIQUE,
     FOREIGN KEY (PersonID) REFERENCES AccountManagementSystem.Persons (PersonID),
     FOREIGN KEY (AccountTypeID) REFERENCES AccountManagementSystem.AccountTypes (AccountTypeID)
 )
 
 CREATE TABLE AccountManagementSystem.Permissions
 (
-    PermissionID     TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PermissionNumber TINYINT     NOT NULL,
-    PermissionName   VARCHAR(50) NOT NULL
+    PermissionID   TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PermissionName VARCHAR(50) NOT NULL UNIQUE
 )
 
 CREATE TABLE AccountManagementSystem.AccountPermissions
 (
-    AccountID    INT     NOT NULL,
-    PermissionID TINYINT NOT NULL,
+    AccountID    INT     NOT NULL UNIQUE,
+    PermissionID TINYINT NOT NULL UNIQUE,
     FOREIGN KEY (AccountID) REFERENCES AccountManagementSystem.Accounts (AccountID),
     FOREIGN KEY (PermissionID) REFERENCES AccountManagementSystem.Permissions (PermissionID)
 )
