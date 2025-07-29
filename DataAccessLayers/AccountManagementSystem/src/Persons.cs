@@ -7,6 +7,22 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Persons {
+    public static int addNewPerson(
+        ref Person person
+    ) {
+        const string ADD_NEW_PERSON = """
+                                      USE DriverAndVehicleLicenseDepartment
+                                      INSERT INTO AccountManagementSystem.Persons (NationalNumber, FullNameID, DateOfBirth, Address, ContactInformationID, CountryID, ImageURL)
+                                      VALUES (@nationalNumber, @fullNameID, @dateOfBirth, @address, @contactInformationID, @countryID, @imageURL)
+                                      """;
+
+        return saveData(
+            ref person,
+            ADD_NEW_PERSON,
+            Constants.Mode.Add
+        );
+    }
+
     private static int saveData(
         ref Person     person,
         string         query,

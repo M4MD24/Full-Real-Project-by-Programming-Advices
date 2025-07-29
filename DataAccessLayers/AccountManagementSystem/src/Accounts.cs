@@ -6,6 +6,22 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Accounts {
+    public static int addNewAccount(
+        ref Account account
+    ) {
+        const string ADD_NEW_ACCOUNT = """
+                                       USE DriverAndVehicleLicenseDepartment
+                                       INSERT INTO AccountManagementSystem.Accounts (PersonID, Username, Password, IsActive, AccountTypeID)
+                                       VALUES (@personID, @username, @password, @isActive, @accountTypeID)
+                                       """;
+
+        return saveData(
+            ref account,
+            ADD_NEW_ACCOUNT,
+            Constants.Mode.Add
+        );
+    }
+
     private static int saveData(
         ref Account    account,
         string         query,
