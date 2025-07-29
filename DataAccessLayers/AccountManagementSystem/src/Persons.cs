@@ -7,6 +7,70 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Persons {
+    private static int saveData(
+        ref Person     person,
+        string         query,
+        Constants.Mode mode
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        if (mode == Constants.Mode.Update)
+            sqlCommand.Parameters.AddWithValue(
+                "@personID",
+                person.personID
+            );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@nationalNumber",
+            person.nationalNumber
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@fullNameID",
+            person.fullNameID
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@dateOfBirth",
+            person.dateOfBirth
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@address",
+            person.address
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@contactInformationID",
+            person.contactInformationID
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@countryID",
+            person.countryID
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@imageURL",
+            person.imageURL
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static List<Person>? getAllPersons() {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
