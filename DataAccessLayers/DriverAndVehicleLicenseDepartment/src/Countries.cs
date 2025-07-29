@@ -42,6 +42,22 @@ public class Countries {
         return rowAffected;
     }
 
+    public static int addNewCountry(
+        ref Country country
+    ) {
+        const string ADD_NEW_COUNTRY = """
+                                       USE DriverAndVehicleLicenseDepartment
+                                       INSERT INTO DriverAndVehicleLicenseDepartment.Countries (CountryName, CountryCode)
+                                       VALUES (@countryName, @countryCode)
+                                       """;
+
+        return saveData(
+            ref country,
+            ADD_NEW_COUNTRY,
+            Constants.Mode.Add
+        );
+    }
+
     private static int saveData(
         ref Country    country,
         string         query,
