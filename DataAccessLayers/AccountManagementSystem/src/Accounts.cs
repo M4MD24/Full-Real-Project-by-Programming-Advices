@@ -6,6 +6,62 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Accounts {
+    private static int saveData(
+        ref Account    account,
+        string         query,
+        Constants.Mode mode
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        if (mode == Constants.Mode.Update)
+            sqlCommand.Parameters.AddWithValue(
+                "@accountID",
+                account.accountID
+            );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@personID",
+            account.personID
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@username",
+            account.username
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@password",
+            account.password
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@isActive",
+            account.isActive
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@accountTypeID",
+            account.accountTypeID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int setActiveStatus(
         ref int  accountID,
         ref bool isActive
