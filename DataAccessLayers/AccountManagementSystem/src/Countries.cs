@@ -7,6 +7,24 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Countries {
+    public static int updateCountryByCountryID(
+        ref Country country
+    ) {
+        const string UPDATE_COUNTRY_BY_COUNTRY_ID = """
+                                                    USE DriverAndVehicleLicenseDepartment
+                                                    UPDATE AccountManagementSystem.Countries
+                                                    SET CountryName = @countryName,
+                                                        CountryCode = @countryCode
+                                                    WHERE CountryID = @countryID
+                                                    """;
+
+        return saveData(
+            ref country,
+            UPDATE_COUNTRY_BY_COUNTRY_ID,
+            Constants.Mode.Update
+        );
+    }
+
     public static int deleteCountryByCountryID(
         ref int countryID
     ) {
@@ -25,6 +43,66 @@ public class Countries {
         sqlCommand.Parameters.AddWithValue(
             "@countryID",
             countryID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
+    public static int addNewCountry(
+        ref Country country
+    ) {
+        const string ADD_NEW_COUNTRY = """
+                                       USE DriverAndVehicleLicenseDepartment
+                                       INSERT INTO AccountManagementSystem.Countries (CountryName, CountryCode)
+                                       VALUES (@countryName, @countryCode)
+                                       """;
+
+        return saveData(
+            ref country,
+            ADD_NEW_COUNTRY,
+            Constants.Mode.Add
+        );
+    }
+
+    private static int saveData(
+        ref Country    country,
+        string         query,
+        Constants.Mode mode
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        if (mode == Constants.Mode.Update)
+            sqlCommand.Parameters.AddWithValue(
+                "@countryID",
+                country.countryID
+            );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@countryName",
+            country.countryName
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@countryCode",
+            country.countryCode
         );
 
         int rowAffected = 0;

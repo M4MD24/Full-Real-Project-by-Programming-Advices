@@ -6,6 +6,26 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class FullNames {
+    public static int updateFullNameByFullNameID(
+        ref FullName fullName
+    ) {
+        const string UPDATE_FULL_NAME_BY_FULL_NAME_ID = """
+                                                        USE DriverAndVehicleLicenseDepartment
+                                                        UPDATE AccountManagementSystem.FullNames
+                                                        SET FirstName  = @firstName,
+                                                            SecondName = @secondName,
+                                                            ThirdName  = @thirdName,
+                                                            FourthName = @fourthName
+                                                        WHERE FullNameID = @fullNameID
+                                                        """;
+
+        return saveData(
+            ref fullName,
+            UPDATE_FULL_NAME_BY_FULL_NAME_ID,
+            Constants.Mode.Update
+        );
+    }
+
     public static int deleteFullNameByFullNameID(
         ref int fullNameID
     ) {
