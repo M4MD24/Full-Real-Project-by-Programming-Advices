@@ -7,6 +7,41 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Persons {
+    public static int deletePersonByPersonID(
+        ref int personID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_PERSON_BY_PERSON_ID = """
+                                           USE DriverAndVehicleLicenseDepartment
+                                           DELETE AccountManagementSystem.Persons
+                                           WHERE PersonID = @personID
+                                           """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_PERSON_BY_PERSON_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@personID",
+            personID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int addNewPerson(
         ref Person person
     ) {

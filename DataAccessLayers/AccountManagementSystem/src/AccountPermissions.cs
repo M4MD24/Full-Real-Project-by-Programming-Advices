@@ -6,6 +6,41 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class AccountPermissions {
+    public static int deleteAccountPermissionByAccountPermissionID(
+        ref int accountPermissionID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_ACCOUNT_PERMISSION_BY_ACCOUNT_PERMISSION_ID = """
+                                                                          USE DriverAndVehicleLicenseDepartment
+                                                                          DELETE AccountManagementSystem.AccountPermissions
+                                                                          WHERE AccountPermissionID = @accountPermissionID
+                                                                          """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_ACCOUNT_PERMISSION_BY_ACCOUNT_PERMISSION_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@accountPermissionID",
+            accountPermissionID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int addNewAccountPermission(
         ref Models.AccountPermission accountPermission
     ) {

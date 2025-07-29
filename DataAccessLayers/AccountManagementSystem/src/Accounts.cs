@@ -6,6 +6,41 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Accounts {
+    public static int deleteAccountByAccountID(
+        ref int accountID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_ACCOUNT_BY_ACCOUNT_ID = """
+                                                    USE DriverAndVehicleLicenseDepartment
+                                                    DELETE AccountManagementSystem.Accounts
+                                                    WHERE AccountID = @accountID
+                                                    """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_ACCOUNT_BY_ACCOUNT_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@accountID",
+            accountID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int addNewAccount(
         ref Account account
     ) {
