@@ -7,6 +7,41 @@ using DriverAndVehicleLicenseDepartment.Utilities;
 namespace DriverAndVehicleLicenseDepartment;
 
 public class Countries {
+    public static int deleteCountryByCountryID(
+        ref int countryID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_COUNTRY_BY_COUNTRY_ID = """
+                                                    USE DriverAndVehicleLicenseDepartment
+                                                    DELETE DriverAndVehicleLicenseDepartment.Countries
+                                                    WHERE CountryID = @countryID
+                                                    """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_COUNTRY_BY_COUNTRY_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@countryID",
+            countryID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     private static int saveData(
         ref Country    country,
         string         query,
