@@ -13,8 +13,7 @@ public class Persons {
         const string UPDATE_PERSON_BY_PERSON_ID = """
                                                   USE DriverAndVehicleLicenseDepartment
                                                   UPDATE AccountManagementSystem.Accounts
-                                                  SET PersonID             = @personID,
-                                                      NationalNumber       = @nationalNumber,
+                                                  SET NationalNumber       = @nationalNumber,
                                                       FullNameID           = @fullNameID,
                                                       DateOfBirth          = @dateOfBirth,
                                                       Address              = @address,
