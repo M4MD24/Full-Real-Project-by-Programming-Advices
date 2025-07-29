@@ -5,6 +5,50 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class ContactInformation {
+    private static int saveData(
+        ref Models.ContactInformation contactInformation,
+        string                        query,
+        Constants.Mode                mode
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        if (mode == Constants.Mode.Update)
+            sqlCommand.Parameters.AddWithValue(
+                "@contactInformationID",
+                contactInformation.contactInformationID
+            );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@phoneNumber",
+            contactInformation.phoneNumber
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@email",
+            contactInformation.email
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static Models.ContactInformation? getContactInformationByContactInformationID(
         ref int contactInformationID
     ) {
