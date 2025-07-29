@@ -77,7 +77,7 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.DrivingExaminers
 
 CREATE TABLE DriverAndVehicleLicenseDepartment.Currencies
 (
-    CurrencyID INT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    CurrencyID TINYINT NOT NULL PRIMARY KEY IDENTITY (1,1),
     Amount     MONEY   NOT NULL,
     CountryID  TINYINT NOT NULL,
     FOREIGN KEY (CountryID) REFERENCES DriverAndVehicleLicenseDepartment.Countries (CountryID)
@@ -87,7 +87,7 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.Tests
 (
     TestID       INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestDateTime DATETIME NOT NULL,
-    CurrencyID   INT      NOT NULL,
+    CurrencyID   TINYINT  NOT NULL,
     IsSucceed    BIT      NOT NULL,
     FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID)
 )
@@ -134,7 +134,7 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.RequestCases
 CREATE TABLE DriverAndVehicleLicenseDepartment.Payments
 (
     PaymentID       INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
-    CurrencyID      INT          NOT NULL,
+    CurrencyID      TINYINT      NOT NULL,
     PaymentDateTime DATETIME     NOT NULL,
     PaymentMethod   NVARCHAR(50) NOT NULL,
     FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID)
@@ -240,14 +240,14 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.DamagedLicenseReplacements
 
 CREATE TABLE DriverAndVehicleLicenseDepartment.Fees
 (
-    RequestFeesID                   INT NOT NULL,
-    EyeTestFeesID                   INT NOT NULL,
-    TheoreticalTestFeesID           INT NOT NULL,
-    RetestFeesID                    INT NOT NULL,
-    LicenseRenewalFeesID            INT NOT NULL,
-    LostLicenseReplacementFeesID    INT NOT NULL,
-    DamagedLicenseReplacementFeesID INT NOT NULL,
-    InternationalLicenseFeesID      INT NOT NULL,
+    RequestFeesID                   TINYINT NOT NULL,
+    EyeTestFeesID                   TINYINT NOT NULL,
+    TheoreticalTestFeesID           TINYINT NOT NULL,
+    RetestFeesID                    TINYINT NOT NULL,
+    LicenseRenewalFeesID            TINYINT NOT NULL,
+    LostLicenseReplacementFeesID    TINYINT NOT NULL,
+    DamagedLicenseReplacementFeesID TINYINT NOT NULL,
+    InternationalLicenseFeesID      TINYINT NOT NULL,
     FOREIGN KEY (RequestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
     FOREIGN KEY (EyeTestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
     FOREIGN KEY (TheoreticalTestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
