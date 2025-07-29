@@ -5,6 +5,24 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class ContactInformation {
+    public static int updateContactInformationByContactInformationID(
+        ref Models.ContactInformation contactInformationID
+    ) {
+        const string UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
+                                                                            USE DriverAndVehicleLicenseDepartment
+                                                                            UPDATE AccountManagementSystem.ContactInformation
+                                                                            SET PhoneNumber = @phoneNumber,
+                                                                                Email       = @email
+                                                                            WHERE ContactInformationID = @contactInformationID
+                                                                            """;
+
+        return saveData(
+            ref contactInformationID,
+            UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
+            Constants.Mode.Add
+        );
+    }
+
     public static int deleteContactInformationByContactInformationID(
         ref int contactInformationID
     ) {
