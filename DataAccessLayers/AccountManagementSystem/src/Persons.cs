@@ -26,7 +26,7 @@ public class Persons {
         return saveData(
             ref person,
             UPDATE_PERSON_BY_PERSON_ID,
-            Constants.Mode.Add
+            Constants.Mode.Update
         );
     }
 

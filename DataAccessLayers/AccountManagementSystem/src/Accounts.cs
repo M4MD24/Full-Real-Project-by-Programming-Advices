@@ -6,6 +6,27 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class Accounts {
+    public static int updateAccountByAccountID(
+        ref Account account
+    ) {
+        const string UPDATE_ACCOUNT_BY_ACCOUNT_ID = """
+                                                    USE DriverAndVehicleLicenseDepartment
+                                                    UPDATE AccountManagementSystem.Accounts
+                                                    SET PersonID      = @personID,
+                                                        Username      = @username,
+                                                        Password      = @password,
+                                                        IsActive      = @isActive,
+                                                        AccountTypeID = @accountTypeID
+                                                    WHERE AccountID = @accountID
+                                                    """;
+
+        return saveData(
+            ref account,
+            UPDATE_ACCOUNT_BY_ACCOUNT_ID,
+            Constants.Mode.Update
+        );
+    }
+
     public static int deleteAccountByAccountID(
         ref int accountID
     ) {

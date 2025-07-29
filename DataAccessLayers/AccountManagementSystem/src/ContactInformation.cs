@@ -19,7 +19,7 @@ public class ContactInformation {
         return saveData(
             ref contactInformationID,
             UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
-            Constants.Mode.Add
+            Constants.Mode.Update
         );
     }
 

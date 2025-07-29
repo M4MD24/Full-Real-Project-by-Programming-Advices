@@ -21,7 +21,7 @@ public class Countries {
         return saveData(
             ref country,
             UPDATE_COUNTRY_BY_COUNTRY_ID,
-            Constants.Mode.Add
+            Constants.Mode.Update
         );
     }
 

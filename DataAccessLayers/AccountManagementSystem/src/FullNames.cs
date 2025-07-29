@@ -22,7 +22,7 @@ public class FullNames {
         return saveData(
             ref fullName,
             UPDATE_FULL_NAME_BY_FULL_NAME_ID,
-            Constants.Mode.Add
+            Constants.Mode.Update
         );
     }
 
