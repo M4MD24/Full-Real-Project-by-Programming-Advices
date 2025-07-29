@@ -6,6 +6,22 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class FullNames {
+    public static int addNewFullName(
+        ref FullName fullName
+    ) {
+        const string ADD_NEW_FULL_NAME = """
+                                         USE DriverAndVehicleLicenseDepartment
+                                         INSERT INTO AccountManagementSystem.FullNames (FirstName, SecondName, ThirdName, FourthName)
+                                         VALUES (@firstName, @secondName, @thirdName, @fourthName)
+                                         """;
+
+        return saveData(
+            ref fullName,
+            ADD_NEW_FULL_NAME,
+            Constants.Mode.Add
+        );
+    }
+
     private static int saveData(
         ref FullName   fullName,
         string         query,
