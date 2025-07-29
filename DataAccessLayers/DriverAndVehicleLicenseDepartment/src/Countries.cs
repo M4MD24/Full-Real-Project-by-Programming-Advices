@@ -7,6 +7,24 @@ using DriverAndVehicleLicenseDepartment.Utilities;
 namespace DriverAndVehicleLicenseDepartment;
 
 public class Countries {
+    public static int updateCountryByCountryID(
+        ref Country country
+    ) {
+        const string UPDATE_COUNTRY_BY_COUNTRY_ID = """
+                                                    USE DriverAndVehicleLicenseDepartment
+                                                    UPDATE DriverAndVehicleLicenseDepartment.Countries
+                                                    SET CountryName = @countryName,
+                                                        CountryCode = @countryCode
+                                                    WHERE CountryID = @countryID
+                                                    """;
+
+        return saveData(
+            ref country,
+            UPDATE_COUNTRY_BY_COUNTRY_ID,
+            Constants.Mode.Update
+        );
+    }
+
     public static int deleteCountryByCountryID(
         ref int countryID
     ) {
