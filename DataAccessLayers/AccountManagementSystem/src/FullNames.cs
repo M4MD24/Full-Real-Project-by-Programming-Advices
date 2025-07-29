@@ -6,6 +6,41 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class FullNames {
+    public static int deleteFullNameByFullNameID(
+        ref int fullNameID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_FULL_NAME_BY_FULL_NAME_ID = """
+                                                        USE DriverAndVehicleLicenseDepartment
+                                                        DELETE AccountManagementSystem.FullNames
+                                                        WHERE FullNameID = @fullNameID
+                                                        """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_FULL_NAME_BY_FULL_NAME_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@fullNameID",
+            fullNameID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int addNewFullName(
         ref FullName fullName
     ) {
