@@ -5,6 +5,22 @@ using AccountManagementSystem.Utilities;
 namespace AccountManagementSystem;
 
 public class ContactInformation {
+    public static int addNewContactInformation(
+        ref Models.ContactInformation contactInformation
+    ) {
+        const string ADD_NEW_CONTACT_INFORMATION = """
+                                                   USE DriverAndVehicleLicenseDepartment
+                                                   INSERT INTO AccountManagementSystem.ContactInformation (PhoneNumber, Email)
+                                                   VALUES (@phoneNumber, @email)
+                                                   """;
+
+        return saveData(
+            ref contactInformation,
+            ADD_NEW_CONTACT_INFORMATION,
+            Constants.Mode.Add
+        );
+    }
+
     private static int saveData(
         ref Models.ContactInformation contactInformation,
         string                        query,
