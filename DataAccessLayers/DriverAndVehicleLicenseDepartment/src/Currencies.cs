@@ -7,6 +7,41 @@ using DriverAndVehicleLicenseDepartment.Utilities;
 namespace DriverAndVehicleLicenseDepartment;
 
 public class Currencies {
+    public static int deleteCurrencyByCurrencyID(
+        ref int currencyID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_CURRENCY_BY_CURRENCY_ID = """
+                                                      USE DriverAndVehicleLicenseDepartment
+                                                      DELETE DriverAndVehicleLicenseDepartment.Currencies
+                                                      WHERE CurrencyID = @currencyID
+                                                      """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_CURRENCY_BY_CURRENCY_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@currencyID",
+            currencyID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static int addNewCurrency(
         ref Currency currency
     ) {
