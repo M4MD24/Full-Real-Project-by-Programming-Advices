@@ -7,6 +7,24 @@ using DriverAndVehicleLicenseDepartment.Utilities;
 namespace DriverAndVehicleLicenseDepartment;
 
 public class Currencies {
+    public static int updateCurrencyByCurrencyID(
+        ref Currency currency
+    ) {
+        const string UPDATE_CURRENCY_BY_CURRENCY_ID = """
+                                                      USE DriverAndVehicleLicenseDepartment
+                                                      UPDATE DriverAndVehicleLicenseDepartment.Currencies
+                                                      SET Amount    = @amount,
+                                                          CountryID = @countryID
+                                                      WHERE CurrencyID = @currencyID
+                                                      """;
+
+        return saveData(
+            ref currency,
+            UPDATE_CURRENCY_BY_CURRENCY_ID,
+            Constants.Mode.Update
+        );
+    }
+
     public static int deleteCurrencyByCurrencyID(
         ref int currencyID
     ) {
