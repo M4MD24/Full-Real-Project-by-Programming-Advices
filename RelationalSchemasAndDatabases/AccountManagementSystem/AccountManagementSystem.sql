@@ -32,8 +32,8 @@ CREATE TABLE AccountManagementSystem.Persons
     FullNameID           INT            NOT NULL UNIQUE,
     DateOfBirth          DATETIME       NOT NULL,
     Address              NVARCHAR(200)  NOT NULL,
-    ContactInformationID INT            NOT NULL UNIQUE,
-    CountryID            TINYINT        NOT NULL UNIQUE,
+    ContactInformationID INT            NOT NULL,
+    CountryID            TINYINT        NOT NULL,
     ImageURL             NVARCHAR(2083) NOT NULL UNIQUE,
     FOREIGN KEY (FullNameID) REFERENCES AccountManagementSystem.FullNames (FullNameID),
     FOREIGN KEY (ContactInformationID) REFERENCES AccountManagementSystem.ContactInformation (ContactInformationID),
@@ -53,7 +53,7 @@ CREATE TABLE AccountManagementSystem.Accounts
     Username      VARCHAR(50) NOT NULL UNIQUE,
     Password      VARCHAR(50) NOT NULL,
     IsActive      BIT         NOT NULL,
-    AccountTypeID TINYINT     NOT NULL UNIQUE,
+    AccountTypeID TINYINT     NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES AccountManagementSystem.Persons (PersonID),
     FOREIGN KEY (AccountTypeID) REFERENCES AccountManagementSystem.AccountTypes (AccountTypeID)
 )
@@ -66,8 +66,8 @@ CREATE TABLE AccountManagementSystem.Permissions
 
 CREATE TABLE AccountManagementSystem.AccountPermissions
 (
-    AccountID    INT     NOT NULL UNIQUE,
-    PermissionID TINYINT NOT NULL UNIQUE,
+    AccountID    INT     NOT NULL,
+    PermissionID TINYINT NOT NULL,
     FOREIGN KEY (AccountID) REFERENCES AccountManagementSystem.Accounts (AccountID),
     FOREIGN KEY (PermissionID) REFERENCES AccountManagementSystem.Permissions (PermissionID)
 )
