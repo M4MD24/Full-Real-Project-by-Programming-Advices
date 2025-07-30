@@ -7,6 +7,22 @@ using DriverAndVehicleLicenseDepartment.Utilities;
 namespace DriverAndVehicleLicenseDepartment;
 
 public class Currencies {
+    public static int addNewCurrency(
+        ref Currency currency
+    ) {
+        const string ADD_NEW_CURRENCY = """
+                                        USE DriverAndVehicleLicenseDepartment
+                                        INSERT INTO DriverAndVehicleLicenseDepartment.Currencies (Amount, CountryID)
+                                        VALUES (@amount, @countryID)
+                                        """;
+
+        return saveData(
+            ref currency,
+            ADD_NEW_CURRENCY,
+            Constants.Mode.Add
+        );
+    }
+
     private static int saveData(
         ref Currency   currency,
         string         query,
