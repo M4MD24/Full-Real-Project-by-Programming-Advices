@@ -50,14 +50,14 @@ erDiagram
         INT EmployeeID FK
     }
     Currencies {
-        INT CurrencyID PK
+        TINYINT currencyID PK
         MONEY Amount
         TINYINT CountryID FK
     }
     Tests {
         INT TestID PK
         DATETIME TestDateTime
-        INT CurrencyID FK
+        TINYINT currencyID FK
         BIT IsSucceed
     }
     EyeTests {
@@ -86,7 +86,7 @@ erDiagram
     }
     Payments {
         INT PaymentID PK
-        INT CurrencyID FK
+        TINYINT currencyID FK
         DATETIME PaymentDateTime
         NVARCHAR(50) PaymentMethod
     }
