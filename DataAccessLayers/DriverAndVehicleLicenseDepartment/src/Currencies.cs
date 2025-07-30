@@ -7,6 +7,50 @@ using DriverAndVehicleLicenseDepartment.Utilities;
 namespace DriverAndVehicleLicenseDepartment;
 
 public class Currencies {
+    private static int saveData(
+        ref Currency   currency,
+        string         query,
+        Constants.Mode mode
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        if (mode == Constants.Mode.Update)
+            sqlCommand.Parameters.AddWithValue(
+                "@currencyID",
+                currency.currencyID
+            );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@amount",
+            currency.amount
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@countryID",
+            currency.countryID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
     public static List<Currency>? getAllCurrencies() {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
