@@ -6,24 +6,65 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
 public class AccountPermissions {
-    public static int deleteAccountPermissionByAccountPermissionID(
-        ref int accountPermissionID
+    public static int deleteAccountPermissionsByAccountID(
+        ref int accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
-        const string DELETE_ACCOUNT_PERMISSION_BY_ACCOUNT_PERMISSION_ID = """
-                                                                          USE DriverAndVehicleLicenseDepartment
-                                                                          DELETE AccountManagementSystem.AccountPermissions
-                                                                          WHERE AccountPermissionID = @accountPermissionID
-                                                                          """;
+        const string DELETE_ACCOUNT_PERMISSIONS_BY_ACCOUNT_ID = """
+                                                                USE DriverAndVehicleLicenseDepartment
+                                                                DELETE AccountManagementSystem.AccountPermissions
+                                                                WHERE AccountID = @accountID
+                                                                """;
         SqlCommand sqlCommand = new SqlCommand(
-            DELETE_ACCOUNT_PERMISSION_BY_ACCOUNT_PERMISSION_ID,
+            DELETE_ACCOUNT_PERMISSIONS_BY_ACCOUNT_ID,
             sqlConnection
         );
         sqlCommand.Parameters.AddWithValue(
-            "@accountPermissionID",
-            accountPermissionID
+            "@accountID",
+            accountID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
+    public static int deleteAccountPermission(
+        ref int  accountID,
+        ref byte permissionID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_ACCOUNT_PERMISSION = """
+                                                 USE DriverAndVehicleLicenseDepartment
+                                                 DELETE AccountManagementSystem.AccountPermissions
+                                                 WHERE AccountID = @accountID 
+                                                 AND PermissionID = @permissionID
+                                                 """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_ACCOUNT_PERMISSION,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@accountID",
+            accountID
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@permissionID",
+            permissionID
         );
 
         int rowAffected = 0;
