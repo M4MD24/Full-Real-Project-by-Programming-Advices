@@ -22,7 +22,7 @@ public class Accounts {
         ref account
     );
 
-    public static List<Account>? all() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.getAllAccounts();
+    public static List<Account>? getAll() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.getAllAccounts();
 
     public static Account? get(
         ref int accountID
