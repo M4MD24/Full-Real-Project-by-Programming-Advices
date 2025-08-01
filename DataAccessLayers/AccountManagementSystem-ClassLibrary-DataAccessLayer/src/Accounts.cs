@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
@@ -219,6 +220,58 @@ public class Accounts {
             }
 
             sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static List<Account>? getAllAccounts() {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string GET_ALL_ACCOUNTS = """
+                                        USE DriverAndVehicleLicenseDepartment
+                                        SELECT *
+                                        FROM AccountManagementSystem.Accounts
+                                        """;
+        SqlCommand sqlCommand = new SqlCommand(
+            GET_ALL_ACCOUNTS,
+            sqlConnection
+        );
+
+        try {
+            sqlConnection.Open();
+            List<Account> accounts      = [];
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read()) {
+                int    accountID     = (int) sqlDataReader["AccountID"];
+                int    personID      = (int) sqlDataReader["PersonID"];
+                string username      = (string) sqlDataReader["Username"];
+                string password      = (string) sqlDataReader["Password"];
+                bool   isActive      = (bool) sqlDataReader["IsActive"];
+                byte   accountTypeID = (byte) sqlDataReader["AccountTypeID"];
+
+                accounts.Add(
+                    new Account(
+                        accountID,
+                        personID,
+                        username,
+                        password,
+                        isActive,
+                        accountTypeID
+                    )
+                );
+            }
+
+            sqlDataReader.Close();
+            return accounts;
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message

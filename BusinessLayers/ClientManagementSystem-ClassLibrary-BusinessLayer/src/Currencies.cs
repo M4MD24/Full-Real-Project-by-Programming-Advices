@@ -22,7 +22,7 @@ public class Currencies {
         ref currency
     );
 
-    public static List<Currency>? all() => ClientManagementSystem_ClassLibrary_DataAccessLayer.Currencies.getAllCurrencies();
+    public static List<Currency>? getAll() => ClientManagementSystem_ClassLibrary_DataAccessLayer.Currencies.getAllCurrencies();
 
     public static Currency? get(
         ref byte currencyID

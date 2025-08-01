@@ -22,7 +22,7 @@ public class Countries {
         ref country
     );
 
-    public static List<Country>? all() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getAllCountries();
+    public static List<Country>? getAll() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getAllCountries();
 
     public static Country? get(
         ref byte countryID
