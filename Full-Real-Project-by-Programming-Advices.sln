@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientManagementSystem-Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagementSystem-ClassLibrary-BusinessLayer", "BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj", "{0E270A3D-B7FE-4CD7-96C1-794D45253A42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagementSystem-WindowsFormsApplication-PresentationLayer", "PresentationLayers\AccountManagementSystem-WindowsFormsApplication-PresentationLayer\AccountManagementSystem-WindowsFormsApplication-PresentationLayer.csproj", "{663D19DD-4246-4C3F-BB32-467B363498A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{0E270A3D-B7FE-4CD7-96C1-794D45253A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E270A3D-B7FE-4CD7-96C1-794D45253A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E270A3D-B7FE-4CD7-96C1-794D45253A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663D19DD-4246-4C3F-BB32-467B363498A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663D19DD-4246-4C3F-BB32-467B363498A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663D19DD-4246-4C3F-BB32-467B363498A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663D19DD-4246-4C3F-BB32-467B363498A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
