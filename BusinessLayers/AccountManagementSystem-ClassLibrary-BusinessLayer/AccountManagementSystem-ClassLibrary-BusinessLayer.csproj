@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <RootNamespace>AccountManagementSystem_ClassLibrary_BusinessLayer</RootNamespace>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\DataAccessLayers\AccountManagementSystem-ClassLibrary-DataAccessLayer\AccountManagementSystem-ClassLibrary-DataAccessLayer.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -26,7 +26,7 @@ public class Currencies {
     }
 
     public static int deleteCurrencyByCurrencyID(
-        ref int currencyID
+        ref byte currencyID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

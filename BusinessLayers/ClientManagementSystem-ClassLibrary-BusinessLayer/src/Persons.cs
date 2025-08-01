@@ -1,0 +1,3 @@
+namespace ClientManagementSystem_ClassLibrary_BusinessLayer;
+
+public class Persons {}

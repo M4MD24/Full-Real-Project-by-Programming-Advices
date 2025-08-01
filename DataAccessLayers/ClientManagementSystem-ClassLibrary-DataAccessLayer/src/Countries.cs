@@ -26,7 +26,7 @@ public class Countries {
     }
 
     public static int deleteCountryByCountryID(
-        ref int countryID
+        ref byte countryID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
