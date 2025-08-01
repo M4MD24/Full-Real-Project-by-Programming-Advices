@@ -9,4 +9,8 @@
         <ImplicitUsings>disable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj" />
+    </ItemGroup>
+
 </Project>
