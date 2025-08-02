@@ -7,10 +7,35 @@ using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilitie
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class App : Form {
+    private static readonly(
+            Image PersonAdd,
+            Image Lists,
+            Image Toll,
+            Image Flag2,
+            Image Help,
+            Image Shortcuts,
+            Image ContactSupport,
+            Image Call,
+            Image Mail,
+            Image Telegram,
+            Image Search
+            ) icons = loadIcons();
+
     public App() {
         InitializeComponent();
         setIcon();
         initializeMenuStrip();
+        setConfirmSearchIcon();
+    }
+
+    private void setConfirmSearchIcon() {
+        confirmSearch.Image = loadIcon(
+            "Search",
+            20,
+            20
+        );
+        confirmSearch.ImageAlign = ContentAlignment.MiddleRight;
+        confirmSearch.TextAlign  = ContentAlignment.MiddleLeft;
     }
 
     private void setIcon() {
@@ -25,8 +50,6 @@ public partial class App : Form {
 
     private void initializeMenuStrip() {
         MenuStrip menuStrip = new MenuStrip();
-
-        var icons = loadIcons();
 
         ToolStripMenuItem newAccount = createMenuItem(
                               "New Account",
@@ -112,7 +135,8 @@ public partial class App : Form {
             Image ContactSupport,
             Image Call,
             Image Mail,
-            Image Telegram
+            Image Telegram,
+            Image Search
             ) loadIcons() => (
                                  PersonAdd : loadIcon(
                                      "PersonAdd"
@@ -143,14 +167,19 @@ public partial class App : Form {
                                  ),
                                  Telegram : loadIcon(
                                      "TelegramLogo"
+                                 ),
+                                 Search : loadIcon(
+                                     "Search"
                                  )
                              );
 
     private static Image loadIcon(
-        string name
+        string name,
+        int    width  = 48,
+        int    height = 48
     ) => Tools.loadEmbeddedSvg(
         Constants.RESOURCES_ICONS_PATH + $".{name}.svg",
-        48,
-        48
+        width,
+        height
     );
 }

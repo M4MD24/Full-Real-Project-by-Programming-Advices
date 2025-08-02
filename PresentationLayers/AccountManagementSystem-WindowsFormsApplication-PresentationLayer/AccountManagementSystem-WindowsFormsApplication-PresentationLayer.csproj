@@ -29,5 +29,6 @@
         <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
         <EmbeddedResource Include="Resources\Icons\Flag2.svg"/>
         <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Search.svg"/>
     </ItemGroup>
 </Project>
