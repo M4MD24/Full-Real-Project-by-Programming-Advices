@@ -10,7 +10,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj" />
+        <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Svg" Version="3.4.7"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\Icons\Help.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ActionKey.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ContactSupport.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Call.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Mail.svg"/>
+        <EmbeddedResource Include="Resources\Icons\TelegramLogo.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ManageAccounts.ico"/>
+        <EmbeddedResource Include="Resources\Icons\Lists.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Flag2.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
+    </ItemGroup>
 </Project>

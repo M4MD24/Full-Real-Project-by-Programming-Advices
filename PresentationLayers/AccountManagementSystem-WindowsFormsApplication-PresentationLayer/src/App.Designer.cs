@@ -29,7 +29,22 @@ partial class App {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+        MenuStrip = new System.Windows.Forms.MenuStrip();
         SuspendLayout();
+        // 
+        // MenuStrip
+        // 
+        MenuStrip.Location = new System.Drawing.Point(
+            0,
+            0
+        );
+        MenuStrip.Name = "MenuStrip";
+        MenuStrip.Size = new System.Drawing.Size(
+            984,
+            24
+        );
+        MenuStrip.TabIndex = 0;
+        MenuStrip.Text     = "MenuStrip";
         // 
         // App
         // 
@@ -39,15 +54,22 @@ partial class App {
         );
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(
-            784,
-            461
+            984,
+            661
         );
+        Controls.Add(
+            MenuStrip
+        );
+        MainMenuStrip = MenuStrip;
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          = "Main";
         ResumeLayout(
             false
         );
+        PerformLayout();
     }
+
+    private System.Windows.Forms.MenuStrip MenuStrip;
 
     #endregion
 }
