@@ -12,7 +12,7 @@ public class Currencies {
     ) {
         const string UPDATE_CURRENCY_BY_CURRENCY_ID = """
                                                       USE DriverAndVehicleLicenseDepartment
-                                                      UPDATE DriverAndVehicleLicenseDepartment.Currencies
+                                                      UPDATE ClientManagementSystem.Currencies
                                                       SET Amount    = @amount,
                                                           CountryID = @countryID
                                                       WHERE CurrencyID = @currencyID
@@ -33,7 +33,7 @@ public class Currencies {
         );
         const string DELETE_CURRENCY_BY_CURRENCY_ID = """
                                                       USE DriverAndVehicleLicenseDepartment
-                                                      DELETE DriverAndVehicleLicenseDepartment.Currencies
+                                                      DELETE ClientManagementSystem.Currencies
                                                       WHERE CurrencyID = @currencyID
                                                       """;
         SqlCommand sqlCommand = new SqlCommand(
@@ -65,7 +65,7 @@ public class Currencies {
     ) {
         const string ADD_NEW_CURRENCY = """
                                         USE DriverAndVehicleLicenseDepartment
-                                        INSERT INTO DriverAndVehicleLicenseDepartment.Currencies (Amount, CountryID)
+                                        INSERT INTO ClientManagementSystem.Currencies (Amount, CountryID)
                                         VALUES (@amount, @countryID)
                                         """;
 
@@ -127,7 +127,7 @@ public class Currencies {
         const string GET_ALL_CURRENCIES = """
                                           USE DriverAndVehicleLicenseDepartment
                                           SELECT *
-                                          FROM DriverAndVehicleLicenseDepartment.Currencies
+                                          FROM ClientManagementSystem.Currencies
                                           """;
         SqlCommand sqlCommand = new SqlCommand(
             GET_ALL_CURRENCIES,
@@ -175,7 +175,7 @@ public class Currencies {
         const string SELECT_CURRENCY_BY_CURRENCY_ID = """
                                                       USE DriverAndVehicleLicenseDepartment
                                                       SELECT *
-                                                      FROM DriverAndVehicleLicenseDepartment.Currencies
+                                                      FROM ClientManagementSystem.Currencies
                                                       WHERE CurrencyID = @currencyID
                                                       """;
         SqlCommand sqlCommand = new SqlCommand(

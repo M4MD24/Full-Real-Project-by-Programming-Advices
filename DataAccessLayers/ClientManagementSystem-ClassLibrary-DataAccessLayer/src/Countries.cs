@@ -12,7 +12,7 @@ public class Countries {
     ) {
         const string UPDATE_COUNTRY_BY_COUNTRY_ID = """
                                                     USE DriverAndVehicleLicenseDepartment
-                                                    UPDATE DriverAndVehicleLicenseDepartment.Countries
+                                                    UPDATE ClientManagementSystem.Countries
                                                     SET CountryName = @countryName,
                                                         CountryCode = @countryCode
                                                     WHERE CountryID = @countryID
@@ -33,7 +33,7 @@ public class Countries {
         );
         const string DELETE_COUNTRY_BY_COUNTRY_ID = """
                                                     USE DriverAndVehicleLicenseDepartment
-                                                    DELETE DriverAndVehicleLicenseDepartment.Countries
+                                                    DELETE ClientManagementSystem.Countries
                                                     WHERE CountryID = @countryID
                                                     """;
         SqlCommand sqlCommand = new SqlCommand(
@@ -65,7 +65,7 @@ public class Countries {
     ) {
         const string ADD_NEW_COUNTRY = """
                                        USE DriverAndVehicleLicenseDepartment
-                                       INSERT INTO DriverAndVehicleLicenseDepartment.Countries (CountryName, CountryCode)
+                                       INSERT INTO ClientManagementSystem.Countries (CountryName, CountryCode)
                                        VALUES (@countryName, @countryCode)
                                        """;
 
@@ -127,7 +127,7 @@ public class Countries {
         const string GET_ALL_COUNTRIES = """
                                          USE DriverAndVehicleLicenseDepartment
                                          SELECT *
-                                         FROM DriverAndVehicleLicenseDepartment.Countries
+                                         FROM ClientManagementSystem.Countries
                                          """;
         SqlCommand sqlCommand = new SqlCommand(
             GET_ALL_COUNTRIES,
@@ -175,7 +175,7 @@ public class Countries {
         const string SELECT_COUNTRY_BY_COUNTRY_ID = """
                                                     USE DriverAndVehicleLicenseDepartment
                                                     SELECT *
-                                                    FROM DriverAndVehicleLicenseDepartment.Countries
+                                                    FROM ClientManagementSystem.Countries
                                                     WHERE CountryID = @countryID
                                                     """;
         SqlCommand sqlCommand = new SqlCommand(

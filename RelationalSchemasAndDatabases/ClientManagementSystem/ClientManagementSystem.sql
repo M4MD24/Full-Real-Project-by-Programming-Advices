@@ -1,22 +1,22 @@
 USE DriverAndVehicleLicenseDepartment;
 
-CREATE SCHEMA DriverAndVehicleLicenseDepartment;
+CREATE SCHEMA ClientManagementSystem;
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Countries
+CREATE TABLE ClientManagementSystem.Countries
 (
     CountryID   TINYINT      NOT NULL PRIMARY KEY,
     CountryName NVARCHAR(75) NOT NULL UNIQUE,
     CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.ContactInformation
+CREATE TABLE ClientManagementSystem.ContactInformation
 (
     ContactInformationID INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
     PhoneNumber          NVARCHAR(20)  NOT NULL,
     Email                NVARCHAR(100) NOT NULL
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.FullNames
+CREATE TABLE ClientManagementSystem.FullNames
 (
     FullNameID INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
     FirstName  NVARCHAR(20) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.FullNames
     FourthName NVARCHAR(20) NOT NULL
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Persons
+CREATE TABLE ClientManagementSystem.Persons
 (
     PersonID             INT            NOT NULL PRIMARY KEY IDENTITY (1,1),
     NationalNumber       NVARCHAR(30)   NOT NULL UNIQUE,
@@ -35,112 +35,112 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.Persons
     ContactInformationID INT            NOT NULL,
     CountryID            TINYINT        NOT NULL UNIQUE,
     ImageURL             NVARCHAR(2083) NOT NULL UNIQUE,
-    FOREIGN KEY (FullNameID) REFERENCES DriverAndVehicleLicenseDepartment.FullNames (FullNameID),
-    FOREIGN KEY (ContactInformationID) REFERENCES DriverAndVehicleLicenseDepartment.ContactInformation (ContactInformationID),
-    FOREIGN KEY (CountryID) REFERENCES DriverAndVehicleLicenseDepartment.Countries (CountryID)
+    FOREIGN KEY (FullNameID) REFERENCES ClientManagementSystem.FullNames (FullNameID),
+    FOREIGN KEY (ContactInformationID) REFERENCES ClientManagementSystem.ContactInformation (ContactInformationID),
+    FOREIGN KEY (CountryID) REFERENCES ClientManagementSystem.Countries (CountryID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Clients
+CREATE TABLE ClientManagementSystem.Clients
 (
     ClientID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID INT NOT NULL UNIQUE,
-    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenseDepartment.Persons (PersonID)
+    FOREIGN KEY (PersonID) REFERENCES ClientManagementSystem.Persons (PersonID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Employees
+CREATE TABLE ClientManagementSystem.Employees
 (
     EmployeeID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID   INT NOT NULL UNIQUE,
-    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenseDepartment.Persons (PersonID)
+    FOREIGN KEY (PersonID) REFERENCES ClientManagementSystem.Persons (PersonID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.EyeDoctors
+CREATE TABLE ClientManagementSystem.EyeDoctors
 (
     EyeDoctorID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID    INT NOT NULL UNIQUE,
-    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenseDepartment.Persons (PersonID)
+    FOREIGN KEY (PersonID) REFERENCES ClientManagementSystem.Persons (PersonID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Supervisors
+CREATE TABLE ClientManagementSystem.Supervisors
 (
     SupervisorID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID     INT NOT NULL UNIQUE,
-    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenseDepartment.Persons (PersonID)
+    FOREIGN KEY (PersonID) REFERENCES ClientManagementSystem.Persons (PersonID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.DrivingExaminers
+CREATE TABLE ClientManagementSystem.DrivingExaminers
 (
     DrivingExaminerID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID          INT NOT NULL UNIQUE,
-    FOREIGN KEY (PersonID) REFERENCES DriverAndVehicleLicenseDepartment.Persons (PersonID)
+    FOREIGN KEY (PersonID) REFERENCES ClientManagementSystem.Persons (PersonID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Currencies
+CREATE TABLE ClientManagementSystem.Currencies
 (
     CurrencyID TINYINT NOT NULL PRIMARY KEY IDENTITY (1,1),
     Amount     MONEY   NOT NULL,
     CountryID  TINYINT NOT NULL,
-    FOREIGN KEY (CountryID) REFERENCES DriverAndVehicleLicenseDepartment.Countries (CountryID)
+    FOREIGN KEY (CountryID) REFERENCES ClientManagementSystem.Countries (CountryID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Tests
+CREATE TABLE ClientManagementSystem.Tests
 (
     TestID       INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestDateTime DATETIME NOT NULL,
     CurrencyID   TINYINT  NOT NULL,
     IsSucceed    BIT      NOT NULL,
-    FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID)
+    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.EyeTests
+CREATE TABLE ClientManagementSystem.EyeTests
 (
     EyeTestID   INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestID      INT NOT NULL UNIQUE,
     EyeDoctorID INT NOT NULL,
-    FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenseDepartment.Tests (TestID),
-    FOREIGN KEY (EyeDoctorID) REFERENCES DriverAndVehicleLicenseDepartment.EyeDoctors (EyeDoctorID)
+    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
+    FOREIGN KEY (EyeDoctorID) REFERENCES ClientManagementSystem.EyeDoctors (EyeDoctorID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.TheoreticalTests
+CREATE TABLE ClientManagementSystem.TheoreticalTests
 (
     TheoreticalTestID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestID            INT NOT NULL UNIQUE,
     SupervisorID      INT NOT NULL,
-    FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenseDepartment.Tests (TestID),
-    FOREIGN KEY (SupervisorID) REFERENCES DriverAndVehicleLicenseDepartment.Supervisors (SupervisorID)
+    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
+    FOREIGN KEY (SupervisorID) REFERENCES ClientManagementSystem.Supervisors (SupervisorID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.DrivingTests
+CREATE TABLE ClientManagementSystem.DrivingTests
 (
     DrivingTestID     INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestID            INT NOT NULL UNIQUE,
     DrivingExaminerID INT NOT NULL,
-    FOREIGN KEY (TestID) REFERENCES DriverAndVehicleLicenseDepartment.Tests (TestID),
-    FOREIGN KEY (DrivingExaminerID) REFERENCES DriverAndVehicleLicenseDepartment.DrivingExaminers (DrivingExaminerID)
+    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
+    FOREIGN KEY (DrivingExaminerID) REFERENCES ClientManagementSystem.DrivingExaminers (DrivingExaminerID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.RequestTypes
+CREATE TABLE ClientManagementSystem.RequestTypes
 (
     RequestTypeID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     RequestTypeName NVARCHAR(50) NOT NULL
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.RequestCases
+CREATE TABLE ClientManagementSystem.RequestCases
 (
     RequestCaseID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     RequestCaseName NVARCHAR(20) NOT NULL
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Payments
+CREATE TABLE ClientManagementSystem.Payments
 (
     PaymentID       INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
     CurrencyID      TINYINT      NOT NULL,
     PaymentDateTime DATETIME     NOT NULL,
     PaymentMethod   NVARCHAR(50) NOT NULL,
-    FOREIGN KEY (CurrencyID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID)
+    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Requests
+CREATE TABLE ClientManagementSystem.Requests
 (
     RequestID         INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     RequestDateTime   DATETIME,
@@ -151,22 +151,22 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.Requests
     EyeTestID         INT,
     TheoreticalTestID INT,
     DrivingTestID     INT,
-    FOREIGN KEY (ClientID) REFERENCES DriverAndVehicleLicenseDepartment.Clients (ClientID),
-    FOREIGN KEY (RequestTypeID) REFERENCES DriverAndVehicleLicenseDepartment.RequestTypes (RequestTypeID),
-    FOREIGN KEY (RequestCaseID) REFERENCES DriverAndVehicleLicenseDepartment.RequestCases (RequestCaseID),
-    FOREIGN KEY (PaymentID) REFERENCES DriverAndVehicleLicenseDepartment.Payments (PaymentID),
-    FOREIGN KEY (EyeTestID) REFERENCES DriverAndVehicleLicenseDepartment.EyeTests (EyeTestID),
-    FOREIGN KEY (TheoreticalTestID) REFERENCES DriverAndVehicleLicenseDepartment.TheoreticalTests (TheoreticalTestID),
-    FOREIGN KEY (DrivingTestID) REFERENCES DriverAndVehicleLicenseDepartment.DrivingTests (DrivingTestID)
+    FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
+    FOREIGN KEY (RequestTypeID) REFERENCES ClientManagementSystem.RequestTypes (RequestTypeID),
+    FOREIGN KEY (RequestCaseID) REFERENCES ClientManagementSystem.RequestCases (RequestCaseID),
+    FOREIGN KEY (PaymentID) REFERENCES ClientManagementSystem.Payments (PaymentID),
+    FOREIGN KEY (EyeTestID) REFERENCES ClientManagementSystem.EyeTests (EyeTestID),
+    FOREIGN KEY (TheoreticalTestID) REFERENCES ClientManagementSystem.TheoreticalTests (TheoreticalTestID),
+    FOREIGN KEY (DrivingTestID) REFERENCES ClientManagementSystem.DrivingTests (DrivingTestID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.LicenseIssuances
+CREATE TABLE ClientManagementSystem.LicenseIssuances
 (
     LicenseIssuanceID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseIssuanceName NVARCHAR(50) NOT NULL UNIQUE
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.LicenseTypes
+CREATE TABLE ClientManagementSystem.LicenseTypes
 (
     LicenseTypeID          INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseTypeName        NVARCHAR(75)  NOT NULL,
@@ -179,66 +179,66 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.LicenseTypes
     IssueDateTime          DATETIME      NOT NULL,
     ExpiryDateTime         DATETIME      NOT NULL,
     IsActive               BIT           NOT NULL,
-    FOREIGN KEY (LicenseIssuanceID) REFERENCES DriverAndVehicleLicenseDepartment.LicenseIssuances (LicenseIssuanceID),
+    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Licenses
+CREATE TABLE ClientManagementSystem.Licenses
 (
     LicenseID     INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseTypeID INT NOT NULL,
     ClientID      INT NOT NULL,
-    FOREIGN KEY (LicenseTypeID) REFERENCES DriverAndVehicleLicenseDepartment.LicenseTypes (LicenseTypeID),
-    FOREIGN KEY (ClientID) REFERENCES DriverAndVehicleLicenseDepartment.Clients (ClientID)
+    FOREIGN KEY (LicenseTypeID) REFERENCES ClientManagementSystem.LicenseTypes (LicenseTypeID),
+    FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Retests
+CREATE TABLE ClientManagementSystem.Retests
 (
     RetestID      INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     LastRequestID INT NOT NULL UNIQUE,
     NewRequestID  INT NOT NULL UNIQUE,
-    FOREIGN KEY (LastRequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID),
-    FOREIGN KEY (NewRequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID)
+    FOREIGN KEY (LastRequestID) REFERENCES ClientManagementSystem.Requests (RequestID),
+    FOREIGN KEY (NewRequestID) REFERENCES ClientManagementSystem.Requests (RequestID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.OfficialDrivers
+CREATE TABLE ClientManagementSystem.OfficialDrivers
 (
     OfficialDriverID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     RequestID        INT NOT NULL UNIQUE,
-    FOREIGN KEY (RequestID) REFERENCES DriverAndVehicleLicenseDepartment.Requests (RequestID)
+    FOREIGN KEY (RequestID) REFERENCES ClientManagementSystem.Requests (RequestID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.LockedLicenses
+CREATE TABLE ClientManagementSystem.LockedLicenses
 (
     LockedLicenseID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseID       INT NOT NULL UNIQUE,
-    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
+    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.UnlockLicenses
+CREATE TABLE ClientManagementSystem.UnlockLicenses
 (
     UnlockLicenseID INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseID       INT      NOT NULL UNIQUE,
     DateTimeUnlock  DATETIME NOT NULL,
     PaymentID       INT      NOT NULL,
-    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID),
-    FOREIGN KEY (PaymentID) REFERENCES DriverAndVehicleLicenseDepartment.Payments (PaymentID)
+    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID),
+    FOREIGN KEY (PaymentID) REFERENCES ClientManagementSystem.Payments (PaymentID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.LostLicenseReplacements
+CREATE TABLE ClientManagementSystem.LostLicenseReplacements
 (
     LostLicenseReplacementID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseID                INT NOT NULL UNIQUE,
-    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
+    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.DamagedLicenseReplacements
+CREATE TABLE ClientManagementSystem.DamagedLicenseReplacements
 (
     DamagedLicenseReplacementID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseID                   INT NOT NULL UNIQUE,
-    FOREIGN KEY (LicenseID) REFERENCES DriverAndVehicleLicenseDepartment.Licenses (LicenseID)
+    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID)
 )
 
-CREATE TABLE DriverAndVehicleLicenseDepartment.Fees
+CREATE TABLE ClientManagementSystem.Fees
 (
     RequestFeesID                   TINYINT NOT NULL,
     EyeTestFeesID                   TINYINT NOT NULL,
@@ -248,12 +248,12 @@ CREATE TABLE DriverAndVehicleLicenseDepartment.Fees
     LostLicenseReplacementFeesID    TINYINT NOT NULL,
     DamagedLicenseReplacementFeesID TINYINT NOT NULL,
     InternationalLicenseFeesID      TINYINT NOT NULL,
-    FOREIGN KEY (RequestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (EyeTestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (TheoreticalTestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (RetestFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (LicenseRenewalFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (LostLicenseReplacementFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (DamagedLicenseReplacementFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
-    FOREIGN KEY (InternationalLicenseFeesID) REFERENCES DriverAndVehicleLicenseDepartment.Currencies (CurrencyID),
+    FOREIGN KEY (RequestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (EyeTestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (TheoreticalTestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (RetestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (LicenseRenewalFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (LostLicenseReplacementFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (DamagedLicenseReplacementFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (InternationalLicenseFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
 )
