@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;

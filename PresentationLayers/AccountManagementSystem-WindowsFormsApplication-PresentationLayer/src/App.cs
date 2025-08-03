@@ -182,4 +182,14 @@ public partial class App : Form {
         width,
         height
     );
+
+    private void searchBox_KeyDown(
+        object       sender,
+        KeyEventArgs e
+    ) {
+        if (e.KeyCode != Keys.Enter)
+            return;
+        e.SuppressKeyPress = true;
+        e.Handled          = true;
+    }
 }

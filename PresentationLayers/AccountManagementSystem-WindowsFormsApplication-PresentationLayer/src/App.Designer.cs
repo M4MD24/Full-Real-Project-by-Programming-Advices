@@ -1,4 +1,6 @@
-﻿namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
+﻿using System.Drawing;
+
+namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 partial class App {
     /// <summary>
@@ -33,10 +35,13 @@ partial class App {
         searchBox     = new System.Windows.Forms.TextBox();
         confirmSearch = new System.Windows.Forms.Button();
         searchFilter  = new System.Windows.Forms.ComboBox();
+        accountList   = new System.Windows.Forms.DataGridView();
+        ((System.ComponentModel.ISupportInitialize) accountList).BeginInit();
         SuspendLayout();
         // 
         // MenuStrip
         // 
+        MenuStrip.AutoSize = false;
         MenuStrip.Location = new System.Drawing.Point(
             0,
             0
@@ -44,7 +49,7 @@ partial class App {
         MenuStrip.Name = "MenuStrip";
         MenuStrip.Size = new System.Drawing.Size(
             984,
-            24
+            0
         );
         MenuStrip.TabIndex = 0;
         MenuStrip.Text     = "MenuStrip";
@@ -61,10 +66,11 @@ partial class App {
             580,
             25
         );
-        searchBox.TabIndex = 1;
-        // 
+        searchBox.TabIndex =  1;
+        searchBox.KeyDown  += searchBox_KeyDown;
+        //
         // confirmSearch
-        // 
+        //
         confirmSearch.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -82,9 +88,9 @@ partial class App {
         confirmSearch.TabIndex                = 3;
         confirmSearch.Text                    = "Search";
         confirmSearch.UseVisualStyleBackColor = true;
-        // 
+        //
         // searchFilter
-        // 
+        //
         searchFilter.FormattingEnabled = true;
         searchFilter.Location = new System.Drawing.Point(
             620,
@@ -96,6 +102,22 @@ partial class App {
             23
         );
         searchFilter.TabIndex = 2;
+        //
+        // accountList
+        //
+        accountList.BackgroundColor             = System.Drawing.Color.Gray;
+        accountList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        accountList.Location = new System.Drawing.Point(
+            20,
+            90
+        );
+        accountList.Name = "accountList";
+        accountList.Size = new System.Drawing.Size(
+            940,
+            550
+        );
+        accountList.TabIndex = 4;
+        accountList.Text     = "Account List";
         // 
         // App
         // 
@@ -104,9 +126,13 @@ partial class App {
             15F
         );
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        BackColor     = System.Drawing.Color.DimGray;
         ClientSize = new System.Drawing.Size(
             984,
             661
+        );
+        Controls.Add(
+            accountList
         );
         Controls.Add(
             searchFilter
@@ -123,11 +149,14 @@ partial class App {
         MainMenuStrip = MenuStrip;
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          = "Main";
+        ((System.ComponentModel.ISupportInitialize) accountList).EndInit();
         ResumeLayout(
             false
         );
         PerformLayout();
     }
+
+    private System.Windows.Forms.DataGridView accountList;
 
     private System.Windows.Forms.ComboBox searchFilter;
 

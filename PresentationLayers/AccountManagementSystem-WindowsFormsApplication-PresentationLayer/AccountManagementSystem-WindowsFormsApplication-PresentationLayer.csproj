@@ -31,4 +31,11 @@
         <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
         <EmbeddedResource Include="Resources\Icons\Search.svg"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="src\Controls\SimpleList.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>
