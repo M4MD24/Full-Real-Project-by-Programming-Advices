@@ -96,7 +96,7 @@ partial class SimpleList {
             25
         );
         confirmSearch.TabIndex                = 3;
-        confirmSearch.Text                    = "button1";
+        confirmSearch.Text                    = "Search";
         confirmSearch.UseVisualStyleBackColor = true;
         // 
         // SimpleList

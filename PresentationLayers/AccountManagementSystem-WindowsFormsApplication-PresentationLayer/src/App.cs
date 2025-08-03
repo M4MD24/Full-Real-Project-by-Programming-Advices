@@ -115,6 +115,9 @@ public partial class App : Form {
         Controls.Add(
             menuStrip
         );
+        mobileNumber.Click += mobileNumber_Click!;
+        mail.Click         += mail_Click!;
+        telegram.Click     += telegram_Click!;
     }
 
     private static ToolStripMenuItem createMenuItem(
@@ -192,4 +195,34 @@ public partial class App : Form {
         e.SuppressKeyPress = true;
         e.Handled          = true;
     }
+
+    private static void mobileNumber_Click(
+        object    sender,
+        EventArgs e
+    ) => MessageBox.Show(
+        @"+201555400034",
+        @"Mobile Number",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information
+    );
+
+    private static void mail_Click(
+        object    sender,
+        EventArgs e
+    ) => MessageBox.Show(
+        @"m4md24@gmail.com",
+        @"Mail",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information
+    );
+
+    private static void telegram_Click(
+        object    sender,
+        EventArgs e
+    ) => MessageBox.Show(
+        @"@m4md24",
+        @"Telegram",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information
+    );
 }
