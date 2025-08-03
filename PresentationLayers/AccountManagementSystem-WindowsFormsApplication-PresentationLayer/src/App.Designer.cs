@@ -32,11 +32,11 @@ partial class App {
     /// </summary>
     private void InitializeComponent() {
         MenuStrip     = new System.Windows.Forms.MenuStrip();
-        searchBox     = new System.Windows.Forms.TextBox();
-        confirmSearch = new System.Windows.Forms.Button();
-        searchFilter  = new System.Windows.Forms.ComboBox();
-        accountList   = new System.Windows.Forms.DataGridView();
-        ((System.ComponentModel.ISupportInitialize) accountList).BeginInit();
+        SearchBox     = new System.Windows.Forms.TextBox();
+        ConfirmSearch = new System.Windows.Forms.Button();
+        SearchFilter  = new System.Windows.Forms.ComboBox();
+        AccountList   = new System.Windows.Forms.DataGridView();
+        ((System.ComponentModel.ISupportInitialize) AccountList).BeginInit();
         SuspendLayout();
         // 
         // MenuStrip
@@ -54,70 +54,71 @@ partial class App {
         MenuStrip.TabIndex = 0;
         MenuStrip.Text     = "MenuStrip";
         // 
-        // searchBox
+        // SearchBox
         // 
-        searchBox.Location = new System.Drawing.Point(
+        SearchBox.Location = new System.Drawing.Point(
             20,
             50
         );
-        searchBox.Multiline = true;
-        searchBox.Name      = "searchBox";
-        searchBox.Size = new System.Drawing.Size(
+        SearchBox.Multiline = true;
+        SearchBox.Name      = "SearchBox";
+        SearchBox.Size = new System.Drawing.Size(
             580,
             25
         );
-        searchBox.TabIndex =  1;
-        searchBox.KeyDown  += searchBox_KeyDown;
-        //
-        // confirmSearch
-        //
-        confirmSearch.Font = new System.Drawing.Font(
+        SearchBox.TabIndex =  1;
+        SearchBox.KeyDown  += searchBox_KeyDown;
+        // 
+        // ConfirmSearch
+        // 
+        ConfirmSearch.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
             System.Drawing.FontStyle.Bold
         );
-        confirmSearch.Location = new System.Drawing.Point(
+        ConfirmSearch.Location = new System.Drawing.Point(
             800,
             50
         );
-        confirmSearch.Name = "confirmSearch";
-        confirmSearch.Size = new System.Drawing.Size(
+        ConfirmSearch.Name = "ConfirmSearch";
+        ConfirmSearch.Size = new System.Drawing.Size(
             160,
             25
         );
-        confirmSearch.TabIndex                = 3;
-        confirmSearch.Text                    = "Search";
-        confirmSearch.UseVisualStyleBackColor = true;
-        //
-        // searchFilter
-        //
-        searchFilter.FormattingEnabled = true;
-        searchFilter.Location = new System.Drawing.Point(
+        ConfirmSearch.TabIndex                =  3;
+        ConfirmSearch.Text                    =  "Search";
+        ConfirmSearch.UseVisualStyleBackColor =  true;
+        ConfirmSearch.Click                   += confirmSearch_Click;
+        // 
+        // SearchFilter
+        // 
+        SearchFilter.FormattingEnabled = true;
+        SearchFilter.Location = new System.Drawing.Point(
             620,
             51
         );
-        searchFilter.Name = "searchFilter";
-        searchFilter.Size = new System.Drawing.Size(
+        SearchFilter.Name = "SearchFilter";
+        SearchFilter.Size = new System.Drawing.Size(
             160,
             23
         );
-        searchFilter.TabIndex = 2;
-        //
-        // accountList
-        //
-        accountList.BackgroundColor             = System.Drawing.Color.Gray;
-        accountList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        accountList.Location = new System.Drawing.Point(
+        SearchFilter.TabIndex = 2;
+        // 
+        // AccountList
+        // 
+        AccountList.BackgroundColor             = System.Drawing.Color.Gray;
+        AccountList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        AccountList.Location = new System.Drawing.Point(
             20,
             90
         );
-        accountList.Name = "accountList";
-        accountList.Size = new System.Drawing.Size(
+        AccountList.Name = "AccountList";
+        AccountList.Size = new System.Drawing.Size(
             940,
             550
         );
-        accountList.TabIndex = 4;
-        accountList.Text     = "Account List";
+        AccountList.TabIndex = 4;
+        AccountList.Text     = "Account List";
         // 
         // App
         // 
@@ -132,37 +133,39 @@ partial class App {
             661
         );
         Controls.Add(
-            accountList
+            AccountList
         );
         Controls.Add(
-            searchFilter
+            SearchFilter
         );
         Controls.Add(
-            confirmSearch
+            ConfirmSearch
         );
         Controls.Add(
-            searchBox
+            SearchBox
         );
         Controls.Add(
             MenuStrip
         );
-        MainMenuStrip = MenuStrip;
-        StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          = "Main";
-        ((System.ComponentModel.ISupportInitialize) accountList).EndInit();
+        KeyPreview    =  true;
+        MainMenuStrip =  MenuStrip;
+        StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
+        Text          =  "Main";
+        KeyDown       += App_KeyDown;
+        ((System.ComponentModel.ISupportInitialize) AccountList).EndInit();
         ResumeLayout(
             false
         );
         PerformLayout();
     }
 
-    private System.Windows.Forms.DataGridView accountList;
+    private System.Windows.Forms.DataGridView AccountList;
 
-    private System.Windows.Forms.ComboBox searchFilter;
+    private System.Windows.Forms.ComboBox SearchFilter;
 
-    private System.Windows.Forms.Button confirmSearch;
+    private System.Windows.Forms.Button ConfirmSearch;
 
-    private System.Windows.Forms.TextBox searchBox;
+    private System.Windows.Forms.TextBox SearchBox;
 
     private System.Windows.Forms.MenuStrip MenuStrip;
 

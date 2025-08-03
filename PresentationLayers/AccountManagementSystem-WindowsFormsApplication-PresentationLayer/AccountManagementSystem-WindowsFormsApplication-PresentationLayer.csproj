@@ -36,6 +36,9 @@
       <Compile Update="src\Controls\SimpleList.cs">
         <SubType>UserControl</SubType>
       </Compile>
+      <Compile Update="src\Shortcuts.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

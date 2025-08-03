@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -29,13 +30,13 @@ public partial class App : Form {
     }
 
     private void setConfirmSearchIcon() {
-        confirmSearch.Image = loadIcon(
+        ConfirmSearch.Image = loadIcon(
             "Search",
             20,
             20
         );
-        confirmSearch.ImageAlign = ContentAlignment.MiddleRight;
-        confirmSearch.TextAlign  = ContentAlignment.MiddleLeft;
+        ConfirmSearch.ImageAlign = ContentAlignment.MiddleRight;
+        ConfirmSearch.TextAlign  = ContentAlignment.MiddleLeft;
     }
 
     private void setIcon() {
@@ -52,43 +53,43 @@ public partial class App : Form {
         MenuStrip menuStrip = new MenuStrip();
 
         ToolStripMenuItem newAccount = createMenuItem(
-                              "New Account",
+                              "&New Account",
                               icons.PersonAdd
                           ),
                           lists = createMenuItem(
-                              "Lists",
+                              "&Lists",
                               icons.Lists
                           ),
                           countries = createMenuItem(
-                              "Countries",
+                              "Cou&ntries",
                               icons.Flag2
                           ),
                           currencies = createMenuItem(
-                              "Currencies",
+                              "Cu&rrencies",
                               icons.Toll
                           ),
                           help = createMenuItem(
-                              "Help",
+                              "&Help",
                               icons.Help
                           ),
                           shortcuts = createMenuItem(
-                              "Shortcuts",
+                              "&Shortcuts",
                               icons.Shortcuts
                           ),
                           contactUs = createMenuItem(
-                              "Contact Us",
+                              "&Contact Us",
                               icons.ContactSupport
                           ),
                           mobileNumber = createMenuItem(
-                              "Mobile Number",
+                              "&Mobile Number",
                               icons.Call
                           ),
                           mail = createMenuItem(
-                              "Mail",
+                              "&Mail",
                               icons.Mail
                           ),
                           telegram = createMenuItem(
-                              "Telegram",
+                              "&Telegram",
                               icons.Telegram
                           );
 
@@ -196,6 +197,13 @@ public partial class App : Form {
         e.Handled          = true;
     }
 
+    private static void shortcuts_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        new Shortcuts().Show();
+    }
+
     private static void mobileNumber_Click(
         object    sender,
         EventArgs e
@@ -225,4 +233,20 @@ public partial class App : Form {
         MessageBoxButtons.OK,
         MessageBoxIcon.Information
     );
+
+    private void App_KeyDown(
+        object       sender,
+        KeyEventArgs e
+    ) {
+        if (
+            e is {
+                Control: true,
+                KeyCode: Keys.N
+            }
+        )
+            newAccount_Click(
+                this,
+                EventArgs.Empty
+            );
+    }
 }
