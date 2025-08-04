@@ -106,6 +106,7 @@ partial class App {
         // 
         // AccountList
         // 
+        AccountList.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         AccountList.BackgroundColor             = System.Drawing.Color.Gray;
         AccountList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         AccountList.Location = new System.Drawing.Point(
@@ -151,6 +152,7 @@ partial class App {
         MainMenuStrip =  MenuStrip;
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          =  "Main";
+        Load          += App_Load;
         KeyDown       += App_KeyDown;
         ((System.ComponentModel.ISupportInitialize) AccountList).EndInit();
         ResumeLayout(

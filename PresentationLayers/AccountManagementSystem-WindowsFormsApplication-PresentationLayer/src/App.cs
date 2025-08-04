@@ -311,4 +311,13 @@ public partial class App : Form {
                 EventArgs.Empty
             );
     }
+
+    private void App_Load(
+        object    sender,
+        EventArgs e
+    ) => loadAccounts();
+
+    private void loadAccounts() {
+        AccountList.DataSource = AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.getAll();
+    }
 }
