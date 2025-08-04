@@ -203,9 +203,9 @@ public partial class App : Form {
         object    sender,
         EventArgs e
     ) {
-        MessageBox.Show(
-            @"Create New Account"
-        );
+        new AddAndEditAccount(
+            AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Add
+        ).Show();
     }
 
     private static void countries_Click(
