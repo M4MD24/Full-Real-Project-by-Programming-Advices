@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 using Svg;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
@@ -44,5 +45,14 @@ public class Tools {
         svgDocument.Width  = width;
         svgDocument.Height = height;
         return svgDocument.Draw();
+    }
+
+    public static void disableNewLine(
+        KeyEventArgs e
+    ) {
+        if (e.KeyCode != Keys.Enter)
+            return;
+        e.SuppressKeyPress = true;
+        e.Handled          = true;
     }
 }

@@ -195,12 +195,9 @@ public partial class App : Form {
     private void searchBox_KeyDown(
         object       sender,
         KeyEventArgs e
-    ) {
-        if (e.KeyCode != Keys.Enter)
-            return;
-        e.SuppressKeyPress = true;
-        e.Handled          = true;
-    }
+    ) => Tools.disableNewLine(
+        e
+    );
 
     private static void newAccount_Click(
         object    sender,
