@@ -28,5 +28,29 @@ public partial class Shortcuts : Form {
                 ]
             )
         );
+        ShortcutList.Items.Add(
+            new ListViewItem(
+                [
+                    "CTRL + SHIFT + N",
+                    "Show Country List"
+                ]
+            )
+        );
+        ShortcutList.Items.Add(
+            new ListViewItem(
+                [
+                    "CTRL + SHIFT + R",
+                    "Show Currency List"
+                ]
+            )
+        );
+        ShortcutList.Items.Add(
+            new ListViewItem(
+                [
+                    "CTRL + SHIFT + S",
+                    "Show Shortcut List"
+                ]
+            )
+        );
     }
 }

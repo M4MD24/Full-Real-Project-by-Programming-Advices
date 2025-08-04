@@ -116,6 +116,11 @@ public partial class App : Form {
         Controls.Add(
             menuStrip
         );
+
+        newAccount.Click   += newAccount_Click!;
+        countries.Click    += countries_Click!;
+        currencies.Click   += currencies_Click!;
+        shortcuts.Click    += shortcuts_Click!;
         mobileNumber.Click += mobileNumber_Click!;
         mail.Click         += mail_Click!;
         telegram.Click     += telegram_Click!;
@@ -197,6 +202,33 @@ public partial class App : Form {
         e.Handled          = true;
     }
 
+    private static void newAccount_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        MessageBox.Show(
+            @"Create New Account"
+        );
+    }
+
+    private static void countries_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        MessageBox.Show(
+            @"Countries"
+        );
+    }
+
+    private static void currencies_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        MessageBox.Show(
+            @"Currencies"
+        );
+    }
+
     private static void shortcuts_Click(
         object    sender,
         EventArgs e
@@ -241,10 +273,43 @@ public partial class App : Form {
         if (
             e is {
                 Control: true,
+                Shift  : true,
+                KeyCode: Keys.N
+            }
+        )
+            countries_Click(
+                this,
+                EventArgs.Empty
+            );
+        else if (
+            e is {
+                Control: true,
                 KeyCode: Keys.N
             }
         )
             newAccount_Click(
+                this,
+                EventArgs.Empty
+            );
+        else if (
+            e is {
+                Control: true,
+                Shift  : true,
+                KeyCode: Keys.R
+            }
+        )
+            currencies_Click(
+                this,
+                EventArgs.Empty
+            );
+        else if (
+            e is {
+                Control: true,
+                Shift  : true,
+                KeyCode: Keys.S
+            }
+        )
+            shortcuts_Click(
                 this,
                 EventArgs.Empty
             );
