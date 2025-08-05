@@ -30,7 +30,7 @@ CREATE TABLE AccountManagementSystem.Persons
     PersonID             INT            NOT NULL PRIMARY KEY IDENTITY (1,1),
     NationalNumber       NVARCHAR(30)   NOT NULL UNIQUE,
     FullNameID           INT            NOT NULL UNIQUE,
-    DateOfBirth          DATETIME       NOT NULL,
+    DateOfBirth          DATE           NOT NULL,
     Address              NVARCHAR(200)  NOT NULL,
     ContactInformationID INT            NOT NULL,
     CountryID            TINYINT        NOT NULL,
