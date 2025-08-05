@@ -9,11 +9,19 @@ CREATE TABLE AccountManagementSystem.Countries
     CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
+CREATE TABLE AccountManagementSystem.MobileNumber
+(
+    MobileNumberID INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    ContactNumber  NVARCHAR(20) NOT NULL,
+    CountryID      TINYINT      NOT NULL
+)
+
 CREATE TABLE AccountManagementSystem.ContactInformation
 (
     ContactInformationID INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PhoneNumber          NVARCHAR(20)  NOT NULL,
-    Email                NVARCHAR(100) NOT NULL
+    MobileNumberID       INT           NOT NULL,
+    Email                NVARCHAR(100) NOT NULL,
+    FOREIGN KEY (MobileNumberID) REFERENCES AccountManagementSystem.MobileNumber (MobileNumberID)
 )
 
 CREATE TABLE AccountManagementSystem.FullNames

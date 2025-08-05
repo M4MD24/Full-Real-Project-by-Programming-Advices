@@ -24,9 +24,14 @@ erDiagram
         NVARCHAR(75) CountryName
         VARCHAR(3) CountryCode
     }
+    MobileNumber {
+        INT MobileNumberID PK
+        VARCHAR(20) ContactNumber
+        TINYINT CountryID FK
+    }
     ContactInformation {
         INT ContactInformationID PK
-        VARCHAR(20) PhoneNumber
+        INT MobileNumberID FK
         VARCHAR(100) Email
     }
     Clients {

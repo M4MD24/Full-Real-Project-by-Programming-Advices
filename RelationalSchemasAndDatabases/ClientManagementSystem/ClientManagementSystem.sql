@@ -9,11 +9,19 @@ CREATE TABLE ClientManagementSystem.Countries
     CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
+CREATE TABLE ClientManagementSystem.MobileNumber
+(
+    MobileNumberID INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    ContactNumber  NVARCHAR(20) NOT NULL,
+    CountryID      TINYINT      NOT NULL
+)
+
 CREATE TABLE ClientManagementSystem.ContactInformation
 (
     ContactInformationID INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PhoneNumber          NVARCHAR(20)  NOT NULL,
-    Email                NVARCHAR(100) NOT NULL
+    MobileNumberID       INT           NOT NULL,
+    Email                NVARCHAR(100) NOT NULL,
+    FOREIGN KEY (MobileNumberID) REFERENCES ClientManagementSystem.MobileNumber (MobileNumberID)
 )
 
 CREATE TABLE ClientManagementSystem.FullNames
@@ -30,10 +38,10 @@ CREATE TABLE ClientManagementSystem.Persons
     PersonID             INT            NOT NULL PRIMARY KEY IDENTITY (1,1),
     NationalNumber       NVARCHAR(30)   NOT NULL UNIQUE,
     FullNameID           INT            NOT NULL UNIQUE,
-    DateOfBirth          DATETIME       NOT NULL,
+    DateOfBirth          DATE           NOT NULL,
     Address              NVARCHAR(200)  NOT NULL,
     ContactInformationID INT            NOT NULL,
-    CountryID            TINYINT        NOT NULL UNIQUE,
+    CountryID            TINYINT        NOT NULL,
     ImageURL             NVARCHAR(2083) NOT NULL UNIQUE,
     FOREIGN KEY (FullNameID) REFERENCES ClientManagementSystem.FullNames (FullNameID),
     FOREIGN KEY (ContactInformationID) REFERENCES ClientManagementSystem.ContactInformation (ContactInformationID),
