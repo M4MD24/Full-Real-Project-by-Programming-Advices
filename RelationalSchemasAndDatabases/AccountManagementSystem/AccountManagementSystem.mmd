@@ -24,7 +24,7 @@ erDiagram
         NVARCHAR(75) CountryName
         VARCHAR(3) CountryCode
     }
-    MobileNumber {
+    MobileNumbers {
         INT MobileNumberID PK
         VARCHAR(20) ContactNumber
         TINYINT CountryID FK
@@ -58,6 +58,7 @@ erDiagram
     Persons ||--|| FullNames: ""
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
+    ContactInformation ||--|| MobileNumbers: ""
     Persons ||--o{ Accounts: ""
     Accounts ||--|| AccountTypes: ""
     Accounts }|--o{ AccountPermissions: ""
