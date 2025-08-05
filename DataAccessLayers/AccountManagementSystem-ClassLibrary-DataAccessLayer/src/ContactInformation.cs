@@ -11,8 +11,8 @@ public class ContactInformation {
         const string UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
                                                                             USE DriverAndVehicleLicenseDepartment
                                                                             UPDATE AccountManagementSystem.ContactInformation
-                                                                            SET PhoneNumber = @phoneNumber,
-                                                                                Email       = @email
+                                                                            SET MobileNumberID = @mobileNumberID,
+                                                                                Email          = @email
                                                                             WHERE ContactInformationID = @contactInformationID
                                                                             """;
 
@@ -63,8 +63,8 @@ public class ContactInformation {
     ) {
         const string ADD_NEW_CONTACT_INFORMATION = """
                                                    USE DriverAndVehicleLicenseDepartment
-                                                   INSERT INTO AccountManagementSystem.ContactInformation (PhoneNumber, Email)
-                                                   VALUES (@phoneNumber, @email)
+                                                   INSERT INTO AccountManagementSystem.ContactInformation (MobileNumberID, Email)
+                                                   VALUES (@mobileNumberID, @email)
                                                    """;
 
         return saveData(
@@ -95,8 +95,8 @@ public class ContactInformation {
             );
 
         sqlCommand.Parameters.AddWithValue(
-            "@phoneNumber",
-            contactInformation.phoneNumber
+            "@mobileNumberID",
+            contactInformation.mobileNumberID
         );
         sqlCommand.Parameters.AddWithValue(
             "@email",
@@ -143,11 +143,11 @@ public class ContactInformation {
             sqlConnection.Open();
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
-                string phoneNumber = (string) sqlDataReader["PhoneNumber"],
-                       email       = (string) sqlDataReader["Email"];
+                int    mobileNumberID = (int) sqlDataReader["MobileNumberID"];
+                string email          = (string) sqlDataReader["Email"];
                 return new Models.ContactInformation(
                     contactInformationID,
-                    phoneNumber,
+                    mobileNumberID,
                     email
                 );
             }
