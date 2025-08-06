@@ -52,4 +52,71 @@ public partial class AddAndEditAccount : Form {
         object    sender,
         EventArgs e
     ) {}
+    ) {
+        FullName fullName = new FullName(
+            FirstNameAnswer.Text,
+            SecondNameAnswer.Text,
+            ThirdNameAnswer.Text,
+            FourthNameAnswer.Text
+        );
+        int fullNameID = AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.add(
+            ref fullName
+        );
+
+        string countryName = CountryNameMobileNumberAnswer.Text;
+        byte? countryID = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.get(
+                                                                                ref countryName
+                                                                            )!
+                                                                            .countryID;
+        MobileNumber mobileNumber = new MobileNumber(
+            ContactNumberAnswer.Text,
+            countryID
+        );
+        int mobileNumberID = AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.add(
+            ref mobileNumber
+        );
+
+        ContactInformation contactInformation = new ContactInformation(
+            mobileNumberID,
+            EmailAnswer.Text
+        );
+        int contactInformationID = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation.add(
+            ref contactInformation
+        );
+
+        countryName = CountryNameAnswer.Text;
+        countryID = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.get(
+                                                                          ref countryName
+                                                                      )!
+                                                                      .countryID;
+
+        Person person = new Person(
+            NationalNumberAnswer.Text,
+            fullNameID,
+            DateOfBirthAnswer.Value,
+            AddressAnswer.Text,
+            contactInformationID,
+            countryID,
+            ""
+        );
+        int personID = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.add(
+            ref person
+        );
+
+        string accountTypeName = AccountTypeAnswer.Text;
+        byte? accountTypeID = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountTypes.get(
+            ref accountTypeName
+        )!.accountTypeID;
+
+        Account account = new Account(
+            personID,
+            UsernameAnswer.Text,
+            PasswordAnswer.Text,
+            true,
+            accountTypeID
+        );
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.add(
+            ref account
+        );
+    }
 }
