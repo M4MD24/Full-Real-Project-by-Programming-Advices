@@ -70,7 +70,8 @@ public class Persons {
         const string ADD_NEW_PERSON = """
                                       USE DriverAndVehicleLicenseDepartment
                                       INSERT INTO AccountManagementSystem.Persons (NationalNumber, FullNameID, DateOfBirth, Address, ContactInformationID, CountryID, ImageURL)
-                                      VALUES (@nationalNumber, @fullNameID, @dateOfBirth, @address, @contactInformationID, @countryID, @imageURL)
+                                      VALUES (@nationalNumber, @fullNameID, @dateOfBirth, @address, @contactInformationID, @countryID, @imageURL);
+                                      SELECT SCOPE_IDENTITY();
                                       """;
 
         return saveData(
@@ -131,8 +132,14 @@ public class Persons {
 
         int rowAffected = 0;
         try {
-            sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message

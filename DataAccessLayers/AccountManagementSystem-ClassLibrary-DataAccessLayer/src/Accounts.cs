@@ -69,7 +69,8 @@ public class Accounts {
         const string ADD_NEW_ACCOUNT = """
                                        USE DriverAndVehicleLicenseDepartment
                                        INSERT INTO AccountManagementSystem.Accounts (PersonID, Username, Password, IsActive, AccountTypeID)
-                                       VALUES (@personID, @username, @password, @isActive, @accountTypeID)
+                                       VALUES (@personID, @username, @password, @isActive, @accountTypeID);
+                                       SELECT SCOPE_IDENTITY();
                                        """;
 
         return saveData(
@@ -122,8 +123,14 @@ public class Accounts {
 
         int rowAffected = 0;
         try {
-            sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message

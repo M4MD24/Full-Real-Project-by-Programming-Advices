@@ -66,7 +66,8 @@ public class Countries {
         const string ADD_NEW_COUNTRY = """
                                        USE DriverAndVehicleLicenseDepartment
                                        INSERT INTO AccountManagementSystem.Countries (CountryName, CountryCode)
-                                       VALUES (@countryName, @countryCode)
+                                       VALUES (@countryName, @countryCode);
+                                       SELECT SCOPE_IDENTITY();
                                        """;
 
         return saveData(
@@ -107,8 +108,14 @@ public class Countries {
 
         int rowAffected = 0;
         try {
-            sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message

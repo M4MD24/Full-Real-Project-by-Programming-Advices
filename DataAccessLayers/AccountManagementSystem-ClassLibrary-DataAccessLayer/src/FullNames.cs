@@ -67,7 +67,8 @@ public class FullNames {
         const string ADD_NEW_FULL_NAME = """
                                          USE DriverAndVehicleLicenseDepartment
                                          INSERT INTO AccountManagementSystem.FullNames (FirstName, SecondName, ThirdName, FourthName)
-                                         VALUES (@firstName, @secondName, @thirdName, @fourthName)
+                                         VALUES (@firstName, @secondName, @thirdName, @fourthName);
+                                         SELECT SCOPE_IDENTITY();
                                          """;
 
         return saveData(
@@ -116,8 +117,14 @@ public class FullNames {
 
         int rowAffected = 0;
         try {
-            sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message
