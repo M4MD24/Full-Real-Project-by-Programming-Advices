@@ -33,18 +33,23 @@ public partial class AddAndEditAccount : Form {
 
     private void initializeModificationForm(
         ref Account account
-    ) {}
+    ) {
+        Text = $@"Update {account.accountID}";
+    }
 
-    private void initializeAdditionForm() {}
+    private void initializeAdditionForm() {
+        Text = @"Create New Account";
+    }
 
-    private void initializeInformationForm(
-        ref Account account
-    ) {}
-
-    private void NationalNumberAnswer_KeyDown(
+    private void DisableNewLine_KeyDown(
         object       sender,
         KeyEventArgs e
     ) => Tools.disableNewLine(
         e
     );
+
+    private void Submit_Click(
+        object    sender,
+        EventArgs e
+    ) {}
 }

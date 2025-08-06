@@ -5,7 +5,7 @@ CREATE SCHEMA AccountManagementSystem;
 CREATE TABLE AccountManagementSystem.Countries
 (
     CountryID   TINYINT      NOT NULL PRIMARY KEY,
-    CountryName NVARCHAR(75) NOT NULL UNIQUE,
+    CountryName NVARCHAR(60) NOT NULL UNIQUE,
     CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
@@ -18,9 +18,9 @@ CREATE TABLE AccountManagementSystem.MobileNumber
 
 CREATE TABLE AccountManagementSystem.ContactInformation
 (
-    ContactInformationID INT           NOT NULL PRIMARY KEY IDENTITY (1,1),
-    MobileNumberID       INT           NOT NULL,
-    Email                NVARCHAR(100) NOT NULL,
+    ContactInformationID INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    MobileNumberID       INT          NOT NULL,
+    Email                NVARCHAR(40) NOT NULL,
     FOREIGN KEY (MobileNumberID) REFERENCES AccountManagementSystem.MobileNumber (MobileNumberID)
 )
 
@@ -58,8 +58,8 @@ CREATE TABLE AccountManagementSystem.Accounts
 (
     AccountID     INT         NOT NULL PRIMARY KEY IDENTITY (1,1),
     PersonID      INT         NOT NULL,
-    Username      VARCHAR(50) NOT NULL UNIQUE,
-    Password      VARCHAR(50) NOT NULL,
+    Username      VARCHAR(30) NOT NULL UNIQUE,
+    Password      VARCHAR(30) NOT NULL,
     IsActive      BIT         NOT NULL,
     AccountTypeID TINYINT     NOT NULL,
     FOREIGN KEY (PersonID) REFERENCES AccountManagementSystem.Persons (PersonID),
@@ -69,7 +69,7 @@ CREATE TABLE AccountManagementSystem.Accounts
 CREATE TABLE AccountManagementSystem.Permissions
 (
     PermissionID   TINYINT     NOT NULL PRIMARY KEY IDENTITY (1,1),
-    PermissionName VARCHAR(50) NOT NULL UNIQUE
+    PermissionName VARCHAR(30) NOT NULL UNIQUE
 )
 
 CREATE TABLE AccountManagementSystem.AccountPermissions

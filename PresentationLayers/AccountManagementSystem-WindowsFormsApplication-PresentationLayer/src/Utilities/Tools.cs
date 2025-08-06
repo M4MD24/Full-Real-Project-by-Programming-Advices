@@ -6,7 +6,7 @@ using Svg;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
-public class Tools {
+public static class Tools {
     public static Image loadSvgAsImage(
         string svgPath,
         int    width,

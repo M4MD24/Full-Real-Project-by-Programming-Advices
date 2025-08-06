@@ -5,7 +5,7 @@ CREATE SCHEMA ClientManagementSystem;
 CREATE TABLE ClientManagementSystem.Countries
 (
     CountryID   TINYINT      NOT NULL PRIMARY KEY,
-    CountryName NVARCHAR(75) NOT NULL UNIQUE,
+    CountryName NVARCHAR(60) NOT NULL UNIQUE,
     CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
