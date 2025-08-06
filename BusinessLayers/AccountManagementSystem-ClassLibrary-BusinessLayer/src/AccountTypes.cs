@@ -8,4 +8,10 @@ public class AccountTypes {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAccountTypeByAccountTypeID(
         ref accountTypeID
     );
+
+    public static AccountType? get(
+        ref string accountTypeName
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAccountTypeByAccountTypeName(
+        ref accountTypeName
+    );
 }

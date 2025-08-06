@@ -29,4 +29,10 @@ public class Countries {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getCountryByCountryID(
         ref countryID
     );
+
+    public static Country? get(
+        ref string countryName
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getCountryByCountryName(
+        ref countryName
+    );
 }

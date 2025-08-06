@@ -16,7 +16,7 @@ public class AccountTypes {
                                                               USE DriverAndVehicleLicenseDepartment
                                                               SELECT *
                                                               FROM AccountManagementSystem.AccountTypes
-                                                              WHERE AccountTypeID = @personID
+                                                              WHERE AccountTypeID = @accountTypeID
                                                               """;
         SqlCommand sqlCommand = new SqlCommand(
             SELECT_ACCOUNT_TYPE_BY_ACCOUNT_TYPE_ID,
@@ -32,6 +32,50 @@ public class AccountTypes {
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
                 string accountTypeName = (string) sqlDataReader["AccountTypeName"];
+                return new AccountType(
+                    accountTypeID,
+                    accountTypeName
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static AccountType? getAccountTypeByAccountTypeName(
+        ref string accountTypeName
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_ACCOUNT_TYPE_BY_ACCOUNT_TYPE_NAME = """
+                                                                USE DriverAndVehicleLicenseDepartment
+                                                                SELECT *
+                                                                FROM AccountManagementSystem.AccountTypes
+                                                                WHERE AccountTypeName = @accountTypeName
+                                                                """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_ACCOUNT_TYPE_BY_ACCOUNT_TYPE_NAME,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@accountTypeName",
+            accountTypeName
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                byte accountTypeID = (byte) sqlDataReader["AccountTypeID"];
                 return new AccountType(
                     accountTypeID,
                     accountTypeName

@@ -218,4 +218,50 @@ public class Countries {
 
         return null;
     }
+
+    public static Country? getCountryByCountryName(
+        ref string countryName
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_COUNTRY_BY_COUNTRY_NAME = """
+                                                      USE DriverAndVehicleLicenseDepartment
+                                                      SELECT *
+                                                      FROM AccountManagementSystem.Countries
+                                                      WHERE CountryName = @countryName
+                                                      """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_COUNTRY_BY_COUNTRY_NAME,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@countryName",
+            countryName
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                byte   countryID   = (byte) sqlDataReader["CountryID"];
+                string countryCode = (string) sqlDataReader["CountryCode"];
+                return new Country(
+                    countryID,
+                    countryName,
+                    countryCode
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
 }
