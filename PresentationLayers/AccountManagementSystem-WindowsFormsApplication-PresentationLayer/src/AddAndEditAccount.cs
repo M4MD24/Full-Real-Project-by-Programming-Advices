@@ -51,8 +51,10 @@ public partial class AddAndEditAccount : Form {
     private void Submit_Click(
         object    sender,
         EventArgs e
-    ) {}
     ) {
+        if (!isValidData())
+            return;
+
         FullName fullName = new FullName(
             FirstNameAnswer.Text,
             SecondNameAnswer.Text,
@@ -118,5 +120,9 @@ public partial class AddAndEditAccount : Form {
         AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.add(
             ref account
         );
+    }
+
+    private bool isValidData() {
+        return false;
     }
 }
