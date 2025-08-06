@@ -27,7 +27,30 @@ public partial class App : Form {
         setIcon();
         initializeMenuStrip();
         setConfirmSearchIcon();
+        createFolders();
     }
+
+    private void createFolders() { createImageFolder(); }
+
+    private static void createImageFolder() {
+        const string IMAGE_FOLDER_RELATIVE_PATH = @"Data\Images";
+        string       baseDirectory              = AppDomain.CurrentDomain.BaseDirectory;
+        string imageDirectory = Path.Combine(
+            baseDirectory,
+            IMAGE_FOLDER_RELATIVE_PATH
+        );
+
+        if (
+            !Directory.Exists(
+                imageDirectory
+            )
+        )
+            Directory.CreateDirectory(
+                imageDirectory
+            );
+    }
+
+    private void loadAccountListMenuStrip() {}
 
     private void setConfirmSearchIcon() {
         ConfirmSearch.Image = loadIcon(
