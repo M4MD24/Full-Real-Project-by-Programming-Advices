@@ -18,26 +18,51 @@ public partial class App : Form {
             Image ContactSupport,
             Image Call,
             Image Mail,
-            Image Telegram,
-            Image Search
+            Image Telegram
             ) icons = loadIcons();
 
     public App() {
         InitializeComponent();
         setIcon();
         initializeMenuStrip();
-        setConfirmSearchIcon();
+        loadIconButtons();
         createFolders();
+        loadAccountListMenuStrip();
     }
+
+    private void loadIconButtons() {
+        setIconButton(
+            ConfirmSearch,
+            "Search",
+            20,
+            20
+        );
+        setIconButton(
+            RefreshList,
+            "Refresh",
+            20,
+            20
+        );
+    }
+
+    private void setIconButton(
+        Button button,
+        string iconName,
+        int    width,
+        int    height
+    ) => button.Image = loadIcon(
+             iconName,
+             width,
+             height
+         );
 
     private void createFolders() { createImageFolder(); }
 
     private static void createImageFolder() {
-        const string IMAGE_FOLDER_RELATIVE_PATH = @"Data\Images";
-        string       baseDirectory              = AppDomain.CurrentDomain.BaseDirectory;
+        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string imageDirectory = Path.Combine(
             baseDirectory,
-            IMAGE_FOLDER_RELATIVE_PATH
+            Constants.IMAGE_FOLDER_RELATIVE_PATH
         );
 
         if (
@@ -51,16 +76,6 @@ public partial class App : Form {
     }
 
     private void loadAccountListMenuStrip() {}
-
-    private void setConfirmSearchIcon() {
-        ConfirmSearch.Image = loadIcon(
-            "Search",
-            20,
-            20
-        );
-        ConfirmSearch.ImageAlign = ContentAlignment.MiddleRight;
-        ConfirmSearch.TextAlign  = ContentAlignment.MiddleLeft;
-    }
 
     private void setIcon() {
         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -167,8 +182,7 @@ public partial class App : Form {
             Image ContactSupport,
             Image Call,
             Image Mail,
-            Image Telegram,
-            Image Search
+            Image Telegram
             ) loadIcons() => (
                                  PersonAdd : loadIcon(
                                      "PersonAdd"
@@ -199,9 +213,6 @@ public partial class App : Form {
                                  ),
                                  Telegram : loadIcon(
                                      "TelegramLogo"
-                                 ),
-                                 Search : loadIcon(
-                                     "Search"
                                  )
                              );
 
@@ -285,6 +296,11 @@ public partial class App : Form {
         MessageBoxButtons.OK,
         MessageBoxIcon.Information
     );
+
+    private void confirmSearch_Click(
+        object    sender,
+        EventArgs e
+    ) {}
 
     private void App_KeyDown(
         object       sender,

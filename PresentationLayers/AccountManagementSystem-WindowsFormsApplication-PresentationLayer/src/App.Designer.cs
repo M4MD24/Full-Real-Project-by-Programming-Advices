@@ -36,6 +36,7 @@ partial class App {
         ConfirmSearch = new System.Windows.Forms.Button();
         SearchFilter  = new System.Windows.Forms.ComboBox();
         AccountList   = new System.Windows.Forms.DataGridView();
+        RefreshList   = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize) AccountList).BeginInit();
         SuspendLayout();
         // 
@@ -63,7 +64,7 @@ partial class App {
         SearchBox.Multiline = true;
         SearchBox.Name      = "SearchBox";
         SearchBox.Size = new System.Drawing.Size(
-            580,
+            700,
             25
         );
         SearchBox.TabIndex =  1;
@@ -77,16 +78,16 @@ partial class App {
             System.Drawing.FontStyle.Bold
         );
         ConfirmSearch.Location = new System.Drawing.Point(
-            800,
+            900,
             50
         );
         ConfirmSearch.Name = "ConfirmSearch";
         ConfirmSearch.Size = new System.Drawing.Size(
-            160,
+            25,
             25
         );
         ConfirmSearch.TabIndex                =  3;
-        ConfirmSearch.Text                    =  "Search";
+        ConfirmSearch.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
         ConfirmSearch.UseVisualStyleBackColor =  true;
         ConfirmSearch.Click                   += confirmSearch_Click;
         // 
@@ -94,8 +95,8 @@ partial class App {
         // 
         SearchFilter.FormattingEnabled = true;
         SearchFilter.Location = new System.Drawing.Point(
-            620,
-            51
+            730,
+            50
         );
         SearchFilter.Name = "SearchFilter";
         SearchFilter.Size = new System.Drawing.Size(
@@ -121,6 +122,26 @@ partial class App {
         AccountList.TabIndex = 4;
         AccountList.Text     = "Account List";
         // 
+        // RefreshList
+        // 
+        RefreshList.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Bold
+        );
+        RefreshList.Location = new System.Drawing.Point(
+            935,
+            50
+        );
+        RefreshList.Name = "RefreshList";
+        RefreshList.Size = new System.Drawing.Size(
+            25,
+            25
+        );
+        RefreshList.TabIndex                = 5;
+        RefreshList.TextAlign               = System.Drawing.ContentAlignment.MiddleLeft;
+        RefreshList.UseVisualStyleBackColor = true;
+        // 
         // App
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
@@ -132,6 +153,9 @@ partial class App {
         ClientSize = new System.Drawing.Size(
             984,
             661
+        );
+        Controls.Add(
+            RefreshList
         );
         Controls.Add(
             AccountList
@@ -160,6 +184,8 @@ partial class App {
         );
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button RefreshList;
 
     private System.Windows.Forms.DataGridView AccountList;
 
