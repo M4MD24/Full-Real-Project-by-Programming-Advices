@@ -117,6 +117,7 @@ public class FullNames {
 
         int rowAffected = 0;
         try {
+            sqlConnection.Open();
             if (mode == Constants.Mode.Add) {
                 object result = sqlCommand.ExecuteScalar()!;
                 int newID = Convert.ToInt32(

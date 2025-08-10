@@ -12,7 +12,7 @@ public class Persons {
     ) {
         const string UPDATE_PERSON_BY_PERSON_ID = """
                                                   USE DriverAndVehicleLicenseDepartment
-                                                  UPDATE AccountManagementSystem.Accounts
+                                                  UPDATE AccountManagementSystem.Persons
                                                   SET NationalNumber       = @nationalNumber,
                                                       FullNameID           = @fullNameID,
                                                       DateOfBirth          = @dateOfBirth,
@@ -20,7 +20,7 @@ public class Persons {
                                                       ContactInformationID = @contactInformationID,
                                                       CountryID            = @countryID,
                                                       ImageURL             = @imageURL
-                                                  WHERE AccountID = @accountID
+                                                  WHERE PersonID = @personID
                                                   """;
 
         return saveData(
@@ -133,6 +133,7 @@ public class Persons {
 
         int rowAffected = 0;
         try {
+            sqlConnection.Open();
             if (mode == Constants.Mode.Add) {
                 object result = sqlCommand.ExecuteScalar()!;
                 int newID = Convert.ToInt32(
