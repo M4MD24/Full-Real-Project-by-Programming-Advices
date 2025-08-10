@@ -6,7 +6,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Countries {
+public static class Countries {
     public static int updateCountryByCountryID(
         ref Country country
     ) {

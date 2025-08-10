@@ -138,9 +138,10 @@ partial class App {
             25,
             25
         );
-        RefreshList.TabIndex                = 5;
-        RefreshList.TextAlign               = System.Drawing.ContentAlignment.MiddleLeft;
-        RefreshList.UseVisualStyleBackColor = true;
+        RefreshList.TabIndex                =  5;
+        RefreshList.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
+        RefreshList.UseVisualStyleBackColor =  true;
+        RefreshList.Click                   += RefreshList_Click;
         // 
         // App
         // 

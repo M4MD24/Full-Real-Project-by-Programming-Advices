@@ -5,7 +5,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class FullNames {
+public static class FullNames {
     public static int updateFullNameByFullNameID(
         ref FullName fullName
     ) {

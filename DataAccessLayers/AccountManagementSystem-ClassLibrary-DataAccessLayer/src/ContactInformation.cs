@@ -4,7 +4,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class ContactInformation {
+public static class ContactInformation {
     public static int updateContactInformationByContactInformationID(
         ref Models.ContactInformation contactInformationID
     ) {

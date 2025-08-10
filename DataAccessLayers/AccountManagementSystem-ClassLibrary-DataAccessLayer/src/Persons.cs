@@ -6,7 +6,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Persons {
+public static class Persons {
     public static int updatePersonByPersonID(
         ref Person person
     ) {

@@ -5,7 +5,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Permissions {
+public static class Permissions {
     public static Permission? getPermissionByPermissionID(
         ref byte permissionID
     ) {

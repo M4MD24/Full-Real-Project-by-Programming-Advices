@@ -19,7 +19,7 @@ public partial class App : Form {
             Image Call,
             Image Mail,
             Image Telegram
-            ) icons = loadIcons();
+            ) menuStripIcons = loadMenuStripIcons();
 
     public App() {
         InitializeComponent();
@@ -92,43 +92,43 @@ public partial class App : Form {
 
         ToolStripMenuItem newAccount = createMenuItem(
                               "&New Account",
-                              icons.PersonAdd
+                              menuStripIcons.PersonAdd
                           ),
                           lists = createMenuItem(
                               "&Lists",
-                              icons.Lists
+                              menuStripIcons.Lists
                           ),
                           countries = createMenuItem(
                               "Cou&ntries",
-                              icons.Flag2
+                              menuStripIcons.Flag2
                           ),
                           currencies = createMenuItem(
                               "Cu&rrencies",
-                              icons.Toll
+                              menuStripIcons.Toll
                           ),
                           help = createMenuItem(
                               "&Help",
-                              icons.Help
+                              menuStripIcons.Help
                           ),
                           shortcuts = createMenuItem(
                               "&Shortcuts",
-                              icons.Shortcuts
+                              menuStripIcons.Shortcuts
                           ),
                           contactUs = createMenuItem(
                               "&Contact Us",
-                              icons.ContactSupport
+                              menuStripIcons.ContactSupport
                           ),
                           mobileNumber = createMenuItem(
                               "&Mobile Number",
-                              icons.Call
+                              menuStripIcons.Call
                           ),
                           mail = createMenuItem(
                               "&Mail",
-                              icons.Mail
+                              menuStripIcons.Mail
                           ),
                           telegram = createMenuItem(
                               "&Telegram",
-                              icons.Telegram
+                              menuStripIcons.Telegram
                           );
 
         contactUs.DropDownItems.AddRange(
@@ -183,38 +183,38 @@ public partial class App : Form {
             Image Call,
             Image Mail,
             Image Telegram
-            ) loadIcons() => (
-                                 PersonAdd : loadIcon(
-                                     "PersonAdd"
-                                 ),
-                                 Lists : loadIcon(
-                                     "Lists"
-                                 ),
-                                 Toll : loadIcon(
-                                     "Toll"
-                                 ),
-                                 Flag2 : loadIcon(
-                                     "Flag2"
-                                 ),
-                                 Help : loadIcon(
-                                     "Help"
-                                 ),
-                                 Shortcuts : loadIcon(
-                                     "ActionKey"
-                                 ),
-                                 ContactSupport : loadIcon(
-                                     "ContactSupport"
-                                 ),
-                                 Call : loadIcon(
-                                     "Call"
-                                 ),
-                                 Mail : loadIcon(
-                                     "Mail"
-                                 ),
-                                 Telegram : loadIcon(
-                                     "TelegramLogo"
-                                 )
-                             );
+            ) loadMenuStripIcons() => (
+                                          PersonAdd : loadIcon(
+                                              "PersonAdd"
+                                          ),
+                                          Lists : loadIcon(
+                                              "Lists"
+                                          ),
+                                          Toll : loadIcon(
+                                              "Toll"
+                                          ),
+                                          Flag2 : loadIcon(
+                                              "Flag2"
+                                          ),
+                                          Help : loadIcon(
+                                              "Help"
+                                          ),
+                                          Shortcuts : loadIcon(
+                                              "ActionKey"
+                                          ),
+                                          ContactSupport : loadIcon(
+                                              "ContactSupport"
+                                          ),
+                                          Call : loadIcon(
+                                              "Call"
+                                          ),
+                                          Mail : loadIcon(
+                                              "Mail"
+                                          ),
+                                          Telegram : loadIcon(
+                                              "TelegramLogo"
+                                          )
+                                      );
 
     private static Image loadIcon(
         string name,
@@ -359,4 +359,9 @@ public partial class App : Form {
     private void loadAccounts() {
         AccountList.DataSource = AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.getAll();
     }
+
+    private void RefreshList_Click(
+        object    sender,
+        EventArgs e
+    ) => loadAccounts();
 }

@@ -5,7 +5,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class MobileNumbers {
+public static class MobileNumbers {
     public static int updateMobileNumberByMobileNumberID(
         ref MobileNumber mobileNumberID
     ) {

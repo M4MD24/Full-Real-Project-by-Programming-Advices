@@ -5,7 +5,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class AccountPermissions {
+public static class AccountPermissions {
     public static int deleteAccountPermissionsByAccountID(
         ref int accountID
     ) {

@@ -89,9 +89,9 @@ partial class AddAndEditAccount {
         ImageQuestion.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize) ErrorProvider).BeginInit();
         SuspendLayout();
-        //
+        // 
         // PermissionsQuestion
-        //
+        // 
         PermissionsQuestion.Controls.Add(
             TestPermission
         );
@@ -132,9 +132,9 @@ partial class AddAndEditAccount {
         PermissionsQuestion.TabIndex = 30;
         PermissionsQuestion.TabStop  = false;
         PermissionsQuestion.Text     = "Permissions";
-        //
+        // 
         // TestPermission
-        //
+        // 
         TestPermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -152,9 +152,9 @@ partial class AddAndEditAccount {
         TestPermission.TabIndex                = 35;
         TestPermission.Text                    = "Test";
         TestPermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // RetestPermission
-        //
+        // 
         RetestPermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -172,9 +172,9 @@ partial class AddAndEditAccount {
         RetestPermission.TabIndex                = 36;
         RetestPermission.Text                    = "Retest";
         RetestPermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // UnlockLicensesPermission
-        //
+        // 
         UnlockLicensesPermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -192,9 +192,9 @@ partial class AddAndEditAccount {
         UnlockLicensesPermission.TabIndex                = 37;
         UnlockLicensesPermission.Text                    = "Unlock Licenses";
         UnlockLicensesPermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // ReadAndSearchPermission
-        //
+        // 
         ReadAndSearchPermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -212,9 +212,9 @@ partial class AddAndEditAccount {
         ReadAndSearchPermission.TabIndex                = 32;
         ReadAndSearchPermission.Text                    = "Read && Search";
         ReadAndSearchPermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // DeletePermission
-        //
+        // 
         DeletePermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -232,9 +232,9 @@ partial class AddAndEditAccount {
         DeletePermission.TabIndex                = 34;
         DeletePermission.Text                    = "Delete";
         DeletePermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // EditPermission
-        //
+        // 
         EditPermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -252,9 +252,9 @@ partial class AddAndEditAccount {
         EditPermission.TabIndex                = 33;
         EditPermission.Text                    = "Edit";
         EditPermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // CreatePermission
-        //
+        // 
         CreatePermission.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -272,9 +272,9 @@ partial class AddAndEditAccount {
         CreatePermission.TabIndex                = 31;
         CreatePermission.Text                    = "Create";
         CreatePermission.UseVisualStyleBackColor = true;
-        //
+        // 
         // FullNameQuestion
-        //
+        // 
         FullNameQuestion.Controls.Add(
             FourthNameAnswer
         );
@@ -316,9 +316,9 @@ partial class AddAndEditAccount {
         FullNameQuestion.TabIndex = 2;
         FullNameQuestion.TabStop  = false;
         FullNameQuestion.Text     = "Full Name";
-        //
+        // 
         // FourthNameAnswer
-        //
+        // 
         FourthNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -336,9 +336,9 @@ partial class AddAndEditAccount {
         );
         FourthNameAnswer.TabIndex =  10;
         FourthNameAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // FourthNameQuestion
-        //
+        // 
         FourthNameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -355,9 +355,9 @@ partial class AddAndEditAccount {
         );
         FourthNameQuestion.TabIndex = 9;
         FourthNameQuestion.Text     = "Fourth Name:";
-        //
+        // 
         // ThirdNameAnswer
-        //
+        // 
         ThirdNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -375,9 +375,9 @@ partial class AddAndEditAccount {
         );
         ThirdNameAnswer.TabIndex =  8;
         ThirdNameAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // ThirdNameQuestion
-        //
+        // 
         ThirdNameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -394,9 +394,9 @@ partial class AddAndEditAccount {
         );
         ThirdNameQuestion.TabIndex = 7;
         ThirdNameQuestion.Text     = "Third Name:";
-        //
+        // 
         // SecondNameAnswer
-        //
+        // 
         SecondNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -414,9 +414,9 @@ partial class AddAndEditAccount {
         );
         SecondNameAnswer.TabIndex =  6;
         SecondNameAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // SecondNameQuestion
-        //
+        // 
         SecondNameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -433,9 +433,9 @@ partial class AddAndEditAccount {
         );
         SecondNameQuestion.TabIndex = 5;
         SecondNameQuestion.Text     = "Second Name:";
-        //
+        // 
         // FirstNameAnswer
-        //
+        // 
         FirstNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -453,9 +453,9 @@ partial class AddAndEditAccount {
         );
         FirstNameAnswer.TabIndex =  4;
         FirstNameAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // FirstNameQuestion
-        //
+        // 
         FirstNameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -472,9 +472,9 @@ partial class AddAndEditAccount {
         );
         FirstNameQuestion.TabIndex = 3;
         FirstNameQuestion.Text     = "First Name:";
-        //
+        // 
         // NationalNumberQuestion
-        //
+        // 
         NationalNumberQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -491,9 +491,9 @@ partial class AddAndEditAccount {
         );
         NationalNumberQuestion.TabIndex = 0;
         NationalNumberQuestion.Text     = "National Number:";
-        //
+        // 
         // NationalNumberAnswer
-        //
+        // 
         NationalNumberAnswer.Location = new System.Drawing.Point(
             180,
             20
@@ -507,9 +507,9 @@ partial class AddAndEditAccount {
         );
         NationalNumberAnswer.TabIndex =  1;
         NationalNumberAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // DateOfBirthAnswer
-        //
+        // 
         DateOfBirthAnswer.Location = new System.Drawing.Point(
             180,
             246
@@ -520,9 +520,9 @@ partial class AddAndEditAccount {
             23
         );
         DateOfBirthAnswer.TabIndex = 12;
-        //
+        // 
         // DateOfBirthQuestion
-        //
+        // 
         DateOfBirthQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -539,9 +539,9 @@ partial class AddAndEditAccount {
         );
         DateOfBirthQuestion.TabIndex = 11;
         DateOfBirthQuestion.Text     = "Date of Birth:";
-        //
+        // 
         // AddressQuestion
-        //
+        // 
         AddressQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -558,9 +558,9 @@ partial class AddAndEditAccount {
         );
         AddressQuestion.TabIndex = 13;
         AddressQuestion.Text     = "Address:";
-        //
+        // 
         // AddressAnswer
-        //
+        // 
         AddressAnswer.Location = new System.Drawing.Point(
             180,
             280
@@ -574,9 +574,9 @@ partial class AddAndEditAccount {
         );
         AddressAnswer.TabIndex =  14;
         AddressAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // ContactInformationQuestion
-        //
+        // 
         ContactInformationQuestion.Controls.Add(
             MobileNumberQuestion
         );
@@ -605,9 +605,9 @@ partial class AddAndEditAccount {
         ContactInformationQuestion.TabIndex = 15;
         ContactInformationQuestion.TabStop  = false;
         ContactInformationQuestion.Text     = "Contact Information";
-        //
+        // 
         // MobileNumberQuestion
-        //
+        // 
         MobileNumberQuestion.Controls.Add(
             CountryNameMobileNumberQuestion
         );
@@ -639,9 +639,9 @@ partial class AddAndEditAccount {
         MobileNumberQuestion.TabIndex = 16;
         MobileNumberQuestion.TabStop  = false;
         MobileNumberQuestion.Text     = "Mobile Number";
-        //
+        // 
         // CountryNameMobileNumberQuestion
-        //
+        // 
         CountryNameMobileNumberQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -658,9 +658,9 @@ partial class AddAndEditAccount {
         );
         CountryNameMobileNumberQuestion.TabIndex = 19;
         CountryNameMobileNumberQuestion.Text     = "Country Name:";
-        //
+        // 
         // CountryNameMobileNumberAnswer
-        //
+        // 
         CountryNameMobileNumberAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -676,9 +676,9 @@ partial class AddAndEditAccount {
             23
         );
         CountryNameMobileNumberAnswer.TabIndex = 20;
-        //
+        // 
         // ContactNumberAnswer
-        //
+        // 
         ContactNumberAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -696,9 +696,9 @@ partial class AddAndEditAccount {
         );
         ContactNumberAnswer.TabIndex =  18;
         ContactNumberAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // ContactNumberQuestion
-        //
+        // 
         ContactNumberQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -715,9 +715,9 @@ partial class AddAndEditAccount {
         );
         ContactNumberQuestion.TabIndex = 17;
         ContactNumberQuestion.Text     = "Contact Number:";
-        //
+        // 
         // EmailAnswer
-        //
+        // 
         EmailAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -735,9 +735,9 @@ partial class AddAndEditAccount {
         );
         EmailAnswer.TabIndex =  22;
         EmailAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // EmailQuestion
-        //
+        // 
         EmailQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -754,9 +754,9 @@ partial class AddAndEditAccount {
         );
         EmailQuestion.TabIndex = 21;
         EmailQuestion.Text     = "Email:";
-        //
+        // 
         // CountryNameQuestion
-        //
+        // 
         CountryNameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -773,9 +773,9 @@ partial class AddAndEditAccount {
         );
         CountryNameQuestion.TabIndex = 23;
         CountryNameQuestion.Text     = "Country Name:";
-        //
+        // 
         // CountryNameAnswer
-        //
+        // 
         CountryNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -791,9 +791,9 @@ partial class AddAndEditAccount {
             23
         );
         CountryNameAnswer.TabIndex = 24;
-        //
+        // 
         // AccountQuestion
-        //
+        // 
         AccountQuestion.Controls.Add(
             ImageQuestion
         );
@@ -835,9 +835,9 @@ partial class AddAndEditAccount {
         AccountQuestion.TabIndex = 25;
         AccountQuestion.TabStop  = false;
         AccountQuestion.Text     = "Account";
-        //
+        // 
         // ImageQuestion
-        //
+        // 
         ImageQuestion.Controls.Add(
             BrowseImageAnswerDetails
         );
@@ -863,9 +863,9 @@ partial class AddAndEditAccount {
         ImageQuestion.TabIndex = 40;
         ImageQuestion.TabStop  = false;
         ImageQuestion.Text     = "Image";
-        //
+        // 
         // BrowseImageAnswerDetails
-        //
+        // 
         BrowseImageAnswerDetails.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -883,9 +883,9 @@ partial class AddAndEditAccount {
         BrowseImageAnswerDetails.TabIndex  = 42;
         BrowseImageAnswerDetails.Text      = "None";
         BrowseImageAnswerDetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        //
+        // 
         // BrowseImageAnswer
-        //
+        // 
         BrowseImageAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -902,12 +902,13 @@ partial class AddAndEditAccount {
             100,
             25
         );
-        BrowseImageAnswer.TabIndex                = 41;
-        BrowseImageAnswer.Text                    = "Browse Image";
-        BrowseImageAnswer.UseVisualStyleBackColor = true;
-        //
+        BrowseImageAnswer.TabIndex                =  41;
+        BrowseImageAnswer.Text                    =  "Browse Image";
+        BrowseImageAnswer.UseVisualStyleBackColor =  true;
+        BrowseImageAnswer.Click                   += BrowseImageAnswer_Click;
+        // 
         // AccountTypeQuestion
-        //
+        // 
         AccountTypeQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -924,9 +925,9 @@ partial class AddAndEditAccount {
         );
         AccountTypeQuestion.TabIndex = 38;
         AccountTypeQuestion.Text     = "Account Type:";
-        //
+        // 
         // PasswordAnswer
-        //
+        // 
         PasswordAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -944,9 +945,9 @@ partial class AddAndEditAccount {
         );
         PasswordAnswer.TabIndex =  29;
         PasswordAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // AccountTypeAnswer
-        //
+        // 
         AccountTypeAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -962,9 +963,9 @@ partial class AddAndEditAccount {
             23
         );
         AccountTypeAnswer.TabIndex = 39;
-        //
+        // 
         // PasswordQuestion
-        //
+        // 
         PasswordQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -981,9 +982,9 @@ partial class AddAndEditAccount {
         );
         PasswordQuestion.TabIndex = 28;
         PasswordQuestion.Text     = "Passowrd:";
-        //
+        // 
         // UsernameAnswer
-        //
+        // 
         UsernameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -1001,9 +1002,9 @@ partial class AddAndEditAccount {
         );
         UsernameAnswer.TabIndex =  27;
         UsernameAnswer.KeyDown  += DisableNewLine_KeyDown;
-        //
+        // 
         // UsernameQuestion
-        //
+        // 
         UsernameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -1020,9 +1021,9 @@ partial class AddAndEditAccount {
         );
         UsernameQuestion.TabIndex = 26;
         UsernameQuestion.Text     = "Username:";
-        //
+        // 
         // Submit
-        //
+        // 
         Submit.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -1041,17 +1042,17 @@ partial class AddAndEditAccount {
         Submit.Text                    =  "Submit";
         Submit.UseVisualStyleBackColor =  true;
         Submit.Click                   += Submit_Click;
-        //
+        // 
         // ErrorProvider
-        //
+        // 
         ErrorProvider.ContainerControl = this;
-        //
+        // 
         // OpenFileDialog
-        //
+        // 
         OpenFileDialog.FileName = "Open File Dialog";
-        //
+        // 
         // AddAndEditAccount
-        //
+        // 
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
             15F

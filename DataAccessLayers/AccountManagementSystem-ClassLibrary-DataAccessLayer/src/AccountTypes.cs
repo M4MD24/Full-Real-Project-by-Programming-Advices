@@ -5,7 +5,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class AccountTypes {
+public static class AccountTypes {
     public static AccountType? getAccountTypeByAccountTypeID(
         ref byte accountTypeID
     ) {

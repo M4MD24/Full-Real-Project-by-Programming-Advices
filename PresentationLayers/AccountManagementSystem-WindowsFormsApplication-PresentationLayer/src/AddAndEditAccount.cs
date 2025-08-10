@@ -1,12 +1,16 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 using Constants = AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants;
+using ContactInformation = AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AddAndEditAccount : Form {
+    private string selectedImagePath;
+
     public AddAndEditAccount(
         Constants.Mode mode,
         int            accountID = -1
@@ -48,13 +52,60 @@ public partial class AddAndEditAccount : Form {
         e
     );
 
+    private string copyImageToImageDirectory(
+        int? personID
+    ) {
+        string extension = Path.GetExtension(
+            selectedImagePath
+        );
+        string fileName = $"{personID}{extension}";
+
+        string destinationFolder = Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory,
+            @"Data\Images"
+        );
+        if (
+            !Directory.Exists(
+                destinationFolder
+            )
+        )
+            Directory.CreateDirectory(
+                destinationFolder
+            );
+
+        string destinationFile = Path.Combine(
+            destinationFolder,
+            fileName
+        );
+
+        try {
+            File.Copy(
+                selectedImagePath,
+                destinationFile,
+                overwrite : true
+            );
+        } catch (Exception exception) {
+            MessageBox.Show(
+                exception.Message,
+                @"Can't Copy to Image Directory",
+                MessageBoxButtons.RetryCancel,
+                MessageBoxIcon.Error
+            );
+            return null!;
+        }
+
+        return destinationFile;
+    }
+
     private void Submit_Click(
         object    sender,
         EventArgs e
     ) {
         if (!isValidData())
             return;
-
+        MessageBox.Show(
+            @"Nice"
+        );
         FullName fullName = new FullName(
             FirstNameAnswer.Text,
             SecondNameAnswer.Text,
@@ -99,9 +150,18 @@ public partial class AddAndEditAccount : Form {
             AddressAnswer.Text,
             contactInformationID,
             countryID,
-            ""
+            selectedImagePath
         );
-        int personID = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.add(
+
+        person.personID = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.add(
+            ref person
+        );
+
+        person.imageURL = copyImageToImageDirectory(
+            person.personID
+        );
+
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.update(
             ref person
         );
 
@@ -111,7 +171,7 @@ public partial class AddAndEditAccount : Form {
         )!.accountTypeID;
 
         Account account = new Account(
-            personID,
+            person.personID,
             UsernameAnswer.Text,
             PasswordAnswer.Text,
             true,
@@ -123,6 +183,175 @@ public partial class AddAndEditAccount : Form {
     }
 
     private bool isValidData() {
-        return false;
+        bool isValid = true;
+
+        isValid &= checkField(
+            NationalNumberAnswer
+        );
+        isValid &= checkField(
+            FirstNameAnswer
+        );
+        isValid &= checkField(
+            SecondNameAnswer
+        );
+        isValid &= checkField(
+            ThirdNameAnswer
+        );
+        isValid &= checkField(
+            FourthNameAnswer
+        );
+        isValid &= checkField(
+            DateOfBirthAnswer
+        );
+        isValid &= checkField(
+            AddressAnswer
+        );
+        isValid &= checkField(
+            ContactNumberAnswer
+        );
+        isValid &= checkField(
+            CountryNameMobileNumberAnswer
+        );
+        isValid &= checkField(
+            EmailAnswer
+        );
+        isValid &= checkField(
+            CountryNameAnswer
+        );
+        isValid &= checkField(
+            UsernameAnswer
+        );
+        isValid &= checkField(
+            PasswordAnswer
+        );
+        isValid &= checkField(
+            AccountTypeAnswer
+        );
+        isValid &= checkField(
+            selectedImagePath
+        );
+
+        return isValid;
+    }
+
+    private bool checkField(
+        string selectedFile,
+        bool   isValid = true
+    ) {
+        if (
+            !File.Exists(
+                selectedFile
+            )
+        ) {
+            ErrorProvider.SetError(
+                ImageQuestion,
+                Utilities.Constants.ErrorMessages.EMPTY
+            );
+            isValid = false;
+        } else
+            ErrorProvider.SetError(
+                ImageQuestion,
+                string.Empty
+            );
+
+        return isValid;
+    }
+
+    private bool checkField(
+        ComboBox comboBox,
+        bool     isValid = true
+    ) {
+        if (
+            string.IsNullOrWhiteSpace(
+                comboBox.Text
+            )
+        ) {
+            ErrorProvider.SetError(
+                comboBox,
+                Utilities.Constants.ErrorMessages.EMPTY
+            );
+            isValid = false;
+        } else
+            ErrorProvider.SetError(
+                comboBox,
+                string.Empty
+            );
+
+        return isValid;
+    }
+
+    private bool checkField(
+        DateTimePicker dateTimePicker,
+        bool           isValid = true
+    ) {
+        DateTime selectedDate = dateTimePicker.Value;
+        int      age          = DateTime.Now.Year - selectedDate.Year;
+
+
+        if (
+            selectedDate.Date > DateTime.Now.AddYears(
+                -age
+            )
+        )
+            age--;
+
+        if (
+            age < 5
+        ) {
+            ErrorProvider.SetError(
+                dateTimePicker,
+                Utilities.Constants.ErrorMessages.lessThanTargetAge
+            );
+            isValid = false;
+        } else
+            ErrorProvider.SetError(
+                dateTimePicker,
+                string.Empty
+            );
+
+        return isValid;
+    }
+
+    private bool checkField(
+        TextBox textBox,
+        bool    isValid = true
+    ) {
+        if (
+            string.IsNullOrWhiteSpace(
+                textBox.Text
+            )
+        ) {
+            ErrorProvider.SetError(
+                textBox,
+                Utilities.Constants.ErrorMessages.EMPTY
+            );
+            isValid = false;
+        } else
+            ErrorProvider.SetError(
+                textBox,
+                string.Empty
+            );
+
+        return isValid;
+    }
+
+    private void BrowseImageAnswer_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        using OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = @"Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
+        openFileDialog.Title  = @"Select an Image";
+
+        if (openFileDialog.ShowDialog() != DialogResult.OK)
+            return;
+
+        string filePath = openFileDialog.FileName;
+
+        BrowseImageAnswerDetails.Text = Path.GetFileName(
+            filePath
+        );
+
+        selectedImagePath = filePath;
     }
 }
