@@ -10,7 +10,7 @@ public class MobileNumbers {
     );
 
     public static int delete(
-        ref int mobileNumberID
+        ref int? mobileNumberID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.MobileNumbers.deleteMobileNumberByMobileNumberID(
         ref mobileNumberID
     );

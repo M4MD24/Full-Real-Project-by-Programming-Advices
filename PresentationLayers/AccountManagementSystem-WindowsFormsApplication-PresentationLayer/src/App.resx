@@ -61,4 +61,7 @@
   <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="AccountListMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>125, 17</value>
+  </metadata>
 </root>

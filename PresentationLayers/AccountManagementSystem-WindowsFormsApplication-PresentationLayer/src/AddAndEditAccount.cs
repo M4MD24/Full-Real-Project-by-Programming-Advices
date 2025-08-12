@@ -1,5 +1,7 @@
 using System;
+using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
@@ -39,6 +41,26 @@ public partial class AddAndEditAccount : Form {
         ref Account account
     ) {
         Text = $@"Update {account.accountID}";
+        setIcon(
+            Constants.Mode.Update
+        );
+    }
+
+    private void setIcon(
+        Constants.Mode mode
+    ) {
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        using Stream? iconStream = assembly.GetManifestResourceStream(
+            Utilities.Constants.RESOURCES_ICONS_PATH + (
+                                                           mode == Constants.Mode.Update
+                                                                   ? ".ManageAccounts.ico"
+                                                                   : ""
+                                                       )
+        );
+
+        Icon = new Icon(
+            iconStream!
+        );
     }
 
     private void initializeAdditionForm() {
@@ -61,7 +83,7 @@ public partial class AddAndEditAccount : Form {
         string fileName = $"{personID}{extension}";
 
         string destinationFolder = Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
+            Utilities.Constants.baseDirectory,
             @"Data\Images"
         );
         if (
@@ -340,9 +362,14 @@ public partial class AddAndEditAccount : Form {
         EventArgs e
     ) {
         using OpenFileDialog openFileDialog = new OpenFileDialog();
-        openFileDialog.Filter = @"Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
-        openFileDialog.Title  = @"Select an Image";
+        openFileDialog.Filter = @$"Image Files|*.{
+            string.Join(
+                ";*.",
+                Utilities.Constants.imageExtensions
+            )
+        }|All Files|*.*";
 
+        openFileDialog.Title = @"Select an Image";
         if (openFileDialog.ShowDialog() != DialogResult.OK)
             return;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -54,5 +55,61 @@ public static class Tools {
             return;
         e.SuppressKeyPress = true;
         e.Handled          = true;
+    }
+
+    public static class ImageTools {
+        public static void deleteImage(
+            string path
+        ) {
+            try {
+                File.Delete(
+                    path
+                );
+            } catch (Exception exception) {
+                MessageBox.Show(
+                    @$"Error deleting image: {exception.Message}",
+                    @"Delete Image",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        public static void deleteImageByPersonID(
+            ref int? personID
+        ) {
+            if (personID is null)
+                return;
+
+            string imageDirectory = Path.Combine(
+                Constants.baseDirectory,
+                Constants.IMAGE_FOLDER_RELATIVE_PATH
+            );
+
+            string? imagePath = null;
+
+            foreach (string extension in Constants.imageExtensions) {
+                string possiblePath = Path.Combine(
+                    imageDirectory,
+                    $"{personID}.{extension}"
+                );
+
+                if (
+                    !File.Exists(
+                        possiblePath
+                    )
+                )
+                    continue;
+                imagePath = possiblePath;
+                break;
+            }
+
+            if (imagePath is null)
+                return;
+
+            deleteImage(
+                imagePath
+            );
+        }
     }
 }

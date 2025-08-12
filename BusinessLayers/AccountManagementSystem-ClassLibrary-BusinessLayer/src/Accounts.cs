@@ -11,7 +11,7 @@ public class Accounts {
     );
 
     public static int delete(
-        ref int accountID
+        ref int? accountID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.deleteAccountByAccountID(
         ref accountID
     );

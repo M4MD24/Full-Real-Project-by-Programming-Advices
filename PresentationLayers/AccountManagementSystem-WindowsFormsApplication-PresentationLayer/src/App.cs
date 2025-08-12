@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
@@ -59,9 +60,8 @@ public partial class App : Form {
     private void createFolders() { createImageFolder(); }
 
     private static void createImageFolder() {
-        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string imageDirectory = Path.Combine(
-            baseDirectory,
+            Constants.baseDirectory,
             Constants.IMAGE_FOLDER_RELATIVE_PATH
         );
 
@@ -75,7 +75,21 @@ public partial class App : Form {
             );
     }
 
-    private void loadAccountListMenuStrip() {}
+    private void loadAccountListMenuStrip() {
+        AccountList.ContextMenuStrip = AccountListMenuStrip;
+
+        AccountInformationOption.Image = loadIcon(
+            "Person"
+        );
+
+        AccountUpdateOption.Image = loadIcon(
+            "PersonEdit"
+        );
+
+        AccountDeleteOption.Image = loadIcon(
+            "PersonRemove"
+        );
+    }
 
     private void setIcon() {
         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -364,4 +378,182 @@ public partial class App : Form {
         object    sender,
         EventArgs e
     ) => loadAccounts();
+
+    private int getAccountID_FromSelectedRow() {
+        if (AccountList.SelectedRows.Count > 0) {
+            DataGridViewRow selectedRow = AccountList.SelectedRows[0];
+            return Convert.ToInt32(
+                selectedRow.Cells[0].Value
+            );
+        }
+
+        if (AccountList.SelectedCells.Count > 0) {
+            DataGridViewCell selectedCell = AccountList.SelectedCells[0];
+            int columnIndex = selectedCell.ColumnIndex,
+                rowIndex    = selectedCell.RowIndex;
+
+            if (columnIndex == 0)
+                return Convert.ToInt32(
+                    selectedCell.Value
+                );
+
+            return Convert.ToInt32(
+                AccountList.Rows[rowIndex]
+                           .Cells[0]
+                           .Value
+            );
+        }
+
+        MessageBox.Show(
+            @"Select Account",
+            @"Account isn't Selected",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning
+        );
+
+        return -1;
+    }
+
+    private Account getAccount_FromSelectedRow() {
+        if (AccountList.SelectedRows.Count > 0) {
+            DataGridViewRow selectedRow = AccountList.SelectedRows[0];
+            return new Account(
+                Convert.ToInt32(
+                    selectedRow.Cells["accountID"].Value
+                ),
+                Convert.ToInt32(
+                    selectedRow.Cells["personID"].Value
+                ),
+                Convert.ToString(
+                    selectedRow.Cells["username"].Value
+                ),
+                Convert.ToString(
+                    selectedRow.Cells["password"].Value
+                ),
+                Convert.ToBoolean(
+                    selectedRow.Cells["isActive"].Value
+                ),
+                Convert.ToByte(
+                    selectedRow.Cells["accountTypeID"].Value
+                )
+            );
+        }
+
+        if (AccountList.SelectedCells.Count > 0) {
+            DataGridViewCell selectedCell = AccountList.SelectedCells[0];
+            int              rowIndex     = selectedCell.RowIndex;
+            DataGridViewRow  selectedRow  = AccountList.Rows[rowIndex];
+
+            return new Account(
+                Convert.ToInt32(
+                    selectedRow.Cells["accountID"].Value
+                ),
+                Convert.ToInt32(
+                    selectedRow.Cells["personID"].Value
+                ),
+                Convert.ToString(
+                    selectedRow.Cells["username"].Value
+                ),
+                Convert.ToString(
+                    selectedRow.Cells["password"].Value
+                ),
+                Convert.ToBoolean(
+                    selectedRow.Cells["isActive"].Value
+                ),
+                Convert.ToByte(
+                    selectedRow.Cells["accountTypeID"].Value
+                )
+            );
+        }
+
+        accountNotSelectedWarning();
+
+        return null!;
+    }
+
+    private static void accountNotSelectedWarning() => MessageBox.Show(
+        @"Account isn't Selected",
+        "",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Warning
+    );
+
+    private void AccountInformationOption_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        int accountID = getAccountID_FromSelectedRow();
+
+        if (accountID == -1)
+            return;
+
+        new AccountInformation(
+            ref accountID
+        ).Show();
+    }
+
+    private void AccountUpdateOption_Click(
+        object    sender,
+        EventArgs e
+    ) {}
+
+    private void AccountDeleteOption_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        Account account   = getAccount_FromSelectedRow();
+        int?    accountID = account.accountID;
+
+        if (accountID == -1)
+            return;
+
+        DialogResult result = MessageBox.Show(
+            @$"Are you delete {accountID}?",
+            @"Delete Account",
+            MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1
+        );
+
+        if (result == DialogResult.OK)
+            deleteSelectedAccount(
+                ref account
+            );
+    }
+
+    private void deleteSelectedAccount(
+        ref Account account
+    ) {
+        int? accountID = account.accountID,
+             personID  = account.personID;
+        Person person = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.get(
+            ref personID
+        )!;
+        int? fullNameID           = person.fullNameID,
+             contactInformationID = person.contactInformationID;
+        string? imageURL = person.imageURL;
+        ContactInformation contactInformation = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation.get(
+            ref contactInformationID
+        )!;
+        int? mobileNumberID = contactInformation.mobileNumberID;
+
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.delete(
+            ref accountID
+        );
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.delete(
+            ref personID
+        );
+        Tools.ImageTools.deleteImage(
+            imageURL!
+        );
+        AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.delete(
+            ref fullNameID
+        );
+        AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation.delete(
+            ref contactInformationID
+        );
+        AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.delete(
+            ref mobileNumberID
+        );
+    }
 }

@@ -31,6 +31,9 @@
         <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
         <EmbeddedResource Include="Resources\Icons\Search.svg"/>
         <EmbeddedResource Include="Resources\Icons\Refresh.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Person.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonEdit.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonRemove.svg"/>
     </ItemGroup>
 
     <ItemGroup>

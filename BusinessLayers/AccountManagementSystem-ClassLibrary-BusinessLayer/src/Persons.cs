@@ -10,7 +10,7 @@ public class Persons {
     );
 
     public static int delete(
-        ref int personID
+        ref int? personID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Persons.deletePersonByPersonID(
         ref personID
     );
@@ -22,7 +22,7 @@ public class Persons {
     );
 
     public static Person? get(
-        ref int personID
+        ref int? personID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Persons.getPersonByPersonID(
         ref personID
     );

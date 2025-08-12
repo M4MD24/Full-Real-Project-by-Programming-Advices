@@ -24,7 +24,7 @@ public static class ContactInformation {
     }
 
     public static int deleteContactInformationByContactInformationID(
-        ref int contactInformationID
+        ref int? contactInformationID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -127,7 +127,7 @@ public static class ContactInformation {
     }
 
     public static Models.ContactInformation? getContactInformationByContactInformationID(
-        ref int contactInformationID
+        ref int? contactInformationID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

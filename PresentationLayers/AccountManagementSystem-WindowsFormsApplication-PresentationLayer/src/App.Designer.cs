@@ -31,13 +31,21 @@ partial class App {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+        components    = new System.ComponentModel.Container();
         MenuStrip     = new System.Windows.Forms.MenuStrip();
         SearchBox     = new System.Windows.Forms.TextBox();
         ConfirmSearch = new System.Windows.Forms.Button();
         SearchFilter  = new System.Windows.Forms.ComboBox();
         AccountList   = new System.Windows.Forms.DataGridView();
         RefreshList   = new System.Windows.Forms.Button();
+        AccountListMenuStrip = new System.Windows.Forms.ContextMenuStrip(
+            components
+        );
+        AccountInformationOption = new System.Windows.Forms.ToolStripMenuItem();
+        AccountUpdateOption      = new System.Windows.Forms.ToolStripMenuItem();
+        AccountDeleteOption      = new System.Windows.Forms.ToolStripMenuItem();
         ((System.ComponentModel.ISupportInitialize) AccountList).BeginInit();
+        AccountListMenuStrip.SuspendLayout();
         SuspendLayout();
         // 
         // MenuStrip
@@ -114,7 +122,9 @@ partial class App {
             20,
             90
         );
-        AccountList.Name = "AccountList";
+        AccountList.MultiSelect = false;
+        AccountList.Name        = "AccountList";
+        AccountList.ReadOnly    = true;
         AccountList.Size = new System.Drawing.Size(
             940,
             550
@@ -142,6 +152,51 @@ partial class App {
         RefreshList.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
         RefreshList.UseVisualStyleBackColor =  true;
         RefreshList.Click                   += RefreshList_Click;
+        // 
+        // AccountListMenuStrip
+        // 
+        AccountListMenuStrip.Items.AddRange(
+            new System.Windows.Forms.ToolStripItem[] {
+                AccountInformationOption,
+                AccountUpdateOption,
+                AccountDeleteOption
+            }
+        );
+        AccountListMenuStrip.Name = "AccountListMenuStrip";
+        AccountListMenuStrip.Size = new System.Drawing.Size(
+            181,
+            92
+        );
+        // 
+        // AccountInformationOption
+        // 
+        AccountInformationOption.Name = "AccountInformationOption";
+        AccountInformationOption.Size = new System.Drawing.Size(
+            180,
+            22
+        );
+        AccountInformationOption.Text  =  "Information";
+        AccountInformationOption.Click += AccountInformationOption_Click;
+        // 
+        // AccountUpdateOption
+        // 
+        AccountUpdateOption.Name = "AccountUpdateOption";
+        AccountUpdateOption.Size = new System.Drawing.Size(
+            180,
+            22
+        );
+        AccountUpdateOption.Text  =  "Update";
+        AccountUpdateOption.Click += AccountUpdateOption_Click;
+        // 
+        // AccountDeleteOption
+        // 
+        AccountDeleteOption.Name = "AccountDeleteOption";
+        AccountDeleteOption.Size = new System.Drawing.Size(
+            180,
+            22
+        );
+        AccountDeleteOption.Text  =  "Delete";
+        AccountDeleteOption.Click += AccountDeleteOption_Click;
         // 
         // App
         // 
@@ -180,23 +235,25 @@ partial class App {
         Load          += App_Load;
         KeyDown       += App_KeyDown;
         ((System.ComponentModel.ISupportInitialize) AccountList).EndInit();
+        AccountListMenuStrip.ResumeLayout(
+            false
+        );
         ResumeLayout(
             false
         );
         PerformLayout();
     }
 
-    private System.Windows.Forms.Button RefreshList;
-
-    private System.Windows.Forms.DataGridView AccountList;
-
-    private System.Windows.Forms.ComboBox SearchFilter;
-
-    private System.Windows.Forms.Button ConfirmSearch;
-
-    private System.Windows.Forms.TextBox SearchBox;
-
-    private System.Windows.Forms.MenuStrip MenuStrip;
+    private System.Windows.Forms.ToolStripMenuItem AccountInformationOption;
+    private System.Windows.Forms.ToolStripMenuItem AccountUpdateOption;
+    private System.Windows.Forms.ToolStripMenuItem AccountDeleteOption;
+    private System.Windows.Forms.ContextMenuStrip  AccountListMenuStrip;
+    private System.Windows.Forms.Button            RefreshList;
+    private System.Windows.Forms.DataGridView      AccountList;
+    private System.Windows.Forms.ComboBox          SearchFilter;
+    private System.Windows.Forms.Button            ConfirmSearch;
+    private System.Windows.Forms.TextBox           SearchBox;
+    private System.Windows.Forms.MenuStrip         MenuStrip;
 
     #endregion
 }

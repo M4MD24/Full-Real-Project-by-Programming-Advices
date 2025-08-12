@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.IO;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
@@ -31,7 +30,7 @@ public static class Persons {
     }
 
     public static int deletePersonByPersonID(
-        ref int personID
+        ref int? personID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -154,7 +153,7 @@ public static class Persons {
     }
 
     public static Person? getPersonByPersonID(
-        ref int personID
+        ref int? personID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -207,25 +206,5 @@ public static class Persons {
         }
 
         return null;
-    }
-
-    public static string? getImageURL_ByPersonID(
-        ref int personID
-    ) {
-        const string IMAGE_FOLDER_RELATIVE_PATH = @"Data\Images";
-        string       baseDirectory              = AppDomain.CurrentDomain.BaseDirectory;
-        string imageDirectory = Path.Combine(
-            baseDirectory,
-            IMAGE_FOLDER_RELATIVE_PATH
-        );
-        string imagePath = Path.Combine(
-            imageDirectory,
-            $"{personID}.png"
-        );
-        return File.Exists(
-                   imagePath
-               )
-                       ? imagePath
-                       : null;
     }
 }

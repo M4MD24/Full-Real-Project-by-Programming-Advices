@@ -25,7 +25,7 @@ public static class MobileNumbers {
     }
 
     public static int deleteMobileNumberByMobileNumberID(
-        ref int mobileNumberID
+        ref int? mobileNumberID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

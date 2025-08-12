@@ -29,7 +29,7 @@ public static class Accounts {
     }
 
     public static int deleteAccountByAccountID(
-        ref int accountID
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

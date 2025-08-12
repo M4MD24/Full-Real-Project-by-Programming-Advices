@@ -10,7 +10,7 @@ public class FullNames {
     );
 
     public static int delete(
-        ref int fullNameID
+        ref int? fullNameID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.FullNames.deleteFullNameByFullNameID(
         ref fullNameID
     );
