@@ -101,6 +101,7 @@ partial class App {
         // 
         // SearchFilter
         // 
+        SearchFilter.DropDownStyle     = System.Windows.Forms.ComboBoxStyle.DropDownList;
         SearchFilter.FormattingEnabled = true;
         SearchFilter.Location = new System.Drawing.Point(
             730,
@@ -164,15 +165,15 @@ partial class App {
         );
         AccountListMenuStrip.Name = "AccountListMenuStrip";
         AccountListMenuStrip.Size = new System.Drawing.Size(
-            181,
-            92
+            138,
+            70
         );
         // 
         // AccountInformationOption
         // 
         AccountInformationOption.Name = "AccountInformationOption";
         AccountInformationOption.Size = new System.Drawing.Size(
-            180,
+            137,
             22
         );
         AccountInformationOption.Text  =  "Information";
@@ -182,7 +183,7 @@ partial class App {
         // 
         AccountUpdateOption.Name = "AccountUpdateOption";
         AccountUpdateOption.Size = new System.Drawing.Size(
-            180,
+            137,
             22
         );
         AccountUpdateOption.Text  =  "Update";
@@ -192,7 +193,7 @@ partial class App {
         // 
         AccountDeleteOption.Name = "AccountDeleteOption";
         AccountDeleteOption.Size = new System.Drawing.Size(
-            180,
+            137,
             22
         );
         AccountDeleteOption.Text  =  "Delete";
@@ -232,7 +233,6 @@ partial class App {
         MainMenuStrip =  MenuStrip;
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          =  "Main";
-        Load          += App_Load;
         KeyDown       += App_KeyDown;
         ((System.ComponentModel.ISupportInitialize) AccountList).EndInit();
         AccountListMenuStrip.ResumeLayout(

@@ -661,6 +661,7 @@ partial class AddAndEditAccount {
         // 
         // CountryNameMobileNumberAnswer
         // 
+        CountryNameMobileNumberAnswer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
         CountryNameMobileNumberAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -776,6 +777,7 @@ partial class AddAndEditAccount {
         // 
         // CountryNameAnswer
         // 
+        CountryNameAnswer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
         CountryNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
@@ -948,6 +950,7 @@ partial class AddAndEditAccount {
         // 
         // AccountTypeAnswer
         // 
+        AccountTypeAnswer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
         AccountTypeAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F

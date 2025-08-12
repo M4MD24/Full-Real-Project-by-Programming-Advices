@@ -7,6 +7,45 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
 public static class Countries {
+    public static List<string> getAllCountryNames() {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_ALL_COUNTRY_NAMES = """
+                                                USE DriverAndVehicleLicenseDepartment
+                                                SELECT CountryName
+                                                FROM AccountManagementSystem.Countries
+                                                """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_ALL_COUNTRY_NAMES,
+            sqlConnection
+        );
+
+        List<string> countryNames = [];
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read()) {
+                string countryName = (string) sqlDataReader["CountryName"];
+                countryNames.Add(
+                    countryName
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return countryNames;
+    }
+
     public static int updateCountryByCountryID(
         ref Country country
     ) {

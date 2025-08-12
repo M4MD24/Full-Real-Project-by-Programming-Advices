@@ -10,7 +10,8 @@ using ContactInformation = AccountManagementSystem_ClassLibrary_DataAccessLayer.
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class AddAndEditAccount : Form {
+public partial class AddAndEditAccount : Form,
+                                         Loader {
     private string selectedImagePath;
 
     public AddAndEditAccount(
@@ -65,6 +66,7 @@ public partial class AddAndEditAccount : Form {
 
     private void initializeAdditionForm() {
         Text = @"Create New Account";
+        loadDataSources();
     }
 
     private void DisableNewLine_KeyDown(
@@ -380,5 +382,20 @@ public partial class AddAndEditAccount : Form {
         );
 
         selectedImagePath = filePath;
+    }
+
+    public void loadDataSources() {
+        Loader.loadDataSource(
+            CountryNameMobileNumberAnswer,
+            AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAllCountryNames()
+        );
+        Loader.loadDataSource(
+            CountryNameAnswer,
+            AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAllCountryNames()
+        );
+        Loader.loadDataSource(
+            AccountTypeAnswer,
+            AccountManagementSystem_ClassLibrary_BusinessLayer.AccountTypes.getAllAccountTypeNames()
+        );
     }
 }

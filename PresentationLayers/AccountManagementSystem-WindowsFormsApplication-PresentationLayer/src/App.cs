@@ -8,7 +8,8 @@ using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilitie
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class App : Form {
+public partial class App : Form,
+                           Loader {
     private static readonly(
             Image PersonAdd,
             Image Lists,
@@ -24,12 +25,20 @@ public partial class App : Form {
 
     public App() {
         InitializeComponent();
+        loadDataSources();
         setIcon();
         initializeMenuStrip();
         loadIconButtons();
         createFolders();
         loadAccountListMenuStrip();
     }
+
+    public void loadDataSources() { loadAccounts(); }
+
+    private void loadAccounts() => Loader.loadDataSource(
+        AccountList,
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.getAll()
+    );
 
     private void loadIconButtons() {
         setIconButton(
@@ -365,15 +374,6 @@ public partial class App : Form {
             );
     }
 
-    private void App_Load(
-        object    sender,
-        EventArgs e
-    ) => loadAccounts();
-
-    private void loadAccounts() {
-        AccountList.DataSource = AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.getAll();
-    }
-
     private void RefreshList_Click(
         object    sender,
         EventArgs e
@@ -501,8 +501,12 @@ public partial class App : Form {
         object    sender,
         EventArgs e
     ) {
-        Account account   = getAccount_FromSelectedRow();
-        int?    accountID = account.accountID;
+        Account? account = getAccount_FromSelectedRow();
+
+        if (account is null)
+            return;
+
+        int? accountID = account.accountID;
 
         if (accountID == -1)
             return;

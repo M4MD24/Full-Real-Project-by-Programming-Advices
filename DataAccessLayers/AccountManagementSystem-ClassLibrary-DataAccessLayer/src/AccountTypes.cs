@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
@@ -6,6 +7,45 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
 public static class AccountTypes {
+    public static List<string> getAllAccountTypeNames() {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_ALL_ACCOUNT_TYPE_NAMES = """
+                                                     USE DriverAndVehicleLicenseDepartment
+                                                     SELECT AccountTypeName
+                                                     FROM AccountManagementSystem.AccountTypes
+                                                     """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_ALL_ACCOUNT_TYPE_NAMES,
+            sqlConnection
+        );
+
+        List<string> accountTypeNames = [];
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read()) {
+                string accountTypeName = (string) sqlDataReader["AccountTypeName"];
+                accountTypeNames.Add(
+                    accountTypeName
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return accountTypeNames;
+    }
+
     public static AccountType? getAccountTypeByAccountTypeID(
         ref byte accountTypeID
     ) {

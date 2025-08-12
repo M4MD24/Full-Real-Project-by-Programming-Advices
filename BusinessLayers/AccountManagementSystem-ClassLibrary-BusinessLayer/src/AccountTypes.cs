@@ -1,4 +1,5 @@
-﻿using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+﻿using System.Collections.Generic;
+using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
@@ -14,4 +15,6 @@ public class AccountTypes {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAccountTypeByAccountTypeName(
         ref accountTypeName
     );
+
+    public static List<string> getAllAccountTypeNames() => AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAllAccountTypeNames();
 }

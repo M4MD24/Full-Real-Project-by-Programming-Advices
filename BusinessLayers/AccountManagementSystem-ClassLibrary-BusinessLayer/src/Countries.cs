@@ -3,7 +3,9 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
-public class Countries {
+public static class Countries {
+    public static List<string> getAllCountryNames() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getAllCountryNames();
+
     public static int update(
         ref Country country
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.updateCountryByCountryID(
