@@ -52,11 +52,11 @@ public partial class AddAndEditAccount : Form,
     ) {
         Assembly assembly = Assembly.GetExecutingAssembly();
         using Stream? iconStream = assembly.GetManifestResourceStream(
-            Utilities.Constants.RESOURCES_ICONS_PATH + (
-                                                           mode == Constants.Mode.Update
-                                                                   ? ".ManageAccounts.ico"
-                                                                   : ""
-                                                       )
+            Utilities.Constants.RESOURCES_ICONS_PATH + '.' + (
+                                                                 mode == Constants.Mode.Update
+                                                                         ? "PersonAdd"
+                                                                         : "PersonEdit"
+                                                             ) + ".ico"
         );
 
         Icon = new Icon(
@@ -66,6 +66,9 @@ public partial class AddAndEditAccount : Form,
 
     private void initializeAdditionForm() {
         Text = @"Create New Account";
+        setIcon(
+            Constants.Mode.Add
+        );
         loadDataSources();
     }
 
