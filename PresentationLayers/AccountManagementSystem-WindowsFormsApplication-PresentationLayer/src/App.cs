@@ -24,6 +24,41 @@ public partial class App : Form,
             Image Telegram
             ) menuStripIcons = loadMenuStripIcons();
 
+    private static readonly(
+            Image Person,
+            Image PersonEdit,
+            Image PersonRemove,
+            Image SwapHorizontal
+            ) accountListMenuStripIcons = loadAccountListMenuStripIcons();
+
+    private static(
+            Image Person,
+            Image PersonEdit,
+            Image PersonRemove,
+            Image SwapHorizontal
+            ) loadAccountListMenuStripIcons() => (
+                                                     Person : loadIcon(
+                                                         "Person",
+                                                         20,
+                                                         20
+                                                     ),
+                                                     PersonEdit : loadIcon(
+                                                         "PersonEdit",
+                                                         20,
+                                                         20
+                                                     ),
+                                                     PersonRemove : loadIcon(
+                                                         "PersonRemove",
+                                                         20,
+                                                         20
+                                                     ),
+                                                     SwapHorizontal : loadIcon(
+                                                         "SwapHorizontal",
+                                                         20,
+                                                         20
+                                                     )
+                                                 );
+
     public App() {
         InitializeComponent();
         loadDataSources();
@@ -88,21 +123,17 @@ public partial class App : Form,
     private void loadAccountListMenuStrip() {
         AccountList.ContextMenuStrip = AccountListMenuStrip;
 
-        AccountInformationOption.Image = loadIcon(
-            "Person"
-        );
+        AccountInformationOption.Image = accountListMenuStripIcons
+                .Person;
 
-        AccountUpdateOption.Image = loadIcon(
-            "PersonEdit"
-        );
+        AccountUpdateOption.Image = accountListMenuStripIcons
+                .PersonEdit;
 
-        AccountDeleteOption.Image = loadIcon(
-            "PersonRemove"
-        );
+        AccountDeleteOption.Image = accountListMenuStripIcons
+                .PersonRemove;
 
-        ChangeStatusOption.Image = loadIcon(
-            "SwapHorizontal"
-        );
+        ChangeStatusOption.Image = accountListMenuStripIcons
+                .SwapHorizontal;
     }
 
     private void setIcon() {
