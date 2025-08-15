@@ -213,7 +213,7 @@ public static class Countries {
     }
 
     public static Country? getCountryByCountryID(
-        ref byte countryID
+        ref byte? countryID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

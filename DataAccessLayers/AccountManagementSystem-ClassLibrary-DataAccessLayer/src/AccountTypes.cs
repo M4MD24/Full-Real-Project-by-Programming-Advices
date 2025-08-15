@@ -47,7 +47,7 @@ public static class AccountTypes {
     }
 
     public static AccountType? getAccountTypeByAccountTypeID(
-        ref byte accountTypeID
+        ref byte? accountTypeID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

@@ -207,4 +207,108 @@ public static class Persons {
 
         return null;
     }
+
+    public static Person? getPersonByNationalNumber(
+        ref string? nationalNumber
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_PERSON_BY_NATIONAL_NUMBER = """
+                                                        USE DriverAndVehicleLicenseDepartment
+                                                        SELECT *
+                                                        FROM AccountManagementSystem.Persons
+                                                        WHERE NationalNumber = @nationalNumber
+                                                        """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_PERSON_BY_NATIONAL_NUMBER,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@nationalNumber",
+            nationalNumber
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                int      personID             = (int) sqlDataReader["PersonID"];
+                int      fullNameID           = (int) sqlDataReader["FullNameID"];
+                DateTime dateOfBirth          = (DateTime) sqlDataReader["DateOfBirth"];
+                string   address              = (string) sqlDataReader["Address"];
+                int      contactInformationID = (int) sqlDataReader["ContactInformationID"];
+                byte     countryID            = (byte) sqlDataReader["CountryID"];
+                string   imageURL             = (string) sqlDataReader["ImageURL"];
+                return new Person(
+                    personID,
+                    nationalNumber,
+                    fullNameID,
+                    dateOfBirth,
+                    address,
+                    contactInformationID,
+                    countryID,
+                    imageURL
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static bool isPersonExistByNationalNumber(
+        ref string? nationalNumber
+    ) {
+        if (
+            string.IsNullOrWhiteSpace(
+                nationalNumber
+            )
+        )
+            return false;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        const string IS_NATIONAL_NUMBER_EXIST = """
+                                                USE DriverAndVehicleLicenseDepartment
+                                                IF EXISTS (
+                                                    SELECT 1
+                                                    FROM AccountManagementSystem.Persons
+                                                    WHERE NationalNumber = @nationalNumber
+                                                )
+                                                    SELECT 1
+                                                ELSE
+                                                    SELECT 0
+                                                """;
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            IS_NATIONAL_NUMBER_EXIST,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@nationalNumber",
+            nationalNumber
+        );
+
+        try {
+            sqlConnection.Open();
+            return Convert.ToInt32(
+                       sqlCommand.ExecuteScalar()
+                   ) == 1;
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+            return false;
+        }
+    }
 }

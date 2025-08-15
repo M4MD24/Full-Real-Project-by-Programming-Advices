@@ -128,7 +128,7 @@ public static class MobileNumbers {
     }
 
     public static MobileNumber? getMobileNumberByMobileNumberID(
-        ref int mobileNumberID
+        ref int? mobileNumberID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -153,7 +153,7 @@ public static class MobileNumbers {
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
                 string contactNumber = (string) sqlDataReader["ContactNumber"];
-                int    countryID     = (int) sqlDataReader["CountryID"];
+                byte    countryID     = (byte) sqlDataReader["CountryID"];
                 return new MobileNumber(
                     mobileNumberID,
                     contactNumber,

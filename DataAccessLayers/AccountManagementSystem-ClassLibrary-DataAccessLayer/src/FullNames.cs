@@ -138,7 +138,7 @@ public static class FullNames {
     }
 
     public static FullName? getFullNameByFullNameID(
-        ref int fullNameID
+        ref int? fullNameID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

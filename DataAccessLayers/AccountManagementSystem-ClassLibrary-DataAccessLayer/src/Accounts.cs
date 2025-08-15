@@ -73,11 +73,13 @@ public static class Accounts {
                                        SELECT SCOPE_IDENTITY();
                                        """;
 
-        return saveData(
+        int newID = saveData(
             ref account,
             ADD_NEW_ACCOUNT,
             Constants.Mode.Add
         );
+        account.accountID = newID;
+        return newID;
     }
 
     private static int saveData(
@@ -188,7 +190,7 @@ public static class Accounts {
     }
 
     public static Account? getAccountByAccountID(
-        ref int accountID
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -289,5 +291,53 @@ public static class Accounts {
         }
 
         return null;
+    }
+
+    public static bool isAccountExistByUsername(
+        ref string? username
+    ) {
+        if (
+            string.IsNullOrWhiteSpace(
+                username
+            )
+        )
+            return false;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        const string IS_USERNAME_EXIST = """
+                                         USE DriverAndVehicleLicenseDepartment
+                                         IF EXISTS (
+                                             SELECT 1
+                                             FROM AccountManagementSystem.Accounts
+                                             WHERE Username = @username
+                                         )
+                                             SELECT 1
+                                         ELSE
+                                             SELECT 0
+                                         """;
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            IS_USERNAME_EXIST,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@username",
+            username
+        );
+
+        try {
+            sqlConnection.Open();
+            return Convert.ToInt32(
+                       sqlCommand.ExecuteScalar()
+                   ) == 1;
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+            return false;
+        }
     }
 }

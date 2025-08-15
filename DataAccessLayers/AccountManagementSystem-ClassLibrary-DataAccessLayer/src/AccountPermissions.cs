@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
 public static class AccountPermissions {
     public static int deleteAccountPermissionsByAccountID(
-        ref int accountID
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -82,8 +83,8 @@ public static class AccountPermissions {
         return rowAffected;
     }
 
-    public static int addNewAccountPermission(
-        ref Models.AccountPermission accountPermission
+    public static int addAccountPermission(
+        ref AccountPermission accountPermission
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -171,5 +172,20 @@ public static class AccountPermissions {
         }
 
         return null;
+    }
+
+    public static void addAllAccountPermissions(
+        ref Models.AccountPermissions accountPermissions
+    ) {
+        int? accountID = accountPermissions.accountID;
+        foreach (byte permissionID in accountPermissions.permissionIDs!) {
+            AccountPermission accountPermission = new AccountPermission(
+                accountID,
+                permissionID
+            );
+            addAccountPermission(
+                ref accountPermission
+            );
+        }
     }
 }
