@@ -1,30 +1,26 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using AccountManagementSystem_ClassLibrary_BusinessLayer;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 using Constants = AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants;
-using ContactInformation = AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AddAndEditAccount : Form,
                                          Loader {
-    private string selectedImagePath;
+    private static          string?           selectedImagePath;
+    private static readonly List<Permission>? permissions = Permissions.getAll();
 
     public AddAndEditAccount(
         Constants.Mode mode,
-        int            accountID = -1
+        Account?       account = null
     ) {
         InitializeComponent();
-
-        Account? account = null;
-        if (accountID != -1)
-            account = AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.get(
-                ref accountID
-            )!;
 
         switch (mode) {
             case Constants.Mode.Add:
@@ -36,6 +32,70 @@ public partial class AddAndEditAccount : Form,
                 );
             break;
         }
+    }
+
+    private void initializeFields() => clearAllFields();
+
+    private void clearAllFields() {
+        clearField(
+            ref NationalNumberAnswer
+        );
+        clearFullNameField();
+        clearField(
+            ref DateOfBirthAnswer
+        );
+        clearField(
+            ref AddressAnswer
+        );
+        clearContactInformationField();
+        clearField(
+            ref CountryNameAnswer
+        );
+        clearAccountField();
+    }
+
+    private void clearAccountField() {
+        clearField(
+            ref UsernameAnswer
+        );
+        clearField(
+            ref PasswordAnswer
+        );
+        clearField(
+            ref PermissionsQuestion
+        );
+        clearField(
+            ref AccountTypeAnswer
+        );
+        clearImageField();
+        clearField(
+            ref AccountTypeAnswer
+        );
+    }
+
+    private void clearImageField() {
+        clearField(
+            ref OpenFileDialog
+        );
+        clearField(
+            ref BrowseImageAnswerDetails
+        );
+    }
+
+    private static void clearField(
+        ref OpenFileDialog openFileDialog
+    ) => openFileDialog = new OpenFileDialog();
+
+    private static void clearField(
+        ref Label label
+    ) => label.Text = @"None";
+
+    private static void clearField(
+        ref GroupBox groupBox
+    ) {
+        foreach (Control control in groupBox.Controls)
+            if (control is CheckBox checkBox)
+                checkBox.Checked = false;
     }
 
     private void initializeModificationForm(
@@ -70,6 +130,7 @@ public partial class AddAndEditAccount : Form,
             Constants.Mode.Add
         );
         loadDataSources();
+        initializeFields();
     }
 
     private void DisableNewLine_KeyDown(
@@ -79,11 +140,11 @@ public partial class AddAndEditAccount : Form,
         e
     );
 
-    private string copyImageToImageDirectory(
+    public static string copyImageToImageDirectory(
         int? personID
     ) {
         string extension = Path.GetExtension(
-            selectedImagePath
+            selectedImagePath!
         );
         string fileName = $"{personID}{extension}";
 
@@ -107,7 +168,7 @@ public partial class AddAndEditAccount : Form,
 
         try {
             File.Copy(
-                selectedImagePath,
+                selectedImagePath!,
                 destinationFile,
                 overwrite : true
             );
@@ -130,90 +191,82 @@ public partial class AddAndEditAccount : Form,
     ) {
         if (!isValidData())
             return;
-        MessageBox.Show(
-            @"Nice"
-        );
-        FullName fullName = new FullName(
-            FirstNameAnswer.Text,
-            SecondNameAnswer.Text,
-            ThirdNameAnswer.Text,
-            FourthNameAnswer.Text
-        );
-        int fullNameID = AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.add(
-            ref fullName
-        );
 
-        string countryName = CountryNameMobileNumberAnswer.Text;
-        byte? countryID = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.get(
-                                                                                ref countryName
-                                                                            )!
-                                                                            .countryID;
-        MobileNumber mobileNumber = new MobileNumber(
-            ContactNumberAnswer.Text,
-            countryID
-        );
-        int mobileNumberID = AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.add(
-            ref mobileNumber
-        );
+        string   nationalNumber          = NationalNumberAnswer.Text;
+        string   firstName               = FirstNameAnswer.Text;
+        string   secondName              = SecondNameAnswer.Text;
+        string   thirdName               = ThirdNameAnswer.Text;
+        string   fourthName              = FourthNameAnswer.Text;
+        DateTime dateOfBirth             = DateOfBirthAnswer.Value;
+        string   address                 = AddressAnswer.Text;
+        string   countryNameMobileNumber = CountryNameMobileNumberAnswer.Text;
+        string   contactNumber           = ContactNumberAnswer.Text;
+        string   email                   = EmailAnswer.Text;
+        string   countryName             = CountryNameAnswer.Text;
+        string   imageURL                = selectedImagePath!;
+        string   username                = UsernameAnswer.Text!;
+        string   password                = PasswordAnswer.Text;
+        string   accountTypeName         = AccountTypeAnswer.Text;
 
-        ContactInformation contactInformation = new ContactInformation(
-            mobileNumberID,
-            EmailAnswer.Text
-        );
-        int contactInformationID = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation.add(
-            ref contactInformation
-        );
-
-        countryName = CountryNameAnswer.Text;
-        countryID = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.get(
-                                                                          ref countryName
-                                                                      )!
-                                                                      .countryID;
-
-        Person person = new Person(
-            NationalNumberAnswer.Text,
-            fullNameID,
-            DateOfBirthAnswer.Value,
-            AddressAnswer.Text,
-            contactInformationID,
-            countryID,
-            selectedImagePath
-        );
-
-        person.personID = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.add(
-            ref person
-        );
-
-        person.imageURL = copyImageToImageDirectory(
-            person.personID
-        );
-
-        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.update(
-            ref person
-        );
-
-        string accountTypeName = AccountTypeAnswer.Text;
-        byte? accountTypeID = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountTypes.get(
+        FullAccounts.addFullAccount(
+            ref nationalNumber,
+            ref firstName,
+            ref secondName,
+            ref thirdName,
+            ref fourthName,
+            ref dateOfBirth,
+            ref address,
+            ref countryNameMobileNumber,
+            ref contactNumber,
+            ref email,
+            ref countryName,
+            ref imageURL,
+            ref username,
+            ref password,
             ref accountTypeName
-        )!.accountTypeID;
+        );
 
-        Account account = new Account(
-            person.personID,
-            UsernameAnswer.Text,
-            PasswordAnswer.Text,
-            true,
-            accountTypeID
+
+        MessageBox.Show(
+            @"A new account has been created",
+            @"Create New Account",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
         );
-        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.add(
-            ref account
-        );
+    }
+
+    public static List<byte> getPermissionIDsFromSelectedPermissions() {
+        List<byte> permissionIDs = new();
+
+        if (PermissionsQuestion == null)
+            return permissionIDs;
+
+        foreach (Control control in PermissionsQuestion.Controls) {
+            if (control is CheckBox {Checked: true} checkBox) {
+                string permissionName = checkBox.Text;
+                Permission? permission = Permissions.get(
+                    ref permissionName
+                );
+                byte? permissionID = permission?.permissionID;
+
+                if (permissionID is not null)
+                    permissionIDs.Add(
+                        permissionID.Value
+                    );
+            }
+        }
+
+        return permissionIDs;
     }
 
     private bool isValidData() {
         bool isValid = true;
 
-        isValid &= checkField(
-            NationalNumberAnswer
+        isValid &= checkUniqueField(
+            NationalNumberAnswer,
+            Persons.isExist(
+                NationalNumberAnswer.Text
+            )
         );
         isValid &= checkField(
             FirstNameAnswer
@@ -245,8 +298,11 @@ public partial class AddAndEditAccount : Form,
         isValid &= checkField(
             CountryNameAnswer
         );
-        isValid &= checkField(
-            UsernameAnswer
+        isValid &= checkUniqueField(
+            UsernameAnswer,
+            Accounts.isExist(
+                UsernameAnswer.Text
+            )
         );
         isValid &= checkField(
             PasswordAnswer
@@ -255,7 +311,7 @@ public partial class AddAndEditAccount : Form,
             AccountTypeAnswer
         );
         isValid &= checkField(
-            selectedImagePath
+            selectedImagePath!
         );
 
         return isValid;
@@ -339,10 +395,47 @@ public partial class AddAndEditAccount : Form,
         return isValid;
     }
 
-    private bool checkField(
+    private bool checkUniqueField(
         TextBox textBox,
-        bool    isValid = true
+        bool    targetFound
     ) {
+        bool isValid = checkField(
+            textBox
+        );
+
+        if (!isValid)
+            return false;
+
+        if (targetFound) {
+            ErrorProvider.SetError(
+                textBox,
+                Utilities.Constants.ErrorMessages.NOT_UNIQUE
+            );
+            isValid = false;
+        } else {
+            ErrorProvider.SetError(
+                textBox,
+                string.Empty
+            );
+        }
+
+        return isValid;
+    }
+
+    private bool checkField(
+        TextBox textBox
+    ) {
+        bool isValid = isFieldNotEmpty(
+            textBox
+        );
+
+        return isValid;
+    }
+
+    private bool isFieldNotEmpty(
+        TextBox textBox
+    ) {
+        bool isValid = true;
         if (
             string.IsNullOrWhiteSpace(
                 textBox.Text
@@ -366,6 +459,20 @@ public partial class AddAndEditAccount : Form,
         object    sender,
         EventArgs e
     ) {
+        if (
+            !isFieldNotEmpty(
+                NationalNumberAnswer
+            )
+        ) {
+            MessageBox.Show(
+                @"Enter National Number",
+                @"Browse Image",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return;
+        }
+
         using OpenFileDialog openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = @$"Image Files|*.{
             string.Join(
@@ -390,15 +497,84 @@ public partial class AddAndEditAccount : Form,
     public void loadDataSources() {
         Loader.loadDataSource(
             CountryNameMobileNumberAnswer,
-            AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAllCountryNames()
+            Countries.getAllCountryNames()
         );
         Loader.loadDataSource(
             CountryNameAnswer,
-            AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAllCountryNames()
+            Countries.getAllCountryNames()
         );
         Loader.loadDataSource(
             AccountTypeAnswer,
-            AccountManagementSystem_ClassLibrary_BusinessLayer.AccountTypes.getAllAccountTypeNames()
+            AccountTypes.getAllAccountTypeNames()
         );
     }
+
+    private void ClearFields_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        clearAllFields();
+        clearAllErrors(
+            this
+        );
+    }
+
+    private void clearAllErrors(
+        Control parent
+    ) {
+        foreach (Control control in parent.Controls) {
+            ErrorProvider.SetError(
+                control,
+                string.Empty
+            );
+
+            if (control.HasChildren)
+                clearAllErrors(
+                    control
+                );
+        }
+    }
+
+    private void clearContactInformationField() {
+        clearMobileNumberField();
+        clearField(
+            ref EmailAnswer
+        );
+    }
+
+    private void clearMobileNumberField() {
+        clearField(
+            ref ContactNumberAnswer
+        );
+        clearField(
+            ref CountryNameMobileNumberAnswer
+        );
+    }
+
+    private void clearFullNameField() {
+        clearField(
+            ref FirstNameAnswer
+        );
+        clearField(
+            ref SecondNameAnswer
+        );
+        clearField(
+            ref ThirdNameAnswer
+        );
+        clearField(
+            ref FourthNameAnswer
+        );
+    }
+
+    private static void clearField(
+        ref DateTimePicker dateTimePicker
+    ) => dateTimePicker.Value = DateTime.Now;
+
+    private static void clearField(
+        ref ComboBox comboBox
+    ) => comboBox.SelectedIndex = -1;
+
+    private static void clearField(
+        ref TextBox textBox
+    ) => textBox.Clear();
 }

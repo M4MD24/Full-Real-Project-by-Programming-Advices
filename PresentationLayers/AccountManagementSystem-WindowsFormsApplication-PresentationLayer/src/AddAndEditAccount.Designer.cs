@@ -81,6 +81,7 @@ partial class AddAndEditAccount {
             components
         );
         OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+        ClearFields    = new System.Windows.Forms.Button();
         PermissionsQuestion.SuspendLayout();
         FullNameQuestion.SuspendLayout();
         ContactInformationQuestion.SuspendLayout();
@@ -676,6 +677,7 @@ partial class AddAndEditAccount {
             245,
             23
         );
+        CountryNameMobileNumberAnswer.Sorted   = true;
         CountryNameMobileNumberAnswer.TabIndex = 20;
         // 
         // ContactNumberAnswer
@@ -792,6 +794,7 @@ partial class AddAndEditAccount {
             300,
             23
         );
+        CountryNameAnswer.Sorted   = true;
         CountryNameAnswer.TabIndex = 24;
         // 
         // AccountQuestion
@@ -875,12 +878,12 @@ partial class AddAndEditAccount {
         );
         BrowseImageAnswerDetails.Location = new System.Drawing.Point(
             130,
-            30
+            20
         );
         BrowseImageAnswerDetails.Name = "BrowseImageAnswerDetails";
         BrowseImageAnswerDetails.Size = new System.Drawing.Size(
             250,
-            25
+            45
         );
         BrowseImageAnswerDetails.TabIndex  = 42;
         BrowseImageAnswerDetails.Text      = "None";
@@ -965,6 +968,7 @@ partial class AddAndEditAccount {
             270,
             23
         );
+        AccountTypeAnswer.Sorted   = true;
         AccountTypeAnswer.TabIndex = 39;
         // 
         // PasswordQuestion
@@ -1033,15 +1037,15 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         Submit.Location = new System.Drawing.Point(
-            670,
+            520,
             375
         );
         Submit.Name = "Submit";
         Submit.Size = new System.Drawing.Size(
-            140,
+            275,
             50
         );
-        Submit.TabIndex                =  43;
+        Submit.TabIndex                =  44;
         Submit.Text                    =  "Submit";
         Submit.UseVisualStyleBackColor =  true;
         Submit.Click                   += Submit_Click;
@@ -1054,6 +1058,27 @@ partial class AddAndEditAccount {
         // 
         OpenFileDialog.FileName = "Open File Dialog";
         // 
+        // ClearFields
+        // 
+        ClearFields.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        ClearFields.Location = new System.Drawing.Point(
+            810,
+            375
+        );
+        ClearFields.Name = "ClearFields";
+        ClearFields.Size = new System.Drawing.Size(
+            150,
+            50
+        );
+        ClearFields.TabIndex                =  43;
+        ClearFields.Text                    =  "Clear";
+        ClearFields.UseVisualStyleBackColor =  true;
+        ClearFields.Click                   += ClearFields_Click;
+        // 
         // AddAndEditAccount
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
@@ -1065,6 +1090,9 @@ partial class AddAndEditAccount {
         ClientSize = new System.Drawing.Size(
             984,
             621
+        );
+        Controls.Add(
+            ClearFields
         );
         Controls.Add(
             Submit
@@ -1132,53 +1160,54 @@ partial class AddAndEditAccount {
         PerformLayout();
     }
 
-    private System.Windows.Forms.Label          BrowseImageAnswerDetails;
-    private System.Windows.Forms.GroupBox       ImageQuestion;
-    private System.Windows.Forms.Button         BrowseImageAnswer;
-    private System.Windows.Forms.OpenFileDialog OpenFileDialog;
-    private System.Windows.Forms.ErrorProvider  ErrorProvider;
-    private System.Windows.Forms.CheckBox       TestPermission;
-    private System.Windows.Forms.CheckBox       RetestPermission;
-    private System.Windows.Forms.CheckBox       UnlockLicensesPermission;
-    private System.Windows.Forms.Label          AccountTypeQuestion;
-    private System.Windows.Forms.ComboBox       AccountTypeAnswer;
-    private System.Windows.Forms.Button         Submit;
-    private System.Windows.Forms.CheckBox       ReadAndSearchPermission;
-    private System.Windows.Forms.CheckBox       DeletePermission;
-    private System.Windows.Forms.CheckBox       CreatePermission;
-    private System.Windows.Forms.TextBox        PasswordAnswer;
-    private System.Windows.Forms.Label          PasswordQuestion;
-    private System.Windows.Forms.GroupBox       AccountQuestion;
-    private System.Windows.Forms.TextBox        UsernameAnswer;
-    private System.Windows.Forms.Label          UsernameQuestion;
-    private System.Windows.Forms.Label          CountryNameQuestion;
-    private System.Windows.Forms.ComboBox       CountryNameAnswer;
-    private System.Windows.Forms.Label          CountryNameMobileNumberQuestion;
-    private System.Windows.Forms.ComboBox       CountryNameMobileNumberAnswer;
-    private System.Windows.Forms.GroupBox       MobileNumberQuestion;
-    private System.Windows.Forms.TextBox        ContactNumberAnswer;
-    private System.Windows.Forms.Label          ContactNumberQuestion;
-    private System.Windows.Forms.TextBox        EmailAnswer;
-    private System.Windows.Forms.Label          EmailQuestion;
-    private System.Windows.Forms.GroupBox       ContactInformationQuestion;
-    private System.Windows.Forms.TextBox        AddressAnswer;
-    private System.Windows.Forms.Label          AddressQuestion;
-    private System.Windows.Forms.CheckBox       EditPermission;
-    private System.Windows.Forms.Label          DateOfBirthQuestion;
-    private System.Windows.Forms.DateTimePicker DateOfBirthAnswer;
-    private System.Windows.Forms.TextBox        SecondNameAnswer;
-    private System.Windows.Forms.Label          SecondNameQuestion;
-    private System.Windows.Forms.TextBox        ThirdNameAnswer;
-    private System.Windows.Forms.Label          ThirdNameQuestion;
-    private System.Windows.Forms.TextBox        FourthNameAnswer;
-    private System.Windows.Forms.Label          FourthNameQuestion;
-    private System.Windows.Forms.TextBox        FirstNameAnswer;
-    private System.Windows.Forms.Label          FirstNameQuestion;
-    private System.Windows.Forms.TextBox        NationalNumberAnswer;
-    private System.Windows.Forms.ColorDialog    DataOfBirthDialog;
-    private System.Windows.Forms.Label          NationalNumberQuestion;
-    private System.Windows.Forms.GroupBox       PermissionsQuestion;
-    private System.Windows.Forms.GroupBox       FullNameQuestion;
+    private        System.Windows.Forms.Button         ClearFields;
+    private        System.Windows.Forms.Label          BrowseImageAnswerDetails;
+    private        System.Windows.Forms.GroupBox       ImageQuestion;
+    private        System.Windows.Forms.Button         BrowseImageAnswer;
+    private        System.Windows.Forms.OpenFileDialog OpenFileDialog;
+    private        System.Windows.Forms.ErrorProvider  ErrorProvider;
+    private        System.Windows.Forms.CheckBox       TestPermission;
+    private        System.Windows.Forms.CheckBox       RetestPermission;
+    private        System.Windows.Forms.CheckBox       UnlockLicensesPermission;
+    private        System.Windows.Forms.Label          AccountTypeQuestion;
+    private        System.Windows.Forms.ComboBox       AccountTypeAnswer;
+    private        System.Windows.Forms.Button         Submit;
+    private        System.Windows.Forms.CheckBox       ReadAndSearchPermission;
+    private        System.Windows.Forms.CheckBox       DeletePermission;
+    private        System.Windows.Forms.CheckBox       CreatePermission;
+    private        System.Windows.Forms.TextBox        PasswordAnswer;
+    private        System.Windows.Forms.Label          PasswordQuestion;
+    private        System.Windows.Forms.GroupBox       AccountQuestion;
+    private        System.Windows.Forms.TextBox        UsernameAnswer;
+    private        System.Windows.Forms.Label          UsernameQuestion;
+    private        System.Windows.Forms.Label          CountryNameQuestion;
+    private        System.Windows.Forms.ComboBox       CountryNameAnswer;
+    private        System.Windows.Forms.Label          CountryNameMobileNumberQuestion;
+    private        System.Windows.Forms.ComboBox       CountryNameMobileNumberAnswer;
+    private        System.Windows.Forms.GroupBox       MobileNumberQuestion;
+    private        System.Windows.Forms.TextBox        ContactNumberAnswer;
+    private        System.Windows.Forms.Label          ContactNumberQuestion;
+    private        System.Windows.Forms.TextBox        EmailAnswer;
+    private        System.Windows.Forms.Label          EmailQuestion;
+    private        System.Windows.Forms.GroupBox       ContactInformationQuestion;
+    private        System.Windows.Forms.TextBox        AddressAnswer;
+    private        System.Windows.Forms.Label          AddressQuestion;
+    private        System.Windows.Forms.CheckBox       EditPermission;
+    private        System.Windows.Forms.Label          DateOfBirthQuestion;
+    private        System.Windows.Forms.DateTimePicker DateOfBirthAnswer;
+    private        System.Windows.Forms.TextBox        SecondNameAnswer;
+    private        System.Windows.Forms.Label          SecondNameQuestion;
+    private        System.Windows.Forms.TextBox        ThirdNameAnswer;
+    private        System.Windows.Forms.Label          ThirdNameQuestion;
+    private        System.Windows.Forms.TextBox        FourthNameAnswer;
+    private        System.Windows.Forms.Label          FourthNameQuestion;
+    private        System.Windows.Forms.TextBox        FirstNameAnswer;
+    private        System.Windows.Forms.Label          FirstNameQuestion;
+    private        System.Windows.Forms.TextBox        NationalNumberAnswer;
+    private        System.Windows.Forms.ColorDialog    DataOfBirthDialog;
+    private        System.Windows.Forms.Label          NationalNumberQuestion;
+    private static System.Windows.Forms.GroupBox       PermissionsQuestion;
+    private        System.Windows.Forms.GroupBox       FullNameQuestion;
 
     #endregion
 }

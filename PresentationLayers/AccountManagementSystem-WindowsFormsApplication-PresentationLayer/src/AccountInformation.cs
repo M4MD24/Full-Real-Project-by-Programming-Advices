@@ -5,7 +5,7 @@ namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AccountInformation : Form {
     public AccountInformation(
-        ref int accountID
+        ref int? accountID
     ) {
         InitializeComponent();
 

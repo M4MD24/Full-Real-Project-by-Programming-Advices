@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using Svg;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
@@ -78,9 +76,9 @@ public static class Tools {
         }
 
         public static void deleteImageByPersonID(
-            ref int? personID
+            ref string? nationalNumber
         ) {
-            if (personID is null)
+            if (nationalNumber is null)
                 return;
 
             string imageDirectory = Path.Combine(
@@ -93,7 +91,7 @@ public static class Tools {
             foreach (string extension in Constants.imageExtensions) {
                 string possiblePath = Path.Combine(
                     imageDirectory,
-                    $"{personID}.{extension}"
+                    $"{nationalNumber}.{extension}"
                 );
 
                 if (

@@ -14,7 +14,8 @@ public static class Constants {
     private const byte TARGET_AGE = 5;
 
     public static class ErrorMessages {
-        public const           string EMPTY             = "Is Empty";
+        public const string EMPTY      = "Is Empty",
+                            NOT_UNIQUE = "Isn't Unique";
         public static readonly string lessThanTargetAge = $"Less Than {TARGET_AGE}";
     }
 }

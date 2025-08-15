@@ -256,14 +256,21 @@ public partial class App : Form,
         e
     );
 
-    private static void newAccount_Click(
+    private void newAccount_Click(
         object    sender,
         EventArgs e
     ) {
-        new AddAndEditAccount(
+        AddAndEditAccount addAndEditAccount = new AddAndEditAccount(
             AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Add
-        ).Show();
+        );
+        addAndEditAccount.FormClosed += addAndEditAccount_FormClosed!;
+        addAndEditAccount.Show();
     }
+
+    private void addAndEditAccount_FormClosed(
+        object              sender,
+        FormClosedEventArgs e
+    ) => loadAccounts();
 
     private static void countries_Click(
         object    sender,
@@ -404,12 +411,7 @@ public partial class App : Form,
             );
         }
 
-        MessageBox.Show(
-            @"Select Account",
-            @"Account isn't Selected",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning
-        );
+        accountNotSelectedWarning();
 
         return -1;
     }
@@ -472,8 +474,8 @@ public partial class App : Form,
     }
 
     private static void accountNotSelectedWarning() => MessageBox.Show(
+        @"You Must Select Thing!",
         @"Account isn't Selected",
-        "",
         MessageBoxButtons.OK,
         MessageBoxIcon.Warning
     );
@@ -482,7 +484,7 @@ public partial class App : Form,
         object    sender,
         EventArgs e
     ) {
-        int accountID = getAccountID_FromSelectedRow();
+        int? accountID = getAccountID_FromSelectedRow();
 
         if (accountID == -1)
             return;
@@ -495,7 +497,19 @@ public partial class App : Form,
     private void AccountUpdateOption_Click(
         object    sender,
         EventArgs e
-    ) {}
+    ) {
+        Account account = getAccount_FromSelectedRow();
+
+        if (account is null)
+            return;
+
+        AddAndEditAccount addAndEditAccount = new AddAndEditAccount(
+            AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Update,
+            account
+        );
+        addAndEditAccount.FormClosed += addAndEditAccount_FormClosed!;
+        addAndEditAccount.Show();
+    }
 
     private void AccountDeleteOption_Click(
         object    sender,
@@ -558,6 +572,9 @@ public partial class App : Form,
         );
         AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.delete(
             ref mobileNumberID
+        );
+        AccountManagementSystem_ClassLibrary_BusinessLayer.AccountPermissions.deleteAll(
+            ref accountID
         );
     }
 }
