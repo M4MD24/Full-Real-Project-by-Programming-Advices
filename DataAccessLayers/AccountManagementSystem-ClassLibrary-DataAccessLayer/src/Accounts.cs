@@ -145,30 +145,25 @@ public static class Accounts {
         return rowAffected;
     }
 
-    public static int setActiveStatusbyAccountID(
-        ref int  accountID,
-        ref bool isActive
+    public static int changeStatusbyAccountID(
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
 
-        const string SET_ACTIVE_STATUS_BY_ACCOUNT_ID = """
-                                                       USE DriverAndVehicleLicenseDepartment
-                                                       UPDATE AccountManagementSystem.Accounts
-                                                       SET IsActive = @isActive
-                                                       WHERE AccountID = @accountID
-                                                       """;
+        const string CHANGE_STATUS_BY_ACCOUNT_ID = """
+                                                   USE DriverAndVehicleLicenseDepartment
+                                                   UPDATE AccountManagementSystem.Accounts
+                                                   SET IsActive = ~IsActive
+                                                   WHERE AccountID = @accountID
+                                                   """;
 
         SqlCommand sqlCommand = new SqlCommand(
-            SET_ACTIVE_STATUS_BY_ACCOUNT_ID,
+            CHANGE_STATUS_BY_ACCOUNT_ID,
             sqlConnection
         );
 
-        sqlCommand.Parameters.AddWithValue(
-            "@isActive",
-            isActive
-        );
         sqlCommand.Parameters.AddWithValue(
             "@accountID",
             accountID

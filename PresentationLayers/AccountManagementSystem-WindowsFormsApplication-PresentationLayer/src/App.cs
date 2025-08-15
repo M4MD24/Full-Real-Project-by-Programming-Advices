@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using AccountManagementSystem_ClassLibrary_BusinessLayer;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
@@ -37,7 +38,7 @@ public partial class App : Form,
 
     private void loadAccounts() => Loader.loadDataSource(
         AccountList,
-        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.getAll()
+        Accounts.getAll()
     );
 
     private void loadIconButtons() {
@@ -97,6 +98,10 @@ public partial class App : Form,
 
         AccountDeleteOption.Image = loadIcon(
             "PersonRemove"
+        );
+
+        ChangeStatusOption.Image = loadIcon(
+            "SwapHorizontal"
         );
     }
 
@@ -547,5 +552,30 @@ public partial class App : Form,
             ref account
         );
         loadAccounts();
+    }
+
+    private void ChangeStatusOption_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        int? accountID = getAccountID_FromSelectedRow();
+
+        if (accountID == -1)
+            return;
+
+        DialogResult result = MessageBox.Show(
+            @$"Are you change status {accountID}?",
+            @"Change Status",
+            MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1
+        );
+
+        if (result == DialogResult.OK) {
+            Accounts.changeStatus(
+                ref accountID
+            );
+            loadAccounts();
+        }
     }
 }

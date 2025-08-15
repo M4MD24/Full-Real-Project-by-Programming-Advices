@@ -44,6 +44,7 @@ partial class App {
         AccountInformationOption = new System.Windows.Forms.ToolStripMenuItem();
         AccountUpdateOption      = new System.Windows.Forms.ToolStripMenuItem();
         AccountDeleteOption      = new System.Windows.Forms.ToolStripMenuItem();
+        ChangeStatusOption       = new System.Windows.Forms.ToolStripMenuItem();
         ((System.ComponentModel.ISupportInitialize) AccountList).BeginInit();
         AccountListMenuStrip.SuspendLayout();
         SuspendLayout();
@@ -160,20 +161,21 @@ partial class App {
             new System.Windows.Forms.ToolStripItem[] {
                 AccountInformationOption,
                 AccountUpdateOption,
-                AccountDeleteOption
+                AccountDeleteOption,
+                ChangeStatusOption
             }
         );
         AccountListMenuStrip.Name = "AccountListMenuStrip";
         AccountListMenuStrip.Size = new System.Drawing.Size(
-            138,
-            70
+            181,
+            114
         );
         // 
         // AccountInformationOption
         // 
         AccountInformationOption.Name = "AccountInformationOption";
         AccountInformationOption.Size = new System.Drawing.Size(
-            137,
+            180,
             22
         );
         AccountInformationOption.Text  =  "Information";
@@ -183,7 +185,7 @@ partial class App {
         // 
         AccountUpdateOption.Name = "AccountUpdateOption";
         AccountUpdateOption.Size = new System.Drawing.Size(
-            137,
+            180,
             22
         );
         AccountUpdateOption.Text  =  "Update";
@@ -193,12 +195,22 @@ partial class App {
         // 
         AccountDeleteOption.Name = "AccountDeleteOption";
         AccountDeleteOption.Size = new System.Drawing.Size(
-            137,
+            180,
             22
         );
         AccountDeleteOption.Text  =  "Delete";
         AccountDeleteOption.Click += AccountDeleteOption_Click;
-        // 
+        //
+        // ChangeStatusOption
+        //
+        ChangeStatusOption.Name = "ChangeStatusOption";
+        ChangeStatusOption.Size = new System.Drawing.Size(
+            180,
+            22
+        );
+        ChangeStatusOption.Text  =  "Change Status";
+        ChangeStatusOption.Click += ChangeStatusOption_Click;
+        //
         // App
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
@@ -243,6 +255,8 @@ partial class App {
         );
         PerformLayout();
     }
+
+    private System.Windows.Forms.ToolStripMenuItem ChangeStatusOption;
 
     private System.Windows.Forms.ToolStripMenuItem AccountInformationOption;
     private System.Windows.Forms.ToolStripMenuItem AccountUpdateOption;

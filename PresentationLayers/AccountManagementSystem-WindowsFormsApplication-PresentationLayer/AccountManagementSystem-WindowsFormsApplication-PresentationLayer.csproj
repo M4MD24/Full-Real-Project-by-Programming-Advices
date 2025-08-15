@@ -36,6 +36,7 @@
         <EmbeddedResource Include="Resources\Icons\PersonRemove.svg"/>
         <EmbeddedResource Include="Resources\Icons\PersonAdd.ico"/>
         <EmbeddedResource Include="Resources\Icons\PersonEdit.ico"/>
+        <EmbeddedResource Include="Resources\Icons\SwapHorizontal.svg"/>
     </ItemGroup>
 
     <ItemGroup>

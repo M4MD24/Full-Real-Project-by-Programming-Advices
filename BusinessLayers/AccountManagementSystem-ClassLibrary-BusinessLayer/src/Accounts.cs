@@ -35,4 +35,10 @@ public static class Accounts {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.isAccountExistByUsername(
         ref username
     );
+
+    public static int changeStatus(
+        ref int? accountID
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.changeStatusbyAccountID(
+        ref accountID
+    );
 }
