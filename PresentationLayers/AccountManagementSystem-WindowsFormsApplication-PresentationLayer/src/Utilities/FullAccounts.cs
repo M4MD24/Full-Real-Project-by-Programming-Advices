@@ -81,7 +81,7 @@ public static class FullAccounts {
         );
     }
 
-    public static void addFullAccount(
+    public static void add(
         ref string   nationalNumber,
         ref string   firstName,
         ref string   secondName,
@@ -178,6 +178,51 @@ public static class FullAccounts {
         );
         AccountPermissions.addAll(
             ref accountPermissions
+        );
+    }
+
+    public static void delete(
+        ref Account account
+    ) {
+        int? accountID = account.accountID,
+             personID  = account.personID;
+        Person person = Persons.get(
+            ref personID
+        )!;
+        int? fullNameID           = person.fullNameID,
+             contactInformationID = person.contactInformationID;
+        string? imageURL = person.imageURL;
+        AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation contactInformation = ContactInformation.get(
+            ref contactInformationID
+        )!;
+        int? mobileNumberID = contactInformation.mobileNumberID;
+
+        AccountPermissions.deleteAll(
+            ref accountID
+        );
+
+        Accounts.delete(
+            ref accountID
+        );
+
+        Persons.delete(
+            ref personID
+        );
+
+        Tools.ImageTools.deleteImage(
+            imageURL!
+        );
+
+        FullNames.delete(
+            ref fullNameID
+        );
+
+        ContactInformation.delete(
+            ref contactInformationID
+        );
+
+        MobileNumbers.delete(
+            ref mobileNumberID
         );
     }
 }

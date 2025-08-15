@@ -509,6 +509,7 @@ public partial class App : Form,
         );
         addAndEditAccount.FormClosed += addAndEditAccount_FormClosed!;
         addAndEditAccount.Show();
+        loadAccounts();
     }
 
     private void AccountDeleteOption_Click(
@@ -542,39 +543,9 @@ public partial class App : Form,
     private void deleteSelectedAccount(
         ref Account account
     ) {
-        int? accountID = account.accountID,
-             personID  = account.personID;
-        Person person = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.get(
-            ref personID
-        )!;
-        int? fullNameID           = person.fullNameID,
-             contactInformationID = person.contactInformationID;
-        string? imageURL = person.imageURL;
-        ContactInformation contactInformation = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation.get(
-            ref contactInformationID
-        )!;
-        int? mobileNumberID = contactInformation.mobileNumberID;
-
-        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.delete(
-            ref accountID
+        FullAccounts.delete(
+            ref account
         );
-        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.delete(
-            ref personID
-        );
-        Tools.ImageTools.deleteImage(
-            imageURL!
-        );
-        AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.delete(
-            ref fullNameID
-        );
-        AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation.delete(
-            ref contactInformationID
-        );
-        AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.delete(
-            ref mobileNumberID
-        );
-        AccountManagementSystem_ClassLibrary_BusinessLayer.AccountPermissions.deleteAll(
-            ref accountID
-        );
+        loadAccounts();
     }
 }

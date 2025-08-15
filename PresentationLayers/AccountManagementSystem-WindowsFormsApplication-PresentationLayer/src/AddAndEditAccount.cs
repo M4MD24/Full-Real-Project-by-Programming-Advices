@@ -13,14 +13,16 @@ namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AddAndEditAccount : Form,
                                          Loader {
-    private static          string?           selectedImagePath;
-    private static readonly List<Permission>? permissions = Permissions.getAll();
+    private static   string?        selectedImagePath;
+    private readonly Constants.Mode selectedMode;
 
     public AddAndEditAccount(
         Constants.Mode mode,
         Account?       account = null
     ) {
         InitializeComponent();
+
+        selectedMode = mode;
 
         switch (mode) {
             case Constants.Mode.Add:
@@ -208,31 +210,39 @@ public partial class AddAndEditAccount : Form,
         string   password                = PasswordAnswer.Text;
         string   accountTypeName         = AccountTypeAnswer.Text;
 
-        FullAccounts.addFullAccount(
-            ref nationalNumber,
-            ref firstName,
-            ref secondName,
-            ref thirdName,
-            ref fourthName,
-            ref dateOfBirth,
-            ref address,
-            ref countryNameMobileNumber,
-            ref contactNumber,
-            ref email,
-            ref countryName,
-            ref imageURL,
-            ref username,
-            ref password,
-            ref accountTypeName
-        );
+        switch (selectedMode) {
+            case Constants.Mode.Add:
+                FullAccounts.add(
+                    ref nationalNumber,
+                    ref firstName,
+                    ref secondName,
+                    ref thirdName,
+                    ref fourthName,
+                    ref dateOfBirth,
+                    ref address,
+                    ref countryNameMobileNumber,
+                    ref contactNumber,
+                    ref email,
+                    ref countryName,
+                    ref imageURL,
+                    ref username,
+                    ref password,
+                    ref accountTypeName
+                );
 
+                MessageBox.Show(
+                    @"A new account has been created",
+                    @"Create New Account",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            break;
+            case Constants.Mode.Update:
 
-        MessageBox.Show(
-            @"A new account has been created",
-            @"Create New Account",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information
-        );
+            break;
+        }
+
+        Close();
     }
 
     public static List<byte> getPermissionIDsFromSelectedPermissions() {

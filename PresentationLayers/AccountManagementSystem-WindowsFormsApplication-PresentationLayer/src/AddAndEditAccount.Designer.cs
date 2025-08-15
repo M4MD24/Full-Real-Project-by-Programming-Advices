@@ -207,11 +207,12 @@ partial class AddAndEditAccount {
         );
         ReadAndSearchPermission.Name = "ReadAndSearchPermission";
         ReadAndSearchPermission.Size = new System.Drawing.Size(
-            110,
+            120,
             20
         );
         ReadAndSearchPermission.TabIndex                = 32;
-        ReadAndSearchPermission.Text                    = "Read && Search";
+        ReadAndSearchPermission.Tag                     = "";
+        ReadAndSearchPermission.Text                    = "Read and Search";
         ReadAndSearchPermission.UseVisualStyleBackColor = true;
         // 
         // DeletePermission
@@ -222,7 +223,7 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         DeletePermission.Location = new System.Drawing.Point(
-            275,
+            285,
             30
         );
         DeletePermission.Name = "DeletePermission";
@@ -242,7 +243,7 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         EditPermission.Location = new System.Drawing.Point(
-            215,
+            225,
             30
         );
         EditPermission.Name = "EditPermission";
