@@ -2,7 +2,7 @@
 
 namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
-public class MobileNumbers {
+public static class MobileNumbers {
     public static int update(
         ref MobileNumber mobileNumber
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.MobileNumbers.updateMobileNumberByMobileNumberID(
@@ -22,7 +22,7 @@ public class MobileNumbers {
     );
 
     public static MobileNumber? get(
-        ref int mobileNumberID
+        ref int? mobileNumberID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.MobileNumbers.getMobileNumberByMobileNumberID(
         ref mobileNumberID
     );

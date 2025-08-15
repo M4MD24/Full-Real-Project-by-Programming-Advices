@@ -1,6 +1,6 @@
 ﻿namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
-public class ContactInformation {
+public static class ContactInformation {
     public static int update(
         ref AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation contactInformation
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.ContactInformation.updateContactInformationByContactInformationID(

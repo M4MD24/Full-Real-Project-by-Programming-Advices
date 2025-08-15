@@ -27,7 +27,7 @@ public static class Countries {
     public static List<Country>? getAll() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getAllCountries();
 
     public static Country? get(
-        ref byte countryID
+        ref byte? countryID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Countries.getCountryByCountryID(
         ref countryID
     );
