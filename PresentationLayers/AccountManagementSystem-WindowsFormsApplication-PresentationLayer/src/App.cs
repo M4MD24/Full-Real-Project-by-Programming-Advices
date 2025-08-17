@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
+using AccountManagementSystem_ClassLibrary_BusinessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
@@ -30,34 +31,6 @@ public partial class App : Form,
             Image PersonRemove,
             Image SwapHorizontal
             ) accountListMenuStripIcons = loadAccountListMenuStripIcons();
-
-    private static(
-            Image Person,
-            Image PersonEdit,
-            Image PersonRemove,
-            Image SwapHorizontal
-            ) loadAccountListMenuStripIcons() => (
-                                                     Person : loadIcon(
-                                                         "Person",
-                                                         20,
-                                                         20
-                                                     ),
-                                                     PersonEdit : loadIcon(
-                                                         "PersonEdit",
-                                                         20,
-                                                         20
-                                                     ),
-                                                     PersonRemove : loadIcon(
-                                                         "PersonRemove",
-                                                         20,
-                                                         20
-                                                     ),
-                                                     SwapHorizontal : loadIcon(
-                                                         "SwapHorizontal",
-                                                         20,
-                                                         20
-                                                     )
-                                                 );
 
     public App() {
         InitializeComponent();
@@ -274,6 +247,34 @@ public partial class App : Form,
                                               "TelegramLogo"
                                           )
                                       );
+
+    private static(
+            Image Person,
+            Image PersonEdit,
+            Image PersonRemove,
+            Image SwapHorizontal
+            ) loadAccountListMenuStripIcons() => (
+                                                     Person : loadIcon(
+                                                         "Person",
+                                                         20,
+                                                         20
+                                                     ),
+                                                     PersonEdit : loadIcon(
+                                                         "PersonEdit",
+                                                         20,
+                                                         20
+                                                     ),
+                                                     PersonRemove : loadIcon(
+                                                         "PersonRemove",
+                                                         20,
+                                                         20
+                                                     ),
+                                                     SwapHorizontal : loadIcon(
+                                                         "SwapHorizontal",
+                                                         20,
+                                                         20
+                                                     )
+                                                 );
 
     private static Image loadIcon(
         string name,
@@ -534,14 +535,18 @@ public partial class App : Form,
         object    sender,
         EventArgs e
     ) {
-        Account account = getAccount_FromSelectedRow();
+        int? accountID = getAccountID_FromSelectedRow();
 
-        if (account is null)
+        if (accountID == -1)
             return;
+
+        FullAccount fullAccount = FullAccounts.get(
+            ref accountID
+        );
 
         AddAndEditAccount addAndEditAccount = new AddAndEditAccount(
             AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Update,
-            account
+            fullAccount
         );
         addAndEditAccount.FormClosed += addAndEditAccount_FormClosed!;
         addAndEditAccount.Show();

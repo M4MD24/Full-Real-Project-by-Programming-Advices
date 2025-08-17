@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
+using AccountManagementSystem_ClassLibrary_BusinessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 using Constants = AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants;
@@ -18,7 +19,7 @@ public partial class AddAndEditAccount : Form,
 
     public AddAndEditAccount(
         Constants.Mode mode,
-        Account?       account = null
+        FullAccount?   fullAccount = null
     ) {
         InitializeComponent();
 
@@ -30,7 +31,7 @@ public partial class AddAndEditAccount : Form,
             break;
             case Constants.Mode.Update:
                 initializeModificationForm(
-                    ref account!
+                    ref fullAccount!
                 );
             break;
         }
@@ -73,6 +74,9 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref AccountTypeAnswer
         );
+        clearField(
+            ref ImageAnswer
+        );
     }
 
     private void clearImageField() {
@@ -101,13 +105,20 @@ public partial class AddAndEditAccount : Form,
     }
 
     private void initializeModificationForm(
-        ref Account account
+        ref FullAccount fullAccount
     ) {
-        Text = $@"Update {account.accountID}";
+        Text = $@"Update {fullAccount.accountID}";
         setIcon(
             Constants.Mode.Update
         );
+        loadData(
+            fullAccount
+        );
     }
+
+    private void loadData(
+        FullAccount fullAccount
+    ) {}
 
     private void setIcon(
         Constants.Mode mode
@@ -502,6 +513,13 @@ public partial class AddAndEditAccount : Form,
         );
 
         selectedImagePath = filePath;
+
+        Image image = Image.FromFile(
+            filePath
+        );
+        ImageAnswer.Image = new Bitmap(
+            image
+        );
     }
 
     public void loadDataSources() {
@@ -575,6 +593,10 @@ public partial class AddAndEditAccount : Form,
             ref FourthNameAnswer
         );
     }
+
+    private static void clearField(
+        ref PictureBox pictureBox
+    ) => pictureBox.Image = null;
 
     private static void clearField(
         ref DateTimePicker dateTimePicker

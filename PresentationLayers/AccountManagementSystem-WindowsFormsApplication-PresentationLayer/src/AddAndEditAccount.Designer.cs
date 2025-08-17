@@ -68,6 +68,7 @@ partial class AddAndEditAccount {
         CountryNameAnswer               = new System.Windows.Forms.ComboBox();
         AccountQuestion                 = new System.Windows.Forms.GroupBox();
         ImageQuestion                   = new System.Windows.Forms.GroupBox();
+        ImageAnswer                     = new System.Windows.Forms.PictureBox();
         BrowseImageAnswerDetails        = new System.Windows.Forms.Label();
         BrowseImageAnswer               = new System.Windows.Forms.Button();
         AccountTypeQuestion             = new System.Windows.Forms.Label();
@@ -88,6 +89,7 @@ partial class AddAndEditAccount {
         MobileNumberQuestion.SuspendLayout();
         AccountQuestion.SuspendLayout();
         ImageQuestion.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize) ImageAnswer).BeginInit();
         ((System.ComponentModel.ISupportInitialize) ErrorProvider).BeginInit();
         SuspendLayout();
         // 
@@ -836,7 +838,7 @@ partial class AddAndEditAccount {
         AccountQuestion.Name = "AccountQuestion";
         AccountQuestion.Size = new System.Drawing.Size(
             440,
-            335
+            490
         );
         AccountQuestion.TabIndex = 25;
         AccountQuestion.TabStop  = false;
@@ -844,6 +846,9 @@ partial class AddAndEditAccount {
         // 
         // ImageQuestion
         // 
+        ImageQuestion.Controls.Add(
+            ImageAnswer
+        );
         ImageQuestion.Controls.Add(
             BrowseImageAnswerDetails
         );
@@ -864,31 +869,50 @@ partial class AddAndEditAccount {
         ImageQuestion.Name = "ImageQuestion";
         ImageQuestion.Size = new System.Drawing.Size(
             400,
-            75
+            230
         );
         ImageQuestion.TabIndex = 40;
         ImageQuestion.TabStop  = false;
         ImageQuestion.Text     = "Image";
         // 
+        // ImageAnswer
+        // 
+        ImageAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        ImageAnswer.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        ImageAnswer.Name = "ImageAnswer";
+        ImageAnswer.Size = new System.Drawing.Size(
+            180,
+            180
+        );
+        ImageAnswer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+        ImageAnswer.TabIndex = 43;
+        ImageAnswer.TabStop  = false;
+        // 
         // BrowseImageAnswerDetails
         // 
+        BrowseImageAnswerDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         BrowseImageAnswerDetails.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
             System.Drawing.FontStyle.Bold
         );
         BrowseImageAnswerDetails.Location = new System.Drawing.Point(
-            130,
-            20
+            220,
+            100
         );
         BrowseImageAnswerDetails.Name = "BrowseImageAnswerDetails";
-        BrowseImageAnswerDetails.Size = new System.Drawing.Size(
-            250,
-            45
+        BrowseImageAnswerDetails.Padding = new System.Windows.Forms.Padding(
+            5
         );
-        BrowseImageAnswerDetails.TabIndex  = 42;
-        BrowseImageAnswerDetails.Text      = "None";
-        BrowseImageAnswerDetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        BrowseImageAnswerDetails.Size = new System.Drawing.Size(
+            160,
+            110
+        );
+        BrowseImageAnswerDetails.TabIndex = 42;
+        BrowseImageAnswerDetails.Text     = "None";
         // 
         // BrowseImageAnswer
         // 
@@ -900,13 +924,13 @@ partial class AddAndEditAccount {
             ((byte) 0)
         );
         BrowseImageAnswer.Location = new System.Drawing.Point(
-            20,
+            220,
             30
         );
         BrowseImageAnswer.Name = "BrowseImageAnswer";
         BrowseImageAnswer.Size = new System.Drawing.Size(
-            100,
-            25
+            160,
+            50
         );
         BrowseImageAnswer.TabIndex                =  41;
         BrowseImageAnswer.Text                    =  "Browse Image";
@@ -1039,7 +1063,7 @@ partial class AddAndEditAccount {
         );
         Submit.Location = new System.Drawing.Point(
             520,
-            375
+            550
         );
         Submit.Name = "Submit";
         Submit.Size = new System.Drawing.Size(
@@ -1068,7 +1092,7 @@ partial class AddAndEditAccount {
         );
         ClearFields.Location = new System.Drawing.Point(
             810,
-            375
+            550
         );
         ClearFields.Name = "ClearFields";
         ClearFields.Size = new System.Drawing.Size(
@@ -1154,12 +1178,15 @@ partial class AddAndEditAccount {
         ImageQuestion.ResumeLayout(
             false
         );
+        ((System.ComponentModel.ISupportInitialize) ImageAnswer).EndInit();
         ((System.ComponentModel.ISupportInitialize) ErrorProvider).EndInit();
         ResumeLayout(
             false
         );
         PerformLayout();
     }
+
+    private System.Windows.Forms.PictureBox ImageAnswer;
 
     private        System.Windows.Forms.Button         ClearFields;
     private        System.Windows.Forms.Label          BrowseImageAnswerDetails;

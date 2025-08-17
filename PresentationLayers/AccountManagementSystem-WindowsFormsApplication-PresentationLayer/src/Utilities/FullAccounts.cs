@@ -9,7 +9,7 @@ using ContactInformation = AccountManagementSystem_ClassLibrary_BusinessLayer.Co
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
 public static class FullAccounts {
-    public static FullAccount getFullAccountByAccountID(
+    public static FullAccount get(
         ref int? accountID
     ) {
         Account? account = AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.getAccountByAccountID(
