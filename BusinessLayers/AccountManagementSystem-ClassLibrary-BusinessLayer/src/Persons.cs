@@ -38,4 +38,10 @@ public static class Persons {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Persons.isPersonExistByNationalNumber(
         ref nationalNumber
     );
+
+    public static string? getImageURL(
+        ref int? personID
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Persons.getImageUrlByPersonID(
+        ref personID
+    );
 }

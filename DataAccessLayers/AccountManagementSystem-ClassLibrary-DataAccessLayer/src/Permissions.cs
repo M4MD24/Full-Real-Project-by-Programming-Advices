@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
@@ -93,6 +94,65 @@ public static class Permissions {
         }
 
         return null;
+    }
+
+    public static List<Permission> getAllPermissions(
+        ref List<byte> permissionIDs
+    ) {
+        List<Permission> permissions = [];
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        sqlConnection.Open();
+
+        string permissionIDsLine = string.Join(
+            ",",
+            permissionIDs.Select(
+                (
+                            id,
+                            index
+                        ) => $"@id{index}"
+            )
+        );
+
+        string getPermissionsByPermissionIDs = $"""
+                                                USE DriverAndVehicleLicenseDepartment
+                                                SELECT *
+                                                FROM AccountManagementSystem.Permissions
+                                                WHERE PermissionID IN ({
+                                                    permissionIDsLine
+                                                });
+                                                """;
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            getPermissionsByPermissionIDs,
+            sqlConnection
+        );
+        for (
+            byte index = 0;
+            index < permissionIDs.Count;
+            index++
+        )
+            sqlCommand.Parameters.AddWithValue(
+                $"@id{index}",
+                permissionIDs[index]
+            );
+
+        using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+        while (sqlDataReader.Read())
+            permissions.Add(
+                new Permission(
+                    sqlDataReader.GetByte(
+                        0
+                    ),
+                    sqlDataReader.GetString(
+                        1
+                    )
+                )
+            );
+
+        return permissions;
     }
 
     public static Permission? getPermissionByPermissionName(

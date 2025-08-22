@@ -9,6 +9,7 @@ public static class Permissions {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getPermissionByPermissionID(
         ref permissionID
     );
+
     public static Permission? get(
         ref string permissionName
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getPermissionByPermissionName(
@@ -16,4 +17,10 @@ public static class Permissions {
     );
 
     public static List<Permission>? getAll() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getAllPermissions();
+
+    public static List<Permission> getAll(
+        ref List<byte> permissionIDs
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getAllPermissions(
+        ref permissionIDs
+    );
 }

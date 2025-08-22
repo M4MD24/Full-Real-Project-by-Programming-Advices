@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
-using AccountManagementSystem_ClassLibrary_BusinessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountPermissions = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountPermissions;
 using ContactInformation = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation;
 
-namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
+namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities.FullAccount;
 
 public static class FullAccounts {
-    public static FullAccount get(
+    public static AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount get(
         ref int? accountID
     ) {
         Account? account = AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.getAccountByAccountID(
@@ -46,12 +44,22 @@ public static class FullAccounts {
             ref countryID
         );
 
+        AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.AccountPermissions? accountPermissions = AccountPermissions.getAll(
+            ref accountID
+        );
+
+        List<byte> permissionIDs = accountPermissions!.permissionIDs!;
+
+        List<Permission> permissions = Permissions.getAll(
+            ref permissionIDs
+        )!;
+
         byte? accountTypeID = account.accountTypeID;
         AccountType? accountType = AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAccountTypeByAccountTypeID(
             ref accountTypeID
         );
 
-        return new FullAccount(
+        return new AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount(
             accountID,
             personID,
             person.nationalNumber,
@@ -75,6 +83,7 @@ public static class FullAccounts {
             person.imageURL,
             account.username,
             account.password,
+            permissions,
             account.isActive,
             accountTypeID,
             accountType!.accountTypeName
@@ -82,38 +91,24 @@ public static class FullAccounts {
     }
 
     public static void add(
-        ref string   nationalNumber,
-        ref string   firstName,
-        ref string   secondName,
-        ref string   thirdName,
-        ref string   fourthName,
-        ref DateTime dateOfBirth,
-        ref string   address,
-        ref string   countryNameMobileNumber,
-        ref string   contactNumber,
-        ref string   email,
-        ref string   countryName,
-        ref string   imageURL,
-        ref string   username,
-        ref string   password,
-        ref string   accountTypeName
+        ref AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount.FullAccountFields fullAccountFields
     ) {
         FullName fullName = new FullName(
-            firstName,
-            secondName,
-            thirdName,
-            fourthName
+            fullAccountFields.firstName,
+            fullAccountFields.secondName,
+            fullAccountFields.thirdName,
+            fullAccountFields.fourthName
         );
         int? fullNameID = FullNames.add(
             ref fullName
         );
 
         byte? countryID_MobileNumber = Countries.get(
-                                                    ref countryNameMobileNumber
+                                                    ref fullAccountFields.mobileNumberCountryName!
                                                 )!
                                                 .countryID;
         MobileNumber mobileNumber = new MobileNumber(
-            contactNumber,
+            fullAccountFields.contactNumber,
             countryID_MobileNumber
         );
         int? mobileNumberID = MobileNumbers.add(
@@ -122,33 +117,36 @@ public static class FullAccounts {
 
         AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation contactInformation = new AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation(
             mobileNumberID,
-            email
+            fullAccountFields.email
         );
         int? contactInformationID = ContactInformation.add(
             ref contactInformation
         );
 
         byte? countryID = Countries.get(
-                                       ref countryName
+                                       ref fullAccountFields.countryName!
                                    )!
                                    .countryID;
 
         Person person = new Person(
-            nationalNumber,
+            fullAccountFields.nationalNumber,
             fullNameID,
-            dateOfBirth,
-            address,
+            fullAccountFields.dateOfBirth,
+            fullAccountFields.address,
             contactInformationID,
             countryID,
-            imageURL
+            fullAccountFields.imageURL
         );
 
         person.personID = Persons.add(
             ref person
         );
 
-        person.imageURL = AddAndEditAccount.copyImageToImageDirectory(
-            person.personID
+        string? nationalNumber = fullAccountFields.nationalNumber!;
+
+        person.imageURL = Tools.ImageTools.copyImageToImageDirectory(
+            ref nationalNumber,
+            ref fullAccountFields.imageURL!
         );
 
         Persons.update(
@@ -156,13 +154,13 @@ public static class FullAccounts {
         );
 
         byte? accountTypeID = AccountTypes.get(
-            ref accountTypeName
+            ref fullAccountFields.accountTypeName!
         )!.accountTypeID;
 
         Account account = new Account(
             person.personID,
-            username,
-            password,
+            fullAccountFields.username,
+            fullAccountFields.password,
             true,
             accountTypeID
         );
@@ -170,11 +168,10 @@ public static class FullAccounts {
             ref account
         );
 
-        int?       accountID             = account.accountID;
-        List<byte> selectedPermissionIds = AddAndEditAccount.getPermissionIDsFromSelectedPermissions();
+        int? accountID = account.accountID;
         AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.AccountPermissions accountPermissions = new(
             accountID,
-            selectedPermissionIds
+            fullAccountFields.permissionIDs
         );
         AccountPermissions.addAll(
             ref accountPermissions
@@ -209,8 +206,8 @@ public static class FullAccounts {
             ref personID
         );
 
-        Tools.ImageTools.deleteImage(
-            imageURL!
+        Tools.ImageTools.deleteImageByImagePath(
+            ref imageURL
         );
 
         FullNames.delete(
@@ -223,6 +220,101 @@ public static class FullAccounts {
 
         MobileNumbers.delete(
             ref mobileNumberID
+        );
+    }
+
+    public static void update(
+        ref AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount.FullAccountIDs    fullAccountIDs,
+        ref AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount.FullAccountFields fullAccountFields,
+        ref bool?                                                                                   isActive
+    ) {
+        Account account = new Account(
+            fullAccountIDs.accountID,
+            fullAccountIDs.personID,
+            fullAccountFields.username,
+            fullAccountFields.password,
+            isActive,
+            fullAccountIDs.accountTypeID
+        );
+
+        Accounts.update(
+            ref account
+        );
+
+        int? accountID = fullAccountIDs.accountID;
+
+        AccountPermissions.deleteAll(
+            ref accountID
+        );
+
+        AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.AccountPermissions accountPermissions = new AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.AccountPermissions(
+            fullAccountIDs.accountID,
+            fullAccountFields.permissionIDs
+        );
+
+        AccountPermissions.addAll(
+            ref accountPermissions
+        );
+
+        Person person = new Person(
+            fullAccountIDs.personID,
+            fullAccountFields.nationalNumber,
+            fullAccountIDs.fullNameID,
+            fullAccountFields.dateOfBirth,
+            fullAccountFields.address,
+            fullAccountIDs.contactInformationID,
+            fullAccountIDs.countryID,
+            fullAccountFields.imageURL
+        );
+
+        string? lastSelectedImagePath = Persons.getImageURL(
+            ref fullAccountIDs.personID
+        );
+
+        person.imageURL = Tools.ImageTools.copyImageToImageDirectory(
+            ref fullAccountFields.nationalNumber,
+            ref fullAccountFields.imageURL!
+        );
+
+        if (lastSelectedImagePath != person.imageURL)
+            Tools.ImageTools.deleteImageByImagePath(
+                ref lastSelectedImagePath
+            );
+
+        Persons.update(
+            ref person
+        );
+
+        FullName fullName = new FullName(
+            fullAccountIDs.accountID,
+            fullAccountFields.firstName,
+            fullAccountFields.secondName,
+            fullAccountFields.thirdName,
+            fullAccountFields.fourthName
+        );
+
+        FullNames.update(
+            ref fullName
+        );
+
+        AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation contactInformation = new AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation(
+            fullAccountIDs.contactInformationID,
+            fullAccountIDs.mobileNumberID,
+            fullAccountFields.email
+        );
+
+        ContactInformation.update(
+            ref contactInformation
+        );
+
+        MobileNumber mobileNumber = new MobileNumber(
+            fullAccountIDs.mobileNumberID,
+            fullAccountFields.contactNumber,
+            fullAccountIDs.mobileNumberCountryID
+        );
+
+        MobileNumbers.update(
+            ref mobileNumber
         );
     }
 }

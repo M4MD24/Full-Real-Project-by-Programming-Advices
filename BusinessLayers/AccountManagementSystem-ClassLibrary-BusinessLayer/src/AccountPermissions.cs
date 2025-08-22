@@ -22,7 +22,7 @@ public static class AccountPermissions {
     );
 
     public static AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.AccountPermissions? getAll(
-        ref int accountID
+        ref int? accountID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountPermissions.getAccountPermissionsByAccountID(
         ref accountID
     );

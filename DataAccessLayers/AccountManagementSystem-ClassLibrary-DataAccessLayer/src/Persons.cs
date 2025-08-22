@@ -208,6 +208,46 @@ public static class Persons {
         return null;
     }
 
+    public static string? getImageUrlByPersonID(
+        ref int? personID
+    ) {
+        const string SELECT_IMAGE_URL_BY_PERSON_ID = """
+                                                     USE DriverAndVehicleLicenseDepartment
+                                                     SELECT ImageURL
+                                                     FROM AccountManagementSystem.Persons
+                                                     WHERE PersonID = @personID;
+                                                     """;
+
+        try {
+            using SqlConnection sqlConnection = new SqlConnection(
+                Constants.DATABASE_CONNECTIVITY
+            );
+            using SqlCommand sqlCommand = new SqlCommand(
+                SELECT_IMAGE_URL_BY_PERSON_ID,
+                sqlConnection
+            );
+            sqlCommand.Parameters.AddWithValue(
+                "@personID",
+                personID
+            );
+
+            sqlConnection.Open();
+            string imageURL = (string) sqlCommand.ExecuteScalar()!;
+
+            return imageURL;
+        } catch (SqlException sqlEx) {
+            Console.Error.WriteLine(
+                $"SQL Error: {sqlEx.Message}"
+            );
+        } catch (Exception ex) {
+            Console.Error.WriteLine(
+                $"Unexpected Error: {ex.Message}"
+            );
+        }
+
+        return null;
+    }
+
     public static Person? getPersonByNationalNumber(
         ref string? nationalNumber
     ) {

@@ -2,20 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
 using AccountManagementSystem_ClassLibrary_BusinessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
+using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities.FullAccount;
 using Constants = AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AddAndEditAccount : Form,
                                          Loader {
-    private static   string?        selectedImagePath;
-    private readonly Constants.Mode selectedMode;
+    private static   string?                    selectedImagePath;
+    private readonly Constants.Mode             selectedMode;
+    private          FullAccount.FullAccountIDs fullAccountIDs;
+    private static   bool?                      isActive;
 
     public AddAndEditAccount(
         Constants.Mode mode,
@@ -31,7 +35,7 @@ public partial class AddAndEditAccount : Form,
             break;
             case Constants.Mode.Update:
                 initializeModificationForm(
-                    ref fullAccount!
+                    ref fullAccount
                 );
             break;
         }
@@ -74,9 +78,6 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref AccountTypeAnswer
         );
-        clearField(
-            ref ImageAnswer
-        );
     }
 
     private void clearImageField() {
@@ -85,6 +86,9 @@ public partial class AddAndEditAccount : Form,
         );
         clearField(
             ref BrowseImageAnswerDetails
+        );
+        clearField(
+            ref ImageAnswer
         );
     }
 
@@ -111,14 +115,11 @@ public partial class AddAndEditAccount : Form,
         setIcon(
             Constants.Mode.Update
         );
-        loadData(
-            fullAccount
+        loadDataSources();
+        setFullAccountDataFields(
+            ref fullAccount
         );
     }
-
-    private void loadData(
-        FullAccount fullAccount
-    ) {}
 
     private void setIcon(
         Constants.Mode mode
@@ -153,51 +154,6 @@ public partial class AddAndEditAccount : Form,
         e
     );
 
-    public static string copyImageToImageDirectory(
-        int? personID
-    ) {
-        string extension = Path.GetExtension(
-            selectedImagePath!
-        );
-        string fileName = $"{personID}{extension}";
-
-        string destinationFolder = Path.Combine(
-            Utilities.Constants.baseDirectory,
-            @"Data\Images"
-        );
-        if (
-            !Directory.Exists(
-                destinationFolder
-            )
-        )
-            Directory.CreateDirectory(
-                destinationFolder
-            );
-
-        string destinationFile = Path.Combine(
-            destinationFolder,
-            fileName
-        );
-
-        try {
-            File.Copy(
-                selectedImagePath!,
-                destinationFile,
-                overwrite : true
-            );
-        } catch (Exception exception) {
-            MessageBox.Show(
-                exception.Message,
-                @"Can't Copy to Image Directory",
-                MessageBoxButtons.RetryCancel,
-                MessageBoxIcon.Error
-            );
-            return null!;
-        }
-
-        return destinationFile;
-    }
-
     private void Submit_Click(
         object    sender,
         EventArgs e
@@ -205,40 +161,29 @@ public partial class AddAndEditAccount : Form,
         if (!isValidData())
             return;
 
-        string   nationalNumber          = NationalNumberAnswer.Text;
-        string   firstName               = FirstNameAnswer.Text;
-        string   secondName              = SecondNameAnswer.Text;
-        string   thirdName               = ThirdNameAnswer.Text;
-        string   fourthName              = FourthNameAnswer.Text;
-        DateTime dateOfBirth             = DateOfBirthAnswer.Value;
-        string   address                 = AddressAnswer.Text;
-        string   countryNameMobileNumber = CountryNameMobileNumberAnswer.Text;
-        string   contactNumber           = ContactNumberAnswer.Text;
-        string   email                   = EmailAnswer.Text;
-        string   countryName             = CountryNameAnswer.Text;
-        string   imageURL                = selectedImagePath!;
-        string   username                = UsernameAnswer.Text!;
-        string   password                = PasswordAnswer.Text;
-        string   accountTypeName         = AccountTypeAnswer.Text;
+        FullAccount.FullAccountFields fullAccountFields = new FullAccount.FullAccountFields(
+            NationalNumberAnswer.Text,
+            FirstNameAnswer.Text,
+            SecondNameAnswer.Text,
+            ThirdNameAnswer.Text,
+            FourthNameAnswer.Text,
+            DateOfBirthAnswer.Value,
+            AddressAnswer.Text,
+            MobileNumberCountryNameAnswer.Text,
+            ContactNumberAnswer.Text,
+            EmailAnswer.Text,
+            CountryNameAnswer.Text,
+            selectedImagePath!,
+            UsernameAnswer.Text,
+            PasswordAnswer.Text,
+            getPermissionIDsFromSelectedPermissions(),
+            AccountTypeAnswer.Text
+        );
 
         switch (selectedMode) {
             case Constants.Mode.Add:
                 FullAccounts.add(
-                    ref nationalNumber,
-                    ref firstName,
-                    ref secondName,
-                    ref thirdName,
-                    ref fourthName,
-                    ref dateOfBirth,
-                    ref address,
-                    ref countryNameMobileNumber,
-                    ref contactNumber,
-                    ref email,
-                    ref countryName,
-                    ref imageURL,
-                    ref username,
-                    ref password,
-                    ref accountTypeName
+                    ref fullAccountFields
                 );
 
                 MessageBox.Show(
@@ -249,32 +194,51 @@ public partial class AddAndEditAccount : Form,
                 );
             break;
             case Constants.Mode.Update:
+                clearField(
+                    ref ImageAnswer
+                );
 
+                FullAccounts.update(
+                    ref fullAccountIDs,
+                    ref fullAccountFields,
+                    ref isActive
+                );
+
+                MessageBox.Show(
+                    @"The account has been updated",
+                    @"Update Account",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             break;
         }
 
         Close();
     }
 
-    public static List<byte> getPermissionIDsFromSelectedPermissions() {
-        List<byte> permissionIDs = new();
+    private static List<byte> getPermissionIDsFromSelectedPermissions() {
+        List<byte> permissionIDs = [];
 
         if (PermissionsQuestion == null)
             return permissionIDs;
 
         foreach (Control control in PermissionsQuestion.Controls) {
-            if (control is CheckBox {Checked: true} checkBox) {
-                string permissionName = checkBox.Text;
-                Permission? permission = Permissions.get(
-                    ref permissionName
-                );
-                byte? permissionID = permission?.permissionID;
+            if (
+                control is not CheckBox {
+                    Checked: true
+                } checkBox
+            )
+                continue;
+            string permissionName = checkBox.Text;
+            Permission? permission = Permissions.get(
+                ref permissionName
+            );
+            byte? permissionID = permission?.permissionID;
 
-                if (permissionID is not null)
-                    permissionIDs.Add(
-                        permissionID.Value
-                    );
-            }
+            if (permissionID is not null)
+                permissionIDs.Add(
+                    permissionID.Value
+                );
         }
 
         return permissionIDs;
@@ -283,12 +247,16 @@ public partial class AddAndEditAccount : Form,
     private bool isValidData() {
         bool isValid = true;
 
-        isValid &= checkUniqueField(
-            NationalNumberAnswer,
-            Persons.isExist(
-                NationalNumberAnswer.Text
-            )
-        );
+        isValid &= selectedMode == Constants.Mode.Update
+                           ? checkField(
+                               NationalNumberAnswer
+                           )
+                           : checkUniqueField(
+                               NationalNumberAnswer,
+                               Accounts.isExist(
+                                   NationalNumberAnswer.Text
+                               )
+                           );
         isValid &= checkField(
             FirstNameAnswer
         );
@@ -311,7 +279,7 @@ public partial class AddAndEditAccount : Form,
             ContactNumberAnswer
         );
         isValid &= checkField(
-            CountryNameMobileNumberAnswer
+            MobileNumberCountryNameAnswer
         );
         isValid &= checkField(
             EmailAnswer
@@ -319,12 +287,16 @@ public partial class AddAndEditAccount : Form,
         isValid &= checkField(
             CountryNameAnswer
         );
-        isValid &= checkUniqueField(
-            UsernameAnswer,
-            Accounts.isExist(
-                UsernameAnswer.Text
-            )
-        );
+        isValid &= selectedMode == Constants.Mode.Update
+                           ? checkField(
+                               UsernameAnswer
+                           )
+                           : checkUniqueField(
+                               UsernameAnswer,
+                               Accounts.isExist(
+                                   UsernameAnswer.Text
+                               )
+                           );
         isValid &= checkField(
             PasswordAnswer
         );
@@ -433,12 +405,11 @@ public partial class AddAndEditAccount : Form,
                 Utilities.Constants.ErrorMessages.NOT_UNIQUE
             );
             isValid = false;
-        } else {
+        } else
             ErrorProvider.SetError(
                 textBox,
                 string.Empty
             );
-        }
 
         return isValid;
     }
@@ -480,11 +451,9 @@ public partial class AddAndEditAccount : Form,
         object    sender,
         EventArgs e
     ) {
-        if (
-            !isFieldNotEmpty(
+        if (!isFieldNotEmpty(
                 NationalNumberAnswer
-            )
-        ) {
+            )) {
             MessageBox.Show(
                 @"Enter National Number",
                 @"Browse Image",
@@ -501,20 +470,23 @@ public partial class AddAndEditAccount : Form,
                 Utilities.Constants.imageExtensions
             )
         }|All Files|*.*";
-
         openFileDialog.Title = @"Select an Image";
+
         if (openFileDialog.ShowDialog() != DialogResult.OK)
             return;
 
         string filePath = openFileDialog.FileName;
 
+        clearField(
+            ref ImageAnswer
+        );
+
         BrowseImageAnswerDetails.Text = Path.GetFileName(
             filePath
         );
-
         selectedImagePath = filePath;
 
-        Image image = Image.FromFile(
+        using Image image = Image.FromFile(
             filePath
         );
         ImageAnswer.Image = new Bitmap(
@@ -524,7 +496,7 @@ public partial class AddAndEditAccount : Form,
 
     public void loadDataSources() {
         Loader.loadDataSource(
-            CountryNameMobileNumberAnswer,
+            MobileNumberCountryNameAnswer,
             Countries.getAllCountryNames()
         );
         Loader.loadDataSource(
@@ -575,7 +547,7 @@ public partial class AddAndEditAccount : Form,
             ref ContactNumberAnswer
         );
         clearField(
-            ref CountryNameMobileNumberAnswer
+            ref MobileNumberCountryNameAnswer
         );
     }
 
@@ -596,7 +568,12 @@ public partial class AddAndEditAccount : Form,
 
     private static void clearField(
         ref PictureBox pictureBox
-    ) => pictureBox.Image = null;
+    ) {
+        if (pictureBox.Image == null)
+            return;
+        pictureBox.Image.Dispose();
+        pictureBox.Image = null;
+    }
 
     private static void clearField(
         ref DateTimePicker dateTimePicker
@@ -609,4 +586,74 @@ public partial class AddAndEditAccount : Form,
     private static void clearField(
         ref TextBox textBox
     ) => textBox.Clear();
+
+    private void setFullAccountDataFields(
+        ref FullAccount fullAccount
+    ) {
+        fullAccountIDs = new FullAccount.FullAccountIDs(
+            fullAccount.accountID,
+            fullAccount.personID,
+            fullAccount.fullNameID,
+            fullAccount.contactInformationID,
+            fullAccount.mobileNumberID,
+            fullAccount.mobileNumberCountryID,
+            fullAccount.countryID,
+            fullAccount.accountTypeID
+        );
+
+        isActive = fullAccount.isActive;
+
+        NationalNumberAnswer.Text          = fullAccount.nationalNumber;
+        FirstNameAnswer.Text               = fullAccount.firstName;
+        SecondNameAnswer.Text              = fullAccount.secondName;
+        ThirdNameAnswer.Text               = fullAccount.thirdName;
+        FourthNameAnswer.Text              = fullAccount.fourthName;
+        DateOfBirthAnswer.Value            = (DateTime) fullAccount.dateOfBirth!;
+        AddressAnswer.Text                 = fullAccount.address;
+        MobileNumberCountryNameAnswer.Text = fullAccount.countryName;
+        ContactNumberAnswer.Text           = fullAccount.contactNumber;
+        EmailAnswer.Text                   = fullAccount.email;
+        CountryNameAnswer.Text             = fullAccount.countryName;
+        UsernameAnswer.Text                = fullAccount.username;
+        PasswordAnswer.Text                = fullAccount.password;
+
+        foreach (Control control in PermissionsQuestion.Controls)
+            if (
+                control is CheckBox checkBox &&
+                fullAccount.permissions!.Any(
+                    permission => permission.permissionName == control.Text
+                )
+            )
+                checkBox.Checked = true;
+
+        AccountTypeAnswer.Text = fullAccount.accountTypeName;
+
+        clearField(
+            ref ImageAnswer
+        );
+
+        selectedImagePath = fullAccount.imageURL;
+
+        if (
+            string.IsNullOrWhiteSpace(
+                selectedImagePath
+            ) ||
+            !File.Exists(
+                selectedImagePath
+            )
+        )
+            return;
+        using (
+            Image image = Image.FromFile(
+                selectedImagePath
+            )
+        )
+            ImageAnswer.Image = new Bitmap(
+                image
+            );
+
+        BrowseImageAnswerDetails.Text = Path.GetFileName(
+            selectedImagePath
+        );
+    }
 }

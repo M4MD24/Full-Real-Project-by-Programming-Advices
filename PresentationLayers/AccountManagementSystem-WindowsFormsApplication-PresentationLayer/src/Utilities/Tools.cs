@@ -58,24 +58,7 @@ public static class Tools {
     }
 
     public static class ImageTools {
-        public static void deleteImage(
-            string path
-        ) {
-            try {
-                File.Delete(
-                    path
-                );
-            } catch (Exception exception) {
-                MessageBox.Show(
-                    @$"Error deleting image: {exception.Message}",
-                    @"Delete Image",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-        }
-
-        public static void deleteImageByPersonID(
+        public static void deleteImageByNationalNumber(
             ref string? nationalNumber
         ) {
             if (nationalNumber is null)
@@ -107,9 +90,82 @@ public static class Tools {
             if (imagePath is null)
                 return;
 
-            deleteImage(
+            deleteImageByImagePath(
+                ref imagePath
+            );
+        }
+
+        public static void deleteImageByImagePath(
+            ref string? imagePath
+        ) {
+            try {
+                File.Delete(
+                    imagePath!
+                );
+            } catch (Exception exception) {
+                MessageBox.Show(
+                    @$"Error deleting image: {exception.Message}",
+                    @"Delete Image",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        public static string copyImageToImageDirectory(
+            ref string? nationalNumber,
+            ref string  imagePath
+        ) {
+            string extension = Path.GetExtension(
                 imagePath
             );
+            string fileName = $"{nationalNumber}{extension}";
+
+            string destinationFolder = Path.Combine(
+                Constants.baseDirectory,
+                @"Data\Images"
+            );
+            if (
+                !Directory.Exists(
+                    destinationFolder
+                )
+            )
+                Directory.CreateDirectory(
+                    destinationFolder
+                );
+
+            string destinationFile = Path.Combine(
+                destinationFolder,
+                fileName
+            );
+
+            return copyImage(
+                imagePath,
+                destinationFile
+            );
+        }
+
+        private static string copyImage(
+            string imagePath,
+            string destinationFile
+        ) {
+            try {
+                File.Copy(
+                    imagePath,
+                    destinationFile,
+                    overwrite : true
+                );
+            } catch (Exception exception) {
+                MessageBox.Show(
+                    exception.Message,
+                    @"Can't Copy to Image Directory",
+                    MessageBoxButtons.RetryCancel,
+                    MessageBoxIcon.Error
+                );
+                return null!;
+            }
+
+            return destinationFile;
         }
     }
 }

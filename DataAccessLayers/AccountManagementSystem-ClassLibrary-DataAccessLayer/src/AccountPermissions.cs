@@ -127,7 +127,7 @@ public static class AccountPermissions {
     }
 
     public static Models.AccountPermissions? getAccountPermissionsByAccountID(
-        ref int accountID
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
