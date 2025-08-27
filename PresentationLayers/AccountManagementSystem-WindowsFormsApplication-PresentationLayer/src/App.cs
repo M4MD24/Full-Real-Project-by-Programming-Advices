@@ -65,7 +65,7 @@ public partial class App : Form,
         );
     }
 
-    private void setIconButton(
+    private static void setIconButton(
         Button button,
         string iconName,
         int    width,

@@ -35,7 +35,7 @@ public partial class AddAndEditAccount : Form,
             break;
             case Constants.Mode.Update:
                 initializeModificationForm(
-                    ref fullAccount
+                    ref fullAccount!
                 );
             break;
         }
@@ -159,6 +159,17 @@ public partial class AddAndEditAccount : Form,
         EventArgs e
     ) {
         if (!isValidData())
+            return;
+
+        DialogResult submit = MessageBox.Show(
+            @"Do you want submit?",
+            @"Submit",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2
+        );
+
+        if (submit != DialogResult.Yes)
             return;
 
         FullAccount.FullAccountFields fullAccountFields = new FullAccount.FullAccountFields(
@@ -513,6 +524,17 @@ public partial class AddAndEditAccount : Form,
         object    sender,
         EventArgs e
     ) {
+        DialogResult clear = MessageBox.Show(
+            @"Do you want clear all fields?",
+            @"Clear Fields",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2
+        );
+
+        if (clear != DialogResult.Yes)
+            return;
+
         clearAllFields();
         clearAllErrors(
             this
