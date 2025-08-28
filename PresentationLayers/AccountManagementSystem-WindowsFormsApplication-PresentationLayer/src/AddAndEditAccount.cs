@@ -16,10 +16,10 @@ namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AddAndEditAccount : Form,
                                          Loader {
-    private static   string?                    selectedImagePath;
+    private          string?                    selectedImagePath;
     private readonly Constants.Mode             selectedMode;
     private          FullAccount.FullAccountIDs fullAccountIDs;
-    private static   bool?                      isActive;
+    private          bool?                      isActive;
 
     public AddAndEditAccount(
         Constants.Mode mode,
@@ -90,6 +90,7 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref ImageAnswer
         );
+        selectedImagePath = null;
     }
 
     private static void clearField(
@@ -145,6 +146,7 @@ public partial class AddAndEditAccount : Form,
         );
         loadDataSources();
         initializeFields();
+        selectedImagePath = null;
     }
 
     private void DisableNewLine_KeyDown(
