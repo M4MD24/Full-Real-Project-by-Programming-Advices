@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Controls;
+namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.UserControls;
 
 partial class SimpleList {
     /// <summary>

@@ -1,6 +1,6 @@
 using System.Windows.Forms;
 
-namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Controls;
+namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.UserControls;
 
 public partial class SimpleList : UserControl {
     public SimpleList() {
