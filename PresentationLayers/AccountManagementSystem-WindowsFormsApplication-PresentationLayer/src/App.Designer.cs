@@ -31,13 +31,12 @@ partial class App {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-        components    = new System.ComponentModel.Container();
-        MenuStrip     = new System.Windows.Forms.MenuStrip();
-        SearchBox     = new System.Windows.Forms.TextBox();
-        ConfirmSearch = new System.Windows.Forms.Button();
-        SearchFilter  = new System.Windows.Forms.ComboBox();
-        AccountList   = new System.Windows.Forms.DataGridView();
-        RefreshList   = new System.Windows.Forms.Button();
+        components   = new System.ComponentModel.Container();
+        MenuStrip    = new System.Windows.Forms.MenuStrip();
+        SearchBox    = new System.Windows.Forms.TextBox();
+        SearchFilter = new System.Windows.Forms.ComboBox();
+        AccountList  = new System.Windows.Forms.DataGridView();
+        RefreshList  = new System.Windows.Forms.Button();
         AccountListMenuStrip = new System.Windows.Forms.ContextMenuStrip(
             components
         );
@@ -76,29 +75,9 @@ partial class App {
             700,
             25
         );
-        SearchBox.TabIndex =  1;
-        SearchBox.KeyDown  += searchBox_KeyDown;
-        // 
-        // ConfirmSearch
-        // 
-        ConfirmSearch.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Bold
-        );
-        ConfirmSearch.Location = new System.Drawing.Point(
-            900,
-            50
-        );
-        ConfirmSearch.Name = "ConfirmSearch";
-        ConfirmSearch.Size = new System.Drawing.Size(
-            25,
-            25
-        );
-        ConfirmSearch.TabIndex                =  3;
-        ConfirmSearch.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
-        ConfirmSearch.UseVisualStyleBackColor =  true;
-        ConfirmSearch.Click                   += confirmSearch_Click;
+        SearchBox.TabIndex    =  1;
+        SearchBox.TextChanged += SearchBox_TextChanged;
+        SearchBox.KeyDown     += searchBox_KeyDown;
         // 
         // SearchFilter
         // 
@@ -106,14 +85,15 @@ partial class App {
         SearchFilter.FormattingEnabled = true;
         SearchFilter.Location = new System.Drawing.Point(
             730,
-            50
+            51
         );
         SearchFilter.Name = "SearchFilter";
         SearchFilter.Size = new System.Drawing.Size(
-            160,
+            195,
             23
         );
-        SearchFilter.TabIndex = 2;
+        SearchFilter.TabIndex             =  2;
+        SearchFilter.SelectedIndexChanged += SearchFilter_SelectedIndexChanged;
         // 
         // AccountList
         // 
@@ -167,15 +147,15 @@ partial class App {
         );
         AccountListMenuStrip.Name = "AccountListMenuStrip";
         AccountListMenuStrip.Size = new System.Drawing.Size(
-            181,
-            114
+            151,
+            92
         );
         // 
         // AccountInformationOption
         // 
         AccountInformationOption.Name = "AccountInformationOption";
         AccountInformationOption.Size = new System.Drawing.Size(
-            180,
+            150,
             22
         );
         AccountInformationOption.Text  =  "Information";
@@ -185,7 +165,7 @@ partial class App {
         // 
         AccountUpdateOption.Name = "AccountUpdateOption";
         AccountUpdateOption.Size = new System.Drawing.Size(
-            180,
+            150,
             22
         );
         AccountUpdateOption.Text  =  "Update";
@@ -195,22 +175,22 @@ partial class App {
         // 
         AccountDeleteOption.Name = "AccountDeleteOption";
         AccountDeleteOption.Size = new System.Drawing.Size(
-            180,
+            150,
             22
         );
         AccountDeleteOption.Text  =  "Delete";
         AccountDeleteOption.Click += AccountDeleteOption_Click;
-        //
+        // 
         // ChangeStatusOption
-        //
+        // 
         ChangeStatusOption.Name = "ChangeStatusOption";
         ChangeStatusOption.Size = new System.Drawing.Size(
-            180,
+            150,
             22
         );
         ChangeStatusOption.Text  =  "Change Status";
         ChangeStatusOption.Click += ChangeStatusOption_Click;
-        //
+        // 
         // App
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
@@ -231,9 +211,6 @@ partial class App {
         );
         Controls.Add(
             SearchFilter
-        );
-        Controls.Add(
-            ConfirmSearch
         );
         Controls.Add(
             SearchBox
@@ -265,7 +242,6 @@ partial class App {
     private System.Windows.Forms.Button            RefreshList;
     private System.Windows.Forms.DataGridView      AccountList;
     private System.Windows.Forms.ComboBox          SearchFilter;
-    private System.Windows.Forms.Button            ConfirmSearch;
     private System.Windows.Forms.TextBox           SearchBox;
     private System.Windows.Forms.MenuStrip         MenuStrip;
 

@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
@@ -33,6 +36,14 @@ public partial class App : Form,
             Image SwapHorizontal
             ) accountListMenuStripIcons = loadAccountListMenuStripIcons();
 
+    private readonly List<string> searchChoices = [
+        "Username",
+        "AccountID",
+        "PersonID"
+    ];
+
+    private readonly BindingSource accountBindingSource = new();
+
     public App() {
         InitializeComponent();
         loadDataSources();
@@ -43,20 +54,21 @@ public partial class App : Form,
         loadAccountListMenuStrip();
     }
 
-    public void loadDataSources() { loadAccounts(); }
+    public void loadDataSources() {
+        Loader.loadDataSource(
+            SearchFilter,
+            searchChoices
+        );
+        loadAccounts();
+    }
 
-    private void loadAccounts() => Loader.loadDataSource(
-        AccountList,
-        Accounts.getAll()
-    );
+    private void loadAccounts() {
+        List<Account>? allAccounts = Accounts.getAll();
+        accountBindingSource.DataSource = allAccounts;
+        AccountList.DataSource          = accountBindingSource;
+    }
 
     private void loadIconButtons() {
-        setIconButton(
-            ConfirmSearch,
-            "Search",
-            20,
-            20
-        );
         setIconButton(
             RefreshList,
             "Refresh",
@@ -365,11 +377,6 @@ public partial class App : Form,
         MessageBoxIcon.Information
     );
 
-    private void confirmSearch_Click(
-        object    sender,
-        EventArgs e
-    ) {}
-
     private void App_KeyDown(
         object       sender,
         KeyEventArgs e
@@ -608,11 +615,70 @@ public partial class App : Form,
             MessageBoxDefaultButton.Button1
         );
 
-        if (result == DialogResult.OK) {
-            Accounts.changeStatus(
-                ref accountID
-            );
-            loadAccounts();
+        if (result != DialogResult.OK)
+            return;
+        Accounts.changeStatus(
+            ref accountID
+        );
+        loadAccounts();
+    }
+
+    private void SearchBox_TextChanged(
+        object    sender,
+        EventArgs e
+    ) {
+        string targetText = SearchBox.Text
+                                     .Trim()
+                                     .Replace(
+                                         "'",
+                                         "''"
+                                     ),
+               selectedFilter = SearchFilter.Text;
+
+        if (accountBindingSource.DataSource is DataTable)
+            accountBindingSource.Filter = $"{selectedFilter} LIKE '%{targetText}%'";
+        else {
+            List<Account> accounts = Accounts.getAll()!;
+            accounts = accounts.Where(
+                                   account => {
+                                       if (selectedFilter == searchChoices[0]) {
+                                           return account.username!
+                                                         .Contains(
+                                                             targetText,
+                                                             StringComparison.OrdinalIgnoreCase
+                                                         );
+                                       }
+
+                                       if (selectedFilter == searchChoices[1]) {
+                                           return account.accountID
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
+                                       if (selectedFilter == searchChoices[2]) {
+                                           return account.personID
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
+                                       return false;
+                                   }
+                               )
+                               .ToList();
+
+            accountBindingSource.DataSource = accounts;
         }
     }
+
+    private void SearchFilter_SelectedIndexChanged(
+        object    sender,
+        EventArgs e
+    ) => SearchBox_TextChanged(
+        sender,
+        e
+    );
 }
