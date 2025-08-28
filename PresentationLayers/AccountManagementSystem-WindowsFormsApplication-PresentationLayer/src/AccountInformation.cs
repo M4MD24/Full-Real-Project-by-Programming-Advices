@@ -49,6 +49,7 @@ public partial class AccountInformation : Form {
         loadPermissions(
             fullAccount.permissions
         );
+        AccountTypeAnswer.Text = fullAccount.accountTypeName;
         using (
             Image image = Image.FromFile(
                 fullAccount.imageURL!
