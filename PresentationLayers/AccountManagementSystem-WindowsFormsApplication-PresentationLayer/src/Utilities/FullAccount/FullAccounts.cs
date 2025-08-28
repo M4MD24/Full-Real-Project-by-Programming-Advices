@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountPermissions = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountPermissions;
@@ -52,7 +53,7 @@ public static class FullAccounts {
 
         List<Permission> permissions = Permissions.getAll(
             ref permissionIDs
-        )!;
+        );
 
         byte? accountTypeID = account.accountTypeID;
         AccountType? accountType = AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAccountTypeByAccountTypeID(
@@ -267,19 +268,25 @@ public static class FullAccounts {
             fullAccountFields.imageURL
         );
 
-        string? lastSelectedImagePath = Persons.getImageURL(
+        Person? lastPerson = Persons.get(
             ref fullAccountIDs.personID
         );
 
-        person.imageURL = Tools.ImageTools.copyImageToImageDirectory(
-            ref fullAccountFields.nationalNumber,
-            ref fullAccountFields.imageURL!
-        );
+        string? lastSelectedImagePath = lastPerson!.imageURL,
+                lastNationalNumber    = lastPerson.nationalNumber;
 
-        if (lastSelectedImagePath != person.imageURL)
+        if (
+            lastSelectedImagePath != person.imageURL ||
+            lastNationalNumber    != person.nationalNumber
+        ) {
+            person.imageURL = Tools.ImageTools.copyImageToImageDirectory(
+                ref fullAccountFields.nationalNumber,
+                ref fullAccountFields.imageURL!
+            );
             Tools.ImageTools.deleteImageByImagePath(
                 ref lastSelectedImagePath
             );
+        }
 
         Persons.update(
             ref person

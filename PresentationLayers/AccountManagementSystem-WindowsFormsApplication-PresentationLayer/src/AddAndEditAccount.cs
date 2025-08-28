@@ -111,7 +111,7 @@ public partial class AddAndEditAccount : Form,
     private void initializeModificationForm(
         ref FullAccount fullAccount
     ) {
-        Text = $@"Update {fullAccount.accountID}";
+        Text = @$"Update {fullAccount.accountID}";
         setIcon(
             Constants.Mode.Update
         );
