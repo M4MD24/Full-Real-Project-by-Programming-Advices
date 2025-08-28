@@ -34,6 +34,7 @@
         <EmbeddedResource Include="Resources\Icons\Person.svg"/>
         <EmbeddedResource Include="Resources\Icons\PersonEdit.svg"/>
         <EmbeddedResource Include="Resources\Icons\PersonRemove.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Person.ico"/>
         <EmbeddedResource Include="Resources\Icons\PersonAdd.ico"/>
         <EmbeddedResource Include="Resources\Icons\PersonEdit.ico"/>
         <EmbeddedResource Include="Resources\Icons\SwapHorizontal.svg"/>
