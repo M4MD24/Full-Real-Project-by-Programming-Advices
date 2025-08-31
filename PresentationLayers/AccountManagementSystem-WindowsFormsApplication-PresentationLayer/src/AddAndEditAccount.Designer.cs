@@ -341,7 +341,7 @@ partial class AddAndEditAccount {
             25
         );
         FourthNameAnswer.TabIndex =  11;
-        FourthNameAnswer.KeyDown  += DisableNewLine_KeyDown;
+        FourthNameAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // FourthNameQuestion
         // 
@@ -380,7 +380,7 @@ partial class AddAndEditAccount {
             25
         );
         ThirdNameAnswer.TabIndex =  9;
-        ThirdNameAnswer.KeyDown  += DisableNewLine_KeyDown;
+        ThirdNameAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // ThirdNameQuestion
         // 
@@ -419,7 +419,7 @@ partial class AddAndEditAccount {
             25
         );
         SecondNameAnswer.TabIndex =  7;
-        SecondNameAnswer.KeyDown  += DisableNewLine_KeyDown;
+        SecondNameAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // SecondNameQuestion
         // 
@@ -458,7 +458,7 @@ partial class AddAndEditAccount {
             25
         );
         FirstNameAnswer.TabIndex =  5;
-        FirstNameAnswer.KeyDown  += DisableNewLine_KeyDown;
+        FirstNameAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // FirstNameQuestion
         // 
@@ -517,7 +517,7 @@ partial class AddAndEditAccount {
             25
         );
         NationalNumberAnswer.TabIndex =  2;
-        NationalNumberAnswer.KeyDown  += DisableNewLine_KeyDown;
+        NationalNumberAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // DateOfBirthAnswer
         // 
@@ -592,7 +592,7 @@ partial class AddAndEditAccount {
             80
         );
         AddressAnswer.TabIndex =  15;
-        AddressAnswer.KeyDown  += DisableNewLine_KeyDown;
+        AddressAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // ContactInformationQuestion
         // 
@@ -716,7 +716,7 @@ partial class AddAndEditAccount {
             25
         );
         ContactNumberAnswer.TabIndex =  19;
-        ContactNumberAnswer.KeyDown  += DisableNewLine_KeyDown;
+        ContactNumberAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // ContactNumberQuestion
         // 
@@ -755,7 +755,7 @@ partial class AddAndEditAccount {
             25
         );
         EmailAnswer.TabIndex =  23;
-        EmailAnswer.KeyDown  += DisableNewLine_KeyDown;
+        EmailAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // EmailQuestion
         // 
@@ -989,7 +989,7 @@ partial class AddAndEditAccount {
             25
         );
         PasswordAnswer.TabIndex =  30;
-        PasswordAnswer.KeyDown  += DisableNewLine_KeyDown;
+        PasswordAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // AccountTypeAnswer
         // 
@@ -1048,7 +1048,7 @@ partial class AddAndEditAccount {
             25
         );
         UsernameAnswer.TabIndex =  28;
-        UsernameAnswer.KeyDown  += DisableNewLine_KeyDown;
+        UsernameAnswer.KeyDown  += disableNewLine_KeyDown;
         // 
         // UsernameQuestion
         // 

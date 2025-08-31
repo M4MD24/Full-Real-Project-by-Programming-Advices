@@ -77,7 +77,7 @@ partial class App {
         );
         SearchBox.TabIndex    =  1;
         SearchBox.TextChanged += SearchBox_TextChanged;
-        SearchBox.KeyDown     += searchBox_KeyDown;
+        SearchBox.KeyDown     += disableNewLine_KeyDown;
         // 
         // SearchFilter
         // 

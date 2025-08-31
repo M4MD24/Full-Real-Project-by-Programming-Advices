@@ -28,6 +28,7 @@
         <EmbeddedResource Include="Resources\Icons\Lists.svg"/>
         <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
         <EmbeddedResource Include="Resources\Icons\Flag2.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Flag2.ico"/>
         <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
         <EmbeddedResource Include="Resources\Icons\Search.svg"/>
         <EmbeddedResource Include="Resources\Icons\Refresh.svg"/>
@@ -41,9 +42,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="src\Controls\SimpleList.cs">
-            <SubType>UserControl</SubType>
-        </Compile>
         <Compile Update="src\AccountInformation.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -52,6 +50,12 @@
         </Compile>
         <Compile Update="src\AddAndEditAccount.cs">
             <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Countries.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Currencies.cs">
+          <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
 

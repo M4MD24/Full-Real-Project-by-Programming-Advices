@@ -4,7 +4,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
 using AccountManagementSystem_ClassLibrary_BusinessLayer.Models;
@@ -47,14 +46,17 @@ public partial class App : Form,
     public App() {
         InitializeComponent();
         loadDataSources();
-        setIcon();
+        Tools.setIcon(
+            this,
+            "ManageAccounts"
+        );
         initializeMenuStrip();
         loadIconButtons();
         createFolders();
         loadAccountListMenuStrip();
     }
 
-    public void loadDataSources() {
+    private void loadDataSources() {
         Loader.loadDataSource(
             SearchFilter,
             searchChoices
@@ -69,24 +71,13 @@ public partial class App : Form,
     }
 
     private void loadIconButtons() {
-        setIconButton(
+        Tools.setIconButton(
             RefreshList,
             "Refresh",
             20,
             20
         );
     }
-
-    private static void setIconButton(
-        Button button,
-        string iconName,
-        int    width,
-        int    height
-    ) => button.Image = loadIcon(
-             iconName,
-             width,
-             height
-         );
 
     private void createFolders() { createImageFolder(); }
 
@@ -120,16 +111,6 @@ public partial class App : Form,
 
         ChangeStatusOption.Image = accountListMenuStripIcons
                 .SwapHorizontal;
-    }
-
-    private void setIcon() {
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        using Stream? iconStream = assembly.GetManifestResourceStream(
-            Constants.RESOURCES_ICONS_PATH + ".ManageAccounts.ico"
-        );
-        Icon = new Icon(
-            iconStream!
-        );
     }
 
     private void initializeMenuStrip() {
@@ -299,7 +280,7 @@ public partial class App : Form,
         height
     );
 
-    private void searchBox_KeyDown(
+    private void disableNewLine_KeyDown(
         object       sender,
         KeyEventArgs e
     ) => Tools.disableNewLine(
@@ -325,27 +306,17 @@ public partial class App : Form,
     private static void countries_Click(
         object    sender,
         EventArgs e
-    ) {
-        MessageBox.Show(
-            @"Countries"
-        );
-    }
+    ) => new Countries().Show();
 
     private static void currencies_Click(
         object    sender,
         EventArgs e
-    ) {
-        MessageBox.Show(
-            @"Currencies"
-        );
-    }
+    ) => new Currencies().Show();
 
     private static void shortcuts_Click(
         object    sender,
         EventArgs e
-    ) {
-        new Shortcuts().Show();
-    }
+    ) => new Shortcuts().Show();
 
     private static void mobileNumber_Click(
         object    sender,
@@ -429,7 +400,13 @@ public partial class App : Form,
     private void RefreshList_Click(
         object    sender,
         EventArgs e
-    ) => loadAccounts();
+    ) {
+        loadAccounts();
+        SearchBox_TextChanged(
+            sender,
+            e
+        );
+    }
 
     private int getAccountID_FromSelectedRow() {
         if (AccountList.SelectedRows.Count > 0) {

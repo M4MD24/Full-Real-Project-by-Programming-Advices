@@ -168,4 +168,38 @@ public static class Tools {
             return destinationFile;
         }
     }
+
+    private static Image loadIcon(
+        string name,
+        int    width  = 48,
+        int    height = 48
+    ) => loadEmbeddedSvg(
+        Constants.RESOURCES_ICONS_PATH + $".{name}.svg",
+        width,
+        height
+    );
+
+    public static void setIconButton(
+        Button button,
+        string iconName,
+        int    width,
+        int    height
+    ) => button.Image = loadIcon(
+             iconName,
+             width,
+             height
+         );
+
+    public static void setIcon(
+        Form   form,
+        string iconName
+    ) {
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        using Stream? iconStream = assembly.GetManifestResourceStream(
+            Constants.RESOURCES_ICONS_PATH + "." + iconName + ".ico"
+        );
+        form.Icon = new Icon(
+            iconStream!
+        );
+    }
 }
