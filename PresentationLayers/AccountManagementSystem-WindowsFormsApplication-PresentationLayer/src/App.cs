@@ -18,14 +18,15 @@ public partial class App : Form,
     private static readonly(
             Image PersonAdd,
             Image Lists,
-            Image Toll,
+            Image UniversalCurrencyAlt,
             Image Flag2,
             Image Help,
             Image Shortcuts,
             Image ContactSupport,
             Image Call,
             Image Mail,
-            Image Telegram
+            Image Telegram,
+            Image Toll
             ) menuStripIcons = loadMenuStripIcons();
 
     private static readonly(
@@ -130,7 +131,7 @@ public partial class App : Form,
                           ),
                           currencies = createMenuItem(
                               "Cu&rrencies",
-                              menuStripIcons.Toll
+                              menuStripIcons.UniversalCurrencyAlt
                           ),
                           help = createMenuItem(
                               "&Help",
@@ -155,6 +156,10 @@ public partial class App : Form,
                           telegram = createMenuItem(
                               "&Telegram",
                               menuStripIcons.Telegram
+                          ),
+                          fees = createMenuItem(
+                              "&Fees",
+                              menuStripIcons.Toll
                           );
 
         contactUs.DropDownItems.AddRange(
@@ -173,7 +178,8 @@ public partial class App : Form,
         menuStrip.Items.AddRange(
             newAccount,
             lists,
-            help
+            help,
+            fees
         );
 
         MainMenuStrip = menuStrip;
@@ -188,6 +194,7 @@ public partial class App : Form,
         mobileNumber.Click += mobileNumber_Click!;
         mail.Click         += mail_Click!;
         telegram.Click     += telegram_Click!;
+        fees.Click         += fees_Click!;
     }
 
     private static ToolStripMenuItem createMenuItem(
@@ -198,17 +205,17 @@ public partial class App : Form,
         icon
     );
 
-    private static(
-            Image PersonAdd,
+    private static(Image PersonAdd,
             Image Lists,
-            Image Toll,
+            Image UniversalCurrencyAlt,
             Image Flag2,
             Image Help,
             Image Shortcuts,
             Image ContactSupport,
             Image Call,
             Image Mail,
-            Image Telegram
+            Image Telegram,
+            Image Toll
             ) loadMenuStripIcons() => (
                                           PersonAdd : loadIcon(
                                               "PersonAdd"
@@ -216,8 +223,8 @@ public partial class App : Form,
                                           Lists : loadIcon(
                                               "Lists"
                                           ),
-                                          Toll : loadIcon(
-                                              "Toll"
+                                          UniversalCurrencyAlt : loadIcon(
+                                              "UniversalCurrencyAlt"
                                           ),
                                           Flag2 : loadIcon(
                                               "Flag2"
@@ -239,6 +246,9 @@ public partial class App : Form,
                                           ),
                                           Telegram : loadIcon(
                                               "TelegramLogo"
+                                          ),
+                                          Toll : loadIcon(
+                                              "Toll"
                                           )
                                       );
 
@@ -347,6 +357,11 @@ public partial class App : Form,
         MessageBoxButtons.OK,
         MessageBoxIcon.Information
     );
+
+    private static void fees_Click(
+        object    sender,
+        EventArgs e
+    ) => new Fees().Show();
 
     private void App_KeyDown(
         object       sender,

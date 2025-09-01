@@ -1,20 +1,20 @@
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 public class Currency(
-    byte?    currencyID,
-    decimal? amount,
-    byte?    countryID
+    byte?   currencyID,
+    string? currencyName,
+    byte?   countryID
 ) {
-    public byte?    currencyID { get; set; } = currencyID;
-    public decimal? amount     { get; set; } = amount;
-    public byte?    countryID  { get; set; } = countryID;
+    public byte?   currencyID   { get; set; } = currencyID;
+    public string? currencyName { get; set; } = currencyName;
+    public byte?   countryID    { get; set; } = countryID;
 
     public Currency(
-        decimal? amount,
-        byte?    countryID
+        string? CurrencyName,
+        byte?   countryID
     ) : this(
         null,
-        amount,
+        CurrencyName,
         countryID
     ) {}
 }

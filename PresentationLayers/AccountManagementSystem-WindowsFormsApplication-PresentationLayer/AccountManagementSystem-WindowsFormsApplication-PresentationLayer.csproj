@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
+        <ProjectReference Include="..\..\BusinessLayers\ClientManagementSystem-ClassLibrary-BusinessLayer\ClientManagementSystem-ClassLibrary-BusinessLayer.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,6 +28,9 @@
         <EmbeddedResource Include="Resources\Icons\ManageAccounts.ico"/>
         <EmbeddedResource Include="Resources\Icons\Lists.svg"/>
         <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Toll.ico"/>
+        <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.svg"/>
+        <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.ico"/>
         <EmbeddedResource Include="Resources\Icons\Flag2.svg"/>
         <EmbeddedResource Include="Resources\Icons\Flag2.ico"/>
         <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
@@ -52,10 +56,13 @@
             <SubType>Form</SubType>
         </Compile>
         <Compile Update="src\Countries.cs">
-          <SubType>Form</SubType>
+            <SubType>Form</SubType>
         </Compile>
         <Compile Update="src\Currencies.cs">
-          <SubType>Form</SubType>
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Fees.cs">
+            <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
 
