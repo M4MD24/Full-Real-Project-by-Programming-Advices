@@ -250,20 +250,20 @@ CREATE TABLE ClientManagementSystem.DamagedLicenseReplacements
 
 CREATE TABLE ClientManagementSystem.Fees
 (
-    FeesID     INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
-    Amount     MONEY        NOT NULL,
+    FeesID     TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     FeesName   NVARCHAR(60) NOT NULL,
+    Amount     MONEY        NOT NULL,
     CurrencyID TINYINT      NOT NULL,
     FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
 
 /*
-RequestFeesID
-EyeTestFeesID
-TheoreticalTestFeesID
-RetestFeesID
-LicenseRenewalFeesID
-LostLicenseReplacementFeesID
-DamagedLicenseReplacementFeesID
-InternationalLicenseFeesID
+Request,20.0000,1
+Eye Test,40.0000,1
+Theoretical Test,60.0000,1
+Retest,70.0000,1
+License Renewal,20.0000,1
+Lost License Replacement,10.0000,1
+Damaged License Replacement,50.0000,1
+International License,100.0000,1
 */

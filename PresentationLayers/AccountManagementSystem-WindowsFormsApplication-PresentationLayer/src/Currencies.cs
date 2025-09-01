@@ -37,7 +37,7 @@ public partial class Currencies : Form {
     }
 
     private void setSearchFilterChoices() {
-        foreach (DataGridViewColumn column in CountryList.Columns)
+        foreach (DataGridViewColumn column in CurrencyList.Columns)
             searchChoices.Add(
                 column.HeaderText
             );
@@ -50,7 +50,7 @@ public partial class Currencies : Form {
     private void loadCurrencies() {
         List<Currency>? allCurrencies = ClientManagementSystem_ClassLibrary_BusinessLayer.Currencies.getAll();
         currencyBindingSource.DataSource = allCurrencies;
-        CountryList.DataSource           = currencyBindingSource;
+        CurrencyList.DataSource           = currencyBindingSource;
     }
 
     private void disableNewLine_KeyDown(

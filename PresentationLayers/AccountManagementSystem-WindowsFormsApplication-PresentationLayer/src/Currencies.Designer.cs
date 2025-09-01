@@ -31,30 +31,30 @@ partial class Currencies {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-        CountryList  = new System.Windows.Forms.DataGridView();
+        CurrencyList  = new System.Windows.Forms.DataGridView();
         SearchBox    = new System.Windows.Forms.TextBox();
         SearchFilter = new System.Windows.Forms.ComboBox();
         RefreshList  = new System.Windows.Forms.Button();
-        ((System.ComponentModel.ISupportInitialize) CountryList).BeginInit();
+        ((System.ComponentModel.ISupportInitialize) CurrencyList).BeginInit();
         SuspendLayout();
         //
         // CountryList
         //
-        CountryList.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-        CountryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        CountryList.Location = new System.Drawing.Point(
+        CurrencyList.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+        CurrencyList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        CurrencyList.Location = new System.Drawing.Point(
             20,
             60
         );
-        CountryList.MultiSelect = false;
-        CountryList.Name        = "CountryList";
-        CountryList.ReadOnly    = true;
-        CountryList.Size = new System.Drawing.Size(
+        CurrencyList.MultiSelect = false;
+        CurrencyList.Name        = "CurrencyList";
+        CurrencyList.ReadOnly    = true;
+        CurrencyList.Size = new System.Drawing.Size(
             545,
             380
         );
-        CountryList.TabIndex = 3;
-        CountryList.Text     = "dataGridView1";
+        CurrencyList.TabIndex = 3;
+        CurrencyList.Text     = "dataGridView1";
         //
         // SearchBox
         //
@@ -109,7 +109,7 @@ partial class Currencies {
         RefreshList.UseVisualStyleBackColor =  true;
         RefreshList.Click                   += RefreshList_Click;
         //
-        // Countries
+        // Currencies
         //
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
@@ -131,11 +131,11 @@ partial class Currencies {
             SearchBox
         );
         Controls.Add(
-            CountryList
+            CurrencyList
         );
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          = "Countries";
-        ((System.ComponentModel.ISupportInitialize) CountryList).EndInit();
+        Text          = "Currencies";
+        ((System.ComponentModel.ISupportInitialize) CurrencyList).EndInit();
         ResumeLayout(
             false
         );
@@ -148,7 +148,7 @@ partial class Currencies {
 
     private System.Windows.Forms.TextBox SearchBox;
 
-    private System.Windows.Forms.DataGridView CountryList;
+    private System.Windows.Forms.DataGridView CurrencyList;
 
     #endregion
 }

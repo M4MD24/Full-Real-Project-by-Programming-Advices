@@ -5,9 +5,9 @@ public class Currency(
     string? currencyName,
     byte?   countryID
 ) {
-    public byte?   currencyID   { get; set; } = currencyID;
-    public string? currencyName { get; set; } = currencyName;
-    public byte?   countryID    { get; set; } = countryID;
+    public byte?   currencyID   { get; } = currencyID;
+    public string? currencyName { get; } = currencyName;
+    public byte?   countryID    { get; } = countryID;
 
     public Currency(
         string? CurrencyName,
