@@ -55,14 +55,14 @@ erDiagram
         INT EmployeeID FK
     }
     Currencies {
-        TINYINT currencyID PK
-        MONEY Amount
+        TINYINT CurrencyID PK
+        NVARCHAR(60) CurrencyName
         TINYINT CountryID FK
     }
     Tests {
         INT TestID PK
         DATETIME TestDateTime
-        TINYINT currencyID FK
+        TINYINT CurrencyID FK
         BIT IsSucceed
     }
     EyeTests {
@@ -91,7 +91,8 @@ erDiagram
     }
     Payments {
         INT PaymentID PK
-        TINYINT currencyID FK
+        TINYINT CurrencyID FK
+        MONEY Amount
         DATETIME PaymentDateTime
         NVARCHAR(50) PaymentMethod
     }
@@ -161,14 +162,10 @@ erDiagram
         DATETIME ReplacementDateTime
     }
     Fees {
-        INT RequestFeesID FK
-        INT EyeTestFeesID FK
-        INT TheoreticalTestFeesID FK
-        INT RetestFeesID FK
-        INT LicenseRenewalFeesID FK
-        INT LostLicenseReplacementFeesID FK
-        INT DamagedLicenseReplacementFeesID FK
-        INT InternationalLicenseFeesID FK
+        INT FeesID PK
+        NVARCHAR(75) FeesName
+        MONEY Amount
+        INT CurrencyID FK
     }
 
     Persons ||--|| FullNames: ""
@@ -208,11 +205,4 @@ erDiagram
     UnlockLicenses }o--|| Licenses: ""
     LostLicenseReplacements }o--|| Licenses: ""
     DamagedLicenseReplacements }o--|| Licenses: ""
-    Fees ||--|| Currencies: "RequestFeesID"
-    Fees ||--|| Currencies: "EyeTestFeesID"
-    Fees ||--|| Currencies: "TheoreticalTestFeesID"
-    Fees ||--|| Currencies: "RetestFeesID"
-    Fees ||--|| Currencies: "LicenseRenewalFeesID"
-    Fees ||--|| Currencies: "LostLicenseReplacementFeesID"
-    Fees ||--|| Currencies: "DamagedLicenseReplacementFeesID"
-    Fees ||--|| Currencies: "InternationalLicenseFeesID"
+    Fees ||--|| Currencies: ""

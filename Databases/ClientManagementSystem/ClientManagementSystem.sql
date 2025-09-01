@@ -4,17 +4,17 @@ CREATE SCHEMA ClientManagementSystem;
 
 CREATE TABLE ClientManagementSystem.Countries
 (
-    CountryID   TINYINT      NOT NULL PRIMARY KEY,
+    CountryID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     CountryName NVARCHAR(60) NOT NULL UNIQUE,
     CountryCode NVARCHAR(3)  NOT NULL UNIQUE
 )
 
-CREATE TABLE AccountManagementSystem.MobileNumbers
+CREATE TABLE ClientManagementSystem.MobileNumbers
 (
     MobileNumberID INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
     ContactNumber  NVARCHAR(20) NOT NULL,
     CountryID      TINYINT      NOT NULL,
-    FOREIGN KEY (CountryID) REFERENCES AccountManagementSystem.Countries (CountryID)
+    FOREIGN KEY (CountryID) REFERENCES ClientManagementSystem.Countries (CountryID)
 )
 
 CREATE TABLE ClientManagementSystem.ContactInformation
@@ -86,9 +86,9 @@ CREATE TABLE ClientManagementSystem.DrivingExaminers
 
 CREATE TABLE ClientManagementSystem.Currencies
 (
-    CurrencyID TINYINT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    Amount     MONEY   NOT NULL,
-    CountryID  TINYINT NOT NULL,
+    CurrencyID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    CurrencyName NVARCHAR(60) NOT NULL UNIQUE,
+    CountryID    TINYINT      NOT NULL,
     FOREIGN KEY (CountryID) REFERENCES ClientManagementSystem.Countries (CountryID)
 )
 
@@ -143,6 +143,7 @@ CREATE TABLE ClientManagementSystem.RequestCases
 CREATE TABLE ClientManagementSystem.Payments
 (
     PaymentID       INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Amount          MONEY        NOT NULL,
     CurrencyID      TINYINT      NOT NULL,
     PaymentDateTime DATETIME     NOT NULL,
     PaymentMethod   NVARCHAR(50) NOT NULL,
@@ -188,7 +189,7 @@ CREATE TABLE ClientManagementSystem.LicenseTypes
     IssueDateTime          DATETIME      NOT NULL,
     ExpiryDateTime         DATETIME      NOT NULL,
     IsActive               BIT           NOT NULL,
-    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
+    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID)
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
@@ -249,20 +250,20 @@ CREATE TABLE ClientManagementSystem.DamagedLicenseReplacements
 
 CREATE TABLE ClientManagementSystem.Fees
 (
-    RequestFeesID                   TINYINT NOT NULL,
-    EyeTestFeesID                   TINYINT NOT NULL,
-    TheoreticalTestFeesID           TINYINT NOT NULL,
-    RetestFeesID                    TINYINT NOT NULL,
-    LicenseRenewalFeesID            TINYINT NOT NULL,
-    LostLicenseReplacementFeesID    TINYINT NOT NULL,
-    DamagedLicenseReplacementFeesID TINYINT NOT NULL,
-    InternationalLicenseFeesID      TINYINT NOT NULL,
-    FOREIGN KEY (RequestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (EyeTestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (TheoreticalTestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (RetestFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (LicenseRenewalFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (LostLicenseReplacementFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (DamagedLicenseReplacementFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
-    FOREIGN KEY (InternationalLicenseFeesID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FeesID     INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Amount     MONEY        NOT NULL,
+    FeesName   NVARCHAR(60) NOT NULL,
+    CurrencyID TINYINT      NOT NULL,
+    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
+
+/*
+RequestFeesID
+EyeTestFeesID
+TheoreticalTestFeesID
+RetestFeesID
+LicenseRenewalFeesID
+LostLicenseReplacementFeesID
+DamagedLicenseReplacementFeesID
+InternationalLicenseFeesID
+*/
