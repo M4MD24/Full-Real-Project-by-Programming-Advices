@@ -4,15 +4,15 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class ContactInformation {
+public static class ContactInformation {
     public static int updateContactInformationByContactInformationID(
         ref Models.ContactInformation contactInformationID
     ) {
         const string UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
                                                                             USE DriverAndVehicleLicenseDepartment
                                                                             UPDATE AccountManagementSystem.ContactInformation
-                                                                            SET PhoneNumber = @phoneNumber,
-                                                                                Email       = @email
+                                                                            SET MobileNumberID = @mobileNumberID,
+                                                                                Email          = @email
                                                                             WHERE ContactInformationID = @contactInformationID
                                                                             """;
 
@@ -24,7 +24,7 @@ public class ContactInformation {
     }
 
     public static int deleteContactInformationByContactInformationID(
-        ref int contactInformationID
+        ref int? contactInformationID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -63,8 +63,9 @@ public class ContactInformation {
     ) {
         const string ADD_NEW_CONTACT_INFORMATION = """
                                                    USE DriverAndVehicleLicenseDepartment
-                                                   INSERT INTO AccountManagementSystem.ContactInformation (PhoneNumber, Email)
-                                                   VALUES (@phoneNumber, @email)
+                                                   INSERT INTO AccountManagementSystem.ContactInformation (MobileNumberID, Email)
+                                                   VALUES (@mobileNumberID, @email);
+                                                   SELECT SCOPE_IDENTITY();
                                                    """;
 
         return saveData(
@@ -95,8 +96,8 @@ public class ContactInformation {
             );
 
         sqlCommand.Parameters.AddWithValue(
-            "@phoneNumber",
-            contactInformation.phoneNumber
+            "@mobileNumberID",
+            contactInformation.mobileNumberID
         );
         sqlCommand.Parameters.AddWithValue(
             "@email",
@@ -106,7 +107,14 @@ public class ContactInformation {
         int rowAffected = 0;
         try {
             sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message
@@ -119,7 +127,7 @@ public class ContactInformation {
     }
 
     public static Models.ContactInformation? getContactInformationByContactInformationID(
-        ref int contactInformationID
+        ref int? contactInformationID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -143,11 +151,11 @@ public class ContactInformation {
             sqlConnection.Open();
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
-                string phoneNumber = (string) sqlDataReader["PhoneNumber"],
-                       email       = (string) sqlDataReader["Email"];
+                int    mobileNumberID = (int) sqlDataReader["MobileNumberID"];
+                string email          = (string) sqlDataReader["Email"];
                 return new Models.ContactInformation(
                     contactInformationID,
-                    phoneNumber,
+                    mobileNumberID,
                     email
                 );
             }

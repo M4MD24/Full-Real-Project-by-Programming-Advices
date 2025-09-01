@@ -2,7 +2,7 @@
 
 namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
-public class FullNames {
+public static class FullNames {
     public static int update(
         ref FullName fullName
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.FullNames.updateFullNameByFullNameID(
@@ -10,7 +10,7 @@ public class FullNames {
     );
 
     public static int delete(
-        ref int fullNameID
+        ref int? fullNameID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.FullNames.deleteFullNameByFullNameID(
         ref fullNameID
     );
@@ -22,7 +22,7 @@ public class FullNames {
     );
 
     public static FullName? get(
-        ref int fullNameID
+        ref int? fullNameID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.FullNames.getFullNameByFullNameID(
         ref fullNameID
     );

@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Persons {
+public static class Persons {
     public static int updatePersonByPersonID(
         ref Person person
     ) {
         const string UPDATE_PERSON_BY_PERSON_ID = """
                                                   USE DriverAndVehicleLicenseDepartment
-                                                  UPDATE AccountManagementSystem.Accounts
+                                                  UPDATE AccountManagementSystem.Persons
                                                   SET NationalNumber       = @nationalNumber,
                                                       FullNameID           = @fullNameID,
                                                       DateOfBirth          = @dateOfBirth,
@@ -20,7 +19,7 @@ public class Persons {
                                                       ContactInformationID = @contactInformationID,
                                                       CountryID            = @countryID,
                                                       ImageURL             = @imageURL
-                                                  WHERE AccountID = @accountID
+                                                  WHERE PersonID = @personID
                                                   """;
 
         return saveData(
@@ -31,7 +30,7 @@ public class Persons {
     }
 
     public static int deletePersonByPersonID(
-        ref int personID
+        ref int? personID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -71,7 +70,8 @@ public class Persons {
         const string ADD_NEW_PERSON = """
                                       USE DriverAndVehicleLicenseDepartment
                                       INSERT INTO AccountManagementSystem.Persons (NationalNumber, FullNameID, DateOfBirth, Address, ContactInformationID, CountryID, ImageURL)
-                                      VALUES (@nationalNumber, @fullNameID, @dateOfBirth, @address, @contactInformationID, @countryID, @imageURL)
+                                      VALUES (@nationalNumber, @fullNameID, @dateOfBirth, @address, @contactInformationID, @countryID, @imageURL);
+                                      SELECT SCOPE_IDENTITY();
                                       """;
 
         return saveData(
@@ -133,7 +133,14 @@ public class Persons {
         int rowAffected = 0;
         try {
             sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message
@@ -146,7 +153,7 @@ public class Persons {
     }
 
     public static Person? getPersonByPersonID(
-        ref int personID
+        ref int? personID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -199,5 +206,149 @@ public class Persons {
         }
 
         return null;
+    }
+
+    public static string? getImageUrlByPersonID(
+        ref int? personID
+    ) {
+        const string SELECT_IMAGE_URL_BY_PERSON_ID = """
+                                                     USE DriverAndVehicleLicenseDepartment
+                                                     SELECT ImageURL
+                                                     FROM AccountManagementSystem.Persons
+                                                     WHERE PersonID = @personID;
+                                                     """;
+
+        try {
+            using SqlConnection sqlConnection = new SqlConnection(
+                Constants.DATABASE_CONNECTIVITY
+            );
+            using SqlCommand sqlCommand = new SqlCommand(
+                SELECT_IMAGE_URL_BY_PERSON_ID,
+                sqlConnection
+            );
+            sqlCommand.Parameters.AddWithValue(
+                "@personID",
+                personID
+            );
+
+            sqlConnection.Open();
+            string imageURL = (string) sqlCommand.ExecuteScalar()!;
+
+            return imageURL;
+        } catch (SqlException sqlEx) {
+            Console.Error.WriteLine(
+                $"SQL Error: {sqlEx.Message}"
+            );
+        } catch (Exception ex) {
+            Console.Error.WriteLine(
+                $"Unexpected Error: {ex.Message}"
+            );
+        }
+
+        return null;
+    }
+
+    public static Person? getPersonByNationalNumber(
+        ref string? nationalNumber
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_PERSON_BY_NATIONAL_NUMBER = """
+                                                        USE DriverAndVehicleLicenseDepartment
+                                                        SELECT *
+                                                        FROM AccountManagementSystem.Persons
+                                                        WHERE NationalNumber = @nationalNumber
+                                                        """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_PERSON_BY_NATIONAL_NUMBER,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@nationalNumber",
+            nationalNumber
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                int      personID             = (int) sqlDataReader["PersonID"];
+                int      fullNameID           = (int) sqlDataReader["FullNameID"];
+                DateTime dateOfBirth          = (DateTime) sqlDataReader["DateOfBirth"];
+                string   address              = (string) sqlDataReader["Address"];
+                int      contactInformationID = (int) sqlDataReader["ContactInformationID"];
+                byte     countryID            = (byte) sqlDataReader["CountryID"];
+                string   imageURL             = (string) sqlDataReader["ImageURL"];
+                return new Person(
+                    personID,
+                    nationalNumber,
+                    fullNameID,
+                    dateOfBirth,
+                    address,
+                    contactInformationID,
+                    countryID,
+                    imageURL
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static bool isPersonExistByNationalNumber(
+        ref string? nationalNumber
+    ) {
+        if (
+            string.IsNullOrWhiteSpace(
+                nationalNumber
+            )
+        )
+            return false;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        const string IS_NATIONAL_NUMBER_EXIST = """
+                                                USE DriverAndVehicleLicenseDepartment
+                                                IF EXISTS (
+                                                    SELECT 1
+                                                    FROM AccountManagementSystem.Persons
+                                                    WHERE NationalNumber = @nationalNumber
+                                                )
+                                                    SELECT 1
+                                                ELSE
+                                                    SELECT 0
+                                                """;
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            IS_NATIONAL_NUMBER_EXIST,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@nationalNumber",
+            nationalNumber
+        );
+
+        try {
+            sqlConnection.Open();
+            return Convert.ToInt32(
+                       sqlCommand.ExecuteScalar()
+                   ) == 1;
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+            return false;
+        }
     }
 }

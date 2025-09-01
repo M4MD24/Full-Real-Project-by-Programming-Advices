@@ -1,6 +1,6 @@
 ﻿namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
-public class ContactInformation {
+public static class ContactInformation {
     public static int update(
         ref AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation contactInformation
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.ContactInformation.updateContactInformationByContactInformationID(
@@ -8,7 +8,7 @@ public class ContactInformation {
     );
 
     public static int delete(
-        ref int contactInformationID
+        ref int? contactInformationID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.ContactInformation.deleteContactInformationByContactInformationID(
         ref contactInformationID
     );
@@ -20,7 +20,7 @@ public class ContactInformation {
     );
 
     public static AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.ContactInformation? get(
-        ref int contactInformationID
+        ref int? contactInformationID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.ContactInformation.getContactInformationByContactInformationID(
         ref contactInformationID
     );

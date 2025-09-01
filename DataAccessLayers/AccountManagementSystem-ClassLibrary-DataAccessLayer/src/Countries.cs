@@ -6,7 +6,46 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Countries {
+public static class Countries {
+    public static List<string> getAllCountryNames() {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_ALL_COUNTRY_NAMES = """
+                                                USE DriverAndVehicleLicenseDepartment
+                                                SELECT CountryName
+                                                FROM AccountManagementSystem.Countries
+                                                """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_ALL_COUNTRY_NAMES,
+            sqlConnection
+        );
+
+        List<string> countryNames = [];
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read()) {
+                string countryName = (string) sqlDataReader["CountryName"];
+                countryNames.Add(
+                    countryName
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return countryNames;
+    }
+
     public static int updateCountryByCountryID(
         ref Country country
     ) {
@@ -66,7 +105,8 @@ public class Countries {
         const string ADD_NEW_COUNTRY = """
                                        USE DriverAndVehicleLicenseDepartment
                                        INSERT INTO AccountManagementSystem.Countries (CountryName, CountryCode)
-                                       VALUES (@countryName, @countryCode)
+                                       VALUES (@countryName, @countryCode);
+                                       SELECT SCOPE_IDENTITY();
                                        """;
 
         return saveData(
@@ -107,8 +147,14 @@ public class Countries {
 
         int rowAffected = 0;
         try {
-            sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message
@@ -167,7 +213,7 @@ public class Countries {
     }
 
     public static Country? getCountryByCountryID(
-        ref byte countryID
+        ref byte? countryID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -193,6 +239,52 @@ public class Countries {
             while (sqlDataReader.Read()) {
                 string countryName = (string) sqlDataReader["CountryName"],
                        countryCode = (string) sqlDataReader["CountryCode"];
+                return new Country(
+                    countryID,
+                    countryName,
+                    countryCode
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static Country? getCountryByCountryName(
+        ref string countryName
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_COUNTRY_BY_COUNTRY_NAME = """
+                                                      USE DriverAndVehicleLicenseDepartment
+                                                      SELECT *
+                                                      FROM AccountManagementSystem.Countries
+                                                      WHERE CountryName = @countryName
+                                                      """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_COUNTRY_BY_COUNTRY_NAME,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@countryName",
+            countryName
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                byte   countryID   = (byte) sqlDataReader["CountryID"];
+                string countryCode = (string) sqlDataReader["CountryCode"];
                 return new Country(
                     countryID,
                     countryName,

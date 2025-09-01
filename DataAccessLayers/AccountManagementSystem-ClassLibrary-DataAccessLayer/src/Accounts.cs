@@ -6,7 +6,7 @@ using AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace AccountManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Accounts {
+public static class Accounts {
     public static int updateAccountByAccountID(
         ref Account account
     ) {
@@ -29,7 +29,7 @@ public class Accounts {
     }
 
     public static int deleteAccountByAccountID(
-        ref int accountID
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -69,14 +69,17 @@ public class Accounts {
         const string ADD_NEW_ACCOUNT = """
                                        USE DriverAndVehicleLicenseDepartment
                                        INSERT INTO AccountManagementSystem.Accounts (PersonID, Username, Password, IsActive, AccountTypeID)
-                                       VALUES (@personID, @username, @password, @isActive, @accountTypeID)
+                                       VALUES (@personID, @username, @password, @isActive, @accountTypeID);
+                                       SELECT SCOPE_IDENTITY();
                                        """;
 
-        return saveData(
+        int newID = saveData(
             ref account,
             ADD_NEW_ACCOUNT,
             Constants.Mode.Add
         );
+        account.accountID = newID;
+        return newID;
     }
 
     private static int saveData(
@@ -123,7 +126,14 @@ public class Accounts {
         int rowAffected = 0;
         try {
             sqlConnection.Open();
-            rowAffected = sqlCommand.ExecuteNonQuery();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
         } catch (Exception exception) {
             Console.WriteLine(
                 exception.Message
@@ -135,30 +145,25 @@ public class Accounts {
         return rowAffected;
     }
 
-    public static int setActiveStatusbyAccountID(
-        ref int  accountID,
-        ref bool isActive
+    public static int changeStatusbyAccountID(
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
 
-        const string SET_ACTIVE_STATUS_BY_ACCOUNT_ID = """
-                                                       USE DriverAndVehicleLicenseDepartment
-                                                       UPDATE AccountManagementSystem.Accounts
-                                                       SET IsActive = @isActive
-                                                       WHERE AccountID = @accountID
-                                                       """;
+        const string CHANGE_STATUS_BY_ACCOUNT_ID = """
+                                                   USE DriverAndVehicleLicenseDepartment
+                                                   UPDATE AccountManagementSystem.Accounts
+                                                   SET IsActive = ~IsActive
+                                                   WHERE AccountID = @accountID
+                                                   """;
 
         SqlCommand sqlCommand = new SqlCommand(
-            SET_ACTIVE_STATUS_BY_ACCOUNT_ID,
+            CHANGE_STATUS_BY_ACCOUNT_ID,
             sqlConnection
         );
 
-        sqlCommand.Parameters.AddWithValue(
-            "@isActive",
-            isActive
-        );
         sqlCommand.Parameters.AddWithValue(
             "@accountID",
             accountID
@@ -180,7 +185,7 @@ public class Accounts {
     }
 
     public static Account? getAccountByAccountID(
-        ref int accountID
+        ref int? accountID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
@@ -281,5 +286,53 @@ public class Accounts {
         }
 
         return null;
+    }
+
+    public static bool isAccountExistByUsername(
+        ref string? username
+    ) {
+        if (
+            string.IsNullOrWhiteSpace(
+                username
+            )
+        )
+            return false;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        const string IS_USERNAME_EXIST = """
+                                         USE DriverAndVehicleLicenseDepartment
+                                         IF EXISTS (
+                                             SELECT 1
+                                             FROM AccountManagementSystem.Accounts
+                                             WHERE Username = @username
+                                         )
+                                             SELECT 1
+                                         ELSE
+                                             SELECT 0
+                                         """;
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            IS_USERNAME_EXIST,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@username",
+            username
+        );
+
+        try {
+            sqlConnection.Open();
+            return Convert.ToInt32(
+                       sqlCommand.ExecuteScalar()
+                   ) == 1;
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+            return false;
+        }
     }
 }

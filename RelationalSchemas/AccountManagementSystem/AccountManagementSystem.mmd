@@ -6,7 +6,7 @@ erDiagram
         INT PersonID PK
         NVARCHAR(30) NationalNumber
         INT FullNameID FK
-        DATETIME DateOfBirth
+        DATE DateOfBirth
         NVARCHAR(200) Address
         INT ContactInformationID FK
         TINYINT CountryID FK
@@ -21,13 +21,18 @@ erDiagram
     }
     Countries {
         TINYINT CountryID PK
-        NVARCHAR(75) CountryName
+        NVARCHAR(60) CountryName
         VARCHAR(3) CountryCode
+    }
+    MobileNumbers {
+        INT MobileNumberID PK
+        VARCHAR(20) ContactNumber
+        TINYINT CountryID FK
     }
     ContactInformation {
         INT ContactInformationID PK
-        VARCHAR(20) PhoneNumber
-        VARCHAR(100) Email
+        INT MobileNumberID FK
+        VARCHAR(40) Email
     }
     AccountTypes {
         TINYINT AccountTypeID PK
@@ -36,8 +41,8 @@ erDiagram
     Accounts {
         INT AccountID PK
         INT PersonID FK
-        VARCHAR(50) Username
-        VARCHAR(50) Password
+        VARCHAR(30) Username
+        VARCHAR(30) Password
         BIT IsActive
         TINYINT AccountTypeID FK
     }
@@ -47,12 +52,13 @@ erDiagram
     }
     Permissions {
         TINYINT PermissionID PK
-        NVARCHAR(50) PermissionName
+        NVARCHAR(40) PermissionName
     }
 
     Persons ||--|| FullNames: ""
     Persons ||--|| Countries: ""
     Persons ||--|| ContactInformation: ""
+    ContactInformation ||--|| MobileNumbers: ""
     Persons ||--o{ Accounts: ""
     Accounts ||--|| AccountTypes: ""
     Accounts }|--o{ AccountPermissions: ""

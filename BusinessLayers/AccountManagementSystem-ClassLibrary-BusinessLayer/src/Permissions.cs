@@ -1,11 +1,26 @@
-﻿using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+﻿using System.Collections.Generic;
+using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
-public class Permissions {
+public static class Permissions {
     public static Permission? get(
-        ref byte permissioonID
+        ref byte permissionID
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getPermissionByPermissionID(
-        ref permissioonID
+        ref permissionID
+    );
+
+    public static Permission? get(
+        ref string permissionName
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getPermissionByPermissionName(
+        ref permissionName
+    );
+
+    public static List<Permission>? getAll() => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getAllPermissions();
+
+    public static List<Permission> getAll(
+        ref List<byte> permissionIDs
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Permissions.getAllPermissions(
+        ref permissionIDs
     );
 }
