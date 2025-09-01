@@ -38,7 +38,7 @@ partial class Fees {
         ((System.ComponentModel.ISupportInitialize) FeesList).BeginInit();
         SuspendLayout();
         //
-        // CountryList
+        // FeesList
         //
         FeesList.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         FeesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -109,7 +109,7 @@ partial class Fees {
         RefreshList.UseVisualStyleBackColor =  true;
         RefreshList.Click                   += RefreshList_Click;
         //
-        // Countries
+        // Fees
         //
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
@@ -134,7 +134,7 @@ partial class Fees {
             FeesList
         );
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          = "Fees";
+        Text          = "Countries";
         ((System.ComponentModel.ISupportInitialize) FeesList).EndInit();
         ResumeLayout(
             false
