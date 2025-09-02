@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 using AccountPermissions = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountPermissions;
 using ContactInformation = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation;
 
-namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities.FullAccount;
+namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public static class FullAccounts {
-    public static AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount get(
+    public static FullAccount get(
         ref int? accountID
     ) {
         Account? account = AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.getAccountByAccountID(
@@ -59,7 +60,7 @@ public static class FullAccounts {
             ref accountTypeID
         );
 
-        return new AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount(
+        return new FullAccount(
             accountID,
             personID,
             person.nationalNumber,
@@ -91,7 +92,7 @@ public static class FullAccounts {
     }
 
     public static void add(
-        ref AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount.FullAccountFields fullAccountFields
+        ref FullAccount.FullAccountFields fullAccountFields
     ) {
         FullName fullName = new FullName(
             fullAccountFields.firstName,
@@ -224,9 +225,9 @@ public static class FullAccounts {
     }
 
     public static void update(
-        ref AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount.FullAccountIDs    fullAccountIDs,
-        ref AccountManagementSystem_ClassLibrary_BusinessLayer.Models.FullAccount.FullAccountFields fullAccountFields,
-        ref bool?                                                                                   isActive
+        ref FullAccount.FullAccountIDs    fullAccountIDs,
+        ref FullAccount.FullAccountFields fullAccountFields,
+        ref bool?                         isActive
     ) {
         Account account = new Account(
             fullAccountIDs.accountID,

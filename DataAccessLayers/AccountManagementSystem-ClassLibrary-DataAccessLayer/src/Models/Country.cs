@@ -8,13 +8,4 @@ public class Country(
     public byte?   countryID   { get; } = countryID;
     public string? countryName { get; } = countryName;
     public string? countryCode { get; } = countryCode;
-
-    public Country(
-        string? countryName,
-        string? countryCode
-    ) : this(
-        null,
-        countryName,
-        countryCode
-    ) {}
 }

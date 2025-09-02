@@ -6,6 +6,6 @@ public class AccountPermissions(
     int?        accountID,
     List<byte>? permissionIDs
 ) {
-    public int?        accountID     { get; set; } = accountID;
-    public List<byte>? permissionIDs { get; set; } = permissionIDs;
+    public int?        accountID     { get; } = accountID;
+    public List<byte>? permissionIDs { get; } = permissionIDs;
 }

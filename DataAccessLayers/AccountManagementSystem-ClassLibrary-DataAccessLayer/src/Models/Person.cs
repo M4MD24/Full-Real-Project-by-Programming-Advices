@@ -13,12 +13,12 @@ public class Person(
     string?   imageURL
 ) {
     public int?      personID             { get; set; } = personID;
-    public string?   nationalNumber       { get; set; } = nationalNumber;
-    public int?      fullNameID           { get; set; } = fullNameID;
-    public DateTime? dateOfBirth          { get; set; } = dateOfBirth;
-    public string?   address              { get; set; } = address;
-    public int?      contactInformationID { get; set; } = contactInformationID;
-    public byte?     countryID            { get; set; } = countryID;
+    public string?   nationalNumber       { get; }      = nationalNumber;
+    public int?      fullNameID           { get; }      = fullNameID;
+    public DateTime? dateOfBirth          { get; }      = dateOfBirth;
+    public string?   address              { get; }      = address;
+    public int?      contactInformationID { get; }      = contactInformationID;
+    public byte?     countryID            { get; }      = countryID;
     public string?   imageURL             { get; set; } = imageURL;
 
     public Person(
