@@ -7,11 +7,11 @@ public class FullName(
     string? thirdName,
     string? fourthName
 ) {
-    public int?    fullNameID { get; set; } = fullNameID;
-    public string? firstName  { get; set; } = firstName;
-    public string? secondName { get; set; } = secondName;
-    public string? thirdName  { get; set; } = thirdName;
-    public string? fourthName { get; set; } = fourthName;
+    public int?    fullNameID { get; } = fullNameID;
+    public string? firstName  { get; } = firstName;
+    public string? secondName { get; } = secondName;
+    public string? thirdName  { get; } = thirdName;
+    public string? fourthName { get; } = fourthName;
 
     public FullName(
         string? firstName,

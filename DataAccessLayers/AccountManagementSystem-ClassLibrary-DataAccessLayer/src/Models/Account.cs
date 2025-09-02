@@ -9,11 +9,11 @@ public class Account(
     byte?   accountTypeID
 ) {
     public int?    accountID     { get; set; } = accountID;
-    public int?    personID      { get; set; } = personID;
-    public string? username      { get; set; } = username;
-    public string? password      { get; set; } = password;
-    public bool?   isActive      { get; set; } = isActive;
-    public byte?   accountTypeID { get; set; } = accountTypeID;
+    public int?    personID      { get; }      = personID;
+    public string? username      { get; }      = username;
+    public string? password      { get; }      = password;
+    public bool?   isActive      { get; }      = isActive;
+    public byte?   accountTypeID { get; }      = accountTypeID;
 
     public Account(
         int?    personID,

@@ -5,9 +5,9 @@ public class ContactInformation(
     int?    mobileNumberID,
     string? email
 ) {
-    public int?    contactInformationID { get; set; } = contactInformationID;
-    public int?    mobileNumberID       { get; set; } = mobileNumberID;
-    public string? email                { get; set; } = email;
+    public int?    contactInformationID { get; } = contactInformationID;
+    public int?    mobileNumberID       { get; } = mobileNumberID;
+    public string? email                { get; } = email;
 
     public ContactInformation(
         int?    mobileNumberID,

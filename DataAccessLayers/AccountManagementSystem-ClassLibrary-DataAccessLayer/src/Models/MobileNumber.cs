@@ -5,13 +5,13 @@ public class MobileNumber(
     string? contactNumber,
     byte?   countryID
 ) {
-    public int?    mobileNumberID { get; set; } = mobileNumberID;
-    public string? contactNumber  { get; set; } = contactNumber;
-    public byte?   countryID      { get; set; } = countryID;
+    public int?    mobileNumberID { get; } = mobileNumberID;
+    public string? contactNumber  { get; } = contactNumber;
+    public byte?   countryID      { get; } = countryID;
 
     public MobileNumber(
         string? contactNumber,
-        byte?    countryID
+        byte?   countryID
     ) : this(
         null,
         contactNumber,
