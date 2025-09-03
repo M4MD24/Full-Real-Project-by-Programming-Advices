@@ -1,3 +1,9 @@
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
-public class DamagedLicenseReplacement {}
+public class DamagedLicenseReplacement(
+    int? damagedLicenseReplacementID,
+    int? licenseID
+) {
+    public int? damagedLicenseReplacementID { get; set; } = damagedLicenseReplacementID;
+    public int? licenseID                   { get; set; } = licenseID;
+}
