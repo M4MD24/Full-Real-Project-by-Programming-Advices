@@ -1,13 +1,13 @@
-namespace AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 public class MobileNumber(
     int?    mobileNumberID,
     string? contactNumber,
     byte?   countryID
 ) {
-    public int?    mobileNumberID { get; } = mobileNumberID;
-    public string? contactNumber  { get; } = contactNumber;
-    public byte?   countryID      { get; } = countryID;
+    public int?    mobileNumberID { get; set; } = mobileNumberID;
+    public string? contactNumber  { get; set; } = contactNumber;
+    public byte?   countryID      { get; set; } = countryID;
 
     public MobileNumber(
         string? contactNumber,

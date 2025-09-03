@@ -1,4 +1,4 @@
-namespace AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 public class FullName(
     int?    fullNameID,
@@ -7,11 +7,11 @@ public class FullName(
     string? thirdName,
     string? fourthName
 ) {
-    public int?    fullNameID { get; } = fullNameID;
-    public string? firstName  { get; } = firstName;
-    public string? secondName { get; } = secondName;
-    public string? thirdName  { get; } = thirdName;
-    public string? fourthName { get; } = fourthName;
+    public int?    fullNameID { get; set; } = fullNameID;
+    public string? firstName  { get; set; } = firstName;
+    public string? secondName { get; set; } = secondName;
+    public string? thirdName  { get; set; } = thirdName;
+    public string? fourthName { get; set; } = fourthName;
 
     public FullName(
         string? firstName,
