@@ -11,7 +11,7 @@ using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilitie
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class App : Form,
+public partial class AccountManagementSystem : Form,
                            Loader {
     private static readonly(
             Image PersonAdd,
@@ -42,7 +42,7 @@ public partial class App : Form,
 
     private readonly BindingSource accountBindingSource = new();
 
-    public App() {
+    public AccountManagementSystem() {
         InitializeComponent();
         loadDataSources();
         Tools.setIcon(

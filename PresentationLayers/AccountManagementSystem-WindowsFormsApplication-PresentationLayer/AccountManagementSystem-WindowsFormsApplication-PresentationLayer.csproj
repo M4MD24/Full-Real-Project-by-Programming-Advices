@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net9.0-windows</TargetFramework>
@@ -11,7 +10,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
-        <ProjectReference Include="..\..\BusinessLayers\ClientManagementSystem-ClassLibrary-BusinessLayer\ClientManagementSystem-ClassLibrary-BusinessLayer.csproj" />
+        <ProjectReference Include="..\..\BusinessLayers\ClientManagementSystem-ClassLibrary-BusinessLayer\ClientManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -65,5 +64,4 @@
             <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
-
 </Project>
