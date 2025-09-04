@@ -33,12 +33,12 @@ partial class Login {
         UsernameQuestion = new System.Windows.Forms.Label();
         PasswordQuestion = new System.Windows.Forms.Label();
         PasswordAnswer   = new System.Windows.Forms.TextBox();
-        Submit            = new System.Windows.Forms.Button();
+        Submit           = new System.Windows.Forms.Button();
         ShowPassword     = new System.Windows.Forms.CheckBox();
         SuspendLayout();
-        //
+        // 
         // UsernameAnswer
-        //
+        // 
         UsernameAnswer.Location = new System.Drawing.Point(
             125,
             20
@@ -50,10 +50,11 @@ partial class Login {
             290,
             25
         );
-        UsernameAnswer.TabIndex = 1;
-        //
+        UsernameAnswer.TabIndex =  1;
+        UsernameAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
         // UsernameQuestion
-        //
+        // 
         UsernameQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -73,9 +74,9 @@ partial class Login {
         UsernameQuestion.TabIndex  = 0;
         UsernameQuestion.Text      = "Username:";
         UsernameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        //
+        // 
         // PasswordQuestion
-        //
+        // 
         PasswordQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
@@ -95,9 +96,9 @@ partial class Login {
         PasswordQuestion.TabIndex  = 2;
         PasswordQuestion.Text      = "Password:";
         PasswordQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        //
+        // 
         // PasswordAnswer
-        //
+        // 
         PasswordAnswer.Location = new System.Drawing.Point(
             125,
             55
@@ -110,10 +111,11 @@ partial class Login {
             290,
             25
         );
-        PasswordAnswer.TabIndex = 3;
-        //
-        // Login
-        //
+        PasswordAnswer.TabIndex =  3;
+        PasswordAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // Submit
+        // 
         Submit.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -125,7 +127,7 @@ partial class Login {
             180,
             140
         );
-        Submit.Name = "Login";
+        Submit.Name = "Submit";
         Submit.Size = new System.Drawing.Size(
             100,
             25
@@ -133,10 +135,10 @@ partial class Login {
         Submit.TabIndex                =  4;
         Submit.Text                    =  "Login";
         Submit.UseVisualStyleBackColor =  true;
-        Submit.Click                   += Login_Click;
-        //
+        Submit.Click                   += Submit_Click;
+        // 
         // ShowPassword
-        //
+        // 
         ShowPassword.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -157,9 +159,9 @@ partial class Login {
         ShowPassword.Text                    =  "Show Password";
         ShowPassword.UseVisualStyleBackColor =  true;
         ShowPassword.CheckedChanged          += ShowPassword_CheckedChanged;
-        //
-        // App
-        //
+        // 
+        // Login
+        // 
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
             15F
@@ -197,11 +199,11 @@ partial class Login {
     }
 
     private System.Windows.Forms.CheckBox ShowPassword;
-    private System.Windows.Forms.Button Submit;
-    private System.Windows.Forms.Label   PasswordQuestion;
-    private System.Windows.Forms.TextBox PasswordAnswer;
-    private System.Windows.Forms.TextBox UsernameAnswer;
-    private System.Windows.Forms.Label   UsernameQuestion;
+    private System.Windows.Forms.Button   Submit;
+    private System.Windows.Forms.Label    PasswordQuestion;
+    private System.Windows.Forms.TextBox  PasswordAnswer;
+    private System.Windows.Forms.TextBox  UsernameAnswer;
+    private System.Windows.Forms.Label    UsernameQuestion;
 
     #endregion
 }

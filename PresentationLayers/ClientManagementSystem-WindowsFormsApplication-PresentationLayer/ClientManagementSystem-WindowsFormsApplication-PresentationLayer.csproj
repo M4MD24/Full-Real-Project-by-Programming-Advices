@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net9.0-windows</TargetFramework>
@@ -10,8 +9,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj" />
-      <ProjectReference Include="..\..\BusinessLayers\ClientManagementSystem-ClassLibrary-BusinessLayer\ClientManagementSystem-ClassLibrary-BusinessLayer.csproj" />
+        <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
+        <ProjectReference Include="..\..\BusinessLayers\ClientManagementSystem-ClassLibrary-BusinessLayer\ClientManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="src\Login.cs">
+            <SubType>Form</SubType>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Svg" Version="3.4.7"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Resources\"/>
     </ItemGroup>
 
 </Project>
