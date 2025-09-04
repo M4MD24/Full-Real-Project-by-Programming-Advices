@@ -2,7 +2,7 @@
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-partial class App {
+partial class AccountManagementSystem {
     /// <summary>
     ///  Required designer variable.
     /// </summary>

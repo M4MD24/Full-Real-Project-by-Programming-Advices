@@ -10,7 +10,7 @@ internal static class Program {
             false
         );
         Application.Run(
-            new App()
+            new AccountManagementSystem()
         );
     }
 }

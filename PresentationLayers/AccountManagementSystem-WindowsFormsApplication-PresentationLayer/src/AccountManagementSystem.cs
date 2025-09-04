@@ -6,14 +6,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_BusinessLayer;
-using AccountManagementSystem_ClassLibrary_BusinessLayer.Models;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
-using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities.FullAccount;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class App : Form,
+public partial class AccountManagementSystem : Form,
                            Loader {
     private static readonly(
             Image PersonAdd,
@@ -44,7 +42,7 @@ public partial class App : Form,
 
     private readonly BindingSource accountBindingSource = new();
 
-    public App() {
+    public AccountManagementSystem() {
         InitializeComponent();
         loadDataSources();
         Tools.setIcon(
