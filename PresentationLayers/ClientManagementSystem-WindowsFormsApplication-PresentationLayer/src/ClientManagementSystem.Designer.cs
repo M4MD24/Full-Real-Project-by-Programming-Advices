@@ -32,9 +32,9 @@ partial class ClientManagementSystem {
     /// </summary>
     private void InitializeComponent() {
         SuspendLayout();
-        //
+        // 
         // ClientManagementSystem
-        //
+        // 
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
             15F
@@ -44,8 +44,9 @@ partial class ClientManagementSystem {
             1184,
             761
         );
-        StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          = "ClientManagementSystem";
+        StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
+        Text          =  "ClientManagementSystem";
+        FormClosing   += ClientManagementSystem_FormClosing;
         ResumeLayout(
             false
         );

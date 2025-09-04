@@ -15,7 +15,9 @@ public static class Constants {
 
     public static class ErrorMessages {
         public const string EMPTY      = "Is Empty",
-                            NOT_UNIQUE = "Isn't Unique";
+                            NOT_UNIQUE = "Isn't Unique",
+                            NOT_EXIST  = "Not Found",
+                            PASSWORD_WRONG   = "Password is Wrong";
         public static readonly string lessThanTargetAge = $"Less Than {TARGET_AGE}";
     }
 }

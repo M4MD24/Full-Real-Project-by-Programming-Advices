@@ -335,4 +335,59 @@ public static class Accounts {
             return false;
         }
     }
+
+    public static bool isCorrectAccountByUsernameAndPassword(
+        ref string? username,
+        ref string? password
+    ) {
+        if (string.IsNullOrWhiteSpace(
+                username
+            ) ||
+            string.IsNullOrWhiteSpace(
+                password
+            ))
+            return false;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        const string IS_ACCOUNT_CORRECT = """
+                                          USE DriverAndVehicleLicenseDepartment
+                                          IF EXISTS (
+                                              SELECT 1
+                                              FROM AccountManagementSystem.Accounts
+                                              WHERE Username = @username
+                                                AND Password = @password
+                                          )
+                                              SELECT 1
+                                          ELSE
+                                              SELECT 0
+                                          """;
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            IS_ACCOUNT_CORRECT,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@username",
+            username
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@password",
+            password
+        );
+
+        try {
+            sqlConnection.Open();
+            return Convert.ToInt32(
+                       sqlCommand.ExecuteScalar()
+                   ) == 1;
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+            return false;
+        }
+    }
 }

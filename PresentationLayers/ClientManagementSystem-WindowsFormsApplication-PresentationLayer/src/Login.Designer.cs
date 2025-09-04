@@ -139,7 +139,7 @@ partial class Login {
             100,
             25
         );
-        Submit.TabIndex                =  4;
+        Submit.TabIndex                =  5;
         Submit.Text                    =  "Login";
         Submit.UseVisualStyleBackColor =  true;
         Submit.Click                   += Submit_Click;
@@ -162,7 +162,7 @@ partial class Login {
             115,
             25
         );
-        ShowPassword.TabIndex                =  5;
+        ShowPassword.TabIndex                =  4;
         ShowPassword.Text                    =  "Show Password";
         ShowPassword.UseVisualStyleBackColor =  true;
         ShowPassword.CheckedChanged          += ShowPassword_CheckedChanged;
@@ -201,8 +201,9 @@ partial class Login {
         Controls.Add(
             UsernameAnswer
         );
-        StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          = "Login";
+        StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
+        Text          =  "Login";
+        FormClosing   += Login_FormClosing;
         ((System.ComponentModel.ISupportInitialize) ErrorProvider).EndInit();
         ResumeLayout(
             false

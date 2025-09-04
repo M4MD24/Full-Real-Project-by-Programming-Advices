@@ -21,20 +21,45 @@ public partial class Login : Form {
         if (!isValidData())
             return;
 
-        DialogResult submit = MessageBox.Show(
-            @"Do you want submit?",
-            @"Submit",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button2
+        if (
+            !AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.isExist(
+                UsernameAnswer.Text
+            )
+        ) {
+            ErrorProvider.SetError(
+                UsernameAnswer,
+                Constants.ErrorMessages.NOT_EXIST
+            );
+            return;
+        }
+
+        ErrorProvider.SetError(
+            UsernameAnswer,
+            string.Empty
         );
 
-        if (submit != DialogResult.Yes)
+        if (
+            !AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.isCorrect(
+                UsernameAnswer.Text,
+                PasswordAnswer.Text
+            )
+        ) {
+            ErrorProvider.SetError(
+                PasswordAnswer,
+                Constants.ErrorMessages.PASSWORD_WRONG
+            );
             return;
+        }
 
-        
+        ErrorProvider.SetError(
+            PasswordAnswer,
+            string.Empty
+        );
+
+        new ClientManagementSystem().Show();
+
+        Hide();
     }
-
 
     private bool isValidData() {
         bool isValid = true;
@@ -103,4 +128,9 @@ public partial class Login : Form {
     ) => checkField(
         PasswordAnswer
     );
+
+    private void Login_FormClosing(
+        object               sender,
+        FormClosingEventArgs e
+    ) => Application.Exit();
 }
