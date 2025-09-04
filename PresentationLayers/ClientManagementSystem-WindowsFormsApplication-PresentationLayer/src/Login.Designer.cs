@@ -29,12 +29,17 @@ partial class Login {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+        components       = new System.ComponentModel.Container();
         UsernameAnswer   = new System.Windows.Forms.TextBox();
         UsernameQuestion = new System.Windows.Forms.Label();
         PasswordQuestion = new System.Windows.Forms.Label();
         PasswordAnswer   = new System.Windows.Forms.TextBox();
         Submit           = new System.Windows.Forms.Button();
         ShowPassword     = new System.Windows.Forms.CheckBox();
+        ErrorProvider = new System.Windows.Forms.ErrorProvider(
+            components
+        );
+        ((System.ComponentModel.ISupportInitialize) ErrorProvider).BeginInit();
         SuspendLayout();
         // 
         // UsernameAnswer
@@ -50,8 +55,9 @@ partial class Login {
             290,
             25
         );
-        UsernameAnswer.TabIndex =  1;
-        UsernameAnswer.KeyDown  += disableNewLine_KeyDown;
+        UsernameAnswer.TabIndex    =  1;
+        UsernameAnswer.TextChanged += UsernameAnswer_TextChanged;
+        UsernameAnswer.KeyDown     += disableNewLine_KeyDown;
         // 
         // UsernameQuestion
         // 
@@ -111,8 +117,9 @@ partial class Login {
             290,
             25
         );
-        PasswordAnswer.TabIndex =  3;
-        PasswordAnswer.KeyDown  += disableNewLine_KeyDown;
+        PasswordAnswer.TabIndex    =  3;
+        PasswordAnswer.TextChanged += PasswordAnswer_TextChanged;
+        PasswordAnswer.KeyDown     += disableNewLine_KeyDown;
         // 
         // Submit
         // 
@@ -160,6 +167,10 @@ partial class Login {
         ShowPassword.UseVisualStyleBackColor =  true;
         ShowPassword.CheckedChanged          += ShowPassword_CheckedChanged;
         // 
+        // ErrorProvider
+        // 
+        ErrorProvider.ContainerControl = this;
+        // 
         // Login
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
@@ -192,11 +203,14 @@ partial class Login {
         );
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          = "Login";
+        ((System.ComponentModel.ISupportInitialize) ErrorProvider).EndInit();
         ResumeLayout(
             false
         );
         PerformLayout();
     }
+
+    private System.Windows.Forms.ErrorProvider ErrorProvider;
 
     private System.Windows.Forms.CheckBox ShowPassword;
     private System.Windows.Forms.Button   Submit;
