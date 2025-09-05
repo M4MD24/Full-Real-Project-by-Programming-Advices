@@ -222,7 +222,7 @@ partial class AccountManagementSystem {
         MainMenuStrip =  MenuStrip;
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          =  "Account Management System";
-        KeyDown       += App_KeyDown;
+        KeyDown       += AccountManagementSystem_KeyDown;
         ((System.ComponentModel.ISupportInitialize) AccountList).EndInit();
         AccountListMenuStrip.ResumeLayout(
             false

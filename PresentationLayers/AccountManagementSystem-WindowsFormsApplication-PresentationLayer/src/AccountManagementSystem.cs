@@ -361,7 +361,7 @@ public partial class AccountManagementSystem : Form,
         EventArgs e
     ) => new Fees().Show();
 
-    private void App_KeyDown(
+    private void AccountManagementSystem_KeyDown(
         object       sender,
         KeyEventArgs e
     ) {
