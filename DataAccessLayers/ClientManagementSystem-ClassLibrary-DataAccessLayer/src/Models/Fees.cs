@@ -6,10 +6,10 @@ public class Fees(
     decimal? amount,
     byte?    currencyID
 ) {
-    public byte?    feesID     { get; } = feesID;
-    public string?  feesName   { get; } = feesName;
-    public decimal? amount     { get; } = amount;
-    public byte?    currencyID { get; } = currencyID;
+    public byte?    feesID     { get; set; } = feesID;
+    public string?  feesName   { get; set; } = feesName;
+    public decimal? amount     { get; set; } = amount;
+    public byte?    currencyID { get; set; } = currencyID;
 
     public Fees(
         string?  feesName,
