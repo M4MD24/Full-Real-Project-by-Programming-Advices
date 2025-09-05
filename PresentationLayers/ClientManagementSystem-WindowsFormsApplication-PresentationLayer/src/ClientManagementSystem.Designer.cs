@@ -40,12 +40,13 @@ partial class ClientManagementSystem {
             15F
         );
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        BackColor     = System.Drawing.Color.DarkGray;
         ClientSize = new System.Drawing.Size(
             1184,
             761
         );
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          =  "ClientManagementSystem";
+        Text          =  "Client Management System";
         FormClosing   += ClientManagementSystem_FormClosing;
         ResumeLayout(
             false
