@@ -75,7 +75,7 @@ partial class AccountManagementSystem {
             700,
             25
         );
-        SearchBox.TabIndex    =  1;
+        SearchBox.TabIndex    =  0;
         SearchBox.TextChanged += SearchBox_TextChanged;
         SearchBox.KeyDown     += disableNewLine_KeyDown;
         // 
@@ -92,7 +92,7 @@ partial class AccountManagementSystem {
             195,
             23
         );
-        SearchFilter.TabIndex             =  2;
+        SearchFilter.TabIndex             =  1;
         SearchFilter.SelectedIndexChanged += SearchFilter_SelectedIndexChanged;
         // 
         // AccountList
@@ -111,7 +111,7 @@ partial class AccountManagementSystem {
             940,
             550
         );
-        AccountList.TabIndex = 4;
+        AccountList.TabIndex = 3;
         AccountList.Text     = "Account List";
         // 
         // RefreshList
@@ -130,7 +130,7 @@ partial class AccountManagementSystem {
             25,
             25
         );
-        RefreshList.TabIndex                =  5;
+        RefreshList.TabIndex                =  2;
         RefreshList.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
         RefreshList.UseVisualStyleBackColor =  true;
         RefreshList.Click                   += RefreshList_Click;
