@@ -191,7 +191,7 @@ partial class AccountManagementSystem {
         ChangeStatusOption.Text  =  "Change Status";
         ChangeStatusOption.Click += ChangeStatusOption_Click;
         // 
-        // App
+        // AccountManagementSystem
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
@@ -221,7 +221,7 @@ partial class AccountManagementSystem {
         KeyPreview    =  true;
         MainMenuStrip =  MenuStrip;
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          =  "Main";
+        Text          =  "Account Management System";
         KeyDown       += App_KeyDown;
         ((System.ComponentModel.ISupportInitialize) AccountList).EndInit();
         AccountListMenuStrip.ResumeLayout(
