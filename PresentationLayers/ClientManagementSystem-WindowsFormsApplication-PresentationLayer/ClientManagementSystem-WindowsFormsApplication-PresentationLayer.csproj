@@ -18,14 +18,39 @@
             <SubType>Form</SubType>
         </Compile>
         <Compile Update="src\ClientManagementSystem.cs">
-          <SubType>Form</SubType>
+            <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
+
     <ItemGroup>
         <PackageReference Include="Svg" Version="3.4.7"/>
     </ItemGroup>
+
     <ItemGroup>
-        <Folder Include="Resources\"/>
+        <EmbeddedResource Include="Resources\Icons\ActionKey.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Call.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ContactSupport.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Flag2.ico"/>
+        <EmbeddedResource Include="Resources\Icons\Flag2.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Help.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Lists.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Mail.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ManageAccounts.ico"/>
+        <EmbeddedResource Include="Resources\Icons\Person.ico"/>
+        <EmbeddedResource Include="Resources\Icons\Person.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonAdd.ico"/>
+        <EmbeddedResource Include="Resources\Icons\PersonAdd.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonEdit.ico"/>
+        <EmbeddedResource Include="Resources\Icons\PersonEdit.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonRemove.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Refresh.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Search.svg"/>
+        <EmbeddedResource Include="Resources\Icons\SwapHorizontal.svg"/>
+        <EmbeddedResource Include="Resources\Icons\TelegramLogo.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Toll.ico"/>
+        <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
+        <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.ico"/>
+        <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.svg"/>
     </ItemGroup>
 
 </Project>
