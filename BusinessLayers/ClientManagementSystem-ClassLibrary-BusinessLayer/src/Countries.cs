@@ -3,7 +3,7 @@ using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 namespace ClientManagementSystem_ClassLibrary_BusinessLayer;
 
-public class Countries {
+public static class Countries {
     public static List<Country>? getAll() => ClientManagementSystem_ClassLibrary_DataAccessLayer.Countries.getAllCountries();
 
     public static Country? get(

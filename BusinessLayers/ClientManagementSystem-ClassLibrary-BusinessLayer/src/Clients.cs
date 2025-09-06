@@ -3,6 +3,6 @@ using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 namespace ClientManagementSystem_ClassLibrary_BusinessLayer;
 
-public abstract class Clients {
+public static class Clients {
     public static List<Client>? getAll() => ClientManagementSystem_ClassLibrary_DataAccessLayer.Clients.getAllClients();
 }

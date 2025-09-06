@@ -20,6 +20,15 @@
         <Compile Update="src\ClientManagementSystem.cs">
             <SubType>Form</SubType>
         </Compile>
+        <Compile Update="src\Countries.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Currencies.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Fees.cs">
+          <SubType>Form</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>

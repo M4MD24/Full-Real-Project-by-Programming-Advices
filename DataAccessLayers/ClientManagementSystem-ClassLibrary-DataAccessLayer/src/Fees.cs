@@ -5,7 +5,7 @@ using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class Fees {
+public static class Fees {
     public static List<ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees>? getAllFees() {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
