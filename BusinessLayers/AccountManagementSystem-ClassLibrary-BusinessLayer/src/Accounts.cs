@@ -49,4 +49,12 @@ public static class Accounts {
         ref username,
         ref password
     );
+
+    public static bool isActive(
+        string? username,
+        string? password
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.isActiveByUsernameAndPassword(
+        ref username,
+        ref password
+    );
 }

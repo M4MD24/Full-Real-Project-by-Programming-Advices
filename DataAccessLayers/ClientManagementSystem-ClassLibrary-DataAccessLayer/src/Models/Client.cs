@@ -1,6 +1,6 @@
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
-public class Clients(
+public class Client(
     int? clientID,
     int? personID
 ) {
