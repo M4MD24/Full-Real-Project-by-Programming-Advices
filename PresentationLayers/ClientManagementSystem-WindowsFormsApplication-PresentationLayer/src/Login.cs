@@ -56,6 +56,24 @@ public partial class Login : Form {
             string.Empty
         );
 
+        if (
+            !AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.isActive(
+                UsernameAnswer.Text,
+                PasswordAnswer.Text
+            )
+        ) {
+            ErrorProvider.SetError(
+                UsernameAnswer,
+                Constants.ErrorMessages.NOT_ACTIVE
+            );
+            return;
+        }
+
+        ErrorProvider.SetError(
+            UsernameAnswer,
+            string.Empty
+        );
+
         new ClientManagementSystem().Show();
 
         Hide();
