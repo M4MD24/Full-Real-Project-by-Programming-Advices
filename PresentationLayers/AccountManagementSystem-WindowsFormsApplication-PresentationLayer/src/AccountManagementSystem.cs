@@ -12,8 +12,8 @@ using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilitie
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class AccountManagementSystem : Form,
-                           Loader {
-    private static readonly(
+                                               Loader {
+    private static(
             Image PersonAdd,
             Image Lists,
             Image UniversalCurrencyAlt,
@@ -25,14 +25,69 @@ public partial class AccountManagementSystem : Form,
             Image Mail,
             Image Telegram,
             Image Toll
-            ) menuStripIcons = loadMenuStripIcons();
+            ) menuStripIcons() => (
+                                      PersonAdd : loadIcon(
+                                          "PersonAdd"
+                                      ),
+                                      Lists : loadIcon(
+                                          "Lists"
+                                      ),
+                                      UniversalCurrencyAlt : loadIcon(
+                                          "UniversalCurrencyAlt"
+                                      ),
+                                      Flag2 : loadIcon(
+                                          "Flag2"
+                                      ),
+                                      Help : loadIcon(
+                                          "Help"
+                                      ),
+                                      Shortcuts : loadIcon(
+                                          "ActionKey"
+                                      ),
+                                      ContactSupport : loadIcon(
+                                          "ContactSupport"
+                                      ),
+                                      Call : loadIcon(
+                                          "Call"
+                                      ),
+                                      Mail : loadIcon(
+                                          "Mail"
+                                      ),
+                                      Telegram : loadIcon(
+                                          "TelegramLogo"
+                                      ),
+                                      Toll : loadIcon(
+                                          "Toll"
+                                      )
+                                  );
 
-    private static readonly(
+    private static(
             Image Person,
             Image PersonEdit,
             Image PersonRemove,
             Image SwapHorizontal
-            ) accountListMenuStripIcons = loadAccountListMenuStripIcons();
+            ) accountListMenuStripIcons() => (
+                                                 Person : loadIcon(
+                                                     "Person",
+                                                     20,
+                                                     20
+                                                 ),
+                                                 PersonEdit : loadIcon(
+                                                     "PersonEdit",
+                                                     20,
+                                                     20
+                                                 ),
+                                                 PersonRemove : loadIcon(
+                                                     "PersonRemove",
+                                                     20,
+                                                     20
+                                                 ),
+                                                 SwapHorizontal : loadIcon(
+                                                     "SwapHorizontal",
+                                                     20,
+                                                     20
+                                                 )
+                                             );
 
     private readonly List<string> searchChoices = [
         "Username",
@@ -99,16 +154,16 @@ public partial class AccountManagementSystem : Form,
     private void loadAccountListMenuStrip() {
         AccountList.ContextMenuStrip = AccountListMenuStrip;
 
-        AccountInformationOption.Image = accountListMenuStripIcons
+        AccountInformationOption.Image = accountListMenuStripIcons()
                 .Person;
 
-        AccountUpdateOption.Image = accountListMenuStripIcons
+        AccountUpdateOption.Image = accountListMenuStripIcons()
                 .PersonEdit;
 
-        AccountDeleteOption.Image = accountListMenuStripIcons
+        AccountDeleteOption.Image = accountListMenuStripIcons()
                 .PersonRemove;
 
-        ChangeStatusOption.Image = accountListMenuStripIcons
+        ChangeStatusOption.Image = accountListMenuStripIcons()
                 .SwapHorizontal;
     }
 
@@ -117,47 +172,58 @@ public partial class AccountManagementSystem : Form,
 
         ToolStripMenuItem newAccount = createMenuItem(
                               "&New Account",
-                              menuStripIcons.PersonAdd
+                              menuStripIcons()
+                                      .PersonAdd
                           ),
                           lists = createMenuItem(
                               "&Lists",
-                              menuStripIcons.Lists
+                              menuStripIcons()
+                                      .Lists
                           ),
                           countries = createMenuItem(
                               "Cou&ntries",
-                              menuStripIcons.Flag2
+                              menuStripIcons()
+                                      .Flag2
                           ),
                           currencies = createMenuItem(
                               "Cu&rrencies",
-                              menuStripIcons.UniversalCurrencyAlt
+                              menuStripIcons()
+                                      .UniversalCurrencyAlt
                           ),
                           help = createMenuItem(
                               "&Help",
-                              menuStripIcons.Help
+                              menuStripIcons()
+                                      .Help
                           ),
                           shortcuts = createMenuItem(
                               "&Shortcuts",
-                              menuStripIcons.Shortcuts
+                              menuStripIcons()
+                                      .Shortcuts
                           ),
                           contactUs = createMenuItem(
                               "&Contact Us",
-                              menuStripIcons.ContactSupport
+                              menuStripIcons()
+                                      .ContactSupport
                           ),
                           mobileNumber = createMenuItem(
                               "&Mobile Number",
-                              menuStripIcons.Call
+                              menuStripIcons()
+                                      .Call
                           ),
                           mail = createMenuItem(
                               "&Mail",
-                              menuStripIcons.Mail
+                              menuStripIcons()
+                                      .Mail
                           ),
                           telegram = createMenuItem(
                               "&Telegram",
-                              menuStripIcons.Telegram
+                              menuStripIcons()
+                                      .Telegram
                           ),
                           fees = createMenuItem(
                               "&Fees",
-                              menuStripIcons.Toll
+                              menuStripIcons()
+                                      .Toll
                           );
 
         contactUs.DropDownItems.AddRange(
@@ -185,14 +251,14 @@ public partial class AccountManagementSystem : Form,
             menuStrip
         );
 
-        newAccount.Click   += newAccount_Click!;
-        countries.Click    += countries_Click!;
-        currencies.Click   += currencies_Click!;
-        shortcuts.Click    += shortcuts_Click!;
-        mobileNumber.Click += mobileNumber_Click!;
-        mail.Click         += mail_Click!;
-        telegram.Click     += telegram_Click!;
-        fees.Click         += fees_Click!;
+        newAccount.Click   += newAccount_Click;
+        countries.Click    += countries_Click;
+        currencies.Click   += currencies_Click;
+        shortcuts.Click    += shortcuts_Click;
+        mobileNumber.Click += mobileNumber_Click;
+        mail.Click         += mail_Click;
+        telegram.Click     += telegram_Click;
+        fees.Click         += fees_Click;
     }
 
     private static ToolStripMenuItem createMenuItem(
@@ -202,81 +268,6 @@ public partial class AccountManagementSystem : Form,
         text,
         icon
     );
-
-    private static(Image PersonAdd,
-            Image Lists,
-            Image UniversalCurrencyAlt,
-            Image Flag2,
-            Image Help,
-            Image Shortcuts,
-            Image ContactSupport,
-            Image Call,
-            Image Mail,
-            Image Telegram,
-            Image Toll
-            ) loadMenuStripIcons() => (
-                                          PersonAdd : loadIcon(
-                                              "PersonAdd"
-                                          ),
-                                          Lists : loadIcon(
-                                              "Lists"
-                                          ),
-                                          UniversalCurrencyAlt : loadIcon(
-                                              "UniversalCurrencyAlt"
-                                          ),
-                                          Flag2 : loadIcon(
-                                              "Flag2"
-                                          ),
-                                          Help : loadIcon(
-                                              "Help"
-                                          ),
-                                          Shortcuts : loadIcon(
-                                              "ActionKey"
-                                          ),
-                                          ContactSupport : loadIcon(
-                                              "ContactSupport"
-                                          ),
-                                          Call : loadIcon(
-                                              "Call"
-                                          ),
-                                          Mail : loadIcon(
-                                              "Mail"
-                                          ),
-                                          Telegram : loadIcon(
-                                              "TelegramLogo"
-                                          ),
-                                          Toll : loadIcon(
-                                              "Toll"
-                                          )
-                                      );
-
-    private static(
-            Image Person,
-            Image PersonEdit,
-            Image PersonRemove,
-            Image SwapHorizontal
-            ) loadAccountListMenuStripIcons() => (
-                                                     Person : loadIcon(
-                                                         "Person",
-                                                         20,
-                                                         20
-                                                     ),
-                                                     PersonEdit : loadIcon(
-                                                         "PersonEdit",
-                                                         20,
-                                                         20
-                                                     ),
-                                                     PersonRemove : loadIcon(
-                                                         "PersonRemove",
-                                                         20,
-                                                         20
-                                                     ),
-                                                     SwapHorizontal : loadIcon(
-                                                         "SwapHorizontal",
-                                                         20,
-                                                         20
-                                                     )
-                                                 );
 
     private static Image loadIcon(
         string name,
@@ -296,7 +287,7 @@ public partial class AccountManagementSystem : Form,
     );
 
     private void newAccount_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) {
         AddAndEditAccount addAndEditAccount = new AddAndEditAccount(
@@ -312,22 +303,22 @@ public partial class AccountManagementSystem : Form,
     ) => loadAccounts();
 
     private static void countries_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => new Countries().Show();
 
     private static void currencies_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => new Currencies().Show();
 
     private static void shortcuts_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => new Shortcuts().Show();
 
     private static void mobileNumber_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => MessageBox.Show(
         @"+201555400034",
@@ -337,7 +328,7 @@ public partial class AccountManagementSystem : Form,
     );
 
     private static void mail_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => MessageBox.Show(
         @"m4md24@gmail.com",
@@ -347,7 +338,7 @@ public partial class AccountManagementSystem : Form,
     );
 
     private static void telegram_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => MessageBox.Show(
         @"@m4md24",
@@ -357,7 +348,7 @@ public partial class AccountManagementSystem : Form,
     );
 
     private static void fees_Click(
-        object    sender,
+        object?   sender,
         EventArgs e
     ) => new Fees().Show();
 
