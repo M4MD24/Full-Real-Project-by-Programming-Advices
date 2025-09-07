@@ -1,0 +1,899 @@
+using System.ComponentModel;
+
+namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
+
+partial class AddAndEditClient {
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private IContainer components = null;
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(
+        bool disposing
+    ) {
+        if (disposing && (components != null)) {
+            components.Dispose();
+        }
+
+        base.Dispose(
+            disposing
+        );
+    }
+
+    #region Windows Form Designer generated code
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent() {
+        components                      = new System.ComponentModel.Container();
+        FullNameQuestion                = new System.Windows.Forms.GroupBox();
+        FourthNameAnswer                = new System.Windows.Forms.TextBox();
+        FourthNameQuestion              = new System.Windows.Forms.Label();
+        ThirdNameAnswer                 = new System.Windows.Forms.TextBox();
+        ThirdNameQuestion               = new System.Windows.Forms.Label();
+        SecondNameAnswer                = new System.Windows.Forms.TextBox();
+        SecondNameQuestion              = new System.Windows.Forms.Label();
+        FirstNameAnswer                 = new System.Windows.Forms.TextBox();
+        FirstNameQuestion               = new System.Windows.Forms.Label();
+        NationalNumberQuestion          = new System.Windows.Forms.Label();
+        DataOfBirthDialog               = new System.Windows.Forms.ColorDialog();
+        NationalNumberAnswer            = new System.Windows.Forms.TextBox();
+        DateOfBirthAnswer               = new System.Windows.Forms.DateTimePicker();
+        DateOfBirthQuestion             = new System.Windows.Forms.Label();
+        AddressQuestion                 = new System.Windows.Forms.Label();
+        AddressAnswer                   = new System.Windows.Forms.TextBox();
+        ContactInformationQuestion      = new System.Windows.Forms.GroupBox();
+        MobileNumberQuestion            = new System.Windows.Forms.GroupBox();
+        MobileNumberCountryNameQuestion = new System.Windows.Forms.Label();
+        MobileNumberCountryNameAnswer   = new System.Windows.Forms.ComboBox();
+        ContactNumberAnswer             = new System.Windows.Forms.TextBox();
+        ContactNumberQuestion           = new System.Windows.Forms.Label();
+        EmailAnswer                     = new System.Windows.Forms.TextBox();
+        EmailQuestion                   = new System.Windows.Forms.Label();
+        CountryNameQuestion             = new System.Windows.Forms.Label();
+        CountryNameAnswer               = new System.Windows.Forms.ComboBox();
+        ImageQuestion                   = new System.Windows.Forms.GroupBox();
+        ImageAnswer                     = new System.Windows.Forms.PictureBox();
+        BrowseImageAnswerDetails        = new System.Windows.Forms.Label();
+        BrowseImageAnswer               = new System.Windows.Forms.Button();
+        Submit                          = new System.Windows.Forms.Button();
+        ErrorProvider = new System.Windows.Forms.ErrorProvider(
+            components
+        );
+        OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+        ClearFields    = new System.Windows.Forms.Button();
+        PersonQuestion = new System.Windows.Forms.GroupBox();
+        FullNameQuestion.SuspendLayout();
+        ContactInformationQuestion.SuspendLayout();
+        MobileNumberQuestion.SuspendLayout();
+        ImageQuestion.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize) ImageAnswer).BeginInit();
+        ((System.ComponentModel.ISupportInitialize) ErrorProvider).BeginInit();
+        PersonQuestion.SuspendLayout();
+        SuspendLayout();
+        // 
+        // FullNameQuestion
+        // 
+        FullNameQuestion.Controls.Add(
+            FourthNameAnswer
+        );
+        FullNameQuestion.Controls.Add(
+            FourthNameQuestion
+        );
+        FullNameQuestion.Controls.Add(
+            ThirdNameAnswer
+        );
+        FullNameQuestion.Controls.Add(
+            ThirdNameQuestion
+        );
+        FullNameQuestion.Controls.Add(
+            SecondNameAnswer
+        );
+        FullNameQuestion.Controls.Add(
+            SecondNameQuestion
+        );
+        FullNameQuestion.Controls.Add(
+            FirstNameAnswer
+        );
+        FullNameQuestion.Controls.Add(
+            FirstNameQuestion
+        );
+        FullNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        FullNameQuestion.Location = new System.Drawing.Point(
+            20,
+            65
+        );
+        FullNameQuestion.Name = "FullNameQuestion";
+        FullNameQuestion.Size = new System.Drawing.Size(
+            480,
+            180
+        );
+        FullNameQuestion.TabIndex = 3;
+        FullNameQuestion.TabStop  = false;
+        FullNameQuestion.Text     = "Full Name";
+        // 
+        // FourthNameAnswer
+        // 
+        FourthNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        FourthNameAnswer.Location = new System.Drawing.Point(
+            160,
+            135
+        );
+        FourthNameAnswer.MaxLength = 20;
+        FourthNameAnswer.Multiline = true;
+        FourthNameAnswer.Name      = "FourthNameAnswer";
+        FourthNameAnswer.Size = new System.Drawing.Size(
+            300,
+            25
+        );
+        FourthNameAnswer.TabIndex =  11;
+        FourthNameAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // FourthNameQuestion
+        // 
+        FourthNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        FourthNameQuestion.Location = new System.Drawing.Point(
+            20,
+            135
+        );
+        FourthNameQuestion.Name = "FourthNameQuestion";
+        FourthNameQuestion.Size = new System.Drawing.Size(
+            115,
+            25
+        );
+        FourthNameQuestion.TabIndex = 10;
+        FourthNameQuestion.Text     = "Fourth Name:";
+        // 
+        // ThirdNameAnswer
+        // 
+        ThirdNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        ThirdNameAnswer.Location = new System.Drawing.Point(
+            160,
+            100
+        );
+        ThirdNameAnswer.MaxLength = 20;
+        ThirdNameAnswer.Multiline = true;
+        ThirdNameAnswer.Name      = "ThirdNameAnswer";
+        ThirdNameAnswer.Size = new System.Drawing.Size(
+            300,
+            25
+        );
+        ThirdNameAnswer.TabIndex =  9;
+        ThirdNameAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // ThirdNameQuestion
+        // 
+        ThirdNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        ThirdNameQuestion.Location = new System.Drawing.Point(
+            20,
+            100
+        );
+        ThirdNameQuestion.Name = "ThirdNameQuestion";
+        ThirdNameQuestion.Size = new System.Drawing.Size(
+            105,
+            25
+        );
+        ThirdNameQuestion.TabIndex = 8;
+        ThirdNameQuestion.Text     = "Third Name:";
+        // 
+        // SecondNameAnswer
+        // 
+        SecondNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        SecondNameAnswer.Location = new System.Drawing.Point(
+            160,
+            65
+        );
+        SecondNameAnswer.MaxLength = 20;
+        SecondNameAnswer.Multiline = true;
+        SecondNameAnswer.Name      = "SecondNameAnswer";
+        SecondNameAnswer.Size = new System.Drawing.Size(
+            300,
+            25
+        );
+        SecondNameAnswer.TabIndex =  7;
+        SecondNameAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // SecondNameQuestion
+        // 
+        SecondNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        SecondNameQuestion.Location = new System.Drawing.Point(
+            20,
+            65
+        );
+        SecondNameQuestion.Name = "SecondNameQuestion";
+        SecondNameQuestion.Size = new System.Drawing.Size(
+            120,
+            25
+        );
+        SecondNameQuestion.TabIndex = 6;
+        SecondNameQuestion.Text     = "Second Name:";
+        // 
+        // FirstNameAnswer
+        // 
+        FirstNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        FirstNameAnswer.Location = new System.Drawing.Point(
+            160,
+            30
+        );
+        FirstNameAnswer.MaxLength = 20;
+        FirstNameAnswer.Multiline = true;
+        FirstNameAnswer.Name      = "FirstNameAnswer";
+        FirstNameAnswer.Size = new System.Drawing.Size(
+            300,
+            25
+        );
+        FirstNameAnswer.TabIndex =  5;
+        FirstNameAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // FirstNameQuestion
+        // 
+        FirstNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        FirstNameQuestion.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        FirstNameQuestion.Name = "FirstNameQuestion";
+        FirstNameQuestion.Size = new System.Drawing.Size(
+            100,
+            25
+        );
+        FirstNameQuestion.TabIndex = 4;
+        FirstNameQuestion.Text     = "First Name:";
+        // 
+        // NationalNumberQuestion
+        // 
+        NationalNumberQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        NationalNumberQuestion.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        NationalNumberQuestion.Name = "NationalNumberQuestion";
+        NationalNumberQuestion.Size = new System.Drawing.Size(
+            150,
+            25
+        );
+        NationalNumberQuestion.TabIndex  = 1;
+        NationalNumberQuestion.Text      = "National Number:";
+        NationalNumberQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // NationalNumberAnswer
+        // 
+        NationalNumberAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        NationalNumberAnswer.Location = new System.Drawing.Point(
+            180,
+            30
+        );
+        NationalNumberAnswer.MaxLength = 30;
+        NationalNumberAnswer.Multiline = true;
+        NationalNumberAnswer.Name      = "NationalNumberAnswer";
+        NationalNumberAnswer.Size = new System.Drawing.Size(
+            300,
+            25
+        );
+        NationalNumberAnswer.TabIndex =  2;
+        NationalNumberAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // DateOfBirthAnswer
+        // 
+        DateOfBirthAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        DateOfBirthAnswer.Location = new System.Drawing.Point(
+            180,
+            256
+        );
+        DateOfBirthAnswer.Name = "DateOfBirthAnswer";
+        DateOfBirthAnswer.Size = new System.Drawing.Size(
+            300,
+            23
+        );
+        DateOfBirthAnswer.TabIndex = 13;
+        // 
+        // DateOfBirthQuestion
+        // 
+        DateOfBirthQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        DateOfBirthQuestion.Location = new System.Drawing.Point(
+            20,
+            255
+        );
+        DateOfBirthQuestion.Name = "DateOfBirthQuestion";
+        DateOfBirthQuestion.Size = new System.Drawing.Size(
+            115,
+            25
+        );
+        DateOfBirthQuestion.TabIndex = 12;
+        DateOfBirthQuestion.Text     = "Date of Birth:";
+        // 
+        // AddressQuestion
+        // 
+        AddressQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        AddressQuestion.Location = new System.Drawing.Point(
+            20,
+            290
+        );
+        AddressQuestion.Name = "AddressQuestion";
+        AddressQuestion.Size = new System.Drawing.Size(
+            75,
+            25
+        );
+        AddressQuestion.TabIndex = 14;
+        AddressQuestion.Text     = "Address:";
+        // 
+        // AddressAnswer
+        // 
+        AddressAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        AddressAnswer.Location = new System.Drawing.Point(
+            180,
+            290
+        );
+        AddressAnswer.MaxLength = 200;
+        AddressAnswer.Multiline = true;
+        AddressAnswer.Name      = "AddressAnswer";
+        AddressAnswer.Size = new System.Drawing.Size(
+            300,
+            80
+        );
+        AddressAnswer.TabIndex =  15;
+        AddressAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // ContactInformationQuestion
+        // 
+        ContactInformationQuestion.Controls.Add(
+            MobileNumberQuestion
+        );
+        ContactInformationQuestion.Controls.Add(
+            EmailAnswer
+        );
+        ContactInformationQuestion.Controls.Add(
+            EmailQuestion
+        );
+        ContactInformationQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        ContactInformationQuestion.Location = new System.Drawing.Point(
+            525,
+            28
+        );
+        ContactInformationQuestion.Name = "ContactInformationQuestion";
+        ContactInformationQuestion.Size = new System.Drawing.Size(
+            480,
+            195
+        );
+        ContactInformationQuestion.TabIndex = 16;
+        ContactInformationQuestion.TabStop  = false;
+        ContactInformationQuestion.Text     = "Contact Information";
+        // 
+        // MobileNumberQuestion
+        // 
+        MobileNumberQuestion.Controls.Add(
+            MobileNumberCountryNameQuestion
+        );
+        MobileNumberQuestion.Controls.Add(
+            MobileNumberCountryNameAnswer
+        );
+        MobileNumberQuestion.Controls.Add(
+            ContactNumberAnswer
+        );
+        MobileNumberQuestion.Controls.Add(
+            ContactNumberQuestion
+        );
+        MobileNumberQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        MobileNumberQuestion.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        MobileNumberQuestion.Name = "MobileNumberQuestion";
+        MobileNumberQuestion.Size = new System.Drawing.Size(
+            440,
+            110
+        );
+        MobileNumberQuestion.TabIndex = 17;
+        MobileNumberQuestion.TabStop  = false;
+        MobileNumberQuestion.Text     = "Mobile Number";
+        // 
+        // MobileNumberCountryNameQuestion
+        // 
+        MobileNumberCountryNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        MobileNumberCountryNameQuestion.Location = new System.Drawing.Point(
+            20,
+            65
+        );
+        MobileNumberCountryNameQuestion.Name = "MobileNumberCountryNameQuestion";
+        MobileNumberCountryNameQuestion.Size = new System.Drawing.Size(
+            130,
+            25
+        );
+        MobileNumberCountryNameQuestion.TabIndex = 20;
+        MobileNumberCountryNameQuestion.Text     = "Country Name:";
+        // 
+        // MobileNumberCountryNameAnswer
+        // 
+        MobileNumberCountryNameAnswer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        MobileNumberCountryNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        MobileNumberCountryNameAnswer.FormattingEnabled = true;
+        MobileNumberCountryNameAnswer.Location = new System.Drawing.Point(
+            175,
+            66
+        );
+        MobileNumberCountryNameAnswer.Name = "MobileNumberCountryNameAnswer";
+        MobileNumberCountryNameAnswer.Size = new System.Drawing.Size(
+            245,
+            23
+        );
+        MobileNumberCountryNameAnswer.Sorted   = true;
+        MobileNumberCountryNameAnswer.TabIndex = 21;
+        // 
+        // ContactNumberAnswer
+        // 
+        ContactNumberAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        ContactNumberAnswer.Location = new System.Drawing.Point(
+            175,
+            30
+        );
+        ContactNumberAnswer.MaxLength = 20;
+        ContactNumberAnswer.Multiline = true;
+        ContactNumberAnswer.Name      = "ContactNumberAnswer";
+        ContactNumberAnswer.Size = new System.Drawing.Size(
+            245,
+            25
+        );
+        ContactNumberAnswer.TabIndex =  19;
+        ContactNumberAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // ContactNumberQuestion
+        // 
+        ContactNumberQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        ContactNumberQuestion.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        ContactNumberQuestion.Name = "ContactNumberQuestion";
+        ContactNumberQuestion.Size = new System.Drawing.Size(
+            145,
+            25
+        );
+        ContactNumberQuestion.TabIndex = 18;
+        ContactNumberQuestion.Text     = "Contact Number:";
+        // 
+        // EmailAnswer
+        // 
+        EmailAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        EmailAnswer.Location = new System.Drawing.Point(
+            160,
+            150
+        );
+        EmailAnswer.MaxLength = 40;
+        EmailAnswer.Multiline = true;
+        EmailAnswer.Name      = "EmailAnswer";
+        EmailAnswer.Size = new System.Drawing.Size(
+            300,
+            25
+        );
+        EmailAnswer.TabIndex =  23;
+        EmailAnswer.KeyDown  += disableNewLine_KeyDown;
+        // 
+        // EmailQuestion
+        // 
+        EmailQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        EmailQuestion.Location = new System.Drawing.Point(
+            20,
+            150
+        );
+        EmailQuestion.Name = "EmailQuestion";
+        EmailQuestion.Size = new System.Drawing.Size(
+            60,
+            25
+        );
+        EmailQuestion.TabIndex = 22;
+        EmailQuestion.Text     = "Email:";
+        // 
+        // CountryNameQuestion
+        // 
+        CountryNameQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        CountryNameQuestion.Location = new System.Drawing.Point(
+            525,
+            235
+        );
+        CountryNameQuestion.Name = "CountryNameQuestion";
+        CountryNameQuestion.Size = new System.Drawing.Size(
+            130,
+            25
+        );
+        CountryNameQuestion.TabIndex = 24;
+        CountryNameQuestion.Text     = "Country Name:";
+        // 
+        // CountryNameAnswer
+        // 
+        CountryNameAnswer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        CountryNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F
+        );
+        CountryNameAnswer.FormattingEnabled = true;
+        CountryNameAnswer.Location = new System.Drawing.Point(
+            685,
+            236
+        );
+        CountryNameAnswer.Name = "CountryNameAnswer";
+        CountryNameAnswer.Size = new System.Drawing.Size(
+            300,
+            23
+        );
+        CountryNameAnswer.Sorted   = true;
+        CountryNameAnswer.TabIndex = 25;
+        // 
+        // ImageQuestion
+        // 
+        ImageQuestion.Controls.Add(
+            ImageAnswer
+        );
+        ImageQuestion.Controls.Add(
+            BrowseImageAnswerDetails
+        );
+        ImageQuestion.Controls.Add(
+            BrowseImageAnswer
+        );
+        ImageQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        ImageQuestion.Location = new System.Drawing.Point(
+            525,
+            275
+        );
+        ImageQuestion.Name = "ImageQuestion";
+        ImageQuestion.Size = new System.Drawing.Size(
+            480,
+            230
+        );
+        ImageQuestion.TabIndex = 26;
+        ImageQuestion.TabStop  = false;
+        ImageQuestion.Text     = "Image";
+        // 
+        // ImageAnswer
+        // 
+        ImageAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        ImageAnswer.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        ImageAnswer.Name = "ImageAnswer";
+        ImageAnswer.Size = new System.Drawing.Size(
+            180,
+            180
+        );
+        ImageAnswer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+        ImageAnswer.TabIndex = 43;
+        ImageAnswer.TabStop  = false;
+        // 
+        // BrowseImageAnswerDetails
+        // 
+        BrowseImageAnswerDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        BrowseImageAnswerDetails.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Bold
+        );
+        BrowseImageAnswerDetails.Location = new System.Drawing.Point(
+            220,
+            100
+        );
+        BrowseImageAnswerDetails.Name = "BrowseImageAnswerDetails";
+        BrowseImageAnswerDetails.Padding = new System.Windows.Forms.Padding(
+            5
+        );
+        BrowseImageAnswerDetails.Size = new System.Drawing.Size(
+            240,
+            110
+        );
+        BrowseImageAnswerDetails.TabIndex = 28;
+        BrowseImageAnswerDetails.Text     = "None";
+        // 
+        // BrowseImageAnswer
+        // 
+        BrowseImageAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        BrowseImageAnswer.Location = new System.Drawing.Point(
+            220,
+            30
+        );
+        BrowseImageAnswer.Name = "BrowseImageAnswer";
+        BrowseImageAnswer.Size = new System.Drawing.Size(
+            240,
+            50
+        );
+        BrowseImageAnswer.TabIndex                =  27;
+        BrowseImageAnswer.Text                    =  "Browse Image";
+        BrowseImageAnswer.UseVisualStyleBackColor =  true;
+        BrowseImageAnswer.Click                   += BrowseImageAnswer_Click;
+        // 
+        // Submit
+        // 
+        Submit.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        Submit.Location = new System.Drawing.Point(
+            20,
+            565
+        );
+        Submit.Name = "Submit";
+        Submit.Size = new System.Drawing.Size(
+            815,
+            50
+        );
+        Submit.TabIndex                =  29;
+        Submit.Text                    =  "Submit";
+        Submit.UseVisualStyleBackColor =  true;
+        Submit.Click                   += Submit_Click;
+        // 
+        // ErrorProvider
+        // 
+        ErrorProvider.ContainerControl = this;
+        // 
+        // OpenFileDialog
+        // 
+        OpenFileDialog.FileName = "Open File Dialog";
+        // 
+        // ClearFields
+        // 
+        ClearFields.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        ClearFields.Location = new System.Drawing.Point(
+            845,
+            565
+        );
+        ClearFields.Name = "ClearFields";
+        ClearFields.Size = new System.Drawing.Size(
+            200,
+            50
+        );
+        ClearFields.TabIndex                =  30;
+        ClearFields.Text                    =  "Clear";
+        ClearFields.UseVisualStyleBackColor =  true;
+        ClearFields.Click                   += ClearFields_Click;
+        // 
+        // PersonQuestion
+        // 
+        PersonQuestion.Controls.Add(
+            ImageQuestion
+        );
+        PersonQuestion.Controls.Add(
+            NationalNumberAnswer
+        );
+        PersonQuestion.Controls.Add(
+            FullNameQuestion
+        );
+        PersonQuestion.Controls.Add(
+            NationalNumberQuestion
+        );
+        PersonQuestion.Controls.Add(
+            DateOfBirthAnswer
+        );
+        PersonQuestion.Controls.Add(
+            CountryNameQuestion
+        );
+        PersonQuestion.Controls.Add(
+            DateOfBirthQuestion
+        );
+        PersonQuestion.Controls.Add(
+            CountryNameAnswer
+        );
+        PersonQuestion.Controls.Add(
+            AddressQuestion
+        );
+        PersonQuestion.Controls.Add(
+            ContactInformationQuestion
+        );
+        PersonQuestion.Controls.Add(
+            AddressAnswer
+        );
+        PersonQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold
+        );
+        PersonQuestion.Location = new System.Drawing.Point(
+            20,
+            20
+        );
+        PersonQuestion.Name = "PersonQuestion";
+        PersonQuestion.Size = new System.Drawing.Size(
+            1025,
+            525
+        );
+        PersonQuestion.TabIndex = 0;
+        PersonQuestion.TabStop  = false;
+        PersonQuestion.Text     = "Person";
+        // 
+        // AddAndEditClient
+        // 
+        AutoScaleDimensions = new System.Drawing.SizeF(
+            7F,
+            15F
+        );
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        BackColor     = System.Drawing.Color.DarkGray;
+        ClientSize = new System.Drawing.Size(
+            1064,
+            631
+        );
+        Controls.Add(
+            PersonQuestion
+        );
+        Controls.Add(
+            ClearFields
+        );
+        Controls.Add(
+            Submit
+        );
+        StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+        FullNameQuestion.ResumeLayout(
+            false
+        );
+        FullNameQuestion.PerformLayout();
+        ContactInformationQuestion.ResumeLayout(
+            false
+        );
+        ContactInformationQuestion.PerformLayout();
+        MobileNumberQuestion.ResumeLayout(
+            false
+        );
+        MobileNumberQuestion.PerformLayout();
+        ImageQuestion.ResumeLayout(
+            false
+        );
+        ((System.ComponentModel.ISupportInitialize) ImageAnswer).EndInit();
+        ((System.ComponentModel.ISupportInitialize) ErrorProvider).EndInit();
+        PersonQuestion.ResumeLayout(
+            false
+        );
+        PersonQuestion.PerformLayout();
+        ResumeLayout(
+            false
+        );
+    }
+
+    private System.Windows.Forms.GroupBox PersonQuestion;
+
+    private System.Windows.Forms.PictureBox     ImageAnswer;
+    private System.Windows.Forms.Button         ClearFields;
+    private System.Windows.Forms.Label          BrowseImageAnswerDetails;
+    private System.Windows.Forms.GroupBox       ImageQuestion;
+    private System.Windows.Forms.Button         BrowseImageAnswer;
+    private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+    private System.Windows.Forms.ErrorProvider  ErrorProvider;
+    private System.Windows.Forms.Button         Submit;
+    private System.Windows.Forms.Label          CountryNameQuestion;
+    private System.Windows.Forms.ComboBox       CountryNameAnswer;
+    private System.Windows.Forms.Label          MobileNumberCountryNameQuestion;
+    private System.Windows.Forms.ComboBox       MobileNumberCountryNameAnswer;
+    private System.Windows.Forms.GroupBox       MobileNumberQuestion;
+    private System.Windows.Forms.TextBox        ContactNumberAnswer;
+    private System.Windows.Forms.Label          ContactNumberQuestion;
+    private System.Windows.Forms.TextBox        EmailAnswer;
+    private System.Windows.Forms.Label          EmailQuestion;
+    private System.Windows.Forms.GroupBox       ContactInformationQuestion;
+    private System.Windows.Forms.TextBox        AddressAnswer;
+    private System.Windows.Forms.Label          AddressQuestion;
+    private System.Windows.Forms.Label          DateOfBirthQuestion;
+    private System.Windows.Forms.DateTimePicker DateOfBirthAnswer;
+    private System.Windows.Forms.TextBox        SecondNameAnswer;
+    private System.Windows.Forms.Label          SecondNameQuestion;
+    private System.Windows.Forms.TextBox        ThirdNameAnswer;
+    private System.Windows.Forms.Label          ThirdNameQuestion;
+    private System.Windows.Forms.TextBox        FourthNameAnswer;
+    private System.Windows.Forms.Label          FourthNameQuestion;
+    private System.Windows.Forms.TextBox        FirstNameAnswer;
+    private System.Windows.Forms.Label          FirstNameQuestion;
+    private System.Windows.Forms.TextBox        NationalNumberAnswer;
+    private System.Windows.Forms.ColorDialog    DataOfBirthDialog;
+    private System.Windows.Forms.Label          NationalNumberQuestion;
+    private System.Windows.Forms.GroupBox       FullNameQuestion;
+
+    #endregion
+}
