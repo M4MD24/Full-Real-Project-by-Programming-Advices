@@ -44,7 +44,7 @@ public partial class ClientManagementSystem : Form,
             Image Person,
             Image PersonEdit,
             Image PersonRemove,
-            Image SwapHorizontal
+            Image ID_Card
             ) clientListMenuStripIcons() => (
                                                 Person : loadIcon(
                                                     "Person",
@@ -61,8 +61,8 @@ public partial class ClientManagementSystem : Form,
                                                     20,
                                                     20
                                                 ),
-                                                SwapHorizontal : loadIcon(
-                                                    "SwapHorizontal",
+                                                ID_Card : loadIcon(
+                                                    "ID_Card",
                                                     20,
                                                     20
                                                 )
@@ -92,6 +92,9 @@ public partial class ClientManagementSystem : Form,
 
         ClientDeleteOption.Image = clientListMenuStripIcons()
                 .PersonRemove;
+
+        ClientLicensesOption.Image = clientListMenuStripIcons()
+                .ID_Card;
     }
 
     private void loadIconButtons() {
@@ -184,9 +187,7 @@ public partial class ClientManagementSystem : Form,
     private void newClient_Click(
         object?   sender,
         EventArgs e
-    ) {
-        throw new NotImplementedException();
-    }
+    ) => new AddAndEditClient().Show();
 
     private void fees_Click(
         object?   sender,
@@ -331,6 +332,11 @@ public partial class ClientManagementSystem : Form,
     ) {}
 
     private void ClientDeleteOption_Click(
+        object?   sender,
+        EventArgs e
+    ) {}
+
+    private void ClientLicensesOption_Click(
         object?   sender,
         EventArgs e
     ) {}

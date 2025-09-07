@@ -43,6 +43,7 @@ partial class ClientManagementSystem {
         ClientInformationOption = new System.Windows.Forms.ToolStripMenuItem();
         ClientUpdateOption      = new System.Windows.Forms.ToolStripMenuItem();
         ClientDeleteOption      = new System.Windows.Forms.ToolStripMenuItem();
+        ClientLicensesOption    = new System.Windows.Forms.ToolStripMenuItem();
         ((System.ComponentModel.ISupportInitialize) ClientList).BeginInit();
         ClientListMenuStrip.SuspendLayout();
         SuspendLayout();
@@ -140,7 +141,8 @@ partial class ClientManagementSystem {
             new System.Windows.Forms.ToolStripItem[] {
                 ClientInformationOption,
                 ClientUpdateOption,
-                ClientDeleteOption
+                ClientDeleteOption,
+                ClientLicensesOption
             }
         );
         ClientListMenuStrip.Name = "ClientListMenuStrip";
@@ -178,6 +180,16 @@ partial class ClientManagementSystem {
         );
         ClientDeleteOption.Text  =  "Delete";
         ClientDeleteOption.Click += ClientDeleteOption_Click;
+        //
+        // ClientLicensesOption
+        //
+        ClientLicensesOption.Name = "ClientLicensesOption";
+        ClientLicensesOption.Size = new System.Drawing.Size(
+            137,
+            22
+        );
+        ClientLicensesOption.Text  =  "Licenses";
+        ClientLicensesOption.Click += ClientLicensesOption_Click;
         //
         // ClientManagementSystem
         //
@@ -225,6 +237,7 @@ partial class ClientManagementSystem {
     private System.Windows.Forms.ToolStripMenuItem ClientInformationOption;
     private System.Windows.Forms.ToolStripMenuItem ClientUpdateOption;
     private System.Windows.Forms.ToolStripMenuItem ClientDeleteOption;
+    private System.Windows.Forms.ToolStripMenuItem ClientLicensesOption;
     private System.Windows.Forms.ContextMenuStrip  ClientListMenuStrip;
     private System.Windows.Forms.Button            RefreshList;
     private System.Windows.Forms.DataGridView      ClientList;
