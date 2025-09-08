@@ -300,7 +300,10 @@ public partial class AccountManagementSystem : Form,
     private void addAndEditAccount_FormClosed(
         object              sender,
         FormClosedEventArgs e
-    ) => loadAccounts();
+    ) => RefreshList_Click(
+        sender,
+        e
+    );
 
     private static void countries_Click(
         object?   sender,

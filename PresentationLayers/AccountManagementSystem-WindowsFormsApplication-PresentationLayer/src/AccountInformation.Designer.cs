@@ -88,6 +88,9 @@ partial class AccountInformation {
         // PersonQuestion
         // 
         PersonQuestion.Controls.Add(
+            ImageQuestion
+        );
+        PersonQuestion.Controls.Add(
             CountryNameAnswer
         );
         PersonQuestion.Controls.Add(
@@ -128,23 +131,23 @@ partial class AccountInformation {
         );
         PersonQuestion.Name = "PersonQuestion";
         PersonQuestion.Size = new System.Drawing.Size(
-            520,
-            630
+            1025,
+            525
         );
         PersonQuestion.TabIndex = 0;
         PersonQuestion.TabStop  = false;
         PersonQuestion.Text     = "Person";
-        // 
+        //
         // CountryNameAnswer
-        // 
+        //
         CountryNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         CountryNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F
         );
         CountryNameAnswer.Location = new System.Drawing.Point(
-            180,
-            585
+            685,
+            235
         );
         CountryNameAnswer.Name = "CountryNameAnswer";
         CountryNameAnswer.Size = new System.Drawing.Size(
@@ -153,12 +156,12 @@ partial class AccountInformation {
         );
         CountryNameAnswer.TabIndex  = 19;
         CountryNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // CountryNameQuestion
-        // 
+        //
         CountryNameQuestion.Location = new System.Drawing.Point(
-            20,
-            585
+            525,
+            235
         );
         CountryNameQuestion.Name = "CountryNameQuestion";
         CountryNameQuestion.Size = new System.Drawing.Size(
@@ -168,9 +171,9 @@ partial class AccountInformation {
         CountryNameQuestion.TabIndex  = 18;
         CountryNameQuestion.Text      = "Country Name:";
         CountryNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // ContactInformationQuestion
-        // 
+        //
         ContactInformationQuestion.Controls.Add(
             EmailAnswer
         );
@@ -186,8 +189,8 @@ partial class AccountInformation {
             System.Drawing.FontStyle.Bold
         );
         ContactInformationQuestion.Location = new System.Drawing.Point(
-            20,
-            380
+            525,
+            30
         );
         ContactInformationQuestion.Name = "ContactInformationQuestion";
         ContactInformationQuestion.Size = new System.Drawing.Size(
@@ -197,9 +200,9 @@ partial class AccountInformation {
         ContactInformationQuestion.TabIndex = 12;
         ContactInformationQuestion.TabStop  = false;
         ContactInformationQuestion.Text     = "Contact Information";
-        // 
+        //
         // EmailAnswer
-        // 
+        //
         EmailAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         EmailAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -216,9 +219,9 @@ partial class AccountInformation {
         );
         EmailAnswer.TabIndex  = 17;
         EmailAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // MobileNumberQuestion
-        // 
+        //
         MobileNumberQuestion.Controls.Add(
             MobileNumberCountryNameAnswer
         );
@@ -248,9 +251,9 @@ partial class AccountInformation {
         MobileNumberQuestion.TabIndex = 13;
         MobileNumberQuestion.TabStop  = false;
         MobileNumberQuestion.Text     = "Mobile Number";
-        // 
+        //
         // MobileNumberCountryNameAnswer
-        // 
+        //
         MobileNumberCountryNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         MobileNumberCountryNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -267,9 +270,9 @@ partial class AccountInformation {
         );
         MobileNumberCountryNameAnswer.TabIndex  = 15;
         MobileNumberCountryNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // MobileNumberCountryNameQuestion
-        // 
+        //
         MobileNumberCountryNameQuestion.Location = new System.Drawing.Point(
             20,
             65
@@ -282,9 +285,9 @@ partial class AccountInformation {
         MobileNumberCountryNameQuestion.TabIndex  = 14;
         MobileNumberCountryNameQuestion.Text      = "Country Name:";
         MobileNumberCountryNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // ContactNumberAnswer
-        // 
+        //
         ContactNumberAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         ContactNumberAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -301,9 +304,9 @@ partial class AccountInformation {
         );
         ContactNumberAnswer.TabIndex  = 13;
         ContactNumberAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // ContactNumberQuestion
-        // 
+        //
         ContactNumberQuestion.Location = new System.Drawing.Point(
             20,
             30
@@ -316,9 +319,9 @@ partial class AccountInformation {
         ContactNumberQuestion.TabIndex  = 12;
         ContactNumberQuestion.Text      = "Contact Number:";
         ContactNumberQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // EmailQuestion
-        // 
+        //
         EmailQuestion.Location = new System.Drawing.Point(
             20,
             150
@@ -331,9 +334,9 @@ partial class AccountInformation {
         EmailQuestion.TabIndex  = 16;
         EmailQuestion.Text      = "Email:";
         EmailQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // AddressAnswer
-        // 
+        //
         AddressAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         AddressAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -349,9 +352,9 @@ partial class AccountInformation {
             80
         );
         AddressAnswer.TabIndex = 7;
-        // 
+        //
         // AddressQuestion
-        // 
+        //
         AddressQuestion.Location = new System.Drawing.Point(
             20,
             290
@@ -364,9 +367,9 @@ partial class AccountInformation {
         AddressQuestion.TabIndex  = 6;
         AddressQuestion.Text      = "Address:";
         AddressQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // DateOfBirthAnswer
-        // 
+        //
         DateOfBirthAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         DateOfBirthAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -383,9 +386,9 @@ partial class AccountInformation {
         );
         DateOfBirthAnswer.TabIndex  = 5;
         DateOfBirthAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // DateOfBirthQuestion
-        // 
+        //
         DateOfBirthQuestion.Location = new System.Drawing.Point(
             20,
             255
@@ -398,9 +401,9 @@ partial class AccountInformation {
         DateOfBirthQuestion.TabIndex  = 4;
         DateOfBirthQuestion.Text      = "Date of Birth:";
         DateOfBirthQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // NationalNumberAnswer
-        // 
+        //
         NationalNumberAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         NationalNumberAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -417,9 +420,9 @@ partial class AccountInformation {
         );
         NationalNumberAnswer.TabIndex  = 3;
         NationalNumberAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // NationalNumberQuestion
-        // 
+        //
         NationalNumberQuestion.Location = new System.Drawing.Point(
             20,
             30
@@ -432,9 +435,9 @@ partial class AccountInformation {
         NationalNumberQuestion.TabIndex  = 2;
         NationalNumberQuestion.Text      = "National Number:";
         NationalNumberQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // FullNameQuestion
-        // 
+        //
         FullNameQuestion.Controls.Add(
             FourthNameAnswer
         );
@@ -476,9 +479,9 @@ partial class AccountInformation {
         FullNameQuestion.TabIndex = 1;
         FullNameQuestion.TabStop  = false;
         FullNameQuestion.Text     = "Full Name";
-        // 
+        //
         // FourthNameAnswer
-        // 
+        //
         FourthNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         FourthNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -495,9 +498,9 @@ partial class AccountInformation {
         );
         FourthNameAnswer.TabIndex  = 11;
         FourthNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // FourthNameQuestion
-        // 
+        //
         FourthNameQuestion.Location = new System.Drawing.Point(
             20,
             135
@@ -510,9 +513,9 @@ partial class AccountInformation {
         FourthNameQuestion.TabIndex  = 10;
         FourthNameQuestion.Text      = "Fourth Name:";
         FourthNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // ThirdNameAnswer
-        // 
+        //
         ThirdNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         ThirdNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -529,9 +532,9 @@ partial class AccountInformation {
         );
         ThirdNameAnswer.TabIndex  = 9;
         ThirdNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // ThirdNameQuestion
-        // 
+        //
         ThirdNameQuestion.Location = new System.Drawing.Point(
             20,
             100
@@ -544,9 +547,9 @@ partial class AccountInformation {
         ThirdNameQuestion.TabIndex  = 8;
         ThirdNameQuestion.Text      = "Third Name:";
         ThirdNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // SecondNameAnswer
-        // 
+        //
         SecondNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         SecondNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -563,9 +566,9 @@ partial class AccountInformation {
         );
         SecondNameAnswer.TabIndex  = 7;
         SecondNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // SecondNameQuestion
-        // 
+        //
         SecondNameQuestion.Location = new System.Drawing.Point(
             20,
             65
@@ -578,9 +581,9 @@ partial class AccountInformation {
         SecondNameQuestion.TabIndex  = 6;
         SecondNameQuestion.Text      = "Second Name:";
         SecondNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // FirstNameAnswer
-        // 
+        //
         FirstNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         FirstNameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -597,9 +600,9 @@ partial class AccountInformation {
         );
         FirstNameAnswer.TabIndex  = 5;
         FirstNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // FirstNameQuestion
-        // 
+        //
         FirstNameQuestion.Location = new System.Drawing.Point(
             20,
             30
@@ -612,12 +615,9 @@ partial class AccountInformation {
         FirstNameQuestion.TabIndex  = 4;
         FirstNameQuestion.Text      = "First Name:";
         FirstNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // AccountQuestion
-        // 
-        AccountQuestion.Controls.Add(
-            ImageQuestion
-        );
+        //
         AccountQuestion.Controls.Add(
             AccountTypeAnswer
         );
@@ -645,20 +645,20 @@ partial class AccountInformation {
             System.Drawing.FontStyle.Bold
         );
         AccountQuestion.Location = new System.Drawing.Point(
-            560,
-            20
+            20,
+            555
         );
         AccountQuestion.Name = "AccountQuestion";
         AccountQuestion.Size = new System.Drawing.Size(
             440,
-            490
+            245
         );
         AccountQuestion.TabIndex = 20;
         AccountQuestion.TabStop  = false;
         AccountQuestion.Text     = "Account";
-        // 
+        //
         // ImageQuestion
-        // 
+        //
         ImageQuestion.Controls.Add(
             BrowseImageAnswerDetails
         );
@@ -671,20 +671,20 @@ partial class AccountInformation {
             System.Drawing.FontStyle.Bold
         );
         ImageQuestion.Location = new System.Drawing.Point(
-            20,
-            240
+            525,
+            270
         );
         ImageQuestion.Name = "ImageQuestion";
         ImageQuestion.Size = new System.Drawing.Size(
-            400,
+            480,
             230
         );
         ImageQuestion.TabIndex = 13;
         ImageQuestion.TabStop  = false;
         ImageQuestion.Text     = "Image";
-        // 
+        //
         // BrowseImageAnswerDetails
-        // 
+        //
         BrowseImageAnswerDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         BrowseImageAnswerDetails.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -692,17 +692,17 @@ partial class AccountInformation {
         );
         BrowseImageAnswerDetails.Location = new System.Drawing.Point(
             220,
-            30
+            100
         );
         BrowseImageAnswerDetails.Name = "BrowseImageAnswerDetails";
         BrowseImageAnswerDetails.Size = new System.Drawing.Size(
-            160,
-            180
+            240,
+            110
         );
         BrowseImageAnswerDetails.TabIndex = 26;
-        // 
+        //
         // ImageAnswer
-        // 
+        //
         ImageAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         ImageAnswer.Location = new System.Drawing.Point(
             20,
@@ -716,9 +716,9 @@ partial class AccountInformation {
         ImageAnswer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
         ImageAnswer.TabIndex = 0;
         ImageAnswer.TabStop  = false;
-        // 
+        //
         // AccountTypeAnswer
-        // 
+        //
         AccountTypeAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         AccountTypeAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -735,9 +735,9 @@ partial class AccountInformation {
         );
         AccountTypeAnswer.TabIndex  = 25;
         AccountTypeAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // AccountTypeQuestion
-        // 
+        //
         AccountTypeQuestion.Location = new System.Drawing.Point(
             20,
             205
@@ -750,9 +750,9 @@ partial class AccountInformation {
         AccountTypeQuestion.TabIndex  = 24;
         AccountTypeQuestion.Text      = "Account Type:";
         AccountTypeQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // PermissionsQuestion
-        // 
+        //
         PermissionsQuestion.Controls.Add(
             UnlockLicensesPermission
         );
@@ -791,9 +791,9 @@ partial class AccountInformation {
         PermissionsQuestion.TabIndex = 12;
         PermissionsQuestion.TabStop  = false;
         PermissionsQuestion.Text     = "Permissions";
-        // 
+        //
         // UnlockLicensesPermission
-        // 
+        //
         UnlockLicensesPermission.Enabled = false;
         UnlockLicensesPermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -812,9 +812,9 @@ partial class AccountInformation {
         UnlockLicensesPermission.TabIndex                = 6;
         UnlockLicensesPermission.Text                    = "Unlock Licenses";
         UnlockLicensesPermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // RetestPermission
-        // 
+        //
         RetestPermission.Enabled = false;
         RetestPermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -833,9 +833,9 @@ partial class AccountInformation {
         RetestPermission.TabIndex                = 5;
         RetestPermission.Text                    = "Retest";
         RetestPermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // TestPermission
-        // 
+        //
         TestPermission.Enabled = false;
         TestPermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -854,9 +854,9 @@ partial class AccountInformation {
         TestPermission.TabIndex                = 4;
         TestPermission.Text                    = "Test";
         TestPermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // DeletePermission
-        // 
+        //
         DeletePermission.Enabled = false;
         DeletePermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -875,9 +875,9 @@ partial class AccountInformation {
         DeletePermission.TabIndex                = 3;
         DeletePermission.Text                    = "Delete";
         DeletePermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // EditPermission
-        // 
+        //
         EditPermission.Enabled = false;
         EditPermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -896,9 +896,9 @@ partial class AccountInformation {
         EditPermission.TabIndex                = 2;
         EditPermission.Text                    = "Edit";
         EditPermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // ReadAndSearchPermission
-        // 
+        //
         ReadAndSearchPermission.Enabled = false;
         ReadAndSearchPermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -917,9 +917,9 @@ partial class AccountInformation {
         ReadAndSearchPermission.TabIndex                = 1;
         ReadAndSearchPermission.Text                    = "Read and Search";
         ReadAndSearchPermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // CreatePermission
-        // 
+        //
         CreatePermission.Enabled = false;
         CreatePermission.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -938,9 +938,9 @@ partial class AccountInformation {
         CreatePermission.TabIndex                = 0;
         CreatePermission.Text                    = "Create";
         CreatePermission.UseVisualStyleBackColor = true;
-        // 
+        //
         // PasswordAnswer
-        // 
+        //
         PasswordAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         PasswordAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -957,9 +957,9 @@ partial class AccountInformation {
         );
         PasswordAnswer.TabIndex  = 23;
         PasswordAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // PasswordQuestion
-        // 
+        //
         PasswordQuestion.Location = new System.Drawing.Point(
             20,
             65
@@ -972,9 +972,9 @@ partial class AccountInformation {
         PasswordQuestion.TabIndex  = 22;
         PasswordQuestion.Text      = "Passowrd:";
         PasswordQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // UsernameAnswer
-        // 
+        //
         UsernameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         UsernameAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -991,9 +991,9 @@ partial class AccountInformation {
         );
         UsernameAnswer.TabIndex  = 21;
         UsernameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // UsernameQuestion
-        // 
+        //
         UsernameQuestion.Location = new System.Drawing.Point(
             20,
             30
@@ -1006,9 +1006,9 @@ partial class AccountInformation {
         UsernameQuestion.TabIndex  = 20;
         UsernameQuestion.Text      = "Username:";
         UsernameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
+        //
         // AccountInformation
-        // 
+        //
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
             15F
@@ -1016,8 +1016,8 @@ partial class AccountInformation {
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor     = System.Drawing.Color.DarkGray;
         ClientSize = new System.Drawing.Size(
-            1024,
-            671
+            1064,
+            816
         );
         Controls.Add(
             AccountQuestion
