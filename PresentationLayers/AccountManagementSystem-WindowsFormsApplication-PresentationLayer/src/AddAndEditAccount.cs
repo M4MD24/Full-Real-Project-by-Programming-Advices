@@ -268,7 +268,7 @@ public partial class AddAndEditAccount : Form,
                            )
                            : checkUniqueField(
                                NationalNumberAnswer,
-                               Accounts.isExist(
+                               Persons.isExist(
                                    NationalNumberAnswer.Text
                                )
                            );

@@ -1,3 +1,47 @@
+using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
+
 namespace ClientManagementSystem_ClassLibrary_BusinessLayer;
 
-public class Persons {}
+public static class Persons {
+    public static int update(
+        ref Person person
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.updatePersonByPersonID(
+        ref person
+    );
+
+    public static int delete(
+        ref int? personID
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.deletePersonByPersonID(
+        ref personID
+    );
+
+    public static int add(
+        ref Person person
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.addNewPerson(
+        ref person
+    );
+
+    public static Person? get(
+        ref int? personID
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.getPersonByPersonID(
+        ref personID
+    );
+
+    public static Person? get(
+        ref string? nationalNumber
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.getPersonByNationalNumber(
+        ref nationalNumber
+    );
+
+    public static bool isExist(
+        string? nationalNumber
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.isPersonExistByNationalNumber(
+        ref nationalNumber
+    );
+
+    public static string? getImageURL(
+        ref int? personID
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Persons.getImageUrlByPersonID(
+        ref personID
+    );
+}

@@ -187,7 +187,18 @@ public partial class ClientManagementSystem : Form,
     private void newClient_Click(
         object?   sender,
         EventArgs e
-    ) => new AddAndEditClient().Show();
+    ) {
+        AddAndEditClient addAndEditClient = new AddAndEditClient(
+            ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Add
+        );
+        addAndEditClient.FormClosed += addAndEditClient_FormClosed!;
+        addAndEditClient.Show();
+    }
+
+    private void addAndEditClient_FormClosed(
+        object              sender,
+        FormClosedEventArgs e
+    ) => loadClients();
 
     private void fees_Click(
         object?   sender,
@@ -248,47 +259,31 @@ public partial class ClientManagementSystem : Form,
         if (clientBindingSource.DataSource is DataTable)
             clientBindingSource.Filter = $"{selectedFilter} LIKE '%{targetText}%'";
         else {
-            List<ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees> allFees = ClientManagementSystem_ClassLibrary_BusinessLayer.Fees.getAll()!;
-            allFees = allFees.Where(
-                                 fees => {
-                                     if (selectedFilter == searchChoices[0]) {
-                                         return fees.feesID
-                                                    .ToString()!
-                                                    .Contains(
-                                                        targetText
-                                                    );
-                                     }
+            List<Client> allClients = Clients.getAll()!;
+            allClients = allClients.Where(
+                                       fees => {
+                                           if (selectedFilter == searchChoices[0]) {
+                                               return fees.clientID
+                                                          .ToString()!
+                                                          .Contains(
+                                                              targetText
+                                                          );
+                                           }
 
-                                     if (selectedFilter == searchChoices[1]) {
-                                         return fees.feesName!
-                                                    .Contains(
-                                                        targetText,
-                                                        StringComparison.OrdinalIgnoreCase
-                                                    );
-                                     }
+                                           if (selectedFilter == searchChoices[1]) {
+                                               return fees.personID!
+                                                          .ToString()!
+                                                          .Contains(
+                                                              targetText
+                                                          );
+                                           }
 
-                                     if (selectedFilter == searchChoices[2]) {
-                                         return fees.amount!
-                                                    .ToString()!
-                                                    .Contains(
-                                                        targetText
-                                                    );
-                                     }
+                                           return false;
+                                       }
+                                   )
+                                   .ToList();
 
-                                     if (selectedFilter == searchChoices[3]) {
-                                         return fees.currencyID!
-                                                    .ToString()!
-                                                    .Contains(
-                                                        targetText
-                                                    );
-                                     }
-
-                                     return false;
-                                 }
-                             )
-                             .ToList();
-
-            clientBindingSource.DataSource = allFees;
+            clientBindingSource.DataSource = allClients;
         }
     }
 
@@ -329,17 +324,136 @@ public partial class ClientManagementSystem : Form,
     private void ClientUpdateOption_Click(
         object?   sender,
         EventArgs e
-    ) {}
+    ) {
+        int? clientID = getClientID_FromSelectedRow();
+
+        if (clientID == -1)
+            return;
+
+        FullClient fullClient = FullClients.get(
+            ref clientID
+        );
+
+        AddAndEditClient addAndEditClient = new AddAndEditClient(
+            ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Update,
+            fullClient
+        );
+        addAndEditClient.FormClosed += addAndEditClient_FormClosed!;
+        addAndEditClient.Show();
+        loadClients();
+    }
+
+    private int? getClientID_FromSelectedRow() {
+        if (ClientList.SelectedRows.Count > 0) {
+            DataGridViewRow selectedRow = ClientList.SelectedRows[0];
+            return Convert.ToInt32(
+                selectedRow.Cells[0].Value
+            );
+        }
+
+        if (ClientList.SelectedCells.Count > 0) {
+            DataGridViewCell selectedCell = ClientList.SelectedCells[0];
+            int columnIndex = selectedCell.ColumnIndex,
+                rowIndex    = selectedCell.RowIndex;
+
+            if (columnIndex == 0)
+                return Convert.ToInt32(
+                    selectedCell.Value
+                );
+
+            return Convert.ToInt32(
+                ClientList.Rows[rowIndex]
+                          .Cells[0]
+                          .Value
+            );
+        }
+
+        clientNotSelectedWarning();
+
+        return -1;
+    }
 
     private void ClientDeleteOption_Click(
         object?   sender,
         EventArgs e
-    ) {}
+    ) {
+        Client? client = getClient_FromSelectedRow();
+
+        if (client is null)
+            return;
+
+        int? clientID = client.clientID;
+
+        if (clientID == -1)
+            return;
+
+        DialogResult result = MessageBox.Show(
+            @$"Are you delete {clientID}?",
+            @"Delete Client",
+            MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1
+        );
+
+        if (result == DialogResult.OK)
+            deleteSelectedClient(
+                ref client
+            );
+    }
+
+    private Client getClient_FromSelectedRow() {
+        if (ClientList.SelectedRows.Count > 0) {
+            DataGridViewRow selectedRow = ClientList.SelectedRows[0];
+            return new Client(
+                Convert.ToInt32(
+                    selectedRow.Cells["clientID"].Value
+                ),
+                Convert.ToInt32(
+                    selectedRow.Cells["personID"].Value
+                )
+            );
+        }
+
+        if (ClientList.SelectedCells.Count > 0) {
+            DataGridViewCell selectedCell = ClientList.SelectedCells[0];
+            int              rowIndex     = selectedCell.RowIndex;
+            DataGridViewRow  selectedRow  = ClientList.Rows[rowIndex];
+
+            return new Client(
+                Convert.ToInt32(
+                    selectedRow.Cells["clientID"].Value
+                ),
+                Convert.ToInt32(
+                    selectedRow.Cells["personID"].Value
+                )
+            );
+        }
+
+        clientNotSelectedWarning();
+
+        return null!;
+    }
+
+    private void clientNotSelectedWarning() => MessageBox.Show(
+        @"You Must Select Thing!",
+        @"Client isn't Selected",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Warning
+    );
+
+    private void deleteSelectedClient(
+        ref Client client
+    ) {
+        FullClients.delete(
+            ref client
+        );
+        loadClients();
+    }
 
     private void ClientLicensesOption_Click(
         object?   sender,
         EventArgs e
-    ) {}
+    ) => new LicenseManagement().Show();
 
     private static Image loadIcon(
         string name,

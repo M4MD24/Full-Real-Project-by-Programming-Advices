@@ -6,4 +6,11 @@ public class Client(
 ) {
     public int? clientID { get; set; } = clientID;
     public int? personID { get; set; } = personID;
+
+    public Client(
+        int? personID
+    ) : this(
+        null,
+        personID
+    ) {}
 }
