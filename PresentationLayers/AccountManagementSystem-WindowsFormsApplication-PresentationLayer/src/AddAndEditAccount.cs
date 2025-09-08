@@ -42,6 +42,11 @@ public partial class AddAndEditAccount : Form,
     private void initializeFields() => clearAllFields();
 
     private void clearAllFields() {
+        clearPersonField();
+        clearAccountField();
+    }
+
+    private void clearPersonField() {
         clearField(
             ref NationalNumberAnswer
         );
@@ -56,7 +61,7 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref CountryNameAnswer
         );
-        clearAccountField();
+        clearImageField();
     }
 
     private void clearAccountField() {
@@ -72,7 +77,6 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref AccountTypeAnswer
         );
-        clearImageField();
         clearField(
             ref AccountTypeAnswer
         );
