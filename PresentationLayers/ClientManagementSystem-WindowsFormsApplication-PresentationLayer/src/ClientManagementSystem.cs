@@ -70,7 +70,6 @@ public partial class ClientManagementSystem : Form,
 
     public ClientManagementSystem() {
         InitializeComponent();
-        loadDataSources();
         Tools.setIcon(
             this,
             "ManageAccounts"
@@ -78,6 +77,9 @@ public partial class ClientManagementSystem : Form,
         initializeMenuStrip();
         loadIconButtons();
         createFolders();
+        loadClients();
+        setSearchFilterChoices();
+        loadDataSources();
         loadClientListMenuStrip();
     }
 
@@ -191,14 +193,17 @@ public partial class ClientManagementSystem : Form,
         AddAndEditClient addAndEditClient = new AddAndEditClient(
             ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Add
         );
-        addAndEditClient.FormClosed += addAndEditClient_FormClosed!;
+        addAndEditClient.FormClosed += addAndEditClient_FormClosed;
         addAndEditClient.Show();
     }
 
     private void addAndEditClient_FormClosed(
-        object              sender,
+        object?             sender,
         FormClosedEventArgs e
-    ) => loadClients();
+    ) => RefreshList_Click(
+        sender,
+        e
+    );
 
     private void fees_Click(
         object?   sender,
@@ -219,6 +224,13 @@ public partial class ClientManagementSystem : Form,
             searchChoices
         );
         loadClients();
+    }
+
+    private void setSearchFilterChoices() {
+        foreach (DataGridViewColumn column in ClientList.Columns)
+            searchChoices.Add(
+                column.HeaderText
+            );
     }
 
     private void ClientManagementSystem_FormClosing(
@@ -261,21 +273,21 @@ public partial class ClientManagementSystem : Form,
         else {
             List<Client> allClients = Clients.getAll()!;
             allClients = allClients.Where(
-                                       fees => {
+                                       client => {
                                            if (selectedFilter == searchChoices[0]) {
-                                               return fees.clientID
-                                                          .ToString()!
-                                                          .Contains(
-                                                              targetText
-                                                          );
+                                               return client.clientID
+                                                            .ToString()!
+                                                            .Contains(
+                                                                targetText
+                                                            );
                                            }
 
                                            if (selectedFilter == searchChoices[1]) {
-                                               return fees.personID!
-                                                          .ToString()!
-                                                          .Contains(
-                                                              targetText
-                                                          );
+                                               return client.personID!
+                                                            .ToString()!
+                                                            .Contains(
+                                                                targetText
+                                                            );
                                            }
 
                                            return false;
@@ -297,7 +309,10 @@ public partial class ClientManagementSystem : Form,
     private void SearchFilter_SelectedIndexChanged(
         object?   sender,
         EventArgs e
-    ) {}
+    ) => SearchBox_TextChanged(
+        sender,
+        e
+    );
 
     private void RefreshList_Click(
         object?   sender,
@@ -319,7 +334,16 @@ public partial class ClientManagementSystem : Form,
     private void ClientInformationOption_Click(
         object?   sender,
         EventArgs e
-    ) {}
+    ) {
+        int? clientID = getClientID_FromSelectedRow();
+
+        if (clientID == -1)
+            return;
+
+        new ClientInformation(
+            ref clientID
+        ).Show();
+    }
 
     private void ClientUpdateOption_Click(
         object?   sender,
@@ -338,7 +362,7 @@ public partial class ClientManagementSystem : Form,
             ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.Mode.Update,
             fullClient
         );
-        addAndEditClient.FormClosed += addAndEditClient_FormClosed!;
+        addAndEditClient.FormClosed += addAndEditClient_FormClosed;
         addAndEditClient.Show();
         loadClients();
     }
