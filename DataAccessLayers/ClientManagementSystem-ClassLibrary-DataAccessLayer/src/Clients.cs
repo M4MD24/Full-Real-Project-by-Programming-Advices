@@ -141,6 +141,7 @@ public static class Clients {
             SELECT_CLIENT_BY_CLIENT_ID,
             sqlConnection
         );
+
         sqlCommand.Parameters.AddWithValue(
             "@clientID",
             clientID
@@ -178,6 +179,7 @@ public static class Clients {
                                        SELECT *
                                        FROM ClientManagementSystem.Clients
                                        """;
+
         SqlCommand sqlCommand = new SqlCommand(
             GET_ALL_CLIENTS,
             sqlConnection

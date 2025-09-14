@@ -5,8 +5,8 @@ using ContactInformation = ClientManagementSystem_ClassLibrary_BusinessLayer.Con
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public static class FullClients {
-    public static FullClient get(
+public static class FullLicenses {
+    public static FullLicense get(
         ref int? clientID
     ) {
         Client? client = ClientManagementSystem_ClassLibrary_DataAccessLayer.Clients.getClientByClientID(
@@ -43,7 +43,7 @@ public static class FullClients {
             ref countryID
         );
 
-        return new FullClient(
+        return new FullLicense(
             clientID,
             personID,
             person.nationalNumber,
@@ -69,7 +69,7 @@ public static class FullClients {
     }
 
     public static void add(
-        ref FullClient.FullClientFields fullClientFields
+        ref FullLicense.FullLicenseFields fullClientFields
     ) {
         FullName fullName = new FullName(
             fullClientFields.firstName,
@@ -181,8 +181,8 @@ public static class FullClients {
     }
 
     public static void update(
-        ref FullClient.FullClientIDs    fullClientIDs,
-        ref FullClient.FullClientFields fullClientFields
+        ref FullLicense.FullLicenseIDs    fullClientIDs,
+        ref FullLicense.FullLicenseFields fullClientFields
     ) {
         Client client = new Client(
             fullClientIDs.clientID,

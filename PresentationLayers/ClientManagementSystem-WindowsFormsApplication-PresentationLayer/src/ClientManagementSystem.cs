@@ -17,52 +17,56 @@ public partial class ClientManagementSystem : Form,
     private readonly BindingSource clientBindingSource = new();
 
     private static(
-            Image PersonAdd,
+            Image AddClient,
             Image Lists,
-            Image UniversalCurrencyAlt,
-            Image Flag2,
-            Image Toll
+            Image Fees
             ) menuStripIcons() => (
-                                      PersonAdd : loadIcon(
+                                      AddClient : loadIcon(
                                           "PersonAdd"
                                       ),
                                       Lists : loadIcon(
                                           "Lists"
                                       ),
-                                      UniversalCurrencyAlt : loadIcon(
-                                          "UniversalCurrencyAlt"
-                                      ),
-                                      Flag2 : loadIcon(
-                                          "Flag2"
-                                      ),
-                                      Toll : loadIcon(
+                                      Fees : loadIcon(
                                           "Toll"
                                       )
                                   );
 
     private static(
-            Image Person,
-            Image PersonEdit,
-            Image PersonRemove,
-            Image ID_Card
+            Image Currencies,
+            Image Countries
+            ) listMenuStripIcons() => (
+                                          Currencies : loadIcon(
+                                              "UniversalCurrencyAlt"
+                                          ),
+                                          Countries : loadIcon(
+                                              "Flag2"
+                                          )
+                                      );
+
+    private static(
+            Image Information,
+            Image Edit,
+            Image Remove,
+            Image Licenses
             ) clientListMenuStripIcons() => (
-                                                Person : loadIcon(
+                                                Information : loadIcon(
                                                     "Person",
                                                     20,
                                                     20
                                                 ),
-                                                PersonEdit : loadIcon(
+                                                Edit : loadIcon(
                                                     "PersonEdit",
                                                     20,
                                                     20
                                                 ),
-                                                PersonRemove : loadIcon(
+                                                Remove : loadIcon(
                                                     "PersonRemove",
                                                     20,
                                                     20
                                                 ),
-                                                ID_Card : loadIcon(
-                                                    "ID_Card",
+                                                Licenses : loadIcon(
+                                                    "Contacts",
                                                     20,
                                                     20
                                                 )
@@ -87,16 +91,16 @@ public partial class ClientManagementSystem : Form,
         ClientList.ContextMenuStrip = ClientListMenuStrip;
 
         ClientInformationOption.Image = clientListMenuStripIcons()
-                .Person;
+                .Information;
 
         ClientUpdateOption.Image = clientListMenuStripIcons()
-                .PersonEdit;
+                .Edit;
 
         ClientDeleteOption.Image = clientListMenuStripIcons()
-                .PersonRemove;
+                .Remove;
 
         ClientLicensesOption.Image = clientListMenuStripIcons()
-                .ID_Card;
+                .Licenses;
     }
 
     private void loadIconButtons() {
@@ -132,7 +136,7 @@ public partial class ClientManagementSystem : Form,
         ToolStripMenuItem newClient = createMenuItem(
                               "&New Client",
                               menuStripIcons()
-                                      .PersonAdd
+                                      .AddClient
                           ),
                           lists = createMenuItem(
                               "&Lists",
@@ -141,18 +145,18 @@ public partial class ClientManagementSystem : Form,
                           ),
                           countries = createMenuItem(
                               "Cou&ntries",
-                              menuStripIcons()
-                                      .Flag2
+                              listMenuStripIcons()
+                                      .Countries
                           ),
                           currencies = createMenuItem(
                               "Cu&rrencies",
-                              menuStripIcons()
-                                      .UniversalCurrencyAlt
+                              listMenuStripIcons()
+                                      .Currencies
                           ),
                           fees = createMenuItem(
                               "&Fees",
                               menuStripIcons()
-                                      .Toll
+                                      .Fees
                           );
 
         lists.DropDownItems.AddRange(
@@ -477,7 +481,21 @@ public partial class ClientManagementSystem : Form,
     private void ClientLicensesOption_Click(
         object?   sender,
         EventArgs e
-    ) => new LicenseManagement().Show();
+    ) {
+        Client? client = getClient_FromSelectedRow();
+
+        if (client is null)
+            return;
+
+        int? clientID = client.clientID;
+
+        if (clientID == -1)
+            return;
+
+        new LicenseManagement(
+            ref clientID
+        ).Show();
+    }
 
     private static Image loadIcon(
         string name,

@@ -47,9 +47,9 @@ partial class ClientManagementSystem {
         ((System.ComponentModel.ISupportInitialize) ClientList).BeginInit();
         ClientListMenuStrip.SuspendLayout();
         SuspendLayout();
-        //
+        // 
         // MenuStrip
-        //
+        // 
         MenuStrip.AutoSize = false;
         MenuStrip.Location = new System.Drawing.Point(
             0,
@@ -62,9 +62,9 @@ partial class ClientManagementSystem {
         );
         MenuStrip.TabIndex = 0;
         MenuStrip.Text     = "MenuStrip";
-        //
+        // 
         // SearchBox
-        //
+        // 
         SearchBox.Location = new System.Drawing.Point(
             20,
             50
@@ -78,9 +78,9 @@ partial class ClientManagementSystem {
         SearchBox.TabIndex    =  0;
         SearchBox.TextChanged += SearchBox_TextChanged;
         SearchBox.KeyDown     += disableNewLine_KeyDown;
-        //
+        // 
         // SearchFilter
-        //
+        // 
         SearchFilter.DropDownStyle     = System.Windows.Forms.ComboBoxStyle.DropDownList;
         SearchFilter.FormattingEnabled = true;
         SearchFilter.Location = new System.Drawing.Point(
@@ -94,9 +94,9 @@ partial class ClientManagementSystem {
         );
         SearchFilter.TabIndex             =  1;
         SearchFilter.SelectedIndexChanged += SearchFilter_SelectedIndexChanged;
-        //
+        // 
         // ClientList
-        //
+        // 
         ClientList.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         ClientList.BackgroundColor             = System.Drawing.Color.Gray;
         ClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -113,9 +113,9 @@ partial class ClientManagementSystem {
         );
         ClientList.TabIndex = 3;
         ClientList.Text     = "Client List";
-        //
+        // 
         // RefreshList
-        //
+        // 
         RefreshList.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -134,9 +134,9 @@ partial class ClientManagementSystem {
         RefreshList.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
         RefreshList.UseVisualStyleBackColor =  true;
         RefreshList.Click                   += RefreshList_Click;
-        //
+        // 
         // ClientListMenuStrip
-        //
+        // 
         ClientListMenuStrip.Items.AddRange(
             new System.Windows.Forms.ToolStripItem[] {
                 ClientInformationOption,
@@ -147,35 +147,35 @@ partial class ClientManagementSystem {
         );
         ClientListMenuStrip.Name = "ClientListMenuStrip";
         ClientListMenuStrip.Size = new System.Drawing.Size(
-            138,
-            70
+            181,
+            92
         );
-        //
+        // 
         // ClientInformationOption
-        //
+        // 
         ClientInformationOption.Name = "ClientInformationOption";
         ClientInformationOption.Size = new System.Drawing.Size(
-            137,
+            180,
             22
         );
         ClientInformationOption.Text  =  "Information";
         ClientInformationOption.Click += ClientInformationOption_Click;
-        //
+        // 
         // ClientUpdateOption
-        //
+        // 
         ClientUpdateOption.Name = "ClientUpdateOption";
         ClientUpdateOption.Size = new System.Drawing.Size(
-            137,
+            180,
             22
         );
         ClientUpdateOption.Text  =  "Update";
         ClientUpdateOption.Click += ClientUpdateOption_Click;
-        //
+        // 
         // ClientDeleteOption
-        //
+        // 
         ClientDeleteOption.Name = "ClientDeleteOption";
         ClientDeleteOption.Size = new System.Drawing.Size(
-            137,
+            180,
             22
         );
         ClientDeleteOption.Text  =  "Delete";
@@ -192,7 +192,7 @@ partial class ClientManagementSystem {
         ClientLicensesOption.Click += ClientLicensesOption_Click;
         //
         // ClientManagementSystem
-        //
+        // 
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
             15F

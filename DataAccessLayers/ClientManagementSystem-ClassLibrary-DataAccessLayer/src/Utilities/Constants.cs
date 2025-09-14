@@ -6,6 +6,11 @@ public static class Constants {
         Update = 1
     }
 
+    public enum EditMode {
+        Local         = 0,
+        International = 1
+    }
+
     private const string SERVER_NAME   = "M4MD24";
     private const string DATABASE_NAME = "DriverAndVehicleLicenseDepartment";
     private const string USERNAME = "sa",
