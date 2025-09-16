@@ -185,20 +185,20 @@ CREATE TABLE ClientManagementSystem.LicenseTypes
     LicenseFees            MONEY         NOT NULL,
     LicenseDuration        TINYINT       NOT NULL,
     LicenseConditionsNotes NVARCHAR(300) NOT NULL,
-    LicenseIssuanceID      TINYINT       NOT NULL,
-    IssueDateTime          DATETIME      NOT NULL,
-    ExpiryDateTime         DATETIME      NOT NULL,
-    IsActive               BIT           NOT NULL,
-    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID)
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
 (
-    LicenseID     INT     NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseTypeID TINYINT NOT NULL,
-    ClientID      INT     NOT NULL,
+    LicenseID         INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseTypeID     TINYINT  NOT NULL,
+    ClientID          INT      NOT NULL,
+    LicenseIssuanceID TINYINT  NOT NULL,
+    IssueDateTime     DATETIME NOT NULL,
+    ExpiryDateTime    DATETIME NOT NULL,
+    IsActive          BIT      NOT NULL,
     FOREIGN KEY (LicenseTypeID) REFERENCES ClientManagementSystem.LicenseTypes (LicenseTypeID),
-    FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID)
+    FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
+    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID)
 )
 
 CREATE TABLE ClientManagementSystem.Retests
@@ -256,14 +256,3 @@ CREATE TABLE ClientManagementSystem.Fees
     CurrencyID TINYINT      NOT NULL,
     FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
-
-/*
-Request,20.0000,1
-Eye Test,40.0000,1
-Theoretical Test,60.0000,1
-Retest,70.0000,1
-License Renewal,20.0000,1
-Lost License Replacement,10.0000,1
-Damaged License Replacement,50.0000,1
-International License,100.0000,1
-*/

@@ -119,15 +119,15 @@ erDiagram
         MONEY LicenseFees
         TINYINT LicenseDuration
         NVARCHAR(300) LicenseConditionsNotes
-        TINYINT LicenseIssuanceID FK
-        DATETIME IssueDateTime
-        DATETIME ExpiryDateTime
-        BIT IsActive
     }
     Licenses {
         INT LicenseID PK
         INT LicenseTypeID FK
         INT ClientID FK
+        TINYINT LicenseIssuanceID FK
+        DATETIME IssueDateTime
+        DATETIME ExpiryDateTime
+        BIT IsActive
     }
     Retests {
         INT RetestID PK
@@ -195,7 +195,7 @@ erDiagram
     Requests ||--|| DrivingTests: ""
     Licenses }|--|| LicenseTypes: ""
     Licenses ||--o{ Clients: ""
-    LicenseTypes }|--|| LicenseIssuances: ""
+    Licenses }|--|| LicenseIssuances: ""
     Retests |o--|| Requests: "LastRequestID"
     Retests |o--|| Requests: "NewRequestID"
     OfficialDrivers ||--|{ Licenses: ""
