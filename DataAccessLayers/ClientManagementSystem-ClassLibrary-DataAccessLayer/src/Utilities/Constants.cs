@@ -11,6 +11,11 @@ public static class Constants {
         International = 1
     }
 
+    public enum ReplaceMode {
+        Damage = 0,
+        Lost   = 1
+    }
+
     private const string SERVER_NAME   = "M4MD24";
     private const string DATABASE_NAME = "DriverAndVehicleLicenseDepartment";
     private const string USERNAME = "sa",

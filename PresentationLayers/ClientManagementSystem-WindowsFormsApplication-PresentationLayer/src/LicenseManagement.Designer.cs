@@ -45,12 +45,14 @@ partial class LicenseManagement {
         LicenseDeleteOption      = new System.Windows.Forms.ToolStripMenuItem();
         LicenseRenewOption       = new System.Windows.Forms.ToolStripMenuItem();
         LicenseReplaceOption     = new System.Windows.Forms.ToolStripMenuItem();
+        ReplaceDamageOption  = new System.Windows.Forms.ToolStripMenuItem();
+        ReplaceLostOption    = new System.Windows.Forms.ToolStripMenuItem();
         ((System.ComponentModel.ISupportInitialize) LicenseList).BeginInit();
         LicenseListMenuStrip.SuspendLayout();
         SuspendLayout();
-        // 
+        //
         // MenuStrip
-        // 
+        //
         MenuStrip.AutoSize = false;
         MenuStrip.Location = new System.Drawing.Point(
             0,
@@ -63,9 +65,9 @@ partial class LicenseManagement {
         );
         MenuStrip.TabIndex = 0;
         MenuStrip.Text     = "MenuStrip";
-        // 
+        //
         // SearchBox
-        // 
+        //
         SearchBox.Location = new System.Drawing.Point(
             20,
             50
@@ -79,9 +81,9 @@ partial class LicenseManagement {
         SearchBox.TabIndex    =  0;
         SearchBox.TextChanged += SearchBox_TextChanged;
         SearchBox.KeyDown     += disableNewLine_KeyDown;
-        // 
+        //
         // SearchFilter
-        // 
+        //
         SearchFilter.DropDownStyle     = System.Windows.Forms.ComboBoxStyle.DropDownList;
         SearchFilter.FormattingEnabled = true;
         SearchFilter.Location = new System.Drawing.Point(
@@ -95,9 +97,9 @@ partial class LicenseManagement {
         );
         SearchFilter.TabIndex             =  1;
         SearchFilter.SelectedIndexChanged += SearchFilter_SelectedIndexChanged;
-        // 
+        //
         // LicenseList
-        // 
+        //
         LicenseList.AutoSizeColumnsMode         = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         LicenseList.BackgroundColor             = System.Drawing.Color.Gray;
         LicenseList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -114,9 +116,9 @@ partial class LicenseManagement {
         );
         LicenseList.TabIndex = 3;
         LicenseList.Text     = "Client List";
-        // 
+        //
         // RefreshList
-        // 
+        //
         RefreshList.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
@@ -135,9 +137,9 @@ partial class LicenseManagement {
         RefreshList.TextAlign               =  System.Drawing.ContentAlignment.MiddleLeft;
         RefreshList.UseVisualStyleBackColor =  true;
         RefreshList.Click                   += RefreshList_Click;
-        // 
+        //
         // LicenseListMenuStrip
-        // 
+        //
         LicenseListMenuStrip.Items.AddRange(
             new System.Windows.Forms.ToolStripItem[] {
                 LicenseInformationOption,
@@ -152,9 +154,9 @@ partial class LicenseManagement {
             181,
             136
         );
-        // 
+        //
         // LicenseInformationOption
-        // 
+        //
         LicenseInformationOption.Name = "LicenseInformationOption";
         LicenseInformationOption.Size = new System.Drawing.Size(
             180,
@@ -162,9 +164,9 @@ partial class LicenseManagement {
         );
         LicenseInformationOption.Text  =  "Information";
         LicenseInformationOption.Click += LicenseInformationOption_Click;
-        // 
+        //
         // LicenseUpdateOption
-        // 
+        //
         LicenseUpdateOption.Name = "LicenseUpdateOption";
         LicenseUpdateOption.Size = new System.Drawing.Size(
             180,
@@ -172,9 +174,9 @@ partial class LicenseManagement {
         );
         LicenseUpdateOption.Text  =  "Update";
         LicenseUpdateOption.Click += LicenseUpdateOption_Click;
-        // 
+        //
         // LicenseDeleteOption
-        // 
+        //
         LicenseDeleteOption.Name = "LicenseDeleteOption";
         LicenseDeleteOption.Size = new System.Drawing.Size(
             180,
@@ -182,9 +184,9 @@ partial class LicenseManagement {
         );
         LicenseDeleteOption.Text  =  "Delete";
         LicenseDeleteOption.Click += LicenseDeleteOption_Click;
-        // 
+        //
         // LicenseRenewOption
-        // 
+        //
         LicenseRenewOption.Name = "LicenseRenewOption";
         LicenseRenewOption.Size = new System.Drawing.Size(
             180,
@@ -192,17 +194,42 @@ partial class LicenseManagement {
         );
         LicenseRenewOption.Text  =  "Renew";
         LicenseRenewOption.Click += LicenseRenewOption_Click;
-        // 
+        //
         // LicenseReplaceOption
-        // 
+        //
+        LicenseReplaceOption.DropDownItems.AddRange(
+            new System.Windows.Forms.ToolStripItem[] {
+                ReplaceDamageOption,
+                ReplaceLostOption
+            }
+        );
         LicenseReplaceOption.Name = "LicenseReplaceOption";
         LicenseReplaceOption.Size = new System.Drawing.Size(
             180,
             22
         );
         LicenseReplaceOption.Text  =  "Replace";
-        LicenseReplaceOption.Click += LicenseReplaceOption_Click;
-        // 
+        //
+        // ReplaceDamageOption
+        //
+        ReplaceDamageOption.Name = "ReplaceDamageOption";
+        ReplaceDamageOption.Size = new System.Drawing.Size(
+            180,
+            22
+        );
+        ReplaceDamageOption.Text  =  "Damage";
+        ReplaceDamageOption.Click += ReplaceDamageOption_Click;
+        //
+        // ReplaceLostOption
+        //
+        ReplaceLostOption.Name = "ReplaceLostOption";
+        ReplaceLostOption.Size = new System.Drawing.Size(
+            180,
+            22
+        );
+        ReplaceLostOption.Text = "Lost";
+        ReplaceLostOption.Click += ReplaceLostOption_Click;
+        //
         // LicenseManagement
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
@@ -246,6 +273,8 @@ partial class LicenseManagement {
         PerformLayout();
     }
 
+    private System.Windows.Forms.ToolStripMenuItem ReplaceDamageOption;
+    private System.Windows.Forms.ToolStripMenuItem ReplaceLostOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseReplaceOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseInformationOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseUpdateOption;

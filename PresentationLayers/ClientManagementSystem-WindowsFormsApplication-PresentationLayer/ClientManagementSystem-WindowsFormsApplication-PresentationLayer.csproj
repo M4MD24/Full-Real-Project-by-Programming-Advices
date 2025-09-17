@@ -38,16 +38,16 @@
         <Compile Update="src\ClientInformation.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Update="src\CreateNewLocalLicense.cs">
-          <SubType>Form</SubType>
-        </Compile>
-        <Compile Update="src\CreateNewInternationalLicense.cs">
-          <SubType>Form</SubType>
-        </Compile>
         <Compile Update="src\LicenseTypes.cs">
-          <SubType>Form</SubType>
+            <SubType>Form</SubType>
         </Compile>
         <Compile Update="src\EditLicense.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Requests.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\AddAndEditLicense.cs">
           <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
@@ -66,8 +66,6 @@
         <EmbeddedResource Include="Resources\Icons\Contacts.svg"/>
         <EmbeddedResource Include="Resources\Icons\Contacts.ico"/>
         <EmbeddedResource Include="Resources\Icons\Edit.svg"/>
-        <EmbeddedResource Include="Resources\Icons\Globe.svg"/>
-        <EmbeddedResource Include="Resources\Icons\Home.svg"/>
         <EmbeddedResource Include="Resources\Icons\Remove.svg"/>
         <EmbeddedResource Include="Resources\Icons\SyncProblem.svg"/>
         <EmbeddedResource Include="Resources\Icons\Flag2.ico"/>
@@ -92,6 +90,7 @@
         <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
         <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.ico"/>
         <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Quiz.svg"/>
     </ItemGroup>
 
 </Project>

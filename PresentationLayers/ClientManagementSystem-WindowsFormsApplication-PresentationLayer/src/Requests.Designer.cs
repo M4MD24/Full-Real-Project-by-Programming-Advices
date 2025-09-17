@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-partial class CreateNewInternationalLicense {
+partial class Requests {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -37,7 +37,7 @@ partial class CreateNewInternationalLicense {
             800,
             450
         );
-        this.Text = "CreateNewInternationalLicense";
+        this.Text = "Requests";
     }
 
     #endregion

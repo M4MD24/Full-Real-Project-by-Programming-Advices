@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
+using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace ClientManagementSystem_ClassLibrary_BusinessLayer;
 
@@ -10,21 +11,23 @@ public static class Licenses {
         ref clientID
     );
 
-    public static void delete(
+    public static int delete(
         int? licenseID
-    ) {
-        throw new System.NotImplementedException();
-    }
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Licenses.deleteByLicenseID(
+        ref licenseID
+    );
 
-    public static void renew(
+    public static int renew(
         int? licenseID
-    ) {
-        throw new System.NotImplementedException();
-    }
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Licenses.renewByLicenseID(
+        ref licenseID
+    );
 
-    public static void replace(
-        int? licenseID
-    ) {
-        throw new System.NotImplementedException();
-    }
+    public static int replace(
+        int?                  licenseID,
+        Constants.ReplaceMode replaceMode
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Licenses.replaceByLicenseID(
+        ref licenseID,
+        replaceMode
+    );
 }

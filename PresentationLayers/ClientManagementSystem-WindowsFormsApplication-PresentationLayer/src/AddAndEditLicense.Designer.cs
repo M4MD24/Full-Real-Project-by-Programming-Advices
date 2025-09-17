@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-partial class CreateNewLocalLicense {
+partial class AddAndEditLicense {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -37,7 +37,7 @@ partial class CreateNewLocalLicense {
             800,
             450
         );
-        this.Text = "CreateNewLocalLicense";
+        this.Text = "";
     }
 
     #endregion

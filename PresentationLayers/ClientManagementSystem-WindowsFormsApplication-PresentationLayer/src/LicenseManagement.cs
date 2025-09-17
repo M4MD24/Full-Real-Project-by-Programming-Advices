@@ -19,27 +19,19 @@ public partial class LicenseManagement : Form,
 
     private static(
             Image AddLicense,
-            Image licenseTypes
+            Image LicenseTypes,
+            Image Requests
             ) menuStripIcons() => (
                                       AddLicense : loadIcon(
                                           "Add"
                                       ),
-                                      licenseTypes : loadIcon(
+                                      LicenseTypes : loadIcon(
                                           "Category"
+                                      ),
+                                      Requests : loadIcon(
+                                          "Assignment"
                                       )
                                   );
-
-    private static(
-            Image Local,
-            Image International
-            ) licensesMenuStripIcons() => (
-                                              Local : loadIcon(
-                                                  "Home"
-                                              ),
-                                              International : loadIcon(
-                                                  "Globe"
-                                              )
-                                          );
 
     private static(
             Image Information,
@@ -148,30 +140,21 @@ public partial class LicenseManagement : Form,
                               menuStripIcons()
                                       .AddLicense
                           ),
-                          local = createMenuItem(
-                              "&Local",
-                              licensesMenuStripIcons()
-                                      .Local
-                          ),
-                          international = createMenuItem(
-                              "&International",
-                              licensesMenuStripIcons()
-                                      .International
-                          ),
                           licenseTypes = createMenuItem(
                               "&License Types",
                               menuStripIcons()
-                                      .licenseTypes
+                                      .LicenseTypes
+                          ),
+                          requests = createMenuItem(
+                              "&Requests",
+                              menuStripIcons()
+                                      .Requests
                           );
-
-        newLicense.DropDownItems.AddRange(
-            local,
-            international
-        );
 
         menuStrip.Items.AddRange(
             newLicense,
-            licenseTypes
+            licenseTypes,
+            requests
         );
 
         MainMenuStrip = menuStrip;
@@ -179,33 +162,29 @@ public partial class LicenseManagement : Form,
             menuStrip
         );
 
-        local.Click         += createNewLocalLicense_Click;
-        international.Click += createNewInternationalLicense_Click;
-        licenseTypes.Click  += licenseTypes_Click;
+        newLicense.Click   += newLicense_Click;
+        licenseTypes.Click += licenseTypes_Click;
+        requests.Click     += request_Click;
     }
+
+    private void newLicense_Click(
+        object?   sender,
+        EventArgs e
+    ) {
+        AddAndEditLicense addAndEditLicense = new AddAndEditLicense();
+        addAndEditLicense.FormClosed += RefreshList_Click;
+        addAndEditLicense.Show();
+    }
+
+    private void request_Click(
+        object?   sender,
+        EventArgs e
+    ) => new Requests().Show();
 
     private void licenseTypes_Click(
         object?   sender,
         EventArgs e
     ) => new LicenseTypes().Show();
-
-    private void createNewInternationalLicense_Click(
-        object?   sender,
-        EventArgs e
-    ) {
-        CreateNewInternationalLicense newInternationalLicense = new CreateNewInternationalLicense();
-        newInternationalLicense.FormClosed += RefreshList_Click;
-        newInternationalLicense.Show();
-    }
-
-    private void createNewLocalLicense_Click(
-        object?   sender,
-        EventArgs e
-    ) {
-        CreateNewLocalLicense addAndEditClient = new CreateNewLocalLicense();
-        addAndEditClient.FormClosed += RefreshList_Click;
-        addAndEditClient.Show();
-    }
 
     private static ToolStripMenuItem createMenuItem(
         string text,
@@ -536,7 +515,47 @@ public partial class LicenseManagement : Form,
         loadLicenses();
     }
 
-    private void LicenseReplaceOption_Click(
+    private void replaceSelectedLicense(
+        ref License                                                                         license,
+        ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.ReplaceMode replaceMode
+    ) {
+        Licenses.replace(
+            license.licenseID,
+            replaceMode
+        );
+        loadLicenses();
+    }
+
+    private void ReplaceDamageOption_Click(
+        object    sender,
+        EventArgs e
+    ) {
+        License? license = getLicense_FromSelectedRow();
+
+        if (license is null)
+            return;
+
+        int? licenseID = license.licenseID;
+
+        if (licenseID == -1)
+            return;
+
+        DialogResult result = MessageBox.Show(
+            @$"Are you replace {licenseID}?",
+            @"Replace Damage License",
+            MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1
+        );
+
+        if (result == DialogResult.OK)
+            replaceSelectedLicense(
+                ref license,
+                ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.ReplaceMode.Damage
+            );
+    }
+
+    private void ReplaceLostOption_Click(
         object?   sender,
         EventArgs e
     ) {
@@ -552,7 +571,7 @@ public partial class LicenseManagement : Form,
 
         DialogResult result = MessageBox.Show(
             @$"Are you replace {licenseID}?",
-            @"Replace License",
+            @"Replace Lost License",
             MessageBoxButtons.OKCancel,
             MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button1
@@ -560,16 +579,8 @@ public partial class LicenseManagement : Form,
 
         if (result == DialogResult.OK)
             replaceSelectedLicense(
-                ref license
+                ref license,
+                ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.ReplaceMode.Lost
             );
-    }
-
-    private void replaceSelectedLicense(
-        ref License license
-    ) {
-        Licenses.replace(
-            license.licenseID
-        );
-        loadLicenses();
     }
 }
