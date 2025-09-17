@@ -111,9 +111,13 @@ erDiagram
         TINYINT LicenseIssuanceID PK
         NVARCHAR(50) LicenseIssuanceName
     }
+    LicenseTypeNames {
+        TINYINT LicenseTypeNameID PK
+        NVARCHAR(30) LicenseTypeName
+    }
     LicenseTypes {
         INT LicenseTypeID PK
-        NVARCHAR(75) LicenseTypeName
+        TINYINT LicenseTypeNameID
         NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
         MONEY LicenseFees
@@ -193,6 +197,7 @@ erDiagram
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
+    LicenseTypes ||--|| LicenseTypeNames: ""
     Licenses }|--|| LicenseTypes: ""
     Licenses ||--o{ Clients: ""
     Licenses }|--|| LicenseIssuances: ""

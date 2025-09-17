@@ -176,15 +176,22 @@ CREATE TABLE ClientManagementSystem.LicenseIssuances
     LicenseIssuanceName NVARCHAR(50) NOT NULL UNIQUE
 )
 
+CREATE TABLE ClientManagementSystem.LicenseTypeNames
+(
+    LicenseTypeNameID TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseTypeName   NVARCHAR(30) NOT NULL UNIQUE
+)
+
 CREATE TABLE ClientManagementSystem.LicenseTypes
 (
     LicenseTypeID          TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseTypeName        NVARCHAR(75)  NOT NULL,
+    LicenseTypeNameID      TINYINT       NOT NULL,
     LicenseDescription     NVARCHAR(200) NOT NULL,
     MinimumAge             TINYINT       NOT NULL,
     LicenseFees            MONEY         NOT NULL,
     LicenseDuration        TINYINT       NOT NULL,
     LicenseConditionsNotes NVARCHAR(300) NOT NULL,
+    FOREIGN KEY (LicenseTypeNameID) REFERENCES ClientManagementSystem.LicenseTypeNames (LicenseTypeNameID),
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
