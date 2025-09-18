@@ -117,10 +117,10 @@ erDiagram
     }
     LicenseTypes {
         INT LicenseTypeID PK
-        TINYINT LicenseTypeNameID
         NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
         MONEY LicenseFees
+        TINYINT CurrencyID FK
         TINYINT LicenseDuration
         NVARCHAR(300) LicenseConditionsNotes
     }
@@ -129,6 +129,7 @@ erDiagram
         INT LicenseTypeID FK
         INT ClientID FK
         TINYINT LicenseIssuanceID FK
+        TINYINT LicenseTypeNameID FK
         DATETIME IssueDateTime
         DATETIME ExpiryDateTime
         BIT IsActive
@@ -169,7 +170,7 @@ erDiagram
         TINYINT FeesID PK
         NVARCHAR(75) FeesName
         MONEY Amount
-        INT CurrencyID FK
+        TINYINT CurrencyID FK
     }
 
     Persons ||--|| FullNames: ""
@@ -197,10 +198,11 @@ erDiagram
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
-    LicenseTypes ||--|| LicenseTypeNames: ""
+    LicenseTypes }o--|| Currencies: ""
     Licenses }|--|| LicenseTypes: ""
     Licenses ||--o{ Clients: ""
     Licenses }|--|| LicenseIssuances: ""
+    Licenses }|--|| LicenseTypeNames: ""
     Retests |o--|| Requests: "LastRequestID"
     Retests |o--|| Requests: "NewRequestID"
     OfficialDrivers ||--|{ Licenses: ""
