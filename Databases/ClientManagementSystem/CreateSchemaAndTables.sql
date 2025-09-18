@@ -185,13 +185,13 @@ CREATE TABLE ClientManagementSystem.LicenseTypeNames
 CREATE TABLE ClientManagementSystem.LicenseTypes
 (
     LicenseTypeID          TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseTypeNameID      TINYINT       NOT NULL,
     LicenseDescription     NVARCHAR(200) NOT NULL,
     MinimumAge             TINYINT       NOT NULL,
     LicenseFees            MONEY         NOT NULL,
+    CurrencyID             TINYINT       NOT NULL,
     LicenseDuration        TINYINT       NOT NULL,
     LicenseConditionsNotes NVARCHAR(300) NOT NULL,
-    FOREIGN KEY (LicenseTypeNameID) REFERENCES ClientManagementSystem.LicenseTypeNames (LicenseTypeNameID),
+    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
@@ -200,12 +200,14 @@ CREATE TABLE ClientManagementSystem.Licenses
     LicenseTypeID     TINYINT  NOT NULL,
     ClientID          INT      NOT NULL,
     LicenseIssuanceID TINYINT  NOT NULL,
+    LicenseTypeNameID TINYINT  NOT NULL,
     IssueDateTime     DATETIME NOT NULL,
     ExpiryDateTime    DATETIME NOT NULL,
     IsActive          BIT      NOT NULL,
     FOREIGN KEY (LicenseTypeID) REFERENCES ClientManagementSystem.LicenseTypes (LicenseTypeID),
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
-    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID)
+    FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
+    FOREIGN KEY (LicenseTypeNameID) REFERENCES ClientManagementSystem.LicenseTypeNames (LicenseTypeNameID)
 )
 
 CREATE TABLE ClientManagementSystem.Retests
