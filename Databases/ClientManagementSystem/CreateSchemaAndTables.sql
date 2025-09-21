@@ -150,28 +150,6 @@ CREATE TABLE ClientManagementSystem.Payments
     FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
 
-CREATE TABLE ClientManagementSystem.Requests
-(
-    RequestID         INT        NOT NULL PRIMARY KEY IDENTITY (1,1),
-    RequestDateTime   DATETIME   NOT NULL,
-    ClientID          INT UNIQUE NOT NULL,
-    RequestTypeID     TINYINT    NOT NULL,
-    RequestCaseID     TINYINT    NOT NULL,
-    PaymentID         INT        NOT NULL,
-    EyeTestID         INT,
-    TheoreticalTestID INT,
-    DrivingTestID     INT,
-    LicenseID         INT        NULL,
-    FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
-    FOREIGN KEY (RequestTypeID) REFERENCES ClientManagementSystem.RequestTypes (RequestTypeID),
-    FOREIGN KEY (RequestCaseID) REFERENCES ClientManagementSystem.RequestCases (RequestCaseID),
-    FOREIGN KEY (PaymentID) REFERENCES ClientManagementSystem.Payments (PaymentID),
-    FOREIGN KEY (EyeTestID) REFERENCES ClientManagementSystem.EyeTests (EyeTestID),
-    FOREIGN KEY (TheoreticalTestID) REFERENCES ClientManagementSystem.TheoreticalTests (TheoreticalTestID),
-    FOREIGN KEY (DrivingTestID) REFERENCES ClientManagementSystem.DrivingTests (DrivingTestID),
-    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID)
-)
-
 CREATE TABLE ClientManagementSystem.LicenseIssuances
 (
     LicenseIssuanceID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
@@ -207,6 +185,28 @@ CREATE TABLE ClientManagementSystem.Licenses
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
     FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
     FOREIGN KEY (LicenseTypeNameID) REFERENCES ClientManagementSystem.LicenseTypeNames (LicenseTypeNameID)
+)
+
+CREATE TABLE ClientManagementSystem.Requests
+(
+    RequestID         INT        NOT NULL PRIMARY KEY IDENTITY (1,1),
+    RequestDateTime   DATETIME   NOT NULL,
+    ClientID          INT UNIQUE NOT NULL,
+    RequestTypeID     TINYINT    NOT NULL,
+    RequestCaseID     TINYINT    NOT NULL,
+    PaymentID         INT        NOT NULL,
+    EyeTestID         INT,
+    TheoreticalTestID INT,
+    DrivingTestID     INT,
+    LicenseID         INT        NULL,
+    FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
+    FOREIGN KEY (RequestTypeID) REFERENCES ClientManagementSystem.RequestTypes (RequestTypeID),
+    FOREIGN KEY (RequestCaseID) REFERENCES ClientManagementSystem.RequestCases (RequestCaseID),
+    FOREIGN KEY (PaymentID) REFERENCES ClientManagementSystem.Payments (PaymentID),
+    FOREIGN KEY (EyeTestID) REFERENCES ClientManagementSystem.EyeTests (EyeTestID),
+    FOREIGN KEY (TheoreticalTestID) REFERENCES ClientManagementSystem.TheoreticalTests (TheoreticalTestID),
+    FOREIGN KEY (DrivingTestID) REFERENCES ClientManagementSystem.DrivingTests (DrivingTestID),
+    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID)
 )
 
 CREATE TABLE ClientManagementSystem.Retests
