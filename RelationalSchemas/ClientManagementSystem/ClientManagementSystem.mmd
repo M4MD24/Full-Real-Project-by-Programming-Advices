@@ -120,8 +120,6 @@ erDiagram
         INT LicenseTypeID PK
         NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
-        MONEY LicenseFees
-        TINYINT CurrencyID FK
         TINYINT LicenseDuration
         NVARCHAR(300) LicenseConditionsNotes
     }
@@ -193,14 +191,13 @@ erDiagram
     DrivingTests }o--|| DrivingExaminers: ""
     Requests }o--|| Clients: ""
     Requests }|--|| RequestTypes: ""
-    Requests }|--|| RequestCases: "RequestCaseID"
+    Requests }|--|| RequestCases: ""
     Payments ||--|| Currencies: ""
     Requests ||--o| Payments: ""
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
     Requests }|--|| Licenses: ""
-    LicenseTypes }o--|| Currencies: ""
     Licenses }|--|| LicenseTypes: ""
     Licenses ||--o{ Clients: ""
     Licenses }|--|| LicenseIssuances: ""

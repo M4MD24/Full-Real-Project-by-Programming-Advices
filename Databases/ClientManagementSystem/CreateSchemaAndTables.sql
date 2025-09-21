@@ -189,11 +189,8 @@ CREATE TABLE ClientManagementSystem.LicenseTypes
     LicenseTypeID          TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
     LicenseDescription     NVARCHAR(200) NOT NULL,
     MinimumAge             TINYINT       NOT NULL,
-    LicenseFees            MONEY         NOT NULL,
-    CurrencyID             TINYINT       NOT NULL,
     LicenseDuration        TINYINT       NOT NULL,
-    LicenseConditionsNotes NVARCHAR(300) NOT NULL,
-    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
+    LicenseConditionsNotes NVARCHAR(300) NOT NULL
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
