@@ -81,14 +81,6 @@ erDiagram
         INT TestID FK
         INT DrivingExaminerID FK
     }
-    RequestTypes {
-        INT RequestTypeID PK
-        NVARCHAR(50) RequestTypeName
-    }
-    RequestCases {
-        TINYINT RequestCaseID PK
-        NVARCHAR(20) RequestCaseName
-    }
     Payments {
         INT PaymentID PK
         TINYINT CurrencyID FK
@@ -100,8 +92,6 @@ erDiagram
         INT RequestID PK
         DATETIME RequestDateTime
         INT ClientID FK
-        INT RequestTypeID FK
-        TINYINT RequestCaseID FK
         INT PaymentID FK
         INT EyeTestID FK
         INT TheoreticalTestID FK
@@ -190,8 +180,6 @@ erDiagram
     Tests ||--|| DrivingTests: ""
     DrivingTests }o--|| DrivingExaminers: ""
     Requests }o--|| Clients: ""
-    Requests }|--|| RequestTypes: ""
-    Requests }|--|| RequestCases: ""
     Payments ||--|| Currencies: ""
     Requests ||--o| Payments: ""
     Requests ||--|| EyeTests: ""

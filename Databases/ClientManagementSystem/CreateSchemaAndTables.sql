@@ -128,18 +128,6 @@ CREATE TABLE ClientManagementSystem.DrivingTests
     FOREIGN KEY (DrivingExaminerID) REFERENCES ClientManagementSystem.DrivingExaminers (DrivingExaminerID)
 )
 
-CREATE TABLE ClientManagementSystem.RequestTypes
-(
-    RequestTypeID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
-    RequestTypeName NVARCHAR(50) NOT NULL
-)
-
-CREATE TABLE ClientManagementSystem.RequestCases
-(
-    RequestCaseID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
-    RequestCaseName NVARCHAR(20) NOT NULL
-)
-
 CREATE TABLE ClientManagementSystem.Payments
 (
     PaymentID       INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
@@ -192,16 +180,12 @@ CREATE TABLE ClientManagementSystem.Requests
     RequestID         INT        NOT NULL PRIMARY KEY IDENTITY (1,1),
     RequestDateTime   DATETIME   NOT NULL,
     ClientID          INT UNIQUE NOT NULL,
-    RequestTypeID     TINYINT    NOT NULL,
-    RequestCaseID     TINYINT    NOT NULL,
     PaymentID         INT        NOT NULL,
     EyeTestID         INT        NULL,
     TheoreticalTestID INT        NULL,
     DrivingTestID     INT        NULL,
     LicenseID         INT        NULL,
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
-    FOREIGN KEY (RequestTypeID) REFERENCES ClientManagementSystem.RequestTypes (RequestTypeID),
-    FOREIGN KEY (RequestCaseID) REFERENCES ClientManagementSystem.RequestCases (RequestCaseID),
     FOREIGN KEY (PaymentID) REFERENCES ClientManagementSystem.Payments (PaymentID),
     FOREIGN KEY (EyeTestID) REFERENCES ClientManagementSystem.EyeTests (EyeTestID),
     FOREIGN KEY (TheoreticalTestID) REFERENCES ClientManagementSystem.TheoreticalTests (TheoreticalTestID),
