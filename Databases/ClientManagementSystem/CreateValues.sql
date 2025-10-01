@@ -10,11 +10,11 @@ INSERT INTO ClientManagementSystem.Fees (FeesName, Amount, CurrencyID)
 VALUES (N'Request', 20, 1),
        (N'First Time', 10, 1),
        (N'Retest', 70, 1),
-       (N'License Renewal', 20, 1),
+       (N'Renew', 20, 1),
        (N'Lost License Replacement', 10, 1),
        (N'Damaged License Replacement', 50, 1),
-       (N'Local License', 20, 1),
-       (N'International License', 100, 1),
+       (N'Local', 20, 1),
+       (N'International', 100, 1),
        (N'Small Motorcycle', 15, 1),
        (N'Heavy Motorcycle', 30, 1),
        (N'Regular', 20, 1),
@@ -33,15 +33,15 @@ VALUES ('First Time'),
        ('Replace Damaged'),
        ('Unlock');
 
-INSERT INTO ClientManagementSystem.LicenseTypeNames (LicenseTypeName)
+INSERT INTO ClientManagementSystem.Coverages (CoverageName)
 VALUES ('Local'),
        ('International');
 
-INSERT INTO ClientManagementSystem.LicenseTypes (LicenseDescription, MinimumAge, LicenseDuration, LicenseConditionsNotes)
-VALUES ('Small Motorcycle', 10, 5, 'Allows the driver to drive small motorcycles.'),
-       ('Heavy Motorcycle', 12, 5, 'Allows the driver to drive large and powerful motorcycles.'),
-       ('Regular', 10, 10, 'Allows the driver to drive light vehicles and personal cars.'),
-       ('Commercial', 12, 10, 'Allows the driver to drive taxis or limousines.'),
-       ('Agricultural', 12, 10, 'Allows the driver to drive all agricultural vehicles.'),
-       ('Small and Medium', 12, 10, 'Allows the driver to drive small and medium buses.'),
-       ('Truck and Heavy Vehicle', 12, 10, 'Allows the driver to drive trucks and heavy vehicles such as buses and large trucks.');
+INSERT INTO ClientManagementSystem.LicenseTypes (LicenseName, LicenseDescription, MinimumAge, LicenseDuration)
+VALUES ('Small Motorcycle', 'Allows the driver to drive small motorcycles.', 10, 5),
+       ('Heavy Motorcycle', 'Allows the driver to drive large and powerful motorcycles.', 12, 5),
+       ('Regular', 'Allows the driver to drive light vehicles and personal cars.', 10, 10),
+       ('Commercial', 'Allows the driver to drive taxis or limousines.', 12, 10),
+       ('Agricultural', 'Allows the driver to drive all agricultural vehicles.', 12, 10),
+       ('Small and Medium', 'Allows the driver to drive small and medium buses.', 12, 10),
+       ('Truck and Heavy Vehicle', 'Allows the driver to drive trucks and heavy vehicles such as buses and large trucks.', 12, 10);

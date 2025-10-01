@@ -144,19 +144,19 @@ CREATE TABLE ClientManagementSystem.LicenseIssuances
     LicenseIssuanceName NVARCHAR(50) NOT NULL UNIQUE
 )
 
-CREATE TABLE ClientManagementSystem.LicenseTypeNames
+CREATE TABLE ClientManagementSystem.Coverages
 (
-    LicenseTypeNameID TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseTypeName   NVARCHAR(30) NOT NULL UNIQUE
+    CoverageID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    CoverageName NVARCHAR(30) NOT NULL UNIQUE
 )
 
 CREATE TABLE ClientManagementSystem.LicenseTypes
 (
-    LicenseTypeID          TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseDescription     NVARCHAR(200) NOT NULL,
-    MinimumAge             TINYINT       NOT NULL,
-    LicenseDuration        TINYINT       NOT NULL,
-    LicenseConditionsNotes NVARCHAR(300) NOT NULL
+    LicenseTypeID      TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseName        NVARCHAR(50)  NOT NULL,
+    LicenseDescription NVARCHAR(200) NOT NULL,
+    MinimumAge         TINYINT       NOT NULL,
+    LicenseDuration    TINYINT       NOT NULL
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
@@ -165,14 +165,14 @@ CREATE TABLE ClientManagementSystem.Licenses
     LicenseTypeID     TINYINT  NOT NULL,
     ClientID          INT      NOT NULL,
     LicenseIssuanceID TINYINT  NOT NULL,
-    LicenseTypeNameID TINYINT  NOT NULL,
+    LicenseCoverageID TINYINT  NOT NULL,
     IssueDateTime     DATETIME NOT NULL,
     ExpiryDateTime    DATETIME NOT NULL,
     IsActive          BIT      NOT NULL,
     FOREIGN KEY (LicenseTypeID) REFERENCES ClientManagementSystem.LicenseTypes (LicenseTypeID),
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
     FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
-    FOREIGN KEY (LicenseTypeNameID) REFERENCES ClientManagementSystem.LicenseTypeNames (LicenseTypeNameID)
+    FOREIGN KEY (LicenseCoverageID) REFERENCES ClientManagementSystem.Coverages (CoverageID)
 )
 
 CREATE TABLE ClientManagementSystem.Requests

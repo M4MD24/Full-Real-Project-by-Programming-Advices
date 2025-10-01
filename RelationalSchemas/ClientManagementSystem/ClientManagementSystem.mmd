@@ -102,23 +102,23 @@ erDiagram
         TINYINT LicenseIssuanceID PK
         NVARCHAR(50) LicenseIssuanceName
     }
-    LicenseTypeNames {
-        TINYINT LicenseTypeNameID PK
-        NVARCHAR(30) LicenseTypeName
+    Coverages {
+        TINYINT CoverageID PK
+        NVARCHAR(30) CoverageName
     }
     LicenseTypes {
         INT LicenseTypeID PK
+        NVARCHAR(50) LicenseName
         NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
         TINYINT LicenseDuration
-        NVARCHAR(300) LicenseConditionsNotes
     }
     Licenses {
         INT LicenseID PK
         INT LicenseTypeID FK
         INT ClientID FK
         TINYINT LicenseIssuanceID FK
-        TINYINT LicenseTypeNameID FK
+        TINYINT CoverageID FK
         DATETIME IssueDateTime
         DATETIME ExpiryDateTime
         BIT IsActive
@@ -189,7 +189,7 @@ erDiagram
     Licenses }|--|| LicenseTypes: ""
     Licenses ||--o{ Clients: ""
     Licenses }|--|| LicenseIssuances: ""
-    Licenses }|--|| LicenseTypeNames: ""
+    Licenses }|--|| Coverages: ""
     Retests |o--|| Requests: "LastRequestID"
     Retests |o--|| Requests: "NewRequestID"
     OfficialDrivers ||--|{ Licenses: ""
