@@ -152,23 +152,23 @@ CREATE TABLE ClientManagementSystem.Coverages
 
 CREATE TABLE ClientManagementSystem.LicenseTypes
 (
-    LicenseTypeID      TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseName        NVARCHAR(50)  NOT NULL,
-    LicenseDescription NVARCHAR(200) NOT NULL,
-    MinimumAge         TINYINT       NOT NULL,
-    LicenseDuration    TINYINT       NOT NULL
+    LicenseTypeID TINYINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Name          NVARCHAR(50)  NOT NULL,
+    Description   NVARCHAR(200) NOT NULL,
+    MinimumAge    TINYINT       NOT NULL,
+    Duration      TINYINT       NOT NULL
 )
 
 CREATE TABLE ClientManagementSystem.Licenses
 (
-    LicenseID         INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LicenseTypeID     TINYINT  NOT NULL,
-    ClientID          INT      NOT NULL,
-    LicenseIssuanceID TINYINT  NOT NULL,
-    LicenseCoverageID TINYINT  NOT NULL,
-    IssueDateTime     DATETIME NOT NULL,
-    ExpiryDateTime    DATETIME NOT NULL,
-    IsActive          BIT      NOT NULL,
+    LicenseID         INT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseTypeID     TINYINT NOT NULL,
+    ClientID          INT     NOT NULL,
+    LicenseIssuanceID TINYINT NOT NULL,
+    LicenseCoverageID TINYINT NOT NULL,
+    IssueDateTime     DATETIME,
+    ExpiryDateTime    DATETIME,
+    IsActive          BIT     NOT NULL,
     FOREIGN KEY (LicenseTypeID) REFERENCES ClientManagementSystem.LicenseTypes (LicenseTypeID),
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
     FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
@@ -177,14 +177,14 @@ CREATE TABLE ClientManagementSystem.Licenses
 
 CREATE TABLE ClientManagementSystem.Requests
 (
-    RequestID         INT        NOT NULL PRIMARY KEY IDENTITY (1,1),
-    RequestDateTime   DATETIME   NOT NULL,
-    ClientID          INT UNIQUE NOT NULL,
-    PaymentID         INT        NOT NULL,
-    EyeTestID         INT        NULL,
-    TheoreticalTestID INT        NULL,
-    DrivingTestID     INT        NULL,
-    LicenseID         INT        NULL,
+    RequestID         INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    RequestDateTime   DATETIME NOT NULL,
+    ClientID          INT      NOT NULL,
+    PaymentID         INT      NOT NULL,
+    EyeTestID         INT      NULL,
+    TheoreticalTestID INT      NULL,
+    DrivingTestID     INT      NULL,
+    LicenseID         INT      NULL,
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
     FOREIGN KEY (PaymentID) REFERENCES ClientManagementSystem.Payments (PaymentID),
     FOREIGN KEY (EyeTestID) REFERENCES ClientManagementSystem.EyeTests (EyeTestID),

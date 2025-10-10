@@ -1,10 +1,10 @@
 USE DriverAndVehicleLicenseDepartment;
 
--- INSERT INTO ClientManagementSystem.Countries (CountryName, CountryCode)
--- VALUES (N'Egypt', 'EGY');
---
--- INSERT INTO ClientManagementSystem.Currencies (CurrencyName, CountryID)
--- VALUES (N'جنيه', 1);
+INSERT INTO ClientManagementSystem.Countries (CountryName, CountryCode)
+VALUES (N'Egypt', 'EGY');
+
+INSERT INTO ClientManagementSystem.Currencies (CurrencyName, CountryID)
+VALUES (N'جنيه', 1);
 
 INSERT INTO ClientManagementSystem.Fees (FeesName, Amount, CurrencyID)
 VALUES (N'Request', 20, 1),
@@ -37,7 +37,7 @@ INSERT INTO ClientManagementSystem.Coverages (CoverageName)
 VALUES ('Local'),
        ('International');
 
-INSERT INTO ClientManagementSystem.LicenseTypes (LicenseName, LicenseDescription, MinimumAge, LicenseDuration)
+INSERT INTO ClientManagementSystem.LicenseTypes (Name, Description, MinimumAge, Duration)
 VALUES ('Small Motorcycle', 'Allows the driver to drive small motorcycles.', 10, 5),
        ('Heavy Motorcycle', 'Allows the driver to drive large and powerful motorcycles.', 12, 5),
        ('Regular', 'Allows the driver to drive light vehicles and personal cars.', 10, 10),
