@@ -79,14 +79,6 @@ public partial class AddAndEditClient : Form,
         ref Label label
     ) => label.Text = @"None";
 
-    private static void clearField(
-        ref GroupBox groupBox
-    ) {
-        foreach (Control control in groupBox.Controls)
-            if (control is CheckBox checkBox)
-                checkBox.Checked = false;
-    }
-
     private void initializeModificationForm(
         ref FullClient fullClient
     ) {

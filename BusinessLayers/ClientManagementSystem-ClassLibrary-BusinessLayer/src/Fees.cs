@@ -6,8 +6,14 @@ public static class Fees {
     public static List<ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees>? getAll() => ClientManagementSystem_ClassLibrary_DataAccessLayer.Fees.getAllFees();
 
     public static ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? get(
-        ref byte countryID
+        byte feesID
     ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Fees.getFeesByFeesID(
-        ref countryID
+        ref feesID
+    );
+
+    public static ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? get(
+        string feesName
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Fees.getFeesByFeesName(
+        feesName
     );
 }

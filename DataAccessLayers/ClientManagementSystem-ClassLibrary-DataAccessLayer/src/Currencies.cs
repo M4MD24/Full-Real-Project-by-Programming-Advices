@@ -54,7 +54,7 @@ public static class Currencies {
     }
 
     public static Currency? getCurrencyByCurrencyID(
-        ref byte currencyID
+        ref byte? currencyID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY

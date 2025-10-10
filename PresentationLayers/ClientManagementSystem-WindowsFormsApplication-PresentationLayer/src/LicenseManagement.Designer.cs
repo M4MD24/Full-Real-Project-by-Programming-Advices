@@ -261,7 +261,6 @@ partial class LicenseManagement {
         MainMenuStrip =  MenuStrip;
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          =  "License Management";
-        FormClosing   += LicenseManagement_FormClosing;
         KeyDown       += LicenseManagement_KeyDown;
         ((System.ComponentModel.ISupportInitialize) LicenseList).EndInit();
         LicenseListMenuStrip.ResumeLayout(

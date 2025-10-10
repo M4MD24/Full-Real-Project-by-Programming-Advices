@@ -10,13 +10,13 @@ public static class Fees {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
-        const string GET_ALL_COUNTRIES = """
-                                         USE DriverAndVehicleLicenseDepartment
-                                         SELECT *
-                                         FROM ClientManagementSystem.Fees
-                                         """;
+        const string GET_ALL_FEES = """
+                                    USE DriverAndVehicleLicenseDepartment
+                                    SELECT *
+                                    FROM ClientManagementSystem.Fees
+                                    """;
         SqlCommand sqlCommand = new SqlCommand(
-            GET_ALL_COUNTRIES,
+            GET_ALL_FEES,
             sqlConnection
         );
 
@@ -60,14 +60,14 @@ public static class Fees {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
-        const string SELECT_COUNTRY_BY_COUNTRY_ID = """
-                                                    USE DriverAndVehicleLicenseDepartment
-                                                    SELECT *
-                                                    FROM ClientManagementSystem.Fees
-                                                    WHERE FeesID = @feesID
-                                                    """;
+        const string SELECT_FEES_BY_FEES_ID = """
+                                              USE DriverAndVehicleLicenseDepartment
+                                              SELECT *
+                                              FROM ClientManagementSystem.Fees
+                                              WHERE FeesID = @feesID
+                                              """;
         SqlCommand sqlCommand = new SqlCommand(
-            SELECT_COUNTRY_BY_COUNTRY_ID,
+            SELECT_FEES_BY_FEES_ID,
             sqlConnection
         );
         sqlCommand.Parameters.AddWithValue(
@@ -80,6 +80,52 @@ public static class Fees {
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
                 string  feesName  = (string) sqlDataReader["FeesName"];
+                decimal amount    = (decimal) sqlDataReader["Amount"];
+                byte    currenyID = (byte) sqlDataReader["CurrencyID"];
+                return new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees(
+                    feesName,
+                    amount,
+                    currenyID
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? getFeesByFeesName(
+        string feesName
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_FEES_BY_FEES_NAME = """
+                                                USE DriverAndVehicleLicenseDepartment
+                                                SELECT *
+                                                FROM ClientManagementSystem.Fees
+                                                WHERE FeesName = @feesName
+                                                """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_FEES_BY_FEES_NAME,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@feesName",
+            feesName
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
                 decimal amount    = (decimal) sqlDataReader["Amount"];
                 byte    currenyID = (byte) sqlDataReader["CurrencyID"];
                 return new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees(

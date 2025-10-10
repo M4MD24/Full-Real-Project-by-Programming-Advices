@@ -14,4 +14,17 @@ public class Payment(
     public byte?     currencyID      { get; set; } = currencyID;
     public DateTime? paymentDateTime { get; set; } = paymentDateTime;
     public String?   paymentMethod   { get; set; } = paymentMethod;
+
+    public Payment(
+        decimal?  amount,
+        byte?     currencyID,
+        DateTime? paymentDateTime,
+        String?   paymentMethod
+    ) : this(
+        null,
+        amount,
+        currencyID,
+        paymentDateTime,
+        paymentMethod
+    ) {}
 }

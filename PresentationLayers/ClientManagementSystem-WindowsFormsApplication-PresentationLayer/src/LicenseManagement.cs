@@ -18,11 +18,11 @@ public partial class LicenseManagement : Form,
     private          int?          clientID;
 
     private static(
-            Image AddLicense,
+            Image NewRequest,
             Image LicenseTypes,
             Image Requests
             ) menuStripIcons() => (
-                                      AddLicense : loadIcon(
+                                      NewRequest : loadIcon(
                                           "Add"
                                       ),
                                       LicenseTypes : loadIcon(
@@ -135,10 +135,10 @@ public partial class LicenseManagement : Form,
     private void initializeMenuStrip() {
         MenuStrip menuStrip = new MenuStrip();
 
-        ToolStripMenuItem newLicense = createMenuItem(
-                              "&New License",
+        ToolStripMenuItem newRequest = createMenuItem(
+                              "&New Request",
                               menuStripIcons()
-                                      .AddLicense
+                                      .NewRequest
                           ),
                           licenseTypes = createMenuItem(
                               "&License Types",
@@ -152,7 +152,7 @@ public partial class LicenseManagement : Form,
                           );
 
         menuStrip.Items.AddRange(
-            newLicense,
+            newRequest,
             licenseTypes,
             requests
         );
@@ -162,18 +162,20 @@ public partial class LicenseManagement : Form,
             menuStrip
         );
 
-        newLicense.Click   += newLicense_Click;
+        newRequest.Click   += newRequest_Click;
         licenseTypes.Click += licenseTypes_Click;
         requests.Click     += request_Click;
     }
 
-    private void newLicense_Click(
+    private void newRequest_Click(
         object?   sender,
         EventArgs e
     ) {
-        AddAndEditLicense addAndEditLicense = new AddAndEditLicense();
-        addAndEditLicense.FormClosed += RefreshList_Click;
-        addAndEditLicense.Show();
+        AddRequest addRequest = new AddRequest(
+            clientID
+        );
+        addRequest.FormClosed += RefreshList_Click;
+        addRequest.Show();
     }
 
     private void request_Click(
@@ -204,27 +206,10 @@ public partial class LicenseManagement : Form,
 
     private void setSearchFilterChoices() {
         foreach (DataGridViewColumn column in LicenseList.Columns)
-            searchChoices.Add(
-                column.HeaderText
-            );
-    }
-
-    private void LicenseManagement_FormClosing(
-        object               sender,
-        FormClosingEventArgs e
-    ) {
-        DialogResult result = MessageBox.Show(
-            @"Do you want Close?",
-            @"Close",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-        );
-
-        if (result == DialogResult.Yes) {
-            new Login().Show();
-            Hide();
-        } else
-            e.Cancel = true;
+            if (column.HeaderText != @"clientID")
+                searchChoices.Add(
+                    column.HeaderText
+                );
     }
 
     private void LicenseManagement_KeyDown(
@@ -276,6 +261,46 @@ public partial class LicenseManagement : Form,
                                                          );
                                        }
 
+                                       if (selectedFilter == searchChoices[3]) {
+                                           return license.licenseIssuanceID!
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
+                                       if (selectedFilter == searchChoices[4]) {
+                                           return license.licenseCoverageID!
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
+                                       if (selectedFilter == searchChoices[5]) {
+                                           return license.issueDateTime!
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
+                                       if (selectedFilter == searchChoices[6]) {
+                                           return license.expiryDateTime!
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
+                                       if (selectedFilter == searchChoices[7]) {
+                                           return license.isActive!
+                                                         .ToString()!
+                                                         .Contains(
+                                                             targetText
+                                                         );
+                                       }
+
                                        return false;
                                    }
                                )
@@ -317,6 +342,12 @@ public partial class LicenseManagement : Form,
         );
         licenseBindingSource.DataSource = allLicenses;
         LicenseList.DataSource          = licenseBindingSource;
+        if (
+            LicenseList.Columns.Contains(
+                "clientID"
+            )
+        )
+            LicenseList.Columns["clientID"]!.Visible = false;
     }
 
     private void LicenseInformationOption_Click(
@@ -425,6 +456,21 @@ public partial class LicenseManagement : Form,
                 ),
                 Convert.ToInt32(
                     selectedRow.Cells["clientID"].Value
+                ),
+                Convert.ToByte(
+                    selectedRow.Cells["licenseIssuanceID"].Value
+                ),
+                Convert.ToByte(
+                    selectedRow.Cells["licenseCoverageID"].Value
+                ),
+                Convert.ToDateTime(
+                    selectedRow.Cells["issueDateTime"].Value
+                ),
+                Convert.ToDateTime(
+                    selectedRow.Cells["expiryDateTime"].Value
+                ),
+                Convert.ToBoolean(
+                    selectedRow.Cells["isActive"].Value
                 )
             );
         }
@@ -443,6 +489,21 @@ public partial class LicenseManagement : Form,
                 ),
                 Convert.ToInt32(
                     selectedRow.Cells["clientID"].Value
+                ),
+                Convert.ToByte(
+                    selectedRow.Cells["licenseIssuanceID"].Value
+                ),
+                Convert.ToByte(
+                    selectedRow.Cells["licenseCoverageID"].Value
+                ),
+                Convert.ToDateTime(
+                    selectedRow.Cells["issueDateTime"].Value
+                ),
+                Convert.ToDateTime(
+                    selectedRow.Cells["expiryDateTime"].Value
+                ),
+                Convert.ToBoolean(
+                    selectedRow.Cells["isActive"].Value
                 )
             );
         }

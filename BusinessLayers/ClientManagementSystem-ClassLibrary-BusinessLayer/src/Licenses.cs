@@ -30,4 +30,10 @@ public static class Licenses {
         ref licenseID,
         replaceMode
     );
+
+    public static int? add(
+        License license
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Licenses.addNewLicense(
+        ref license
+    );
 }
