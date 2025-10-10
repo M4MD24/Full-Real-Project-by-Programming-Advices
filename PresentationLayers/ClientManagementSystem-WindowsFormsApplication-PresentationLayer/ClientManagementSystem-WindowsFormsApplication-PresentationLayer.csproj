@@ -47,7 +47,7 @@
         <Compile Update="src\Requests.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Update="src\AddAndEditLicense.cs">
+        <Compile Update="src\AddRequest.cs">
           <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
@@ -61,8 +61,10 @@
         <EmbeddedResource Include="Resources\Icons\Call.svg"/>
         <EmbeddedResource Include="Resources\Icons\ContactSupport.svg"/>
         <EmbeddedResource Include="Resources\Icons\Add.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Add.ico"/>
         <EmbeddedResource Include="Resources\Icons\AutoRenew.svg"/>
         <EmbeddedResource Include="Resources\Icons\Category.svg"/>
+        <EmbeddedResource Include="Resources\Icons\CheckListRTL.svg"/>
         <EmbeddedResource Include="Resources\Icons\Contacts.svg"/>
         <EmbeddedResource Include="Resources\Icons\Contacts.ico"/>
         <EmbeddedResource Include="Resources\Icons\Edit.svg"/>
@@ -90,7 +92,11 @@
         <EmbeddedResource Include="Resources\Icons\Toll.svg"/>
         <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.ico"/>
         <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.svg"/>
+        <EmbeddedResource Include="Resources\Icons\SearchHandsFree.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Schedule.svg"/>
+        <EmbeddedResource Include="Resources\Icons\EyeTracking.svg"/>
         <EmbeddedResource Include="Resources\Icons\Quiz.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Assignment.svg"/>
     </ItemGroup>
 
 </Project>
