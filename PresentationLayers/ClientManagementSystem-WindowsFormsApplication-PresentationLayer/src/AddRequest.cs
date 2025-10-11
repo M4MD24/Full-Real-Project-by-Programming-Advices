@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 using Coverages = ClientManagementSystem_ClassLibrary_BusinessLayer.Coverages;
-using Licenses = ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses;
 using Payments = ClientManagementSystem_ClassLibrary_BusinessLayer.Payments;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
@@ -196,7 +194,7 @@ public partial class AddRequest : Form {
             false
         );
 
-        int? licenseID = Licenses.add(
+        int? licenseID = ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.add(
             license
         );
 

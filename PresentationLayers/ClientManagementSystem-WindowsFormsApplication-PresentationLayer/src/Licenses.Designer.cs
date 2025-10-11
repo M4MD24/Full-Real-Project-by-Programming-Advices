@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-partial class LicenseManagement {
+partial class Licenses {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -230,7 +230,7 @@ partial class LicenseManagement {
         ReplaceLostOption.Text = "Lost";
         ReplaceLostOption.Click += ReplaceLostOption_Click;
         //
-        // LicenseManagement
+        // Licenses
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(
             7F,
@@ -261,7 +261,7 @@ partial class LicenseManagement {
         MainMenuStrip =  MenuStrip;
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
         Text          =  "License Management";
-        KeyDown       += LicenseManagement_KeyDown;
+        KeyDown       += Licenses_KeyDown;
         ((System.ComponentModel.ISupportInitialize) LicenseList).EndInit();
         LicenseListMenuStrip.ResumeLayout(
             false

@@ -11,8 +11,7 @@ using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class ClientManagementSystem : Form,
-                                              Loader {
+public partial class ClientManagementSystem : Form {
     private readonly List<string>  searchChoices       = [];
     private readonly BindingSource clientBindingSource = new();
 
@@ -492,7 +491,7 @@ public partial class ClientManagementSystem : Form,
         if (clientID == -1)
             return;
 
-        new LicenseManagement(
+        new Licenses(
             ref clientID
         ).Show();
     }

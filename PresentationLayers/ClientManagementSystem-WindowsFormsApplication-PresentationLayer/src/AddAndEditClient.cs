@@ -10,8 +10,7 @@ using Constants = ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class AddAndEditClient : Form,
-                                        Loader {
+public partial class AddAndEditClient : Form {
     private          string?                  selectedImagePath;
     private readonly Constants.Mode           selectedMode;
     private          FullClient.FullClientIDs fullClientIDs;

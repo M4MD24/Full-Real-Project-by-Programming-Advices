@@ -12,8 +12,7 @@ using Constants = AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class AddAndEditAccount : Form,
-                                         Loader {
+public partial class AddAndEditAccount : Form {
     private          string?                    selectedImagePath;
     private readonly Constants.Mode             selectedMode;
     private          FullAccount.FullAccountIDs fullAccountIDs;

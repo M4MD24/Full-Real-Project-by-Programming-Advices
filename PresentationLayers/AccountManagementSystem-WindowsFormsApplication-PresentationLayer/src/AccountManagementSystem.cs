@@ -11,8 +11,7 @@ using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilitie
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class AccountManagementSystem : Form,
-                                               Loader {
+public partial class AccountManagementSystem : Form {
     private static(
             Image PersonAdd,
             Image Lists,

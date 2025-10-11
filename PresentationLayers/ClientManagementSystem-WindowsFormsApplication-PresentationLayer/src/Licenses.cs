@@ -5,14 +5,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using ClientManagementSystem_ClassLibrary_BusinessLayer;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class LicenseManagement : Form,
-                                         Loader {
+public partial class Licenses : Form {
     private readonly List<string>  searchChoices        = [];
     private readonly BindingSource licenseBindingSource = new();
     private          int?          clientID;
@@ -63,7 +61,7 @@ public partial class LicenseManagement : Form,
                                                  )
                                              );
 
-    public LicenseManagement(
+    public Licenses(
         ref int? clientID
     ) {
         this.clientID = clientID;
@@ -196,7 +194,7 @@ public partial class LicenseManagement : Form,
                 );
     }
 
-    private void LicenseManagement_KeyDown(
+    private void Licenses_KeyDown(
         object?      sender,
         KeyEventArgs e
     ) {}
@@ -216,7 +214,7 @@ public partial class LicenseManagement : Form,
         if (licenseBindingSource.DataSource is DataTable)
             licenseBindingSource.Filter = $"{selectedFilter} LIKE '%{targetText}%'";
         else {
-            List<License> licenses = Licenses.getAll(
+            List<License> licenses = ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.getAll(
                 ref clientID
             )!;
             licenses = licenses.Where(
@@ -313,7 +311,7 @@ public partial class LicenseManagement : Form,
     }
 
     private void loadLicenses() {
-        List<License>? allLicenses = Licenses.getAll(
+        List<License>? allLicenses = ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.getAll(
             ref clientID
         );
         licenseBindingSource.DataSource = allLicenses;
@@ -493,7 +491,7 @@ public partial class LicenseManagement : Form,
     private void deleteSelectedLicense(
         ref License license
     ) {
-        Licenses.delete(
+        ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.delete(
             license.licenseID
         );
         loadLicenses();
@@ -540,7 +538,7 @@ public partial class LicenseManagement : Form,
     private void renewSelectedLicense(
         ref License license
     ) {
-        Licenses.renew(
+        ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.renew(
             license.licenseID
         );
         loadLicenses();
@@ -550,7 +548,7 @@ public partial class LicenseManagement : Form,
         ref License                                                                         license,
         ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.ReplaceMode replaceMode
     ) {
-        Licenses.replace(
+        ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.replace(
             license.licenseID,
             replaceMode
         );
