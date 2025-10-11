@@ -11,8 +11,8 @@ public static class Payments {
     ) {
         const string ADD_NEW_PAYMENT = """
                                        USE DriverAndVehicleLicenseDepartment
-                                       INSERT INTO ClientManagementSystem.Payments (Amount, CurrencyID, PaymentDateTime, PaymentMethod)
-                                       VALUES (@amount, @currencyID, @paymentDateTime, @paymentMethod);
+                                       INSERT INTO ClientManagementSystem.Payments (Amount, CurrencyID, PaymentDateTime, PaymentMethodID)
+                                       VALUES (@amount, @currencyID, @paymentDateTime, @paymentMethodID);
                                        SELECT SCOPE_IDENTITY();
                                        """;
         int newID = saveData(
@@ -49,8 +49,8 @@ public static class Payments {
             payment.paymentDateTime
         );
         sqlCommand.Parameters.AddWithValue(
-            "@paymentMethod",
-            payment.paymentMethod
+            "@paymentMethodID",
+            payment.paymentMethodID
         );
 
         int rowAffected = 0;

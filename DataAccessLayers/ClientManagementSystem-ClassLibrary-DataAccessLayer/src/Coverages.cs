@@ -25,11 +25,11 @@ public static class Coverages {
 
             using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
-                string licenseTypeName = sqlDataReader.GetString(
+                string coverageName = sqlDataReader.GetString(
                     0
                 );
                 coverageNames.Add(
-                    licenseTypeName
+                    coverageName
                 );
             }
 

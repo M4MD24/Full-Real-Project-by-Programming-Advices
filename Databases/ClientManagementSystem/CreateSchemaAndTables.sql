@@ -128,14 +128,21 @@ CREATE TABLE ClientManagementSystem.DrivingTests
     FOREIGN KEY (DrivingExaminerID) REFERENCES ClientManagementSystem.DrivingExaminers (DrivingExaminerID)
 )
 
+CREATE TABLE ClientManagementSystem.PaymentMethods
+(
+    PaymentMethodID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    PaymentMethodName NVARCHAR(30) NOT NULL
+)
+
 CREATE TABLE ClientManagementSystem.Payments
 (
-    PaymentID       INT          NOT NULL PRIMARY KEY IDENTITY (1,1),
-    Amount          MONEY        NOT NULL,
-    CurrencyID      TINYINT      NOT NULL,
-    PaymentDateTime DATETIME     NOT NULL,
-    PaymentMethod   NVARCHAR(50) NOT NULL,
-    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
+    PaymentID       INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Amount          MONEY    NOT NULL,
+    CurrencyID      TINYINT  NOT NULL,
+    PaymentDateTime DATETIME NOT NULL,
+    PaymentMethodID TINYINT  NOT NULL,
+    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID),
+    FOREIGN KEY (PaymentMethodID) REFERENCES ClientManagementSystem.PaymentMethods (PaymentMethodID)
 )
 
 CREATE TABLE ClientManagementSystem.LicenseIssuances

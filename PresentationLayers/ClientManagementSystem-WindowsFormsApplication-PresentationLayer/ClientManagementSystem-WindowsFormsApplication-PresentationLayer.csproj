@@ -38,9 +38,6 @@
         <Compile Update="src\ClientInformation.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Update="src\LicenseTypes.cs">
-            <SubType>Form</SubType>
-        </Compile>
         <Compile Update="src\EditLicense.cs">
             <SubType>Form</SubType>
         </Compile>

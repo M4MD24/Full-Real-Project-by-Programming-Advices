@@ -39,17 +39,17 @@ public class License(
     ) {}
 
     public License(
+        int?      licenseID,
         byte?     licenseTypeID,
-        int?      clientID,
         byte?     licenseIssuanceID,
         byte?     licenseCoverageID,
         DateTime? issueDateTime,
         DateTime? expiryDateTime,
         bool?     isActive
     ) : this(
-        null,
+        licenseID,
         licenseTypeID,
-        clientID,
+        null,
         licenseIssuanceID,
         licenseCoverageID,
         issueDateTime,

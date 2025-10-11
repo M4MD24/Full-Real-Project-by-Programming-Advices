@@ -45,3 +45,7 @@ VALUES ('Small Motorcycle', 'Allows the driver to drive small motorcycles.', 10,
        ('Agricultural', 'Allows the driver to drive all agricultural vehicles.', 12, 10),
        ('Small and Medium Bus', 'Allows the driver to drive small and medium buses.', 12, 10),
        ('Truck and Heavy Vehicle', 'Allows the driver to drive trucks and heavy vehicles such as buses and large trucks.', 12, 10);
+
+INSERT INTO ClientManagementSystem.PaymentMethods (PaymentMethodName)
+VALUES ('Cash'),
+       ('Online');

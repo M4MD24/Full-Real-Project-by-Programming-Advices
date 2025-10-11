@@ -19,14 +19,10 @@ public partial class LicenseManagement : Form,
 
     private static(
             Image NewRequest,
-            Image LicenseTypes,
             Image Requests
             ) menuStripIcons() => (
                                       NewRequest : loadIcon(
                                           "Add"
-                                      ),
-                                      LicenseTypes : loadIcon(
-                                          "Category"
                                       ),
                                       Requests : loadIcon(
                                           "Assignment"
@@ -140,11 +136,6 @@ public partial class LicenseManagement : Form,
                               menuStripIcons()
                                       .NewRequest
                           ),
-                          licenseTypes = createMenuItem(
-                              "&License Types",
-                              menuStripIcons()
-                                      .LicenseTypes
-                          ),
                           requests = createMenuItem(
                               "&Requests",
                               menuStripIcons()
@@ -153,7 +144,6 @@ public partial class LicenseManagement : Form,
 
         menuStrip.Items.AddRange(
             newRequest,
-            licenseTypes,
             requests
         );
 
@@ -162,9 +152,8 @@ public partial class LicenseManagement : Form,
             menuStrip
         );
 
-        newRequest.Click   += newRequest_Click;
-        licenseTypes.Click += licenseTypes_Click;
-        requests.Click     += request_Click;
+        newRequest.Click += newRequest_Click;
+        requests.Click   += request_Click;
     }
 
     private void newRequest_Click(
@@ -182,11 +171,6 @@ public partial class LicenseManagement : Form,
         object?   sender,
         EventArgs e
     ) => new Requests().Show();
-
-    private void licenseTypes_Click(
-        object?   sender,
-        EventArgs e
-    ) => new LicenseTypes().Show();
 
     private static ToolStripMenuItem createMenuItem(
         string text,
@@ -254,14 +238,6 @@ public partial class LicenseManagement : Form,
                                        }
 
                                        if (selectedFilter == searchChoices[2]) {
-                                           return license.clientID!
-                                                         .ToString()!
-                                                         .Contains(
-                                                             targetText
-                                                         );
-                                       }
-
-                                       if (selectedFilter == searchChoices[3]) {
                                            return license.licenseIssuanceID!
                                                          .ToString()!
                                                          .Contains(
@@ -269,7 +245,7 @@ public partial class LicenseManagement : Form,
                                                          );
                                        }
 
-                                       if (selectedFilter == searchChoices[4]) {
+                                       if (selectedFilter == searchChoices[3]) {
                                            return license.licenseCoverageID!
                                                          .ToString()!
                                                          .Contains(
@@ -277,7 +253,7 @@ public partial class LicenseManagement : Form,
                                                          );
                                        }
 
-                                       if (selectedFilter == searchChoices[5]) {
+                                       if (selectedFilter == searchChoices[4]) {
                                            return license.issueDateTime!
                                                          .ToString()!
                                                          .Contains(
@@ -285,7 +261,7 @@ public partial class LicenseManagement : Form,
                                                          );
                                        }
 
-                                       if (selectedFilter == searchChoices[6]) {
+                                       if (selectedFilter == searchChoices[5]) {
                                            return license.expiryDateTime!
                                                          .ToString()!
                                                          .Contains(
@@ -293,7 +269,7 @@ public partial class LicenseManagement : Form,
                                                          );
                                        }
 
-                                       if (selectedFilter == searchChoices[7]) {
+                                       if (selectedFilter == searchChoices[6]) {
                                            return license.isActive!
                                                          .ToString()!
                                                          .Contains(
@@ -454,9 +430,6 @@ public partial class LicenseManagement : Form,
                 Convert.ToByte(
                     selectedRow.Cells["licenseTypeID"].Value
                 ),
-                Convert.ToInt32(
-                    selectedRow.Cells["clientID"].Value
-                ),
                 Convert.ToByte(
                     selectedRow.Cells["licenseIssuanceID"].Value
                 ),
@@ -486,9 +459,6 @@ public partial class LicenseManagement : Form,
                 ),
                 Convert.ToByte(
                     selectedRow.Cells["licenseTypeID"].Value
-                ),
-                Convert.ToInt32(
-                    selectedRow.Cells["clientID"].Value
                 ),
                 Convert.ToByte(
                     selectedRow.Cells["licenseIssuanceID"].Value

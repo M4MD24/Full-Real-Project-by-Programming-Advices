@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using ClientManagementSystem_ClassLibrary_BusinessLayer;
+using ClientManagementSystem_ClassLibrary_DataAccessLayer;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
+using Coverages = ClientManagementSystem_ClassLibrary_BusinessLayer.Coverages;
+using Licenses = ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses;
+using Payments = ClientManagementSystem_ClassLibrary_BusinessLayer.Payments;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
@@ -13,7 +16,8 @@ public partial class AddRequest : Form {
     private readonly int?    clientID;
     private          decimal totalAmounts;
     private List<string>? licenseTypeNames,
-                          coverageNames;
+                          coverageNames,
+                          paymentMethodNames;
 
     public AddRequest(
         int? clientID
@@ -74,10 +78,7 @@ public partial class AddRequest : Form {
         );
         Loader.loadDataSource(
             PaymentMethodAnswer,
-            [
-                "Cash",
-                "Card"
-            ]
+            paymentMethodNames = PaymentMethods.getAllPaymentMethodNames()
         );
 
         const byte CURRENCY_ID = 1;
@@ -158,14 +159,18 @@ public partial class AddRequest : Form {
         if (submit != DialogResult.Yes)
             return;
 
-
         DateTime currentDateTime = DateTime.Now;
+
+        byte? paymentMethodID = PaymentMethods.getPaymentMethodByPaymentMethodName(
+                                                  PaymentMethodAnswer.Text
+                                              )!
+                                              .paymentMethodID;
 
         Payment payment = new Payment(
             totalAmounts,
             1,
             currentDateTime,
-            PaymentMethodAnswer.Text
+            paymentMethodID
         );
 
         byte? licenseTypeID = ClientManagementSystem_ClassLibrary_BusinessLayer.LicenseTypes.get(
