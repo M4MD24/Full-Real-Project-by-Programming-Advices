@@ -36,4 +36,22 @@ public class Request(
         null,
         licenseID
     ) {}
+
+    public Request(
+        int?      requestID,
+        DateTime? requestDateTime,
+        int?      paymentID,
+        int?      eyeTestID,
+        int?      theoreticalTestID,
+        int?      drivingTestID
+    ) : this(
+        requestID,
+        requestDateTime,
+        null,
+        paymentID,
+        eyeTestID,
+        theoreticalTestID,
+        drivingTestID,
+        null
+    ) {}
 }

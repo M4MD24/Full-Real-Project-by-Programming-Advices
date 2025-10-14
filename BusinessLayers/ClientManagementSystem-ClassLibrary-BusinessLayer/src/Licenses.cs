@@ -36,4 +36,10 @@ public static class Licenses {
     ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Licenses.addNewLicense(
         ref license
     );
+
+    public static License? get(
+        int? licenseID
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Licenses.getLicenseByLicenseID(
+        ref licenseID
+    );
 }

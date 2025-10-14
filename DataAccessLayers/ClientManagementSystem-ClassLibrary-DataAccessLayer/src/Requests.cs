@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
@@ -74,5 +75,75 @@ public static class Requests {
         }
 
         return rowAffected;
+    }
+
+    public static List<Request>? getAllRequests(
+        ref int? clientID,
+        ref int? licenseID
+    ) {
+        return null;
+    }
+
+    public static Request? getRequestByLicenseID(
+        ref int? licenseID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string GET_REQUEST_BY_LICENSE_ID = """
+                                                 USE DriverAndVehicleLicenseDepartment
+                                                 SELECT *
+                                                 FROM ClientManagementSystem.Requests
+                                                 WHERE LicenseID = @licenseID 
+                                                 """;
+
+        SqlCommand sqlCommand = new SqlCommand(
+            GET_REQUEST_BY_LICENSE_ID,
+            sqlConnection
+        );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@licenseID",
+            licenseID
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read()) {
+                int?      requestID       = (int) sqlDataReader["RequestID"];
+                DateTime? requestDateTime = (DateTime) sqlDataReader["RequestDateTime"];
+                int?      paymentID       = (int) sqlDataReader["PaymentID"];
+                int? eyeTestID = sqlDataReader["EyeTestID"] == DBNull.Value
+                                         ? null
+                                         : (int) sqlDataReader["EyeTestID"];
+                int? theoreticalTestID = sqlDataReader["TheoreticalTestID"] == DBNull.Value
+                                                 ? null
+                                                 : (int) sqlDataReader["TheoreticalTestID"];
+                int? drivingTestID = sqlDataReader["DrivingTestID"] == DBNull.Value
+                                             ? null
+                                             : (int) sqlDataReader["DrivingTestID"];
+
+                return new Request(
+                    requestID,
+                    requestDateTime,
+                    paymentID,
+                    eyeTestID,
+                    theoreticalTestID,
+                    drivingTestID
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
     }
 }

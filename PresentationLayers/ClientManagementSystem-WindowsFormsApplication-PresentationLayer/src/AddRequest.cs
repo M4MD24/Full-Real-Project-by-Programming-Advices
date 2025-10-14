@@ -13,9 +13,6 @@ namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 public partial class AddRequest : Form {
     private readonly int?    clientID;
     private          decimal totalAmounts;
-    private List<string>? licenseTypeNames,
-                          coverageNames,
-                          paymentMethodNames;
 
     public AddRequest(
         int? clientID
@@ -68,15 +65,15 @@ public partial class AddRequest : Form {
     private void loadDataSources() {
         Loader.loadDataSource(
             LicenseTypeNameAnswer,
-            licenseTypeNames = ClientManagementSystem_ClassLibrary_BusinessLayer.LicenseTypes.getAllLicenseTypeNames()
+            ClientManagementSystem_ClassLibrary_BusinessLayer.LicenseTypes.getAllLicenseTypeNames()
         );
         Loader.loadDataSource(
             CoverageNameAnswer,
-            coverageNames = Coverages.getAllCoverageNames()
+            Coverages.getAllCoverageNames()
         );
         Loader.loadDataSource(
             PaymentMethodAnswer,
-            paymentMethodNames = PaymentMethods.getAllPaymentMethodNames()
+            PaymentMethods.getAllPaymentMethodNames()
         );
 
         const byte CURRENCY_ID = 1;

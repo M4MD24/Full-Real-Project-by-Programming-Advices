@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-partial class EditLicense {
+partial class Test {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -37,7 +37,7 @@ partial class EditLicense {
             800,
             450
         );
-        this.Text = "EditLicense";
+        this.Text = "Test";
     }
 
     #endregion

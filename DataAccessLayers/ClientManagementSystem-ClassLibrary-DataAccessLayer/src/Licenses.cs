@@ -193,4 +193,66 @@ public static class Licenses {
     ) {
         return -1;
     }
+
+    public static License? getLicenseByLicenseID(
+        ref int? licenseID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string GET_LICENSE_BY_LICENSE_ID = """
+                                                 USE DriverAndVehicleLicenseDepartment
+                                                 SELECT *
+                                                 FROM ClientManagementSystem.Licenses
+                                                 WHERE LicenseID = @licenseID 
+                                                 """;
+
+        SqlCommand sqlCommand = new SqlCommand(
+            GET_LICENSE_BY_LICENSE_ID,
+            sqlConnection
+        );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@licenseID",
+            licenseID
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            while (sqlDataReader.Read()) {
+                byte licenseTypeID     = (byte) sqlDataReader["LicenseTypeID"];
+                byte licenseIssuanceID = (byte) sqlDataReader["LicenseIssuanceID"];
+                byte licenseCoverageID = (byte) sqlDataReader["LicenseCoverageID"];
+                DateTime? issueDateTime = sqlDataReader["IssueDateTime"] == DBNull.Value
+                                                  ? null
+                                                  : (DateTime) sqlDataReader["IssueDateTime"];
+                DateTime? expiryDateTime = sqlDataReader["ExpiryDateTime"] == DBNull.Value
+                                                   ? null
+                                                   : (DateTime) sqlDataReader["ExpiryDateTime"];
+                bool isActive = (bool) sqlDataReader["IsActive"];
+
+                return new License(
+                    licenseID,
+                    licenseTypeID,
+                    licenseIssuanceID,
+                    licenseCoverageID,
+                    issueDateTime,
+                    expiryDateTime,
+                    isActive
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
 }

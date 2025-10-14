@@ -16,20 +16,8 @@ public partial class Licenses : Form {
     private          int?          clientID;
 
     private static(
-            Image NewRequest,
-            Image Requests
-            ) menuStripIcons() => (
-                                      NewRequest : loadIcon(
-                                          "Add"
-                                      ),
-                                      Requests : loadIcon(
-                                          "Assignment"
-                                      )
-                                  );
-
-    private static(
             Image Information,
-            Image Edit,
+            Image RequestTests,
             Image Remove,
             Image Renew,
             Image Replace
@@ -39,10 +27,8 @@ public partial class Licenses : Form {
                                                      20,
                                                      20
                                                  ),
-                                                 Edit : loadIcon(
-                                                     "Edit",
-                                                     20,
-                                                     20
+                                                 RequestTests : loadIcon(
+                                                     "Assignment"
                                                  ),
                                                  Remove : loadIcon(
                                                      "Remove",
@@ -60,6 +46,28 @@ public partial class Licenses : Form {
                                                      20
                                                  )
                                              );
+
+    private static(
+            Image TheoreticalTest,
+            Image EyeTest,
+            Image DrivingTest
+            ) requestTestsListMenuStripIcons() => (
+                                                      TheoreticalTest : loadIcon(
+                                                          "Quiz",
+                                                          20,
+                                                          20
+                                                      ),
+                                                      EyeTest : loadIcon(
+                                                          "EyeTracking",
+                                                          20,
+                                                          20
+                                                      ),
+                                                      DrivingTest : loadIcon(
+                                                          "SearchHandsFree",
+                                                          20,
+                                                          20
+                                                      )
+                                                  );
 
     public Licenses(
         ref int? clientID
@@ -83,11 +91,24 @@ public partial class Licenses : Form {
     private void loadLicenseListMenuStrip() {
         LicenseList.ContextMenuStrip = LicenseListMenuStrip;
 
+        setIconsForLicenseListOptions();
+    }
+
+    private void setIconsForLicenseListOptions() {
         LicenseInformationOption.Image = licenseListMenuStripIcons()
                 .Information;
 
-        LicenseUpdateOption.Image = licenseListMenuStripIcons()
-                .Edit;
+        RequestTestsOption.Image = licenseListMenuStripIcons()
+                .RequestTests;
+
+        TheoreticalTestOption.Image = requestTestsListMenuStripIcons()
+                .TheoreticalTest;
+
+        EyeTestOption.Image = requestTestsListMenuStripIcons()
+                .EyeTest;
+
+        DrivingTestOption.Image = requestTestsListMenuStripIcons()
+                .DrivingTest;
 
         LicenseDeleteOption.Image = licenseListMenuStripIcons()
                 .Remove;
@@ -130,19 +151,14 @@ public partial class Licenses : Form {
         MenuStrip menuStrip = new MenuStrip();
 
         ToolStripMenuItem newRequest = createMenuItem(
-                              "&New Request",
-                              menuStripIcons()
-                                      .NewRequest
-                          ),
-                          requests = createMenuItem(
-                              "&Requests",
-                              menuStripIcons()
-                                      .Requests
-                          );
+            "&New Request",
+            loadIcon(
+                "Add"
+            )
+        );
 
         menuStrip.Items.AddRange(
-            newRequest,
-            requests
+            newRequest
         );
 
         MainMenuStrip = menuStrip;
@@ -151,7 +167,6 @@ public partial class Licenses : Form {
         );
 
         newRequest.Click += newRequest_Click;
-        requests.Click   += request_Click;
     }
 
     private void newRequest_Click(
@@ -165,10 +180,17 @@ public partial class Licenses : Form {
         addRequest.Show();
     }
 
-    private void request_Click(
+    private void requests_Click(
         object?   sender,
         EventArgs e
-    ) => new Requests().Show();
+    ) {
+        Requests requests = new Requests(
+            clientID,
+            getLicenseID_FromSelectedRow()
+        );
+        requests.FormClosed += RefreshList_Click;
+        requests.Show();
+    }
 
     private static ToolStripMenuItem createMenuItem(
         string text,
@@ -336,28 +358,6 @@ public partial class Licenses : Form {
         new ClientInformation(
             ref licenseID
         ).Show();
-    }
-
-    private void LicenseUpdateOption_Click(
-        object?   sender,
-        EventArgs e
-    ) {
-        int? licenseID = getLicenseID_FromSelectedRow();
-
-        if (licenseID == -1)
-            return;
-
-        FullLicense fullLicense = FullLicenses.get(
-            ref licenseID
-        );
-
-        EditLicense editLicense = new EditLicense(
-            ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.EditMode.Local,
-            fullLicense
-        );
-        editLicense.FormClosed += RefreshList_Click;
-        editLicense.Show();
-        loadLicenses();
     }
 
     private int? getLicenseID_FromSelectedRow() {
@@ -612,4 +612,78 @@ public partial class Licenses : Form {
                 ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.ReplaceMode.Lost
             );
     }
+
+    private void LicenseList_MouseDown(
+        object         sender,
+        MouseEventArgs e
+    ) {
+        License? license = ClientManagementSystem_ClassLibrary_BusinessLayer.Licenses.get(
+            getLicenseID_FromSelectedRow()
+        );
+
+        Request? request = ClientManagementSystem_ClassLibrary_BusinessLayer.Requests.get(
+            license!.licenseID
+        );
+
+        if (
+            license is {
+                issueDateTime : null,
+                expiryDateTime: null
+            }
+        ) {
+            RequestTestsOption.Visible = true;
+
+            EyeTestOption.Enabled = request!.eyeTestID == null;
+            TheoreticalTestOption.Enabled = request is {
+                eyeTestID        : not null,
+                theoreticalTestID: null
+            };
+            DrivingTestOption.Enabled = request is {
+                theoreticalTestID: not null,
+                drivingTestID    : null
+            };
+
+            LicenseInformationOption.Visible = true;
+            LicenseDeleteOption.Visible      = true;
+            LicenseRenewOption.Visible       = false;
+            LicenseReplaceOption.Visible     = false;
+            return;
+        }
+
+        if (
+            license is {
+                issueDateTime : not null,
+                expiryDateTime: not null,
+                isActive      : true
+            }
+        ) {
+            RequestTestsOption.Visible       = false;
+            LicenseInformationOption.Visible = true;
+            LicenseDeleteOption.Visible      = true;
+            LicenseRenewOption.Visible       = false;
+            LicenseReplaceOption.Visible     = true;
+            return;
+        }
+
+        if (
+            license is {
+                issueDateTime : not null,
+                expiryDateTime: not null,
+                isActive      : false
+            }
+        ) {
+            RequestTestsOption.Visible       = false;
+            LicenseInformationOption.Visible = true;
+            LicenseDeleteOption.Visible      = true;
+            LicenseRenewOption.Visible = DateTime.Now.CompareTo(
+                                             license.expiryDateTime
+                                         ) >= 0;
+            LicenseReplaceOption.Visible = true;
+        }
+    }
+
+    private void showTestOption_Click(
+        object    sender,
+        EventArgs e
+    ) {}
 }

@@ -40,13 +40,16 @@ partial class Licenses {
         LicenseListMenuStrip = new System.Windows.Forms.ContextMenuStrip(
             components
         );
+        RequestTestsOption       = new System.Windows.Forms.ToolStripMenuItem();
+        EyeTestOption            = new System.Windows.Forms.ToolStripMenuItem();
+        TheoreticalTestOption    = new System.Windows.Forms.ToolStripMenuItem();
+        DrivingTestOption        = new System.Windows.Forms.ToolStripMenuItem();
         LicenseInformationOption = new System.Windows.Forms.ToolStripMenuItem();
-        LicenseUpdateOption      = new System.Windows.Forms.ToolStripMenuItem();
         LicenseDeleteOption      = new System.Windows.Forms.ToolStripMenuItem();
         LicenseRenewOption       = new System.Windows.Forms.ToolStripMenuItem();
         LicenseReplaceOption     = new System.Windows.Forms.ToolStripMenuItem();
-        ReplaceDamageOption  = new System.Windows.Forms.ToolStripMenuItem();
-        ReplaceLostOption    = new System.Windows.Forms.ToolStripMenuItem();
+        ReplaceDamageOption      = new System.Windows.Forms.ToolStripMenuItem();
+        ReplaceLostOption        = new System.Windows.Forms.ToolStripMenuItem();
         ((System.ComponentModel.ISupportInitialize) LicenseList).BeginInit();
         LicenseListMenuStrip.SuspendLayout();
         SuspendLayout();
@@ -54,6 +57,10 @@ partial class Licenses {
         // MenuStrip
         //
         MenuStrip.AutoSize = false;
+        MenuStrip.ImageScalingSize = new System.Drawing.Size(
+            20,
+            20
+        );
         MenuStrip.Location = new System.Drawing.Point(
             0,
             0
@@ -93,7 +100,7 @@ partial class Licenses {
         SearchFilter.Name = "SearchFilter";
         SearchFilter.Size = new System.Drawing.Size(
             195,
-            23
+            31
         );
         SearchFilter.TabIndex             =  1;
         SearchFilter.SelectedIndexChanged += SearchFilter_SelectedIndexChanged;
@@ -107,15 +114,17 @@ partial class Licenses {
             20,
             90
         );
-        LicenseList.MultiSelect = false;
-        LicenseList.Name        = "LicenseList";
-        LicenseList.ReadOnly    = true;
+        LicenseList.MultiSelect     = false;
+        LicenseList.Name            = "LicenseList";
+        LicenseList.ReadOnly        = true;
+        LicenseList.RowHeadersWidth = 51;
         LicenseList.Size = new System.Drawing.Size(
             940,
             550
         );
-        LicenseList.TabIndex = 3;
-        LicenseList.Text     = "Client List";
+        LicenseList.TabIndex  =  3;
+        LicenseList.Text      =  "Client List";
+        LicenseList.MouseDown += LicenseList_MouseDown;
         //
         // RefreshList
         //
@@ -140,10 +149,14 @@ partial class Licenses {
         //
         // LicenseListMenuStrip
         //
+        LicenseListMenuStrip.ImageScalingSize = new System.Drawing.Size(
+            20,
+            20
+        );
         LicenseListMenuStrip.Items.AddRange(
             new System.Windows.Forms.ToolStripItem[] {
+                RequestTestsOption,
                 LicenseInformationOption,
-                LicenseUpdateOption,
                 LicenseDeleteOption,
                 LicenseRenewOption,
                 LicenseReplaceOption
@@ -151,49 +164,92 @@ partial class Licenses {
         );
         LicenseListMenuStrip.Name = "LicenseListMenuStrip";
         LicenseListMenuStrip.Size = new System.Drawing.Size(
-            181,
-            136
+            211,
+            172
         );
+        //
+        // RequestTestsOption
+        //
+        RequestTestsOption.DropDownItems.AddRange(
+            new System.Windows.Forms.ToolStripItem[] {
+                EyeTestOption,
+                TheoreticalTestOption,
+                DrivingTestOption
+            }
+        );
+        RequestTestsOption.Name = "RequestTestsOption";
+        RequestTestsOption.Size = new System.Drawing.Size(
+            210,
+            28
+        );
+        RequestTestsOption.Text    = "Request Tests";
+        RequestTestsOption.Visible = false;
+        //
+        // EyeTestOption
+        //
+        EyeTestOption.Enabled = false;
+        EyeTestOption.Name    = "EyeTestOption";
+        EyeTestOption.Size = new System.Drawing.Size(
+            224,
+            28
+        );
+        EyeTestOption.Text  =  "Eye";
+        EyeTestOption.Click += showTestOption_Click;
+        //
+        // TheoreticalTestOption
+        //
+        TheoreticalTestOption.Enabled = false;
+        TheoreticalTestOption.Name    = "TheoreticalTestOption";
+        TheoreticalTestOption.Size = new System.Drawing.Size(
+            224,
+            28
+        );
+        TheoreticalTestOption.Text  =  "Theoretical";
+        TheoreticalTestOption.Click += showTestOption_Click;
+        //
+        // DrivingTestOption
+        //
+        DrivingTestOption.Enabled = false;
+        DrivingTestOption.Name    = "DrivingTestOption";
+        DrivingTestOption.Size = new System.Drawing.Size(
+            224,
+            28
+        );
+        DrivingTestOption.Text  = "Driving";
+        DrivingTestOption.Click += showTestOption_Click;
         //
         // LicenseInformationOption
         //
         LicenseInformationOption.Name = "LicenseInformationOption";
         LicenseInformationOption.Size = new System.Drawing.Size(
-            180,
-            22
+            210,
+            28
         );
-        LicenseInformationOption.Text  =  "Information";
-        LicenseInformationOption.Click += LicenseInformationOption_Click;
-        //
-        // LicenseUpdateOption
-        //
-        LicenseUpdateOption.Name = "LicenseUpdateOption";
-        LicenseUpdateOption.Size = new System.Drawing.Size(
-            180,
-            22
-        );
-        LicenseUpdateOption.Text  =  "Update";
-        LicenseUpdateOption.Click += LicenseUpdateOption_Click;
+        LicenseInformationOption.Text    =  "Information";
+        LicenseInformationOption.Visible =  false;
+        LicenseInformationOption.Click   += LicenseInformationOption_Click;
         //
         // LicenseDeleteOption
         //
         LicenseDeleteOption.Name = "LicenseDeleteOption";
         LicenseDeleteOption.Size = new System.Drawing.Size(
-            180,
-            22
+            210,
+            28
         );
-        LicenseDeleteOption.Text  =  "Delete";
-        LicenseDeleteOption.Click += LicenseDeleteOption_Click;
+        LicenseDeleteOption.Text    =  "Delete";
+        LicenseDeleteOption.Visible =  false;
+        LicenseDeleteOption.Click   += LicenseDeleteOption_Click;
         //
         // LicenseRenewOption
         //
         LicenseRenewOption.Name = "LicenseRenewOption";
         LicenseRenewOption.Size = new System.Drawing.Size(
-            180,
-            22
+            210,
+            28
         );
-        LicenseRenewOption.Text  =  "Renew";
-        LicenseRenewOption.Click += LicenseRenewOption_Click;
+        LicenseRenewOption.Text    =  "Renew";
+        LicenseRenewOption.Visible =  false;
+        LicenseRenewOption.Click   += LicenseRenewOption_Click;
         //
         // LicenseReplaceOption
         //
@@ -205,17 +261,18 @@ partial class Licenses {
         );
         LicenseReplaceOption.Name = "LicenseReplaceOption";
         LicenseReplaceOption.Size = new System.Drawing.Size(
-            180,
-            22
+            210,
+            28
         );
-        LicenseReplaceOption.Text  =  "Replace";
+        LicenseReplaceOption.Text    = "Replace";
+        LicenseReplaceOption.Visible = false;
         //
         // ReplaceDamageOption
         //
         ReplaceDamageOption.Name = "ReplaceDamageOption";
         ReplaceDamageOption.Size = new System.Drawing.Size(
-            180,
-            22
+            158,
+            28
         );
         ReplaceDamageOption.Text  =  "Damage";
         ReplaceDamageOption.Click += ReplaceDamageOption_Click;
@@ -224,17 +281,17 @@ partial class Licenses {
         //
         ReplaceLostOption.Name = "ReplaceLostOption";
         ReplaceLostOption.Size = new System.Drawing.Size(
-            180,
-            22
+            158,
+            28
         );
-        ReplaceLostOption.Text = "Lost";
+        ReplaceLostOption.Text  =  "Lost";
         ReplaceLostOption.Click += ReplaceLostOption_Click;
         //
         // Licenses
-        // 
+        //
         AutoScaleDimensions = new System.Drawing.SizeF(
-            7F,
-            15F
+            9F,
+            23F
         );
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor     = System.Drawing.Color.DimGray;
@@ -257,10 +314,16 @@ partial class Licenses {
         Controls.Add(
             MenuStrip
         );
-        KeyPreview    =  true;
-        MainMenuStrip =  MenuStrip;
+        KeyPreview    = true;
+        MainMenuStrip = MenuStrip;
+        Margin = new System.Windows.Forms.Padding(
+            4,
+            5,
+            4,
+            5
+        );
         StartPosition =  System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          =  "License Management";
+        Text          =  "Licenses";
         KeyDown       += Licenses_KeyDown;
         ((System.ComponentModel.ISupportInitialize) LicenseList).EndInit();
         LicenseListMenuStrip.ResumeLayout(
@@ -272,11 +335,14 @@ partial class Licenses {
         PerformLayout();
     }
 
+    private System.Windows.Forms.ToolStripMenuItem EyeTestOption;
+    private System.Windows.Forms.ToolStripMenuItem TheoreticalTestOption;
+    private System.Windows.Forms.ToolStripMenuItem DrivingTestOption;
+    private System.Windows.Forms.ToolStripMenuItem RequestTestsOption;
     private System.Windows.Forms.ToolStripMenuItem ReplaceDamageOption;
     private System.Windows.Forms.ToolStripMenuItem ReplaceLostOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseReplaceOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseInformationOption;
-    private System.Windows.Forms.ToolStripMenuItem LicenseUpdateOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseDeleteOption;
     private System.Windows.Forms.ToolStripMenuItem LicenseRenewOption;
     private System.Windows.Forms.ContextMenuStrip  LicenseListMenuStrip;
