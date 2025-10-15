@@ -6,6 +6,10 @@ namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class Login : Form {
     public Login() {
+        Tools.setIcon(
+            this,
+            "Person"
+        );
         InitializeComponent();
     }
 
