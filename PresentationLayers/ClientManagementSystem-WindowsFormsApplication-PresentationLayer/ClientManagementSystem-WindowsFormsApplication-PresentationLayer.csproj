@@ -47,6 +47,9 @@
         <Compile Update="src\Test.cs">
           <SubType>Form</SubType>
         </Compile>
+        <Compile Update="src\LicenseInformation.cs">
+          <SubType>Form</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -73,6 +76,7 @@
         <EmbeddedResource Include="Resources\Icons\Lists.svg"/>
         <EmbeddedResource Include="Resources\Icons\Mail.svg"/>
         <EmbeddedResource Include="Resources\Icons\ID_Card.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ID_Card.ico"/>
         <EmbeddedResource Include="Resources\Icons\ManageAccounts.ico"/>
         <EmbeddedResource Include="Resources\Icons\Person.ico"/>
         <EmbeddedResource Include="Resources\Icons\Person.svg"/>

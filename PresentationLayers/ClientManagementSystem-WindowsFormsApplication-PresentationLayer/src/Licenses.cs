@@ -355,7 +355,7 @@ public partial class Licenses : Form {
         if (licenseID == -1)
             return;
 
-        new ClientInformation(
+        new LicenseInformation(
             ref licenseID
         ).Show();
     }
