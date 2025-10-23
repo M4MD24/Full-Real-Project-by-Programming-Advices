@@ -31,22 +31,60 @@ partial class LicenseInformation {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-        LicenseQuestion     = new System.Windows.Forms.GroupBox();
-        LicenseTypeQuestion = new System.Windows.Forms.GroupBox();
-        NameQuestion        = new System.Windows.Forms.Label();
-        NameAnswer          = new System.Windows.Forms.Label();
-        DescriptionQuestion = new System.Windows.Forms.Label();
-        DescriptionAnswer   = new System.Windows.Forms.Label();
-        MinimumAgeQuestion  = new System.Windows.Forms.Label();
-        MinimumAgeAnswer    = new System.Windows.Forms.Label();
-        DurationQuestion    = new System.Windows.Forms.Label();
-        DurationAnswer      = new System.Windows.Forms.Label();
+        LicenseQuestion             = new System.Windows.Forms.GroupBox();
+        LicenseCoverageQuestion     = new System.Windows.Forms.GroupBox();
+        LicenseCoverageNameAnswer   = new System.Windows.Forms.Label();
+        LicenseCoverageNameQuestion = new System.Windows.Forms.Label();
+        LicenseIssuanceQuestion     = new System.Windows.Forms.GroupBox();
+        LicenseIssuanceNameAnswer   = new System.Windows.Forms.Label();
+        LicenseIssuanceNameQuestion = new System.Windows.Forms.Label();
+        LicenseTypeQuestion         = new System.Windows.Forms.GroupBox();
+        LicenseDurationAnswer       = new System.Windows.Forms.Label();
+        LicenseDurationQuestion     = new System.Windows.Forms.Label();
+        LicenseMinimumAgeAnswer     = new System.Windows.Forms.Label();
+        LicenseMinimumAgeQuestion   = new System.Windows.Forms.Label();
+        LicenseDescriptionAnswer    = new System.Windows.Forms.Label();
+        LicenseDescriptionQuestion  = new System.Windows.Forms.Label();
+        LicenseNameAnswer           = new System.Windows.Forms.Label();
+        LicenseNameQuestion         = new System.Windows.Forms.Label();
+        label1                      = new System.Windows.Forms.Label();
+        label2                      = new System.Windows.Forms.Label();
+        label3                      = new System.Windows.Forms.Label();
+        label4                      = new System.Windows.Forms.Label();
+        label6                      = new System.Windows.Forms.Label();
+        label5                      = new System.Windows.Forms.Label();
         LicenseQuestion.SuspendLayout();
+        LicenseCoverageQuestion.SuspendLayout();
+        LicenseIssuanceQuestion.SuspendLayout();
         LicenseTypeQuestion.SuspendLayout();
         SuspendLayout();
         // 
         // LicenseQuestion
         // 
+        LicenseQuestion.Controls.Add(
+            label5
+        );
+        LicenseQuestion.Controls.Add(
+            label6
+        );
+        LicenseQuestion.Controls.Add(
+            label3
+        );
+        LicenseQuestion.Controls.Add(
+            label4
+        );
+        LicenseQuestion.Controls.Add(
+            label1
+        );
+        LicenseQuestion.Controls.Add(
+            LicenseCoverageQuestion
+        );
+        LicenseQuestion.Controls.Add(
+            label2
+        );
+        LicenseQuestion.Controls.Add(
+            LicenseIssuanceQuestion
+        );
         LicenseQuestion.Controls.Add(
             LicenseTypeQuestion
         );
@@ -63,38 +101,168 @@ partial class LicenseInformation {
         );
         LicenseQuestion.Name = "LicenseQuestion";
         LicenseQuestion.Size = new System.Drawing.Size(
-            600,
-            500
+            1045,
+            440
         );
         LicenseQuestion.TabIndex = 0;
         LicenseQuestion.TabStop  = false;
         LicenseQuestion.Text     = "License";
         // 
+        // LicenseCoverageQuestion
+        // 
+        LicenseCoverageQuestion.Controls.Add(
+            LicenseCoverageNameAnswer
+        );
+        LicenseCoverageQuestion.Controls.Add(
+            LicenseCoverageNameQuestion
+        );
+        LicenseCoverageQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseCoverageQuestion.Location = new System.Drawing.Point(
+            600,
+            140
+        );
+        LicenseCoverageQuestion.Name = "LicenseCoverageQuestion";
+        LicenseCoverageQuestion.Size = new System.Drawing.Size(
+            425,
+            90
+        );
+        LicenseCoverageQuestion.TabIndex = 9;
+        LicenseCoverageQuestion.TabStop  = false;
+        LicenseCoverageQuestion.Text     = "Coverage";
+        // 
+        // LicenseCoverageNameAnswer
+        // 
+        LicenseCoverageNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        LicenseCoverageNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseCoverageNameAnswer.Location = new System.Drawing.Point(
+            105,
+            40
+        );
+        LicenseCoverageNameAnswer.Name = "LicenseCoverageNameAnswer";
+        LicenseCoverageNameAnswer.Size = new System.Drawing.Size(
+            300,
+            30
+        );
+        LicenseCoverageNameAnswer.TabIndex  = 1;
+        LicenseCoverageNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseCoverageNameQuestion
+        // 
+        LicenseCoverageNameQuestion.Location = new System.Drawing.Point(
+            20,
+            40
+        );
+        LicenseCoverageNameQuestion.Name = "LicenseCoverageNameQuestion";
+        LicenseCoverageNameQuestion.Size = new System.Drawing.Size(
+            75,
+            30
+        );
+        LicenseCoverageNameQuestion.TabIndex  = 0;
+        LicenseCoverageNameQuestion.Text      = "Name:";
+        LicenseCoverageNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseIssuanceQuestion
+        // 
+        LicenseIssuanceQuestion.Controls.Add(
+            LicenseIssuanceNameAnswer
+        );
+        LicenseIssuanceQuestion.Controls.Add(
+            LicenseIssuanceNameQuestion
+        );
+        LicenseIssuanceQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseIssuanceQuestion.Location = new System.Drawing.Point(
+            600,
+            40
+        );
+        LicenseIssuanceQuestion.Name = "LicenseIssuanceQuestion";
+        LicenseIssuanceQuestion.Size = new System.Drawing.Size(
+            425,
+            90
+        );
+        LicenseIssuanceQuestion.TabIndex = 8;
+        LicenseIssuanceQuestion.TabStop  = false;
+        LicenseIssuanceQuestion.Text     = "Issuance";
+        // 
+        // LicenseIssuanceNameAnswer
+        // 
+        LicenseIssuanceNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        LicenseIssuanceNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseIssuanceNameAnswer.Location = new System.Drawing.Point(
+            105,
+            40
+        );
+        LicenseIssuanceNameAnswer.Name = "LicenseIssuanceNameAnswer";
+        LicenseIssuanceNameAnswer.Size = new System.Drawing.Size(
+            300,
+            30
+        );
+        LicenseIssuanceNameAnswer.TabIndex  = 1;
+        LicenseIssuanceNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseIssuanceNameQuestion
+        // 
+        LicenseIssuanceNameQuestion.Location = new System.Drawing.Point(
+            20,
+            40
+        );
+        LicenseIssuanceNameQuestion.Name = "LicenseIssuanceNameQuestion";
+        LicenseIssuanceNameQuestion.Size = new System.Drawing.Size(
+            75,
+            30
+        );
+        LicenseIssuanceNameQuestion.TabIndex  = 0;
+        LicenseIssuanceNameQuestion.Text      = "Name:";
+        LicenseIssuanceNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
         // LicenseTypeQuestion
         // 
         LicenseTypeQuestion.Controls.Add(
-            DurationAnswer
+            LicenseDurationAnswer
         );
         LicenseTypeQuestion.Controls.Add(
-            DurationQuestion
+            LicenseDurationQuestion
         );
         LicenseTypeQuestion.Controls.Add(
-            MinimumAgeAnswer
+            LicenseMinimumAgeAnswer
         );
         LicenseTypeQuestion.Controls.Add(
-            MinimumAgeQuestion
+            LicenseMinimumAgeQuestion
         );
         LicenseTypeQuestion.Controls.Add(
-            DescriptionAnswer
+            LicenseDescriptionAnswer
         );
         LicenseTypeQuestion.Controls.Add(
-            DescriptionQuestion
+            LicenseDescriptionQuestion
         );
         LicenseTypeQuestion.Controls.Add(
-            NameAnswer
+            LicenseNameAnswer
         );
         LicenseTypeQuestion.Controls.Add(
-            NameQuestion
+            LicenseNameQuestion
         );
         LicenseTypeQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
@@ -110,159 +278,270 @@ partial class LicenseInformation {
         LicenseTypeQuestion.Name = "LicenseTypeQuestion";
         LicenseTypeQuestion.Size = new System.Drawing.Size(
             560,
-            360
+            340
         );
         LicenseTypeQuestion.TabIndex = 2;
         LicenseTypeQuestion.TabStop  = false;
-        LicenseTypeQuestion.Text     = "License Type";
+        LicenseTypeQuestion.Text     = "Type";
         // 
-        // NameAnswer
+        // LicenseDurationAnswer
         // 
-        NameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        NameAnswer.Font = new System.Drawing.Font(
+        LicenseDurationAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        LicenseDurationAnswer.Font = new System.Drawing.Font(
             "Segoe UI",
             9F,
             System.Drawing.FontStyle.Regular,
             System.Drawing.GraphicsUnit.Point,
             ((byte) 0)
         );
-        NameAnswer.Location = new System.Drawing.Point(
-            160,
-            40
-        );
-        NameAnswer.Name = "NameAnswer";
-        NameAnswer.Size = new System.Drawing.Size(
-            380,
-            30
-        );
-        NameAnswer.TabIndex  = 1;
-        NameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // NameQuestion
-        // 
-        NameQuestion.Location = new System.Drawing.Point(
-            20,
-            40
-        );
-        NameQuestion.Name = "NameQuestion";
-        NameQuestion.Size = new System.Drawing.Size(
-            75,
-            30
-        );
-        NameQuestion.TabIndex  = 0;
-        NameQuestion.Text      = "Name:";
-        NameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // DescriptionAnswer
-        // 
-        DescriptionAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        DescriptionAnswer.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Regular,
-            System.Drawing.GraphicsUnit.Point,
-            ((byte) 0)
-        );
-        DescriptionAnswer.Location = new System.Drawing.Point(
-            160,
-            80
-        );
-        DescriptionAnswer.Name = "DescriptionAnswer";
-        DescriptionAnswer.Size = new System.Drawing.Size(
-            380,
-            200
-        );
-        DescriptionAnswer.TabIndex  = 3;
-        DescriptionAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // DescriptionQuestion
-        // 
-        DescriptionQuestion.Location = new System.Drawing.Point(
-            20,
-            80
-        );
-        DescriptionQuestion.Name = "DescriptionQuestion";
-        DescriptionQuestion.Size = new System.Drawing.Size(
-            130,
-            30
-        );
-        DescriptionQuestion.TabIndex  = 2;
-        DescriptionQuestion.Text      = "Description:";
-        DescriptionQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // MinimumAgeAnswer
-        // 
-        MinimumAgeAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        MinimumAgeAnswer.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Regular,
-            System.Drawing.GraphicsUnit.Point,
-            ((byte) 0)
-        );
-        MinimumAgeAnswer.Location = new System.Drawing.Point(
-            185,
-            290
-        );
-        MinimumAgeAnswer.Name = "MinimumAgeAnswer";
-        MinimumAgeAnswer.Size = new System.Drawing.Size(
-            105,
-            30
-        );
-        MinimumAgeAnswer.TabIndex  = 5;
-        MinimumAgeAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // MinimumAgeQuestion
-        // 
-        MinimumAgeQuestion.Location = new System.Drawing.Point(
-            20,
-            290
-        );
-        MinimumAgeQuestion.Name = "MinimumAgeQuestion";
-        MinimumAgeQuestion.Size = new System.Drawing.Size(
-            155,
-            30
-        );
-        MinimumAgeQuestion.TabIndex  = 4;
-        MinimumAgeQuestion.Text      = "Minimum Age:";
-        MinimumAgeQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // DurationAnswer
-        // 
-        DurationAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        DurationAnswer.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Regular,
-            System.Drawing.GraphicsUnit.Point,
-            ((byte) 0)
-        );
-        DurationAnswer.Location = new System.Drawing.Point(
+        LicenseDurationAnswer.Location = new System.Drawing.Point(
             430,
             290
         );
-        DurationAnswer.Name = "label1";
-        DurationAnswer.Size = new System.Drawing.Size(
-            105,
+        LicenseDurationAnswer.Name = "LicenseDurationAnswer";
+        LicenseDurationAnswer.Size = new System.Drawing.Size(
+            110,
             30
         );
-        DurationAnswer.TabIndex  = 7;
-        DurationAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        LicenseDurationAnswer.TabIndex  = 7;
+        LicenseDurationAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
-        // DurationQuestion
+        // LicenseDurationQuestion
         // 
-        DurationQuestion.Location = new System.Drawing.Point(
+        LicenseDurationQuestion.Location = new System.Drawing.Point(
             315,
             290
         );
-        DurationQuestion.Name = "DurationQuestion";
-        DurationQuestion.Size = new System.Drawing.Size(
+        LicenseDurationQuestion.Name = "LicenseDurationQuestion";
+        LicenseDurationQuestion.Size = new System.Drawing.Size(
             105,
             30
         );
-        DurationQuestion.TabIndex  = 6;
-        DurationQuestion.Text      = "Duration:";
-        DurationQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        LicenseDurationQuestion.TabIndex  = 6;
+        LicenseDurationQuestion.Text      = "Duration:";
+        LicenseDurationQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseMinimumAgeAnswer
+        // 
+        LicenseMinimumAgeAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        LicenseMinimumAgeAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseMinimumAgeAnswer.Location = new System.Drawing.Point(
+            185,
+            290
+        );
+        LicenseMinimumAgeAnswer.Name = "LicenseMinimumAgeAnswer";
+        LicenseMinimumAgeAnswer.Size = new System.Drawing.Size(
+            110,
+            30
+        );
+        LicenseMinimumAgeAnswer.TabIndex  = 5;
+        LicenseMinimumAgeAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseMinimumAgeQuestion
+        // 
+        LicenseMinimumAgeQuestion.Location = new System.Drawing.Point(
+            20,
+            290
+        );
+        LicenseMinimumAgeQuestion.Name = "LicenseMinimumAgeQuestion";
+        LicenseMinimumAgeQuestion.Size = new System.Drawing.Size(
+            155,
+            30
+        );
+        LicenseMinimumAgeQuestion.TabIndex  = 4;
+        LicenseMinimumAgeQuestion.Text      = "Minimum Age:";
+        LicenseMinimumAgeQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseDescriptionAnswer
+        // 
+        LicenseDescriptionAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        LicenseDescriptionAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseDescriptionAnswer.Location = new System.Drawing.Point(
+            160,
+            80
+        );
+        LicenseDescriptionAnswer.Name = "LicenseDescriptionAnswer";
+        LicenseDescriptionAnswer.Size = new System.Drawing.Size(
+            380,
+            200
+        );
+        LicenseDescriptionAnswer.TabIndex  = 3;
+        LicenseDescriptionAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseDescriptionQuestion
+        // 
+        LicenseDescriptionQuestion.Location = new System.Drawing.Point(
+            20,
+            80
+        );
+        LicenseDescriptionQuestion.Name = "LicenseDescriptionQuestion";
+        LicenseDescriptionQuestion.Size = new System.Drawing.Size(
+            130,
+            30
+        );
+        LicenseDescriptionQuestion.TabIndex  = 2;
+        LicenseDescriptionQuestion.Text      = "Description:";
+        LicenseDescriptionQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseNameAnswer
+        // 
+        LicenseNameAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        LicenseNameAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        LicenseNameAnswer.Location = new System.Drawing.Point(
+            160,
+            40
+        );
+        LicenseNameAnswer.Name = "LicenseNameAnswer";
+        LicenseNameAnswer.Size = new System.Drawing.Size(
+            380,
+            30
+        );
+        LicenseNameAnswer.TabIndex  = 1;
+        LicenseNameAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // LicenseNameQuestion
+        // 
+        LicenseNameQuestion.Location = new System.Drawing.Point(
+            20,
+            40
+        );
+        LicenseNameQuestion.Name = "LicenseNameQuestion";
+        LicenseNameQuestion.Size = new System.Drawing.Size(
+            75,
+            30
+        );
+        LicenseNameQuestion.TabIndex  = 0;
+        LicenseNameQuestion.Text      = "Name:";
+        LicenseNameQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // label1
+        // 
+        label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        label1.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        label1.Location = new System.Drawing.Point(
+            95,
+            390
+        );
+        label1.Name = "label1";
+        label1.Size = new System.Drawing.Size(
+            185,
+            30
+        );
+        label1.TabIndex  = 3;
+        label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // label2
+        // 
+        label2.Location = new System.Drawing.Point(
+            20,
+            390
+        );
+        label2.Name = "label2";
+        label2.Size = new System.Drawing.Size(
+            65,
+            30
+        );
+        label2.TabIndex  = 2;
+        label2.Text      = "Issue:";
+        label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // label3
+        // 
+        label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        label3.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        label3.Location = new System.Drawing.Point(
+            395,
+            390
+        );
+        label3.Name = "label3";
+        label3.Size = new System.Drawing.Size(
+            185,
+            30
+        );
+        label3.TabIndex  = 11;
+        label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // label4
+        // 
+        label4.Location = new System.Drawing.Point(
+            300,
+            390
+        );
+        label4.Name = "label4";
+        label4.Size = new System.Drawing.Size(
+            85,
+            30
+        );
+        label4.TabIndex  = 10;
+        label4.Text      = "Expirty:";
+        label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // label6
+        // 
+        label6.Location = new System.Drawing.Point(
+            600,
+            390
+        );
+        label6.Name = "label6";
+        label6.Size = new System.Drawing.Size(
+            100,
+            30
+        );
+        label6.TabIndex  = 12;
+        label6.Text      = "Is Active:";
+        label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // label5
+        // 
+        label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        label5.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Regular,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        label5.Location = new System.Drawing.Point(
+            710,
+            390
+        );
+        label5.Name = "label5";
+        label5.Size = new System.Drawing.Size(
+            100,
+            30
+        );
+        label5.TabIndex  = 13;
+        label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
         // LicenseInformation
         // 
@@ -273,18 +552,20 @@ partial class LicenseInformation {
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor     = System.Drawing.Color.DarkGray;
         ClientSize = new System.Drawing.Size(
-            1182,
-            553
+            1082,
+            478
         );
         Controls.Add(
             LicenseQuestion
         );
-        Location = new System.Drawing.Point(
-            19,
-            19
-        );
         Text = "License Information";
         LicenseQuestion.ResumeLayout(
+            false
+        );
+        LicenseCoverageQuestion.ResumeLayout(
+            false
+        );
+        LicenseIssuanceQuestion.ResumeLayout(
             false
         );
         LicenseTypeQuestion.ResumeLayout(
@@ -295,17 +576,32 @@ partial class LicenseInformation {
         );
     }
 
+    private System.Windows.Forms.Label label5;
+
+    private System.Windows.Forms.Label label6;
+
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Label label4;
+
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label label2;
+
+    private System.Windows.Forms.GroupBox LicenseCoverageQuestion;
+    private System.Windows.Forms.Label    LicenseCoverageNameAnswer;
+    private System.Windows.Forms.Label    LicenseCoverageNameQuestion;
+    private System.Windows.Forms.GroupBox LicenseIssuanceQuestion;
+    private System.Windows.Forms.Label    LicenseIssuanceNameAnswer;
+    private System.Windows.Forms.Label    LicenseIssuanceNameQuestion;
     private System.Windows.Forms.GroupBox LicenseQuestion;
     private System.Windows.Forms.GroupBox LicenseTypeQuestion;
-    private System.Windows.Forms.Label    NameQuestion;
-    private System.Windows.Forms.Label    NameAnswer;
-    private System.Windows.Forms.Label    DescriptionQuestion;
-    private System.Windows.Forms.Label    DescriptionAnswer;
-    private System.Windows.Forms.Label    MinimumAgeAnswer;
-    private System.Windows.Forms.Label    MinimumAgeQuestion;
-    private System.Windows.Forms.Label    DurationQuestion;
-    private System.Windows.Forms.Label    DurationAnswer;
-
+    private System.Windows.Forms.Label    LicenseNameQuestion;
+    private System.Windows.Forms.Label    LicenseNameAnswer;
+    private System.Windows.Forms.Label    LicenseDescriptionQuestion;
+    private System.Windows.Forms.Label    LicenseDescriptionAnswer;
+    private System.Windows.Forms.Label    LicenseMinimumAgeAnswer;
+    private System.Windows.Forms.Label    LicenseMinimumAgeQuestion;
+    private System.Windows.Forms.Label    LicenseDurationQuestion;
+    private System.Windows.Forms.Label    LicenseDurationAnswer;
 
     #endregion
 }
