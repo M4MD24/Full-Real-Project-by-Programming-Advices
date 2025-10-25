@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer;
@@ -42,7 +43,7 @@ public static class Coverages {
         }
     }
 
-    public static Models.Coverage? getCoverageByCoverageName(
+    public static Coverage? getCoverageByCoverageName(
         string coverageName
     ) {
         SqlConnection sqlConnection = new SqlConnection(
@@ -69,7 +70,52 @@ public static class Coverages {
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             while (sqlDataReader.Read()) {
                 byte coverageID = (byte) sqlDataReader["CoverageID"];
-                return new Models.Coverage(
+                return new Coverage(
+                    coverageID,
+                    coverageName
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+
+    public static Coverage? getCoverageByCoverageID(
+        ref byte? coverageID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_COVERAGE_BY_COVERAGE_ID = """
+                                                      USE DriverAndVehicleLicenseDepartment
+                                                      SELECT *
+                                                      FROM ClientManagementSystem.Coverages
+                                                      WHERE CoverageID = @coverageID
+                                                      """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_COVERAGE_BY_COVERAGE_ID,
+            sqlConnection
+        );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@coverageID",
+            coverageID
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                string coverageName = (string) sqlDataReader["CoverageName"];
+                return new Coverage(
                     coverageID,
                     coverageName
                 );

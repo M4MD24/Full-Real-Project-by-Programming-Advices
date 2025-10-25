@@ -93,4 +93,55 @@ public static class LicenseTypes {
 
         return null;
     }
+
+    public static LicenseType? getLicenseTypeByLicenseTypeID(
+        ref byte? licenseTypeID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_LICENSE_TYPE_BY_LICENSE_TYPE_ID = """
+                                                 USE DriverAndVehicleLicenseDepartment
+                                                 SELECT *
+                                                 FROM ClientManagementSystem.LicenseTypes
+                                                 WHERE LicenseTypeID = @licenseTypeID
+                                                 """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_LICENSE_TYPE_BY_LICENSE_TYPE_ID,
+            sqlConnection
+        );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@licenseTypeID",
+            licenseTypeID
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                string name        = (string) sqlDataReader["Name"];
+                string description = (string) sqlDataReader["Description"];
+                byte   minimumAge  = (byte) sqlDataReader["MinimumAge"];
+                byte   duration    = (byte) sqlDataReader["Duration"];
+                return new LicenseType(
+                    licenseTypeID,
+                    name,
+                    description,
+                    minimumAge,
+                    duration
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
 }
