@@ -558,7 +558,8 @@ partial class LicenseInformation {
         Controls.Add(
             LicenseQuestion
         );
-        Text = "License Information";
+        StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+        Text          = "License Information";
         LicenseQuestion.ResumeLayout(
             false
         );
