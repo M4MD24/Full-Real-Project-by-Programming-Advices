@@ -488,8 +488,7 @@ partial class LicenseInformation {
             380,
             200
         );
-        LicenseTypeDescriptionAnswer.TabIndex  = 3;
-        LicenseTypeDescriptionAnswer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        LicenseTypeDescriptionAnswer.TabIndex = 3;
         // 
         // LicenseTypeDescriptionQuestion
         // 

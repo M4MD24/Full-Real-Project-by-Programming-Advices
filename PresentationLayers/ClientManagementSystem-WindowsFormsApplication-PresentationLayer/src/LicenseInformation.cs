@@ -26,14 +26,14 @@ public partial class LicenseInformation : Form {
     private void loadData(
         ref FullLicense? fullLicense
     ) {
-        LicenseTypeNameAnswer.Text     = fullLicense!.licenseType!.name;
-        LicenseTypeNameAnswer.Text     = fullLicense.licenseType!.description;
-        LicenseTypeNameAnswer.Text     = fullLicense.licenseType!.minimumAge.ToString();
-        LicenseTypeNameAnswer.Text     = fullLicense.licenseType!.duration.ToString();
-        LicenseIssueAnswer.Text        = fullLicense.license!.issueDateTime.ToString();
-        LicenseExpiryAnswer.Text       = fullLicense.license!.expiryDateTime.ToString();
-        LicenseIssuanceNameAnswer.Text = fullLicense.licenseIssuance!.licenseIssuanceName;
-        LicenseCoverageNameAnswer.Text = fullLicense.licenseCoverage!.coverageName;
-        LicenseIsActiveAnswer.Text     = fullLicense.license!.isActive.ToString();
+        LicenseTypeNameAnswer.Text        = fullLicense!.licenseType!.name;
+        LicenseTypeDescriptionAnswer.Text = fullLicense.licenseType!.description;
+        LicenseTypeMinimumAgeAnswer.Text  = fullLicense.licenseType!.minimumAge.ToString();
+        LicenseTypeDurationAnswer.Text    = fullLicense.licenseType!.duration.ToString();
+        LicenseIssueAnswer.Text           = fullLicense.license!.issueDateTime.ToString();
+        LicenseExpiryAnswer.Text          = fullLicense.license!.expiryDateTime.ToString();
+        LicenseIssuanceNameAnswer.Text    = fullLicense.licenseIssuance!.licenseIssuanceName;
+        LicenseCoverageNameAnswer.Text    = fullLicense.licenseCoverage!.coverageName;
+        LicenseIsActiveAnswer.Text        = fullLicense.license!.isActive.ToString();
     }
 }
