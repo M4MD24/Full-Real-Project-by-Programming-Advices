@@ -200,15 +200,6 @@ CREATE TABLE ClientManagementSystem.Requests
     FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID)
 )
 
-CREATE TABLE ClientManagementSystem.Retests
-(
-    RetestID      INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    LastRequestID INT NOT NULL UNIQUE,
-    NewRequestID  INT NOT NULL UNIQUE,
-    FOREIGN KEY (LastRequestID) REFERENCES ClientManagementSystem.Requests (RequestID),
-    FOREIGN KEY (NewRequestID) REFERENCES ClientManagementSystem.Requests (RequestID)
-)
-
 CREATE TABLE ClientManagementSystem.OfficialDrivers
 (
     OfficialDriverID INT NOT NULL PRIMARY KEY IDENTITY (1,1),

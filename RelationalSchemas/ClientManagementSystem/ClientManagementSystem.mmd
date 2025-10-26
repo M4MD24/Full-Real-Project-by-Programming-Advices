@@ -123,11 +123,6 @@ erDiagram
         DATETIME ExpiryDateTime
         BIT IsActive
     }
-    Retests {
-        INT RetestID PK
-        INT LastRequestID FK
-        INT NewRequestID FK
-    }
     OfficialDrivers {
         INT OfficialDriverID PK
         INT LicenseID FK
@@ -190,8 +185,6 @@ erDiagram
     Licenses ||--o{ Clients: ""
     Licenses }|--|| LicenseIssuances: ""
     Licenses }|--|| Coverages: ""
-    Retests |o--|| Requests: "LastRequestID"
-    Retests |o--|| Requests: "NewRequestID"
     OfficialDrivers ||--|{ Licenses: ""
     LicenseRenewals ||--o{ Requests: ""
     LockedLicenses }o--|| Licenses: ""
