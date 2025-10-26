@@ -621,6 +621,9 @@ public partial class Licenses : Form {
             getLicenseID_FromSelectedRow()
         );
 
+        if (license == null)
+            return;
+
         Request? request = ClientManagementSystem_ClassLibrary_BusinessLayer.Requests.get(
             license!.licenseID
         );

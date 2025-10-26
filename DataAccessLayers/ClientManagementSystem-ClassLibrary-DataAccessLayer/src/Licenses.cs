@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
@@ -79,24 +80,34 @@ public static class Licenses {
     public static int deleteByLicenseID(
         ref int? licenseID
     ) {
-        SqlConnection sqlConnection = new SqlConnection(
+        using SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
-        const string DELETE_LICENSE_BY_LICENSE_ID = """
+
+        const string DELETE_REQUEST_BY_LICENSE_ID = """
+                                                    USE DriverAndVehicleLicenseDepartment
+                                                    DELETE ClientManagementSystem.Requests
+                                                    WHERE LicenseID = @licenseID;
+                                                    """,
+                     DELETE_LICENSE_BY_LICENSE_ID = """
                                                     USE DriverAndVehicleLicenseDepartment
                                                     DELETE ClientManagementSystem.Licenses
-                                                    WHERE LicenseID = @licenseID
+                                                    WHERE LicenseID = @licenseID;
                                                     """;
-        SqlCommand sqlCommand = new SqlCommand(
-            DELETE_LICENSE_BY_LICENSE_ID,
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            DELETE_REQUEST_BY_LICENSE_ID + DELETE_LICENSE_BY_LICENSE_ID,
             sqlConnection
         );
-        sqlCommand.Parameters.AddWithValue(
-            "@licenseID",
-            licenseID
-        );
+
+        sqlCommand.Parameters.Add(
+                      "@licenseID",
+                      SqlDbType.Int
+                  )
+                  .Value = (object?) licenseID ?? DBNull.Value;
 
         int rowAffected = 0;
+
         try {
             sqlConnection.Open();
             rowAffected = sqlCommand.ExecuteNonQuery();
