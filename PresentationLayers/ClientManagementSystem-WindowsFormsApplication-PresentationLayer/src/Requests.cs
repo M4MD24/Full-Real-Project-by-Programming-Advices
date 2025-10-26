@@ -19,7 +19,7 @@ public partial class Requests : Form {
         int    width  = 48,
         int    height = 48
     ) => Tools.loadEmbeddedSvg(
-        Constants.RESOURCES_ICONS_PATH + $".{name}.svg",
+        Constants.RESOURCES_IMAGES_PATH + $".{name}.svg",
         width,
         height
     );

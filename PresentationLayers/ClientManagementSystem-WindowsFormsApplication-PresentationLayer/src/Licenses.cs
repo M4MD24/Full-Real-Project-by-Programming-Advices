@@ -22,25 +22,25 @@ public partial class Licenses : Form {
             Image Renew,
             Image Replace
             ) licenseListMenuStripIcons() => (
-                                                 Information : loadIcon(
+                                                 Information : loadImage(
                                                      "ID_Card",
                                                      20,
                                                      20
                                                  ),
-                                                 RequestTests : loadIcon(
+                                                 RequestTests : loadImage(
                                                      "Assignment"
                                                  ),
-                                                 Remove : loadIcon(
+                                                 Remove : loadImage(
                                                      "Remove",
                                                      20,
                                                      20
                                                  ),
-                                                 Renew : loadIcon(
+                                                 Renew : loadImage(
                                                      "AutoRenew",
                                                      20,
                                                      20
                                                  ),
-                                                 Replace : loadIcon(
+                                                 Replace : loadImage(
                                                      "SyncProblem",
                                                      20,
                                                      20
@@ -52,17 +52,17 @@ public partial class Licenses : Form {
             Image EyeTest,
             Image DrivingTest
             ) requestTestsListMenuStripIcons() => (
-                                                      TheoreticalTest : loadIcon(
+                                                      TheoreticalTest : loadImage(
                                                           "Quiz",
                                                           20,
                                                           20
                                                       ),
-                                                      EyeTest : loadIcon(
+                                                      EyeTest : loadImage(
                                                           "EyeTracking",
                                                           20,
                                                           20
                                                       ),
-                                                      DrivingTest : loadIcon(
+                                                      DrivingTest : loadImage(
                                                           "SearchHandsFree",
                                                           20,
                                                           20
@@ -152,7 +152,7 @@ public partial class Licenses : Form {
 
         ToolStripMenuItem newRequest = createMenuItem(
             "&New Request",
-            loadIcon(
+            loadImage(
                 "Add"
             )
         );
@@ -497,12 +497,12 @@ public partial class Licenses : Form {
         loadLicenses();
     }
 
-    private static Image loadIcon(
+    private static Image loadImage(
         string name,
         int    width  = 48,
         int    height = 48
     ) => Tools.loadEmbeddedSvg(
-        Constants.RESOURCES_ICONS_PATH + $".{name}.svg",
+        Constants.RESOURCES_IMAGES_PATH + $".{name}.svg",
         width,
         height
     );

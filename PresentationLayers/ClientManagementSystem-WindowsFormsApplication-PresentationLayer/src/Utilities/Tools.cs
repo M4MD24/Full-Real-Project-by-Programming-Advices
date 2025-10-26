@@ -174,7 +174,7 @@ public static class Tools {
         int    width  = 48,
         int    height = 48
     ) => loadEmbeddedSvg(
-        Constants.RESOURCES_ICONS_PATH + $".{name}.svg",
+        Constants.RESOURCES_IMAGES_PATH + $".{name}.svg",
         width,
         height
     );
