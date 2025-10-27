@@ -34,7 +34,6 @@ partial class AddAndEditAccount {
         components                      = new System.ComponentModel.Container();
         PermissionsQuestion             = new System.Windows.Forms.GroupBox();
         TestPermission                  = new System.Windows.Forms.CheckBox();
-        RetestPermission                = new System.Windows.Forms.CheckBox();
         UnlockLicensesPermission        = new System.Windows.Forms.CheckBox();
         ReadAndSearchPermission         = new System.Windows.Forms.CheckBox();
         DeletePermission                = new System.Windows.Forms.CheckBox();
@@ -101,9 +100,6 @@ partial class AddAndEditAccount {
             TestPermission
         );
         PermissionsQuestion.Controls.Add(
-            RetestPermission
-        );
-        PermissionsQuestion.Controls.Add(
             UnlockLicensesPermission
         );
         PermissionsQuestion.Controls.Add(
@@ -157,26 +153,6 @@ partial class AddAndEditAccount {
         TestPermission.TabIndex                = 36;
         TestPermission.Text                    = "Test";
         TestPermission.UseVisualStyleBackColor = true;
-        // 
-        // RetestPermission
-        // 
-        RetestPermission.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Bold
-        );
-        RetestPermission.Location = new System.Drawing.Point(
-            80,
-            60
-        );
-        RetestPermission.Name = "RetestPermission";
-        RetestPermission.Size = new System.Drawing.Size(
-            65,
-            20
-        );
-        RetestPermission.TabIndex                = 37;
-        RetestPermission.Text                    = "Retest";
-        RetestPermission.UseVisualStyleBackColor = true;
         // 
         // UnlockLicensesPermission
         // 
@@ -1237,7 +1213,6 @@ partial class AddAndEditAccount {
     private        System.Windows.Forms.OpenFileDialog OpenFileDialog;
     private        System.Windows.Forms.ErrorProvider  ErrorProvider;
     private        System.Windows.Forms.CheckBox       TestPermission;
-    private        System.Windows.Forms.CheckBox       RetestPermission;
     private        System.Windows.Forms.CheckBox       UnlockLicensesPermission;
     private        System.Windows.Forms.Label          AccountTypeQuestion;
     private        System.Windows.Forms.ComboBox       AccountTypeAnswer;

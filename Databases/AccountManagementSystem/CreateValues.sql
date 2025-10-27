@@ -5,9 +5,8 @@ VALUES (1, 'Egypt', 'EGY');
 
 INSERT INTO AccountManagementSystem.Permissions
 VALUES (1, 'Create'),
-       (4, 'Delete'),
-       (3, 'Edit'),
        (2, 'Read and Search'),
-       (6, 'Retest'),
+       (3, 'Edit'),
+       (4, 'Delete'),
        (5, 'Test'),
-       (7, 'Unlock Licenses');
+       (6, 'Unlock Licenses');

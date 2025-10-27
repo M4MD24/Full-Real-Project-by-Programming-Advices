@@ -9,7 +9,6 @@ VALUES (N'جنيه', 1);
 INSERT INTO ClientManagementSystem.Fees (FeesName, Amount, CurrencyID)
 VALUES (N'Request', 20, 1),
        (N'First Time', 10, 1),
-       (N'Retest', 70, 1),
        (N'Renew', 20, 1),
        (N'Lost License Replacement', 10, 1),
        (N'Damaged License Replacement', 50, 1),

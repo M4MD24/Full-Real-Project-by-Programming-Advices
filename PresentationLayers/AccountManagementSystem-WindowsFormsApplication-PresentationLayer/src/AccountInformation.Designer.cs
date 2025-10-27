@@ -65,7 +65,6 @@ partial class AccountInformation {
         AccountTypeQuestion             = new System.Windows.Forms.Label();
         PermissionsQuestion             = new System.Windows.Forms.GroupBox();
         UnlockLicensesPermission        = new System.Windows.Forms.CheckBox();
-        RetestPermission                = new System.Windows.Forms.CheckBox();
         TestPermission                  = new System.Windows.Forms.CheckBox();
         DeletePermission                = new System.Windows.Forms.CheckBox();
         EditPermission                  = new System.Windows.Forms.CheckBox();
@@ -757,9 +756,6 @@ partial class AccountInformation {
             UnlockLicensesPermission
         );
         PermissionsQuestion.Controls.Add(
-            RetestPermission
-        );
-        PermissionsQuestion.Controls.Add(
             TestPermission
         );
         PermissionsQuestion.Controls.Add(
@@ -801,38 +797,17 @@ partial class AccountInformation {
             System.Drawing.FontStyle.Bold
         );
         UnlockLicensesPermission.Location = new System.Drawing.Point(
-            595,
+            550,
             40
         );
         UnlockLicensesPermission.Name = "UnlockLicensesPermission";
         UnlockLicensesPermission.Size = new System.Drawing.Size(
-            120,
+            80,
             25
         );
         UnlockLicensesPermission.TabIndex                = 6;
         UnlockLicensesPermission.Text                    = "Unlock Licenses";
         UnlockLicensesPermission.UseVisualStyleBackColor = true;
-        // 
-        // RetestPermission
-        // 
-        RetestPermission.Enabled = false;
-        RetestPermission.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Bold
-        );
-        RetestPermission.Location = new System.Drawing.Point(
-            512,
-            40
-        );
-        RetestPermission.Name = "RetestPermission";
-        RetestPermission.Size = new System.Drawing.Size(
-            65,
-            25
-        );
-        RetestPermission.TabIndex                = 5;
-        RetestPermission.Text                    = "Retest";
-        RetestPermission.UseVisualStyleBackColor = true;
         // 
         // TestPermission
         // 
@@ -848,7 +823,7 @@ partial class AccountInformation {
         );
         TestPermission.Name = "TestPermission";
         TestPermission.Size = new System.Drawing.Size(
-            50,
+            60,
             25
         );
         TestPermission.TabIndex                = 4;
@@ -1069,7 +1044,6 @@ partial class AccountInformation {
     private System.Windows.Forms.CheckBox   EditPermission;
     private System.Windows.Forms.CheckBox   DeletePermission;
     private System.Windows.Forms.CheckBox   TestPermission;
-    private System.Windows.Forms.CheckBox   RetestPermission;
     private System.Windows.Forms.CheckBox   UnlockLicensesPermission;
     private System.Windows.Forms.CheckBox   CreatePermission;
     private System.Windows.Forms.GroupBox   PermissionsQuestion;
