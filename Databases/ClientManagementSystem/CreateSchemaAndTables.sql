@@ -105,7 +105,7 @@ CREATE TABLE ClientManagementSystem.EyeTests
 (
     EyeTestID   INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestID      INT NOT NULL UNIQUE,
-    EyeDoctorID INT NOT NULL,
+    EyeDoctorID INT NULL,
     FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
     FOREIGN KEY (EyeDoctorID) REFERENCES ClientManagementSystem.EyeDoctors (EyeDoctorID)
 )
@@ -114,7 +114,7 @@ CREATE TABLE ClientManagementSystem.TheoreticalTests
 (
     TheoreticalTestID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestID            INT NOT NULL UNIQUE,
-    SupervisorID      INT NOT NULL,
+    SupervisorID      INT NULL,
     FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
     FOREIGN KEY (SupervisorID) REFERENCES ClientManagementSystem.Supervisors (SupervisorID)
 )
@@ -123,7 +123,7 @@ CREATE TABLE ClientManagementSystem.DrivingTests
 (
     DrivingTestID     INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestID            INT NOT NULL UNIQUE,
-    DrivingExaminerID INT NOT NULL,
+    DrivingExaminerID INT NULL,
     FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
     FOREIGN KEY (DrivingExaminerID) REFERENCES ClientManagementSystem.DrivingExaminers (DrivingExaminerID)
 )
