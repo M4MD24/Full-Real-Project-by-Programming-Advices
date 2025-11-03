@@ -97,7 +97,7 @@ CREATE TABLE ClientManagementSystem.Tests
     TestID       INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
     TestDateTime DATETIME NOT NULL,
     CurrencyID   TINYINT  NOT NULL,
-    IsSucceed    BIT      NOT NULL,
+    IsSucceed    BIT      NULL,
     FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
 )
 
