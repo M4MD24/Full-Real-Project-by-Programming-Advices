@@ -12,4 +12,14 @@ public class Test(
     public DateTime? testDateTime { get; set; } = testDateTime;
     public byte?     currencyID   { get; set; } = currencyID;
     public bool?     isSucceed    { get; set; } = isSucceed;
+
+    public Test(
+        DateTime? testDateTime,
+        byte?     currencyID
+    ) : this(
+        null,
+        testDateTime,
+        currencyID,
+        null
+    ) {}
 }

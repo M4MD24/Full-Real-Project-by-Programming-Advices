@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
@@ -78,7 +79,7 @@ public partial class AccountInformation : Form {
     private void setIcon() {
         Assembly assembly = Assembly.GetExecutingAssembly();
         using Stream? iconStream = assembly.GetManifestResourceStream(
-            Utilities.Constants.RESOURCES_ICONS_PATH + ".Person.ico"
+            Constants.RESOURCES_ICONS_PATH + ".Person.ico"
         );
         Icon = new Icon(
             iconStream!

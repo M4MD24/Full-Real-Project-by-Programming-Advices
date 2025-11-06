@@ -8,4 +8,12 @@ public class DrivingTest(
     public int? drivingTestID     { get; set; } = drivingTestID;
     public int? testID            { get; set; } = testID;
     public int? drivingExaminerID { get; set; } = drivingExaminerID;
+
+    public DrivingTest(
+        int? testID
+    ) : this(
+        null,
+        testID,
+        null
+    ) {}
 }

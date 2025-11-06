@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
@@ -72,7 +73,7 @@ public partial class Countries : Form {
         if (countryBindingSource.DataSource is DataTable)
             countryBindingSource.Filter = $"{selectedFilter} LIKE '%{targetText}%'";
         else {
-            List<AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.Country> countries = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAll()!;
+            List<Country> countries = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAll()!;
             countries = countries.Where(
                                      country => {
                                          if (selectedFilter == searchChoices[0]) {
@@ -117,7 +118,7 @@ public partial class Countries : Form {
     );
 
     private void loadCountries() {
-        List<AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.Country>? allCountries = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAll();
+        List<Country>? allCountries = AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAll();
         countryBindingSource.DataSource = allCountries;
         CountryList.DataSource          = countryBindingSource;
     }

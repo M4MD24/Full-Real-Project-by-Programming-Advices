@@ -1,4 +1,6 @@
-﻿namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
+﻿using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
+
+namespace AccountManagementSystem_ClassLibrary_BusinessLayer;
 
 public static class AccountPermissions {
     public static int delete(
@@ -16,7 +18,7 @@ public static class AccountPermissions {
     );
 
     public static int add(
-        ref AccountManagementSystem_ClassLibrary_DataAccessLayer.Models.AccountPermission accountPermissions
+        ref AccountPermission accountPermissions
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountPermissions.addAccountPermission(
         ref accountPermissions
     );

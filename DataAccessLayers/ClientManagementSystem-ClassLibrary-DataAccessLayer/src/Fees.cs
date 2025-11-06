@@ -6,7 +6,7 @@ using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer;
 
 public static class Fees {
-    public static List<ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees>? getAllFees() {
+    public static List<Models.Fees>? getAllFees() {
         SqlConnection sqlConnection = new SqlConnection(
             Constants.DATABASE_CONNECTIVITY
         );
@@ -22,7 +22,7 @@ public static class Fees {
 
         try {
             sqlConnection.Open();
-            List<ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees> fees          = [];
+            List<Models.Fees> fees          = [];
             SqlDataReader                                                         sqlDataReader = sqlCommand.ExecuteReader();
 
             while (sqlDataReader.Read()) {
@@ -32,7 +32,7 @@ public static class Fees {
                 byte    currenyID = (byte) sqlDataReader["CurrencyID"];
 
                 fees.Add(
-                    new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees(
+                    new Models.Fees(
                         feesID,
                         feesName,
                         amount,
@@ -54,7 +54,7 @@ public static class Fees {
         return null;
     }
 
-    public static ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? getFeesByFeesID(
+    public static Models.Fees? getFeesByFeesID(
         ref byte feesID
     ) {
         SqlConnection sqlConnection = new SqlConnection(
@@ -82,7 +82,7 @@ public static class Fees {
                 string  feesName  = (string) sqlDataReader["FeesName"];
                 decimal amount    = (decimal) sqlDataReader["Amount"];
                 byte    currenyID = (byte) sqlDataReader["CurrencyID"];
-                return new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees(
+                return new Models.Fees(
                     feesName,
                     amount,
                     currenyID
@@ -101,7 +101,7 @@ public static class Fees {
         return null;
     }
 
-    public static ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? getFeesByFeesName(
+    public static Models.Fees? getFeesByFeesName(
         string feesName
     ) {
         SqlConnection sqlConnection = new SqlConnection(
@@ -128,7 +128,7 @@ public static class Fees {
             while (sqlDataReader.Read()) {
                 decimal amount    = (decimal) sqlDataReader["Amount"];
                 byte    currenyID = (byte) sqlDataReader["CurrencyID"];
-                return new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees(
+                return new Models.Fees(
                     feesName,
                     amount,
                     currenyID

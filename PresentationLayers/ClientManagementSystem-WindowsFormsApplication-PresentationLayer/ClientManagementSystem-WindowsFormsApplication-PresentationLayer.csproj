@@ -98,6 +98,7 @@
         <EmbeddedResource Include="Resources\Images\EyeTracking.svg"/>
         <EmbeddedResource Include="Resources\Images\Quiz.svg"/>
         <EmbeddedResource Include="Resources\Images\Assignment.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Assignment.ico"/>
     </ItemGroup>
 
 </Project>

@@ -92,6 +92,12 @@ public partial class Licenses : Form {
         LicenseList.ContextMenuStrip = LicenseListMenuStrip;
 
         setIconsForLicenseListOptions();
+
+        setTextForRequestTestOptions();
+    }
+
+    private void setTextForRequestTestOptions() {
+        // TODO()
     }
 
     private void setIconsForLicenseListOptions() {
@@ -685,8 +691,56 @@ public partial class Licenses : Form {
         }
     }
 
-    private void showTestOption_Click(
-        object    sender,
+    private void eyeTestOption_Click(
+        object?   sender,
         EventArgs e
-    ) {}
+    ) => showTestOption_Click(
+        Constants.testTypes[0]
+    );
+
+    private void theoreticalTestOption_Click(
+        object?   sender,
+        EventArgs e
+    ) => showTestOption_Click(
+        Constants.testTypes[1]
+    );
+
+    private void drivingTestOption_Click(
+        object?   sender,
+        EventArgs e
+    ) => showTestOption_Click(
+        Constants.testTypes[2]
+    );
+
+    private void showTestOption_Click(
+        string testType
+    ) {
+        ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? fees;
+        switch (testType) {
+            case "Eye":
+                fees = ClientManagementSystem_ClassLibrary_BusinessLayer.Fees.get(
+                    15
+                );
+                new Test(
+                    ref fees!
+                ).Show();
+            break;
+            case "Theoretical":
+                fees = ClientManagementSystem_ClassLibrary_BusinessLayer.Fees.get(
+                    16
+                );
+                new Test(
+                    ref fees!
+                ).Show();
+            break;
+            case "Driving":
+                fees = ClientManagementSystem_ClassLibrary_BusinessLayer.Fees.get(
+                    17
+                );
+                new Test(
+                    ref fees!
+                ).Show();
+            break;
+        }
+    }
 }

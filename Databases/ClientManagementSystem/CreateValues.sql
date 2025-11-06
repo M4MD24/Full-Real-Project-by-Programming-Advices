@@ -48,3 +48,17 @@ VALUES ('Small Motorcycle', 'Allows the driver to drive small motorcycles.', 10,
 INSERT INTO ClientManagementSystem.PaymentMethods (PaymentMethodName)
 VALUES ('Cash'),
        ('Online');
+
+INSERT INTO ClientManagementSystem.Persons (NationalNumber, FullNameID, DateOfBirth, Address, ContactInformationID, CountryID, ImageURL)
+VALUES (1, 1, '2003-06-09', 4, 1, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\1.png'),
+       (11, 2, '2003-06-09', 44, 2, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\11.png'),
+       (111, 3, '2003-06-09', 444, 3, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\111.png')
+
+INSERT INTO ClientManagementSystem.EyeDoctors (PersonID)
+VALUES (3)
+
+INSERT INTO ClientManagementSystem.Supervisors (PersonID)
+VALUES (5)
+
+INSERT INTO ClientManagementSystem.DrivingExaminers (PersonID)
+VALUES (6)

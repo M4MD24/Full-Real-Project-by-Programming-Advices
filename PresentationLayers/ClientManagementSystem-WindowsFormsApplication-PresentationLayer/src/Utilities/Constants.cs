@@ -8,6 +8,13 @@ public static class Constants {
         "jpeg",
         "png"
     ];
+
+    public static readonly string[] testTypes = [
+        "Eye",
+        "Theoretical",
+        "Driving"
+    ];
+
     public static readonly string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
     public const string RESOURCES_ICONS_PATH  = "ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Resources.Icons",
                         RESOURCES_IMAGES_PATH = "ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Resources.Images";

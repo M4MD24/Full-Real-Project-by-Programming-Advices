@@ -194,7 +194,7 @@ partial class Licenses {
             28
         );
         EyeTestOption.Text  =  "Eye";
-        EyeTestOption.Click += showTestOption_Click;
+        EyeTestOption.Click += eyeTestOption_Click;
         //
         // TheoreticalTestOption
         //
@@ -205,7 +205,7 @@ partial class Licenses {
             28
         );
         TheoreticalTestOption.Text  =  "Theoretical";
-        TheoreticalTestOption.Click += showTestOption_Click;
+        TheoreticalTestOption.Click += theoreticalTestOption_Click;
         //
         // DrivingTestOption
         //
@@ -216,7 +216,7 @@ partial class Licenses {
             28
         );
         DrivingTestOption.Text  = "Driving";
-        DrivingTestOption.Click += showTestOption_Click;
+        DrivingTestOption.Click += drivingTestOption_Click;
         //
         // LicenseInformationOption
         //

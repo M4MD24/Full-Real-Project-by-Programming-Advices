@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
+using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
@@ -57,7 +58,7 @@ public partial class ClientInformation : Form {
     private void setIcon() {
         Assembly assembly = Assembly.GetExecutingAssembly();
         using Stream? iconStream = assembly.GetManifestResourceStream(
-            Utilities.Constants.RESOURCES_ICONS_PATH + ".Person.ico"
+            Constants.RESOURCES_ICONS_PATH + ".Person.ico"
         );
         Icon = new Icon(
             iconStream!

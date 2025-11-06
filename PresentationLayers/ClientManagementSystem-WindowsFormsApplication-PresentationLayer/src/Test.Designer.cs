@@ -31,11 +31,15 @@ partial class Test {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-        Submit           = new System.Windows.Forms.Button();
-        comboBox1        = new System.Windows.Forms.ComboBox();
-        TestTypeQuestion = new System.Windows.Forms.Label();
-        dateTimePicker1  = new System.Windows.Forms.DateTimePicker();
-        label1           = new System.Windows.Forms.Label();
+        components           = new System.ComponentModel.Container();
+        Submit               = new System.Windows.Forms.Button();
+        TestDateTimeAnswer   = new System.Windows.Forms.DateTimePicker();
+        TestDateTimeQuestion = new System.Windows.Forms.Label();
+        Clear                = new System.Windows.Forms.Button();
+        ErrorProvider = new System.Windows.Forms.ErrorProvider(
+            components
+        );
+        ((System.ComponentModel.ISupportInitialize) ErrorProvider).BeginInit();
         SuspendLayout();
         // 
         // Submit
@@ -48,86 +52,79 @@ partial class Test {
             ((byte) 0)
         );
         Submit.Location = new System.Drawing.Point(
-            230,
-            110
+            180,
+            70
         );
         Submit.Name = "Submit";
         Submit.Size = new System.Drawing.Size(
             100,
             40
         );
-        Submit.TabIndex                = 0;
-        Submit.Text                    = "Submit";
-        Submit.UseVisualStyleBackColor = true;
+        Submit.TabIndex                =  0;
+        Submit.Text                    =  "Submit";
+        Submit.UseVisualStyleBackColor =  true;
+        Submit.Click                   += Submit_Click;
         // 
-        // comboBox1
+        // TestDateTimeAnswer
         // 
-        comboBox1.FormattingEnabled = true;
-        comboBox1.Location = new System.Drawing.Point(
+        TestDateTimeAnswer.Location = new System.Drawing.Point(
             140,
             20
         );
-        comboBox1.Name = "comboBox1";
-        comboBox1.Size = new System.Drawing.Size(
+        TestDateTimeAnswer.Name = "TestDateTimeAnswer";
+        TestDateTimeAnswer.Size = new System.Drawing.Size(
             400,
-            31
+            30
         );
-        comboBox1.TabIndex = 1;
+        TestDateTimeAnswer.TabIndex = 3;
         // 
-        // TestTypeQuestion
+        // TestDateTimeQuestion
         // 
-        TestTypeQuestion.Font = new System.Drawing.Font(
+        TestDateTimeQuestion.Font = new System.Drawing.Font(
             "Segoe UI",
             12F,
             System.Drawing.FontStyle.Bold,
             System.Drawing.GraphicsUnit.Point,
             ((byte) 0)
         );
-        TestTypeQuestion.Location = new System.Drawing.Point(
+        TestDateTimeQuestion.Location = new System.Drawing.Point(
             20,
             20
         );
-        TestTypeQuestion.Name = "TestTypeQuestion";
-        TestTypeQuestion.Size = new System.Drawing.Size(
-            65,
-            30
-        );
-        TestTypeQuestion.TabIndex = 2;
-        TestTypeQuestion.Text     = "Type:";
-        // 
-        // dateTimePicker1
-        // 
-        dateTimePicker1.Location = new System.Drawing.Point(
-            140,
-            60
-        );
-        dateTimePicker1.Name = "dateTimePicker1";
-        dateTimePicker1.Size = new System.Drawing.Size(
-            400,
-            30
-        );
-        dateTimePicker1.TabIndex = 3;
-        // 
-        // label1
-        // 
-        label1.Font = new System.Drawing.Font(
-            "Segoe UI",
-            12F,
-            System.Drawing.FontStyle.Bold,
-            System.Drawing.GraphicsUnit.Point,
-            ((byte) 0)
-        );
-        label1.Location = new System.Drawing.Point(
-            20,
-            60
-        );
-        label1.Name = "label1";
-        label1.Size = new System.Drawing.Size(
+        TestDateTimeQuestion.Name = "TestDateTimeQuestion";
+        TestDateTimeQuestion.Size = new System.Drawing.Size(
             110,
             30
         );
-        label1.TabIndex = 4;
-        label1.Text     = "DateTime:";
+        TestDateTimeQuestion.TabIndex = 4;
+        TestDateTimeQuestion.Text     = "DateTime:";
+        // 
+        // Clear
+        // 
+        Clear.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        Clear.Location = new System.Drawing.Point(
+            300,
+            70
+        );
+        Clear.Name = "Clear";
+        Clear.Size = new System.Drawing.Size(
+            100,
+            40
+        );
+        Clear.TabIndex                =  5;
+        Clear.Text                    =  "Clear";
+        Clear.UseVisualStyleBackColor =  true;
+        Clear.Click                   += Clear_Click;
+        // 
+        // ErrorProvider
+        // 
+        ErrorProvider.ContainerControl = this;
         // 
         // Test
         // 
@@ -139,37 +136,34 @@ partial class Test {
         BackColor     = System.Drawing.Color.DarkGray;
         ClientSize = new System.Drawing.Size(
             562,
-            168
+            128
         );
         Controls.Add(
-            label1
+            Clear
         );
         Controls.Add(
-            dateTimePicker1
+            TestDateTimeQuestion
         );
         Controls.Add(
-            TestTypeQuestion
-        );
-        Controls.Add(
-            comboBox1
+            TestDateTimeAnswer
         );
         Controls.Add(
             Submit
         );
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text          = "Test";
+        ((System.ComponentModel.ISupportInitialize) ErrorProvider).EndInit();
         ResumeLayout(
             false
         );
     }
 
-    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.ErrorProvider ErrorProvider;
 
-    private System.Windows.Forms.DateTimePicker dateTimePicker1;
+    private System.Windows.Forms.Button Clear;
 
-    private System.Windows.Forms.Label TestTypeQuestion;
+    private System.Windows.Forms.Label TestDateTimeQuestion;
 
-    private System.Windows.Forms.ComboBox comboBox1;
+    private System.Windows.Forms.DateTimePicker TestDateTimeAnswer;
 
     private System.Windows.Forms.Button Submit;
 
