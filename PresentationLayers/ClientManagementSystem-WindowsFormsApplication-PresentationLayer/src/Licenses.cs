@@ -96,9 +96,7 @@ public partial class Licenses : Form {
         setTextForRequestTestOptions();
     }
 
-    private void setTextForRequestTestOptions() {
-        // TODO()
-    }
+    private void setTextForRequestTestOptions() {}
 
     private void setIconsForLicenseListOptions() {
         LicenseInformationOption.Image = licenseListMenuStripIcons()
@@ -715,6 +713,7 @@ public partial class Licenses : Form {
     private void showTestOption_Click(
         string testType
     ) {
+        int?                                                             licenseID = getLicenseID_FromSelectedRow();
         ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? fees;
         switch (testType) {
             case "Eye":
@@ -722,6 +721,7 @@ public partial class Licenses : Form {
                     15
                 );
                 new Test(
+                    licenseID,
                     ref fees!
                 ).Show();
             break;
@@ -730,6 +730,7 @@ public partial class Licenses : Form {
                     16
                 );
                 new Test(
+                    licenseID,
                     ref fees!
                 ).Show();
             break;
@@ -738,6 +739,7 @@ public partial class Licenses : Form {
                     17
                 );
                 new Test(
+                    licenseID,
                     ref fees!
                 ).Show();
             break;

@@ -6,12 +6,15 @@ using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities
 namespace ClientManagementSystem_WindowsFormsApplication_PresentationLayer;
 
 public partial class Test : Form {
+    private readonly int?                                                            license;
     private readonly ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees testFees;
 
     public Test(
+        int?                                                                license,
         ref ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees testFees
     ) {
         InitializeComponent();
+        this.license  = license;
         this.testFees = testFees;
         Text          = testFees.feesName;
         Tools.setIcon(
@@ -53,8 +56,9 @@ public partial class Test : Form {
             return;
 
         ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Test test = new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Test(
-            TestDateTimeAnswer.Value,
-            currency.currencyID
+            license,
+            currency.currencyID,
+            TestDateTimeAnswer.Value
         );
 
         int? testID = ClientManagementSystem_ClassLibrary_BusinessLayer.Tests.add(

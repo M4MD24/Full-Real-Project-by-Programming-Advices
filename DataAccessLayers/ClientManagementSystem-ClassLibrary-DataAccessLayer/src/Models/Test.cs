@@ -4,22 +4,26 @@ namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 public class Test(
     int?      testID,
-    DateTime? testDateTime,
+    int?      licenseID,
     byte?     currencyID,
+    DateTime? testDateTime,
     bool?     isSucceed
 ) {
     public int?      testID       { get; set; } = testID;
-    public DateTime? testDateTime { get; set; } = testDateTime;
+    public int?      licenseID    { get; set; } = licenseID;
     public byte?     currencyID   { get; set; } = currencyID;
+    public DateTime? testDateTime { get; set; } = testDateTime;
     public bool?     isSucceed    { get; set; } = isSucceed;
 
     public Test(
-        DateTime? testDateTime,
-        byte?     currencyID
+        int?      licenseID,
+        byte?     currencyID,
+        DateTime? testDateTime
     ) : this(
         null,
-        testDateTime,
+        licenseID,
         currencyID,
+        testDateTime,
         null
     ) {}
 }
