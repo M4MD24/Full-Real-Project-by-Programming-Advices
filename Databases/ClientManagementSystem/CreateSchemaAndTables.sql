@@ -92,42 +92,6 @@ CREATE TABLE ClientManagementSystem.Currencies
     FOREIGN KEY (CountryID) REFERENCES ClientManagementSystem.Countries (CountryID)
 )
 
-CREATE TABLE ClientManagementSystem.Tests
-(
-    TestID       INT      NOT NULL PRIMARY KEY IDENTITY (1,1),
-    TestDateTime DATETIME NOT NULL,
-    CurrencyID   TINYINT  NOT NULL,
-    IsSucceed    BIT      NULL,
-    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
-)
-
-CREATE TABLE ClientManagementSystem.EyeTests
-(
-    EyeTestID   INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    TestID      INT NOT NULL UNIQUE,
-    EyeDoctorID INT NULL,
-    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
-    FOREIGN KEY (EyeDoctorID) REFERENCES ClientManagementSystem.EyeDoctors (EyeDoctorID)
-)
-
-CREATE TABLE ClientManagementSystem.TheoreticalTests
-(
-    TheoreticalTestID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    TestID            INT NOT NULL UNIQUE,
-    SupervisorID      INT NULL,
-    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
-    FOREIGN KEY (SupervisorID) REFERENCES ClientManagementSystem.Supervisors (SupervisorID)
-)
-
-CREATE TABLE ClientManagementSystem.DrivingTests
-(
-    DrivingTestID     INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    TestID            INT NOT NULL UNIQUE,
-    DrivingExaminerID INT NULL,
-    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
-    FOREIGN KEY (DrivingExaminerID) REFERENCES ClientManagementSystem.DrivingExaminers (DrivingExaminerID)
-)
-
 CREATE TABLE ClientManagementSystem.PaymentMethods
 (
     PaymentMethodID   TINYINT      NOT NULL PRIMARY KEY IDENTITY (1,1),
@@ -180,6 +144,44 @@ CREATE TABLE ClientManagementSystem.Licenses
     FOREIGN KEY (ClientID) REFERENCES ClientManagementSystem.Clients (ClientID),
     FOREIGN KEY (LicenseIssuanceID) REFERENCES ClientManagementSystem.LicenseIssuances (LicenseIssuanceID),
     FOREIGN KEY (LicenseCoverageID) REFERENCES ClientManagementSystem.Coverages (CoverageID)
+)
+
+CREATE TABLE ClientManagementSystem.Tests
+(
+    TestID     INT     NOT NULL PRIMARY KEY IDENTITY (1,1),
+    LicenseID  INT     NOT NULL,
+    CurrencyID TINYINT NOT NULL,
+    TestDate   DATE    NOT NULL,
+    IsSucceed  BIT     NULL,
+    FOREIGN KEY (LicenseID) REFERENCES ClientManagementSystem.Licenses (LicenseID),
+    FOREIGN KEY (CurrencyID) REFERENCES ClientManagementSystem.Currencies (CurrencyID)
+)
+
+CREATE TABLE ClientManagementSystem.EyeTests
+(
+    EyeTestID   INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestID      INT NOT NULL UNIQUE,
+    EyeDoctorID INT NULL,
+    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
+    FOREIGN KEY (EyeDoctorID) REFERENCES ClientManagementSystem.EyeDoctors (EyeDoctorID)
+)
+
+CREATE TABLE ClientManagementSystem.TheoreticalTests
+(
+    TheoreticalTestID INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestID            INT NOT NULL UNIQUE,
+    SupervisorID      INT NULL,
+    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
+    FOREIGN KEY (SupervisorID) REFERENCES ClientManagementSystem.Supervisors (SupervisorID)
+)
+
+CREATE TABLE ClientManagementSystem.DrivingTests
+(
+    DrivingTestID     INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    TestID            INT NOT NULL UNIQUE,
+    DrivingExaminerID INT NULL,
+    FOREIGN KEY (TestID) REFERENCES ClientManagementSystem.Tests (TestID),
+    FOREIGN KEY (DrivingExaminerID) REFERENCES ClientManagementSystem.DrivingExaminers (DrivingExaminerID)
 )
 
 CREATE TABLE ClientManagementSystem.Requests
