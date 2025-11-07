@@ -11,8 +11,8 @@ public static class Tests {
     ) {
         const string ADD_NEW_TEST = """
                                     USE DriverAndVehicleLicenseDepartment
-                                    INSERT INTO ClientManagementSystem.Tests (LicenseID, CurrencyID, TestDateTime)
-                                    VALUES (@licenseID, @currencyID, @testDateTime);
+                                    INSERT INTO ClientManagementSystem.Tests (LicenseID, CurrencyID, TestDate)
+                                    VALUES (@licenseID, @currencyID, @testDate);
                                     SELECT SCOPE_IDENTITY();
                                     """;
 
@@ -48,8 +48,12 @@ public static class Tests {
         );
 
         sqlCommand.Parameters.AddWithValue(
-            "@testDateTime",
-            test.testDateTime
+            "@testDate",
+            test.testDate.HasValue
+                    ? test.testDate.Value.ToDateTime(
+                        TimeOnly.MinValue
+                    )
+                    : DBNull.Value
         );
 
         int rowAffected = 0;

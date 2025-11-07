@@ -49,16 +49,31 @@ INSERT INTO ClientManagementSystem.PaymentMethods (PaymentMethodName)
 VALUES ('Cash'),
        ('Online');
 
+INSERT INTO ClientManagementSystem.FullNames (FirstName, SecondName, ThirdName, FourthName)
+VALUES (2, 3, 4, 5),
+       (22, 33, 44, 55),
+       (222, 333, 444, 555)
+
+INSERT INTO ClientManagementSystem.MobileNumbers (ContactNumber, CountryID)
+VALUES (7, 1),
+       (77, 1),
+       (777, 1)
+
+INSERT INTO ClientManagementSystem.ContactInformation (MobileNumberID, Email)
+VALUES (1, 88),
+       (2, 88),
+       (3, 88)
+
 INSERT INTO ClientManagementSystem.Persons (NationalNumber, FullNameID, DateOfBirth, Address, ContactInformationID, CountryID, ImageURL)
-VALUES (1, 1, '2003-06-09', 4, 1, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\1.png'),
-       (11, 2, '2003-06-09', 44, 2, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\11.png'),
-       (111, 3, '2003-06-09', 444, 3, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\111.png')
+VALUES (1, 1, '2003-06-09', 6, 1, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\1.png'),
+       (11, 2, '2003-06-09', 66, 2, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\11.png'),
+       (111, 3, '2003-06-09', 666, 3, 1, 'D:\Projects\Learn\ProgrammingAdvices\Full-Real-Project-by-Programming-Advices\PresentationLayers\ClientManagementSystem-WindowsFormsApplication-PresentationLayer\bin\Debug\net9.0-windows\Data\Images\111.png')
 
 INSERT INTO ClientManagementSystem.EyeDoctors (PersonID)
-VALUES (3)
+VALUES (1)
 
 INSERT INTO ClientManagementSystem.Supervisors (PersonID)
-VALUES (5)
+VALUES (2)
 
 INSERT INTO ClientManagementSystem.DrivingExaminers (PersonID)
-VALUES (6)
+VALUES (3)

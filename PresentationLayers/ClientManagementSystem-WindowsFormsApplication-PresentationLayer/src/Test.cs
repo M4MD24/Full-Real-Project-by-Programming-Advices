@@ -58,7 +58,9 @@ public partial class Test : Form {
         ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Test test = new ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Test(
             license,
             currency.currencyID,
-            TestDateTimeAnswer.Value
+            DateOnly.FromDateTime(
+                TestDateTimeAnswer.Value
+            )
         );
 
         int? testID = ClientManagementSystem_ClassLibrary_BusinessLayer.Tests.add(
