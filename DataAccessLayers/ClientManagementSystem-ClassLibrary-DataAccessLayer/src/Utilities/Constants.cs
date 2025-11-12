@@ -16,6 +16,13 @@ public static class Constants {
         Lost   = 1
     }
 
+    public enum NextTestStatus {
+        Eye,
+        Theoretical,
+        Driving,
+        Done
+    }
+
     private const string SERVER_NAME   = "M4MD24";
     private const string DATABASE_NAME = "DriverAndVehicleLicenseDepartment";
     private const string USERNAME = "sa",

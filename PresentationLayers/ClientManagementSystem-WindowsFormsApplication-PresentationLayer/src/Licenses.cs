@@ -628,32 +628,45 @@ public partial class Licenses : Form {
         if (license == null)
             return;
 
-        Request? request = ClientManagementSystem_ClassLibrary_BusinessLayer.Requests.get(
-            license!.licenseID
-        );
-
         if (
             license is {
                 issueDateTime : null,
                 expiryDateTime: null
             }
         ) {
-            RequestTestsOption.Visible = true;
-
-            EyeTestOption.Enabled = request!.eyeTestID == null;
-            TheoreticalTestOption.Enabled = request is {
-                eyeTestID        : not null,
-                theoreticalTestID: null
-            };
-            DrivingTestOption.Enabled = request is {
-                theoreticalTestID: not null,
-                drivingTestID    : null
-            };
-
+            RequestTestsOption.Visible       = true;
             LicenseInformationOption.Visible = true;
             LicenseDeleteOption.Visible      = true;
             LicenseRenewOption.Visible       = false;
             LicenseReplaceOption.Visible     = false;
+
+            ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.NextTestStatus nextTestStatus = ClientManagementSystem_ClassLibrary_BusinessLayer.Tests.getNextRequiredTest(
+                license.licenseID
+            );
+
+            switch (nextTestStatus) {
+                case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.NextTestStatus.Eye:
+                    EyeTestOption.Enabled = true;
+                break;
+
+                case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.NextTestStatus.Theoretical:
+                    TheoreticalTestOption.Enabled = true;
+                break;
+
+                case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.NextTestStatus.Driving:
+                    DrivingTestOption.Enabled = true;
+                break;
+
+                case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.NextTestStatus.Done:
+                    MessageBox.Show(
+                        @"All tests completed successfully.",
+                        @"Status of Tests",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                break;
+            }
+
             return;
         }
 
