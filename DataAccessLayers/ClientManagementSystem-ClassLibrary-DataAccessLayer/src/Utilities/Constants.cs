@@ -6,9 +6,10 @@ public static class Constants {
         Update = 1
     }
 
-    public enum EditMode {
-        Local         = 0,
-        International = 1
+    public enum CanSetTestStatus {
+        NotYet,
+        WaitingForSetPerson,
+        Done
     }
 
     public enum ReplaceMode {
@@ -17,10 +18,10 @@ public static class Constants {
     }
 
     public enum NextTestStatus {
-        Eye,
-        Theoretical,
-        Driving,
-        Done
+        Eye = 0,
+        Theoretical = 1,
+        Driving = 2,
+        Done = 3
     }
 
     private const string SERVER_NAME   = "M4MD24";

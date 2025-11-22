@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ClientManagementSystem_ClassLibrary_BusinessLayer;
 using ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using ClientManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 
@@ -14,6 +15,7 @@ public partial class Licenses : Form {
     private readonly List<string>  searchChoices        = [];
     private readonly BindingSource licenseBindingSource = new();
     private          int?          clientID;
+    private          bool          testStatus;
 
     private static(
             Image Information,
@@ -92,11 +94,7 @@ public partial class Licenses : Form {
         LicenseList.ContextMenuStrip = LicenseListMenuStrip;
 
         setIconsForLicenseListOptions();
-
-        setTextForRequestTestOptions();
     }
-
-    private void setTextForRequestTestOptions() {}
 
     private void setIconsForLicenseListOptions() {
         LicenseInformationOption.Image = licenseListMenuStripIcons()
@@ -726,7 +724,63 @@ public partial class Licenses : Form {
     private void showTestOption_Click(
         string testType
     ) {
-        int?                                                             licenseID = getLicenseID_FromSelectedRow();
+        int? licenseID = getLicenseID_FromSelectedRow();
+
+        ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.CanSetTestStatus canSetTestStatus = ClientManagementSystem_ClassLibrary_BusinessLayer.Tests.canSetTestStatus(
+            licenseID,
+            testType
+        );
+
+        switch (
+            canSetTestStatus
+        ) {
+            case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.CanSetTestStatus.NotYet:
+                setTest(
+                    testType,
+                    licenseID
+                );
+            break;
+            case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.CanSetTestStatus.WaitingForSetPerson:
+                MessageBox.Show(
+                    @"Can Set Status?",
+                    @"Waiting for set Person",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            break;
+            case ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities.Constants.CanSetTestStatus.Done:
+                setTestStatus(
+                    licenseID
+                );
+            break;
+        }
+    }
+
+    private void setTestStatus(
+        int? licenseID
+    ) {
+        DialogResult succeedStatus = MessageBox.Show(
+            @"Succeed?",
+            @"Set Status",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Question
+        );
+
+        if (succeedStatus == DialogResult.Cancel)
+            return;
+
+        bool isSucceed = succeedStatus == DialogResult.Yes;
+
+        Tests.setStatus(
+            licenseID,
+            isSucceed
+        );
+    }
+
+    private void setTest(
+        string testType,
+        int?   licenseID
+    ) {
         ClientManagementSystem_ClassLibrary_DataAccessLayer.Models.Fees? fees;
         switch (testType) {
             case "Eye":

@@ -15,4 +15,20 @@ public static class Tests {
     ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Tests.getNextRequiredTest(
         licenseID
     );
+
+    public static Constants.CanSetTestStatus canSetTestStatus(
+        int?   licenseID,
+        string testType
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Tests.canSetTestStatus(
+        licenseID,
+        testType
+    );
+
+    public static void setStatus(
+        int? licenseID,
+        bool isSucceed
+    ) => ClientManagementSystem_ClassLibrary_DataAccessLayer.Tests.setStatus(
+        licenseID,
+        isSucceed
+    );
 }

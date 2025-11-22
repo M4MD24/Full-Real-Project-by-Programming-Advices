@@ -128,4 +128,160 @@ public static class Tests {
                        ? nextTestStatus
                        : Constants.NextTestStatus.Eye;
     }
+
+    public static Constants.CanSetTestStatus canSetTestStatus(
+        int?   licenseID,
+        string testType
+    ) {
+        string tableName = $"ClientManagementSystem.{testType}Tests";
+
+        string personFieldID = testType switch {
+            "Eye"         => "EyeDoctorID",
+            "Theoretical" => "SupervisorID",
+            "Driving"     => "DrivingExaminerID",
+            _ => throw new Exception(
+                     "Invalid test type"
+                 )
+        };
+
+        string query = $"""
+                        USE DriverAndVehicleLicenseDepartment;
+
+                        WITH LastTest AS (
+                            SELECT TOP 1 TestID
+                            FROM ClientManagementSystem.Tests
+                            WHERE LicenseID = @licenseID
+                            ORDER BY TestDate DESC
+                        )
+
+                        SELECT test.TestID
+                        FROM LastTest lastTest
+                        JOIN {
+                            tableName
+                        } test
+                            ON test.TestID = lastTest.TestID
+                            AND test.{
+                                personFieldID
+                            } IS NOT NULL;
+                        """;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@licenseID",
+            licenseID
+        );
+
+        sqlConnection.Open();
+        object result = sqlCommand.ExecuteScalar()!;
+
+        if (
+            !isSetTest(
+                licenseID,
+                testType
+            )
+        )
+            return Constants.CanSetTestStatus.NotYet;
+
+        if (
+            isSetTest(
+                licenseID,
+                testType
+            ) &&
+            result == DBNull.Value
+        )
+            return Constants.CanSetTestStatus.WaitingForSetPerson;
+
+        return Constants.CanSetTestStatus.Done;
+    }
+
+    private static bool isSetTest(
+        int?   licenseID,
+        string testType
+    ) {
+        string tableName = $"ClientManagementSystem.{testType}Tests";
+
+        string query = $"""
+                        USE DriverAndVehicleLicenseDepartment;
+
+                        WITH LastTest AS (
+                            SELECT TOP 1 TestID
+                            FROM ClientManagementSystem.Tests
+                            WHERE LicenseID = @licenseID
+                            ORDER BY TestDate DESC
+                        )
+
+                        SELECT test.TestID
+                        FROM LastTest lastTest
+                        JOIN {
+                            tableName
+                        } test
+                            ON test.TestID = lastTest.TestID;
+                        """;
+
+        using SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        using SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@licenseID",
+            licenseID
+        );
+
+        sqlConnection.Open();
+        object result = sqlCommand.ExecuteScalar()!;
+
+        return result != DBNull.Value;
+    }
+
+    public static void setStatus(
+        int? licenseID,
+        bool isSucceed
+    ) {
+        const string SET_STATUS_QUERY = """
+                                        USE DriverAndVehicleLicenseDepartment;
+
+                                        WITH LastTest AS (
+                                            SELECT TOP 1 TestID
+                                            FROM ClientManagementSystem.Tests
+                                            WHERE LicenseID = @licenseID
+                                            ORDER BY TestDate DESC
+                                        )
+                                        UPDATE ClientManagementSystem.Tests
+                                            SET IsSucceed = @isSucceed
+                                        WHERE TestID = (SELECT TestID FROM LastTest);
+                                        """;
+
+        using SqlConnection connection = new(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        using SqlCommand command = new(
+            SET_STATUS_QUERY,
+            connection
+        );
+
+        command.Parameters.AddWithValue(
+            "@licenseID",
+            licenseID
+        );
+        command.Parameters.AddWithValue(
+            "@isSucceed",
+            isSucceed
+        );
+
+        connection.Open();
+        int rows = command.ExecuteNonQuery();
+    }
 }
