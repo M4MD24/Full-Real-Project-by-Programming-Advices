@@ -8,4 +8,12 @@ public class EyeTest(
     public int? eyeTestID   { get; set; } = eyeTestID;
     public int? testID      { get; set; } = testID;
     public int? eyeDoctorID { get; set; } = eyeDoctorID;
+
+    public EyeTest(
+        int? testID
+    ) : this(
+        null,
+        testID,
+        null
+    ) {}
 }

@@ -12,8 +12,7 @@ using Constants = AccountManagementSystem_ClassLibrary_DataAccessLayer.Utilities
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
-public partial class AddAndEditAccount : Form,
-                                         Loader {
+public partial class AddAndEditAccount : Form {
     private          string?                    selectedImagePath;
     private readonly Constants.Mode             selectedMode;
     private          FullAccount.FullAccountIDs fullAccountIDs;
@@ -42,6 +41,11 @@ public partial class AddAndEditAccount : Form,
     private void initializeFields() => clearAllFields();
 
     private void clearAllFields() {
+        clearPersonField();
+        clearAccountField();
+    }
+
+    private void clearPersonField() {
         clearField(
             ref NationalNumberAnswer
         );
@@ -56,7 +60,7 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref CountryNameAnswer
         );
-        clearAccountField();
+        clearImageField();
     }
 
     private void clearAccountField() {
@@ -72,7 +76,6 @@ public partial class AddAndEditAccount : Form,
         clearField(
             ref AccountTypeAnswer
         );
-        clearImageField();
         clearField(
             ref AccountTypeAnswer
         );
@@ -264,7 +267,7 @@ public partial class AddAndEditAccount : Form,
                            )
                            : checkUniqueField(
                                NationalNumberAnswer,
-                               Accounts.isExist(
+                               Persons.isExist(
                                    NationalNumberAnswer.Text
                                )
                            );
@@ -505,7 +508,7 @@ public partial class AddAndEditAccount : Form,
         );
     }
 
-    public void loadDataSources() {
+    private void loadDataSources() {
         Loader.loadDataSource(
             MobileNumberCountryNameAnswer,
             AccountManagementSystem_ClassLibrary_BusinessLayer.Countries.getAllCountryNames()

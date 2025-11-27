@@ -8,4 +8,12 @@ public class TheoreticalTest(
     public int? theoreticalTestID { get; set; } = theoreticalTestID;
     public int? testID            { get; set; } = testID;
     public int? supervisorID      { get; set; } = supervisorID;
+
+    public TheoreticalTest(
+        int? testID
+    ) : this(
+        null,
+        testID,
+        null
+    ) {}
 }

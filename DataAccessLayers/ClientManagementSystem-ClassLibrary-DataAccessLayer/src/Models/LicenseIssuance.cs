@@ -1,9 +1,9 @@
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
 public class LicenseIssuance(
-    int? licenseIssuanceID,
-    int? licenseIssuanceName
+    int?    licenseIssuanceID,
+    string? licenseIssuanceName
 ) {
-    public int? licenseIssuanceID   { get; set; } = licenseIssuanceID;
-    public int? licenseIssuanceName { get; set; } = licenseIssuanceName;
+    public int?    licenseIssuanceID   { get; set; } = licenseIssuanceID;
+    public string? licenseIssuanceName { get; set; } = licenseIssuanceName;
 }

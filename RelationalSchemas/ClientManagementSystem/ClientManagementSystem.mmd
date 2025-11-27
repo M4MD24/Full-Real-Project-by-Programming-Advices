@@ -61,8 +61,9 @@ erDiagram
     }
     Tests {
         INT TestID PK
-        DATETIME TestDateTime
+        INT LicenseID FK
         TINYINT CurrencyID FK
+        DATETIME TestDateTime
         BIT IsSucceed
     }
     EyeTests {
@@ -81,14 +82,6 @@ erDiagram
         INT TestID FK
         INT DrivingExaminerID FK
     }
-    RequestTypes {
-        INT RequestTypeID PK
-        NVARCHAR(50) RequestTypeName
-    }
-    RequestCases {
-        TINYINT RequestCaseID PK
-        NVARCHAR(20) RequestCaseName
-    }
     Payments {
         INT PaymentID PK
         TINYINT CurrencyID FK
@@ -100,39 +93,36 @@ erDiagram
         INT RequestID PK
         DATETIME RequestDateTime
         INT ClientID FK
-        INT RequestTypeID FK
-        TINYINT RequestCaseID FK
         INT PaymentID FK
         INT EyeTestID FK
         INT TheoreticalTestID FK
         INT DrivingTestID FK
+        INT LicenseID FK
     }
     LicenseIssuances {
         TINYINT LicenseIssuanceID PK
         NVARCHAR(50) LicenseIssuanceName
     }
+    Coverages {
+        TINYINT CoverageID PK
+        NVARCHAR(30) CoverageName
+    }
     LicenseTypes {
         INT LicenseTypeID PK
-        NVARCHAR(75) LicenseTypeName
+        NVARCHAR(50) LicenseName
         NVARCHAR(200) LicenseDescription
         TINYINT MinimumAge
-        MONEY LicenseFees
         TINYINT LicenseDuration
-        NVARCHAR(300) LicenseConditionsNotes
-        TINYINT LicenseIssuanceID FK
-        DATETIME IssueDateTime
-        DATETIME ExpiryDateTime
-        BIT IsActive
     }
     Licenses {
         INT LicenseID PK
         INT LicenseTypeID FK
         INT ClientID FK
-    }
-    Retests {
-        INT RetestID PK
-        INT LastRequestID FK
-        INT NewRequestID FK
+        TINYINT LicenseIssuanceID FK
+        TINYINT CoverageID FK
+        DATETIME IssueDateTime
+        DATETIME ExpiryDateTime
+        BIT IsActive
     }
     OfficialDrivers {
         INT OfficialDriverID PK
@@ -165,7 +155,7 @@ erDiagram
         TINYINT FeesID PK
         NVARCHAR(75) FeesName
         MONEY Amount
-        INT CurrencyID FK
+        TINYINT CurrencyID FK
     }
 
     Persons ||--|| FullNames: ""
@@ -186,18 +176,17 @@ erDiagram
     Tests ||--|| DrivingTests: ""
     DrivingTests }o--|| DrivingExaminers: ""
     Requests }o--|| Clients: ""
-    Requests }|--|| RequestTypes: ""
-    Requests }|--|| RequestCases: "RequestCaseID"
     Payments ||--|| Currencies: ""
     Requests ||--o| Payments: ""
     Requests ||--|| EyeTests: ""
     Requests ||--|| TheoreticalTests: ""
     Requests ||--|| DrivingTests: ""
+    Requests }|--|| Licenses: ""
     Licenses }|--|| LicenseTypes: ""
     Licenses ||--o{ Clients: ""
-    LicenseTypes }|--|| LicenseIssuances: ""
-    Retests |o--|| Requests: "LastRequestID"
-    Retests |o--|| Requests: "NewRequestID"
+    Licenses }|--|| LicenseIssuances: ""
+    Licenses }|--|| Coverages: ""
+    Licenses }|--o{ Tests: ""
     OfficialDrivers ||--|{ Licenses: ""
     LicenseRenewals ||--o{ Requests: ""
     LockedLicenses }o--|| Licenses: ""

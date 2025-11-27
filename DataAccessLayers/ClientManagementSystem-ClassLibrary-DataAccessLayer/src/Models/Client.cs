@@ -1,9 +1,16 @@
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer.Models;
 
-public class Clients(
+public class Client(
     int? clientID,
     int? personID
 ) {
     public int? clientID { get; set; } = clientID;
     public int? personID { get; set; } = personID;
+
+    public Client(
+        int? personID
+    ) : this(
+        null,
+        personID
+    ) {}
 }

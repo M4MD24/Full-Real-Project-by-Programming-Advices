@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using AccountManagementSystem_ClassLibrary_BusinessLayer;
+using AccountManagementSystem_ClassLibrary_DataAccessLayer;
 using AccountManagementSystem_ClassLibrary_DataAccessLayer.Models;
 using AccountManagementSystem_WindowsFormsApplication_PresentationLayer.Utilities;
 using AccountPermissions = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountPermissions;
 using ContactInformation = AccountManagementSystem_ClassLibrary_BusinessLayer.ContactInformation;
+using Permissions = AccountManagementSystem_ClassLibrary_BusinessLayer.Permissions;
 
 namespace AccountManagementSystem_WindowsFormsApplication_PresentationLayer;
 
@@ -11,17 +12,17 @@ public static class FullAccounts {
     public static FullAccount get(
         ref int? accountID
     ) {
-        Account? account = AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.getAccountByAccountID(
+        Account? account = Accounts.getAccountByAccountID(
             ref accountID
         );
 
         int? personID = account!.personID;
-        Person? person = AccountManagementSystem_ClassLibrary_DataAccessLayer.Persons.getPersonByPersonID(
+        Person? person = Persons.getPersonByPersonID(
             ref personID
         );
 
         int? fullNameID = person!.fullNameID;
-        FullName? fullName = AccountManagementSystem_ClassLibrary_DataAccessLayer.FullNames.getFullNameByFullNameID(
+        FullName? fullName = FullNames.getFullNameByFullNameID(
             ref fullNameID
         );
 
@@ -31,7 +32,7 @@ public static class FullAccounts {
         );
 
         int? mobileNumberID = contactInformation!.mobileNumberID;
-        MobileNumber? mobileNumber = AccountManagementSystem_ClassLibrary_DataAccessLayer.MobileNumbers.getMobileNumberByMobileNumberID(
+        MobileNumber? mobileNumber = MobileNumbers.getMobileNumberByMobileNumberID(
             ref mobileNumberID
         );
 
@@ -56,7 +57,7 @@ public static class FullAccounts {
         );
 
         byte? accountTypeID = account.accountTypeID;
-        AccountType? accountType = AccountManagementSystem_ClassLibrary_DataAccessLayer.AccountTypes.getAccountTypeByAccountTypeID(
+        AccountType? accountType = AccountTypes.getAccountTypeByAccountTypeID(
             ref accountTypeID
         );
 
@@ -100,7 +101,7 @@ public static class FullAccounts {
             fullAccountFields.thirdName,
             fullAccountFields.fourthName
         );
-        int? fullNameID = FullNames.add(
+        int? fullNameID = AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.add(
             ref fullName
         );
 
@@ -112,7 +113,7 @@ public static class FullAccounts {
             fullAccountFields.contactNumber,
             countryID_MobileNumber
         );
-        int? mobileNumberID = MobileNumbers.add(
+        int? mobileNumberID = AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.add(
             ref mobileNumber
         );
 
@@ -139,7 +140,7 @@ public static class FullAccounts {
             fullAccountFields.imageURL
         );
 
-        person.personID = Persons.add(
+        person.personID = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.add(
             ref person
         );
 
@@ -150,11 +151,11 @@ public static class FullAccounts {
             ref fullAccountFields.imageURL!
         );
 
-        Persons.update(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.update(
             ref person
         );
 
-        byte? accountTypeID = AccountTypes.get(
+        byte? accountTypeID = AccountManagementSystem_ClassLibrary_BusinessLayer.AccountTypes.get(
             ref fullAccountFields.accountTypeName!
         )!.accountTypeID;
 
@@ -165,7 +166,7 @@ public static class FullAccounts {
             true,
             accountTypeID
         );
-        Accounts.add(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.add(
             ref account
         );
 
@@ -184,7 +185,7 @@ public static class FullAccounts {
     ) {
         int? accountID = account.accountID,
              personID  = account.personID;
-        Person person = Persons.get(
+        Person person = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.get(
             ref personID
         )!;
         int? fullNameID           = person.fullNameID,
@@ -199,11 +200,11 @@ public static class FullAccounts {
             ref accountID
         );
 
-        Accounts.delete(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.delete(
             ref accountID
         );
 
-        Persons.delete(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.delete(
             ref personID
         );
 
@@ -211,7 +212,7 @@ public static class FullAccounts {
             ref imageURL
         );
 
-        FullNames.delete(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.delete(
             ref fullNameID
         );
 
@@ -219,7 +220,7 @@ public static class FullAccounts {
             ref contactInformationID
         );
 
-        MobileNumbers.delete(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.delete(
             ref mobileNumberID
         );
     }
@@ -238,7 +239,7 @@ public static class FullAccounts {
             fullAccountIDs.accountTypeID
         );
 
-        Accounts.update(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Accounts.update(
             ref account
         );
 
@@ -268,7 +269,7 @@ public static class FullAccounts {
             fullAccountFields.imageURL
         );
 
-        Person? lastPerson = Persons.get(
+        Person? lastPerson = AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.get(
             ref fullAccountIDs.personID
         );
 
@@ -288,7 +289,7 @@ public static class FullAccounts {
             );
         }
 
-        Persons.update(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.Persons.update(
             ref person
         );
 
@@ -300,7 +301,7 @@ public static class FullAccounts {
             fullAccountFields.fourthName
         );
 
-        FullNames.update(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.FullNames.update(
             ref fullName
         );
 
@@ -320,7 +321,7 @@ public static class FullAccounts {
             fullAccountIDs.mobileNumberCountryID
         );
 
-        MobileNumbers.update(
+        AccountManagementSystem_ClassLibrary_BusinessLayer.MobileNumbers.update(
             ref mobileNumber
         );
     }

@@ -1,3 +1,174 @@
+using System;
+using System.Data.SqlClient;
+using ClientManagementSystem_ClassLibrary_DataAccessLayer.Utilities;
+
 namespace ClientManagementSystem_ClassLibrary_DataAccessLayer;
 
-public class ContactInformation {}
+public static class ContactInformation {
+    public static int updateContactInformationByContactInformationID(
+        ref Models.ContactInformation contactInformationID
+    ) {
+        const string UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
+                                                                            USE DriverAndVehicleLicenseDepartment
+                                                                            UPDATE ClientManagementSystem.ContactInformation
+                                                                            SET MobileNumberID = @mobileNumberID,
+                                                                                Email          = @email
+                                                                            WHERE ContactInformationID = @contactInformationID
+                                                                            """;
+
+        return saveData(
+            ref contactInformationID,
+            UPDATE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
+            Constants.Mode.Update
+        );
+    }
+
+    public static int deleteContactInformationByContactInformationID(
+        ref int? contactInformationID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string DELETE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
+                                                                            USE DriverAndVehicleLicenseDepartment
+                                                                            DELETE ClientManagementSystem.ContactInformation
+                                                                            WHERE ContactInformationID = @contactInformationID
+                                                                            """;
+        SqlCommand sqlCommand = new SqlCommand(
+            DELETE_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@contactInformationID",
+            contactInformationID
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
+    public static int addNewContactInformation(
+        ref Models.ContactInformation contactInformation
+    ) {
+        const string ADD_NEW_CONTACT_INFORMATION = """
+                                                   USE DriverAndVehicleLicenseDepartment
+                                                   INSERT INTO ClientManagementSystem.ContactInformation (MobileNumberID, Email)
+                                                   VALUES (@mobileNumberID, @email);
+                                                   SELECT SCOPE_IDENTITY();
+                                                   """;
+
+        return saveData(
+            ref contactInformation,
+            ADD_NEW_CONTACT_INFORMATION,
+            Constants.Mode.Add
+        );
+    }
+
+    private static int saveData(
+        ref Models.ContactInformation contactInformation,
+        string                        query,
+        Constants.Mode                mode
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+
+        SqlCommand sqlCommand = new SqlCommand(
+            query,
+            sqlConnection
+        );
+
+        if (mode == Constants.Mode.Update)
+            sqlCommand.Parameters.AddWithValue(
+                "@contactInformationID",
+                contactInformation.contactInformationID
+            );
+
+        sqlCommand.Parameters.AddWithValue(
+            "@mobileNumberID",
+            contactInformation.mobileNumberID
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@email",
+            contactInformation.email
+        );
+
+        int rowAffected = 0;
+        try {
+            sqlConnection.Open();
+            if (mode == Constants.Mode.Add) {
+                object result = sqlCommand.ExecuteScalar()!;
+                int newID = Convert.ToInt32(
+                    result
+                );
+                return newID;
+            } else
+                rowAffected = sqlCommand.ExecuteNonQuery();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return rowAffected;
+    }
+
+    public static Models.ContactInformation? getContactInformationByContactInformationID(
+        ref int? contactInformationID
+    ) {
+        SqlConnection sqlConnection = new SqlConnection(
+            Constants.DATABASE_CONNECTIVITY
+        );
+        const string SELECT_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID = """
+                                                                            USE DriverAndVehicleLicenseDepartment
+                                                                            SELECT *
+                                                                            FROM ClientManagementSystem.ContactInformation
+                                                                            WHERE ContactInformationID = @contactInformationID
+                                                                            """;
+        SqlCommand sqlCommand = new SqlCommand(
+            SELECT_CONTACT_INFORMATION_BY_CONTACT_INFORMATION_ID,
+            sqlConnection
+        );
+        sqlCommand.Parameters.AddWithValue(
+            "@contactInformationID",
+            contactInformationID
+        );
+
+        try {
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            while (sqlDataReader.Read()) {
+                int    mobileNumberID = (int) sqlDataReader["MobileNumberID"];
+                string email          = (string) sqlDataReader["Email"];
+                return new Models.ContactInformation(
+                    contactInformationID,
+                    mobileNumberID,
+                    email
+                );
+            }
+
+            sqlDataReader.Close();
+        } catch (Exception exception) {
+            Console.WriteLine(
+                exception.Message
+            );
+        } finally {
+            sqlConnection.Close();
+        }
+
+        return null;
+    }
+}

@@ -34,7 +34,6 @@ partial class AddAndEditAccount {
         components                      = new System.ComponentModel.Container();
         PermissionsQuestion             = new System.Windows.Forms.GroupBox();
         TestPermission                  = new System.Windows.Forms.CheckBox();
-        RetestPermission                = new System.Windows.Forms.CheckBox();
         UnlockLicensesPermission        = new System.Windows.Forms.CheckBox();
         ReadAndSearchPermission         = new System.Windows.Forms.CheckBox();
         DeletePermission                = new System.Windows.Forms.CheckBox();
@@ -67,16 +66,16 @@ partial class AddAndEditAccount {
         CountryNameQuestion             = new System.Windows.Forms.Label();
         CountryNameAnswer               = new System.Windows.Forms.ComboBox();
         AccountQuestion                 = new System.Windows.Forms.GroupBox();
-        ImageQuestion                   = new System.Windows.Forms.GroupBox();
-        ImageAnswer                     = new System.Windows.Forms.PictureBox();
-        BrowseImageAnswerDetails        = new System.Windows.Forms.Label();
-        BrowseImageAnswer               = new System.Windows.Forms.Button();
         AccountTypeQuestion             = new System.Windows.Forms.Label();
         PasswordAnswer                  = new System.Windows.Forms.TextBox();
         AccountTypeAnswer               = new System.Windows.Forms.ComboBox();
         PasswordQuestion                = new System.Windows.Forms.Label();
         UsernameAnswer                  = new System.Windows.Forms.TextBox();
         UsernameQuestion                = new System.Windows.Forms.Label();
+        ImageQuestion                   = new System.Windows.Forms.GroupBox();
+        ImageAnswer                     = new System.Windows.Forms.PictureBox();
+        BrowseImageAnswerDetails        = new System.Windows.Forms.Label();
+        BrowseImageAnswer               = new System.Windows.Forms.Button();
         Submit                          = new System.Windows.Forms.Button();
         ErrorProvider = new System.Windows.Forms.ErrorProvider(
             components
@@ -99,9 +98,6 @@ partial class AddAndEditAccount {
         // 
         PermissionsQuestion.Controls.Add(
             TestPermission
-        );
-        PermissionsQuestion.Controls.Add(
-            RetestPermission
         );
         PermissionsQuestion.Controls.Add(
             UnlockLicensesPermission
@@ -157,26 +153,6 @@ partial class AddAndEditAccount {
         TestPermission.TabIndex                = 36;
         TestPermission.Text                    = "Test";
         TestPermission.UseVisualStyleBackColor = true;
-        // 
-        // RetestPermission
-        // 
-        RetestPermission.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Bold
-        );
-        RetestPermission.Location = new System.Drawing.Point(
-            80,
-            60
-        );
-        RetestPermission.Name = "RetestPermission";
-        RetestPermission.Size = new System.Drawing.Size(
-            65,
-            20
-        );
-        RetestPermission.TabIndex                = 37;
-        RetestPermission.Text                    = "Retest";
-        RetestPermission.UseVisualStyleBackColor = true;
         // 
         // UnlockLicensesPermission
         // 
@@ -613,8 +589,8 @@ partial class AddAndEditAccount {
             ((byte) 0)
         );
         ContactInformationQuestion.Location = new System.Drawing.Point(
-            20,
-            380
+            525,
+            28
         );
         ContactInformationQuestion.Name = "ContactInformationQuestion";
         ContactInformationQuestion.Size = new System.Drawing.Size(
@@ -784,8 +760,8 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         CountryNameQuestion.Location = new System.Drawing.Point(
-            20,
-            585
+            525,
+            235
         );
         CountryNameQuestion.Name = "CountryNameQuestion";
         CountryNameQuestion.Size = new System.Drawing.Size(
@@ -804,8 +780,8 @@ partial class AddAndEditAccount {
         );
         CountryNameAnswer.FormattingEnabled = true;
         CountryNameAnswer.Location = new System.Drawing.Point(
-            180,
-            586
+            685,
+            236
         );
         CountryNameAnswer.Name = "CountryNameAnswer";
         CountryNameAnswer.Size = new System.Drawing.Size(
@@ -817,9 +793,6 @@ partial class AddAndEditAccount {
         // 
         // AccountQuestion
         // 
-        AccountQuestion.Controls.Add(
-            ImageQuestion
-        );
         AccountQuestion.Controls.Add(
             AccountTypeQuestion
         );
@@ -847,110 +820,17 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         AccountQuestion.Location = new System.Drawing.Point(
-            560,
-            20
+            20,
+            555
         );
         AccountQuestion.Name = "AccountQuestion";
         AccountQuestion.Size = new System.Drawing.Size(
             440,
-            490
+            245
         );
         AccountQuestion.TabIndex = 26;
         AccountQuestion.TabStop  = false;
         AccountQuestion.Text     = "Account";
-        // 
-        // ImageQuestion
-        // 
-        ImageQuestion.Controls.Add(
-            ImageAnswer
-        );
-        ImageQuestion.Controls.Add(
-            BrowseImageAnswerDetails
-        );
-        ImageQuestion.Controls.Add(
-            BrowseImageAnswer
-        );
-        ImageQuestion.Font = new System.Drawing.Font(
-            "Segoe UI",
-            12F,
-            System.Drawing.FontStyle.Bold,
-            System.Drawing.GraphicsUnit.Point,
-            ((byte) 0)
-        );
-        ImageQuestion.Location = new System.Drawing.Point(
-            20,
-            240
-        );
-        ImageQuestion.Name = "ImageQuestion";
-        ImageQuestion.Size = new System.Drawing.Size(
-            400,
-            230
-        );
-        ImageQuestion.TabIndex = 41;
-        ImageQuestion.TabStop  = false;
-        ImageQuestion.Text     = "Image";
-        // 
-        // ImageAnswer
-        // 
-        ImageAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        ImageAnswer.Location = new System.Drawing.Point(
-            20,
-            30
-        );
-        ImageAnswer.Name = "ImageAnswer";
-        ImageAnswer.Size = new System.Drawing.Size(
-            180,
-            180
-        );
-        ImageAnswer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-        ImageAnswer.TabIndex = 43;
-        ImageAnswer.TabStop  = false;
-        // 
-        // BrowseImageAnswerDetails
-        // 
-        BrowseImageAnswerDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        BrowseImageAnswerDetails.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Bold
-        );
-        BrowseImageAnswerDetails.Location = new System.Drawing.Point(
-            220,
-            100
-        );
-        BrowseImageAnswerDetails.Name = "BrowseImageAnswerDetails";
-        BrowseImageAnswerDetails.Padding = new System.Windows.Forms.Padding(
-            5
-        );
-        BrowseImageAnswerDetails.Size = new System.Drawing.Size(
-            160,
-            110
-        );
-        BrowseImageAnswerDetails.TabIndex = 43;
-        BrowseImageAnswerDetails.Text     = "None";
-        // 
-        // BrowseImageAnswer
-        // 
-        BrowseImageAnswer.Font = new System.Drawing.Font(
-            "Segoe UI",
-            9F,
-            System.Drawing.FontStyle.Bold,
-            System.Drawing.GraphicsUnit.Point,
-            ((byte) 0)
-        );
-        BrowseImageAnswer.Location = new System.Drawing.Point(
-            220,
-            30
-        );
-        BrowseImageAnswer.Name = "BrowseImageAnswer";
-        BrowseImageAnswer.Size = new System.Drawing.Size(
-            160,
-            50
-        );
-        BrowseImageAnswer.TabIndex                =  42;
-        BrowseImageAnswer.Text                    =  "Browse Image";
-        BrowseImageAnswer.UseVisualStyleBackColor =  true;
-        BrowseImageAnswer.Click                   += BrowseImageAnswer_Click;
         // 
         // AccountTypeQuestion
         // 
@@ -1069,6 +949,99 @@ partial class AddAndEditAccount {
         UsernameQuestion.TabIndex = 27;
         UsernameQuestion.Text     = "Username:";
         // 
+        // ImageQuestion
+        // 
+        ImageQuestion.Controls.Add(
+            ImageAnswer
+        );
+        ImageQuestion.Controls.Add(
+            BrowseImageAnswerDetails
+        );
+        ImageQuestion.Controls.Add(
+            BrowseImageAnswer
+        );
+        ImageQuestion.Font = new System.Drawing.Font(
+            "Segoe UI",
+            12F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        ImageQuestion.Location = new System.Drawing.Point(
+            525,
+            275
+        );
+        ImageQuestion.Name = "ImageQuestion";
+        ImageQuestion.Size = new System.Drawing.Size(
+            480,
+            230
+        );
+        ImageQuestion.TabIndex = 41;
+        ImageQuestion.TabStop  = false;
+        ImageQuestion.Text     = "Image";
+        // 
+        // ImageAnswer
+        // 
+        ImageAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        ImageAnswer.Location = new System.Drawing.Point(
+            20,
+            30
+        );
+        ImageAnswer.Name = "ImageAnswer";
+        ImageAnswer.Size = new System.Drawing.Size(
+            180,
+            180
+        );
+        ImageAnswer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+        ImageAnswer.TabIndex = 43;
+        ImageAnswer.TabStop  = false;
+        // 
+        // BrowseImageAnswerDetails
+        // 
+        BrowseImageAnswerDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        BrowseImageAnswerDetails.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Bold
+        );
+        BrowseImageAnswerDetails.Location = new System.Drawing.Point(
+            220,
+            100
+        );
+        BrowseImageAnswerDetails.Name = "BrowseImageAnswerDetails";
+        BrowseImageAnswerDetails.Padding = new System.Windows.Forms.Padding(
+            5
+        );
+        BrowseImageAnswerDetails.Size = new System.Drawing.Size(
+            240,
+            110
+        );
+        BrowseImageAnswerDetails.TabIndex = 43;
+        BrowseImageAnswerDetails.Text     = "None";
+        // 
+        // BrowseImageAnswer
+        // 
+        BrowseImageAnswer.Font = new System.Drawing.Font(
+            "Segoe UI",
+            9F,
+            System.Drawing.FontStyle.Bold,
+            System.Drawing.GraphicsUnit.Point,
+            ((byte) 0)
+        );
+        BrowseImageAnswer.Location = new System.Drawing.Point(
+            220,
+            30
+        );
+        BrowseImageAnswer.Name = "BrowseImageAnswer";
+        BrowseImageAnswer.Size = new System.Drawing.Size(
+            240,
+            50
+        );
+        BrowseImageAnswer.TabIndex                =  42;
+        BrowseImageAnswer.Text                    =  "Browse Image";
+        BrowseImageAnswer.UseVisualStyleBackColor =  true;
+        BrowseImageAnswer.Click                   += BrowseImageAnswer_Click;
+        // 
         // Submit
         // 
         Submit.Font = new System.Drawing.Font(
@@ -1077,12 +1050,12 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         Submit.Location = new System.Drawing.Point(
-            560,
-            600
+            480,
+            750
         );
         Submit.Name = "Submit";
         Submit.Size = new System.Drawing.Size(
-            275,
+            355,
             50
         );
         Submit.TabIndex                =  44;
@@ -1106,12 +1079,12 @@ partial class AddAndEditAccount {
             System.Drawing.FontStyle.Bold
         );
         ClearFields.Location = new System.Drawing.Point(
-            850,
-            600
+            845,
+            750
         );
         ClearFields.Name = "ClearFields";
         ClearFields.Size = new System.Drawing.Size(
-            150,
+            200,
             50
         );
         ClearFields.TabIndex                =  45;
@@ -1121,6 +1094,9 @@ partial class AddAndEditAccount {
         // 
         // PersonQuestion
         // 
+        PersonQuestion.Controls.Add(
+            ImageQuestion
+        );
         PersonQuestion.Controls.Add(
             NationalNumberAnswer
         );
@@ -1162,8 +1138,8 @@ partial class AddAndEditAccount {
         );
         PersonQuestion.Name = "PersonQuestion";
         PersonQuestion.Size = new System.Drawing.Size(
-            520,
-            630
+            1025,
+            525
         );
         PersonQuestion.TabIndex = 0;
         PersonQuestion.TabStop  = false;
@@ -1178,8 +1154,8 @@ partial class AddAndEditAccount {
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor     = System.Drawing.Color.DarkGray;
         ClientSize = new System.Drawing.Size(
-            1024,
-            671
+            1064,
+            816
         );
         Controls.Add(
             PersonQuestion
@@ -1237,7 +1213,6 @@ partial class AddAndEditAccount {
     private        System.Windows.Forms.OpenFileDialog OpenFileDialog;
     private        System.Windows.Forms.ErrorProvider  ErrorProvider;
     private        System.Windows.Forms.CheckBox       TestPermission;
-    private        System.Windows.Forms.CheckBox       RetestPermission;
     private        System.Windows.Forms.CheckBox       UnlockLicensesPermission;
     private        System.Windows.Forms.Label          AccountTypeQuestion;
     private        System.Windows.Forms.ComboBox       AccountTypeAnswer;

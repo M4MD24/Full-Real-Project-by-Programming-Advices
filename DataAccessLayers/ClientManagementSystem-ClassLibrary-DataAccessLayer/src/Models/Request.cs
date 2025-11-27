@@ -6,20 +6,52 @@ public class Request(
     int?      requestID,
     DateTime? requestDateTime,
     int?      clientID,
-    byte?     requestTypeID,
-    byte?     requestCaseID,
     int?      paymentID,
     int?      eyeTestID,
     int?      theoreticalTestID,
-    int?      drivingTestID
+    int?      drivingTestID,
+    int?      licenseID
 ) {
     public int?      requestID         { get; set; } = requestID;
     public DateTime? requestDateTime   { get; set; } = requestDateTime;
     public int?      clientID          { get; set; } = clientID;
-    public byte?     requestTypeID     { get; set; } = requestTypeID;
-    public byte?     requestCaseID     { get; set; } = requestCaseID;
     public int?      paymentID         { get; set; } = paymentID;
     public int?      eyeTestID         { get; set; } = eyeTestID;
     public int?      theoreticalTestID { get; set; } = theoreticalTestID;
     public int?      drivingTestID     { get; set; } = drivingTestID;
+    public int?      licenseID         { get; set; } = licenseID;
+
+    public Request(
+        DateTime? requestDateTime,
+        int?      clientID,
+        int?      paymentID,
+        int?      licenseID
+    ) : this(
+        null,
+        requestDateTime,
+        clientID,
+        paymentID,
+        null,
+        null,
+        null,
+        licenseID
+    ) {}
+
+    public Request(
+        int?      requestID,
+        DateTime? requestDateTime,
+        int?      paymentID,
+        int?      eyeTestID,
+        int?      theoreticalTestID,
+        int?      drivingTestID
+    ) : this(
+        requestID,
+        requestDateTime,
+        null,
+        paymentID,
+        eyeTestID,
+        theoreticalTestID,
+        drivingTestID,
+        null
+    ) {}
 }

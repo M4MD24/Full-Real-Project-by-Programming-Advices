@@ -1,0 +1,104 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <RootNamespace>ClientManagementSystem_WindowsFormsApplication_PresentationLayer</RootNamespace>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>disable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\BusinessLayers\AccountManagementSystem-ClassLibrary-BusinessLayer\AccountManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
+        <ProjectReference Include="..\..\BusinessLayers\ClientManagementSystem-ClassLibrary-BusinessLayer\ClientManagementSystem-ClassLibrary-BusinessLayer.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="src\Login.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\ClientManagementSystem.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Countries.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Currencies.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Fees.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\AddAndEditClient.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Licenses.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\ClientInformation.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Requests.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\AddRequest.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\Test.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Update="src\LicenseInformation.cs">
+          <SubType>Form</SubType>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Svg" Version="3.4.7"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\Images\ActionKey.svg"/>
+        <EmbeddedResource Include="Resources\Images\Call.svg"/>
+        <EmbeddedResource Include="Resources\Images\ContactSupport.svg"/>
+        <EmbeddedResource Include="Resources\Images\Add.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Add.ico"/>
+        <EmbeddedResource Include="Resources\Images\AutoRenew.svg"/>
+        <EmbeddedResource Include="Resources\Images\Category.svg"/>
+        <EmbeddedResource Include="Resources\Images\CheckListRTL.svg"/>
+        <EmbeddedResource Include="Resources\Images\Contacts.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Contacts.ico"/>
+        <EmbeddedResource Include="Resources\Images\Edit.svg"/>
+        <EmbeddedResource Include="Resources\Images\Remove.svg"/>
+        <EmbeddedResource Include="Resources\Images\SyncProblem.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Flag2.ico"/>
+        <EmbeddedResource Include="Resources\Images\Flag2.svg"/>
+        <EmbeddedResource Include="Resources\Images\Help.svg"/>
+        <EmbeddedResource Include="Resources\Images\Lists.svg"/>
+        <EmbeddedResource Include="Resources\Images\Mail.svg"/>
+        <EmbeddedResource Include="Resources\Images\ID_Card.svg"/>
+        <EmbeddedResource Include="Resources\Icons\ID_Card.ico"/>
+        <EmbeddedResource Include="Resources\Icons\ManageAccounts.ico"/>
+        <EmbeddedResource Include="Resources\Icons\Person.ico"/>
+        <EmbeddedResource Include="Resources\Images\Person.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonAdd.ico"/>
+        <EmbeddedResource Include="Resources\Images\PersonAdd.svg"/>
+        <EmbeddedResource Include="Resources\Icons\PersonEdit.ico"/>
+        <EmbeddedResource Include="Resources\Images\PersonEdit.svg"/>
+        <EmbeddedResource Include="Resources\Images\PersonRemove.svg"/>
+        <EmbeddedResource Include="Resources\Images\Refresh.svg"/>
+        <EmbeddedResource Include="Resources\Images\Search.svg"/>
+        <EmbeddedResource Include="Resources\Images\SwapHorizontal.svg"/>
+        <EmbeddedResource Include="Resources\Images\TelegramLogo.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Toll.ico"/>
+        <EmbeddedResource Include="Resources\Images\Toll.svg"/>
+        <EmbeddedResource Include="Resources\Icons\UniversalCurrencyAlt.ico"/>
+        <EmbeddedResource Include="Resources\Images\UniversalCurrencyAlt.svg"/>
+        <EmbeddedResource Include="Resources\Images\SearchHandsFree.svg"/>
+        <EmbeddedResource Include="Resources\Images\Schedule.svg"/>
+        <EmbeddedResource Include="Resources\Images\EyeTracking.svg"/>
+        <EmbeddedResource Include="Resources\Images\Quiz.svg"/>
+        <EmbeddedResource Include="Resources\Images\Assignment.svg"/>
+        <EmbeddedResource Include="Resources\Icons\Assignment.ico"/>
+    </ItemGroup>
+
+</Project>

@@ -41,4 +41,20 @@ public static class Accounts {
     ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.changeStatusbyAccountID(
         ref accountID
     );
+
+    public static bool isCorrect(
+        string? username,
+        string? password
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.isCorrectAccountByUsernameAndPassword(
+        ref username,
+        ref password
+    );
+
+    public static bool isActive(
+        string? username,
+        string? password
+    ) => AccountManagementSystem_ClassLibrary_DataAccessLayer.Accounts.isActiveByUsernameAndPassword(
+        ref username,
+        ref password
+    );
 }
